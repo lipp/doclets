@@ -1,0 +1,27 @@
+{
+  "name": "jsdoc-jade",
+  "version": "1.0.0",
+  "description": "A jade template renderer for jsdoc",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "keywords": [
+    "jsdoc",
+    "jade",
+    "template",
+    "doc"
+  ],
+  "author": "Gerhard Preuss",
+  "license": "MIT",
+  "dependencies": {
+    "jade": "^1.11.0",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "acme-jsdoc-example": "lipp/acme-jsdoc-example",
+    "jsdoc": "^3.4.0",
+    "mocha": "^2.3.4",
+    "taffy": "^2.6.2"
+  }
+}
