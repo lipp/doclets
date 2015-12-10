@@ -1,11 +1,12 @@
 
-mixin funcdecl(func)
-	span= func.name
+mixin funcdecl(func, isCtor)
+	- var title = isCtor ? 'new ' + func.name : func.name;
+	span= title
 	ul.args
 		if func.params
-			each param in func.params
+			each param in _.filter(func.params, function(param) {return param.name.indexOf('.') === -1;})
 				li(class=param.optional ? 'optional' : undefined)= param.name
-	if func.returns && func.returns[0]
+	if !isCtor && func.returns && func.returns[0]
 		- var names = _.map(func.returns[0].type.names, tools.shortName);
 		ul.returns
 			each name in names
@@ -16,12 +17,15 @@ mixin clazz(clazz)
 	h4.clazzname(class=clazz.kind=='interface' ? 'interface' : undefined)= clazz.name
 	- var functions = _.filter(clazz.members, function(doclet) {return doclet.kind === 'function';});
 	- var constants = _.filter(clazz.members, function(doclet) {return doclet.kind === 'constant';});
+	
 	if constants.length > 0
 		ul.constants
 			each constant in tools.sortByName(constants)
 				li.constant= constant.name
 	if functions.length > 0
 		ul.functions
+			li
+				+funcdecl(clazz, true)
 			each func in tools.sortByName(functions)
 				li
 					+funcdecl(func)

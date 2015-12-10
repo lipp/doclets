@@ -1,4 +1,4 @@
-.args {
+.args, .returns {
 	display: inline;
 	padding-left: 0;
 	list-style: none;
@@ -14,7 +14,7 @@
 	display: inline;
 }
 
-.args > li {
+.args > li, .returns > li {
 	display: inline;
 }
 
@@ -41,6 +41,16 @@
 
 .args > .optional::after {
 	content: ']';
+}
+
+.returns:before {
+	content: '{';
+	display: inline;
+}
+
+.returns:after {
+	content: '}';
+	display: inline;
 }
 
 .modules, .modules > li > ul {
