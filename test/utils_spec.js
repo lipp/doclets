@@ -22,6 +22,10 @@ describe('The utils module', function() {
             });
         });
 
+        after(function() {
+            fs.unlink('./taffy.json');
+        });
+
         it('taffyData is TAFFY', function() {
             assert.ok(taffyData.TAFFY);
         });
@@ -86,6 +90,7 @@ describe('The utils module', function() {
 
             it('funny/Coyote has correct member', function() {
                 var members = modules['module:funny'].classes[0].members;
+                console.log(members[0]);
                 assert.equal(members.length, 3);
             });
 
@@ -110,9 +115,6 @@ describe('The utils module', function() {
         });
     });
 
-    after(function() {
-        fs.unlink('./taffy.json');
-    });
 
 
 });

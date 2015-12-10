@@ -1,0 +1,62 @@
+
+mixin funcdecl(func)
+	span= func.name
+	ul.args
+		if func.params
+			each param in func.params
+				li(class=param.optional ? 'optional' : undefined)= param.name
+		
+
+mixin clazz(clazz)
+	h4.clazzname(class=clazz.kind=='interface' ? 'interface' : undefined)= clazz.name
+	- var functions = _.filter(clazz.members, function(doclet) {return doclet.kind === 'function';});
+	- var constants = _.filter(clazz.members, function(doclet) {return doclet.kind === 'constant';});
+	if constants.length > 0
+		ul.constants
+			each constant in tools.sortByName(constants)
+				li.constant= constant.name
+	if functions.length > 0
+		ul.functions
+			each func in tools.sortByName(functions)
+				li
+					+funcdecl(func)
+
+mixin overview(doclet)
+	if doclet.kind === 'function'
+		h4
+			+funcdecl(doclet)
+	else
+		h4= doclet.name
+	span.kind= doclet.kind
+	if doclet.description
+		p.description= doclet.description
+
+mixin module(id)
+	- var module = modules[id];
+	h2.modulename= tools.modulename(id)
+	if module.constants.length > 0
+		h3 Constants
+		each constant in tools.sortByName(module.constants)
+			article.constant
+				+overview(constant)
+	if module.functions.length > 0
+		h3 Functions
+			each func in tools.sortByName(module.functions)
+				article.function
+					+overview(func)
+	if module.interfaces.length > 0
+		h3 Interfaces
+			each interface in tools.sortByName(module.interfaces)
+				article.interface
+					+overview(interface)
+	if module.classes.length > 0
+		h3 Classes
+			each clazz in tools.sortByName(module.classes)
+				article.clazz
+					+overview(clazz)
+
+
+	
+each id in _.keys(modules)
+	section.module
+		+module(id)

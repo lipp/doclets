@@ -1,0 +1,54 @@
+.args {
+	display: inline;
+	padding-left: 0;
+	list-style: none;
+}
+
+.args:before {
+	content: '(';
+	display: inline;
+}
+
+.args:after {
+	content: ')';
+	display: inline;
+}
+
+.args > li {
+	display: inline;
+}
+
+
+.args > li::before {
+	content: ',';
+	margin-right: 0.1em;
+}
+
+.args > li:first-child::before {
+	content: '';
+	margin-right: 0;
+}
+
+.args > .optional::before {
+	content: '[,';
+	margin-right: 0.1em;
+}
+
+.args > li:first-child.optional::before {
+	content: '[';
+	margin-right: 0;
+}
+
+.args > .optional::after {
+	content: ']';
+}
+
+.modules, .modules > li > ul {
+	list-style: none;
+	padding-left: 0;
+}
+
+.modules .modulename {
+	text-decoration: underline;
+}
+
