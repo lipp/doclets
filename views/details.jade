@@ -20,17 +20,42 @@ mixin simpleDoclet(doclet)
 	if doclet.description
 		p.description= doclet.description
 
+
+mixin paramDetails(param)
+	h4.paramname= param.name
+		if param.type
+			ul.types
+				each type in param.type.names
+					li.typename= type
+		if param.optional
+			span.optional , optional
+	if param.defaultvalue !== undefined
+		h5.default default: 
+			span.defaultvalue= param.defaultvalue
+	if param.description
+		p.description= param.description
+
+mixin paramsList(params)
+	ul.params
+		each param in params
+			li
+				+paramDetails(param)
+
 mixin clazzDoclet(doclet)
 	+title(doclet, 'Class:')
 	if doclet.classdesc
 		p.classdesc= doclet.classdesc
 	+funcDoclet(doclet, true)
+	if doclet.params
+		+paramsList(doclet.params)
 	- var functions = _.filter(doclet.members, function(doclet) {return doclet.kind === 'function';});
 	- var constants = _.filter(doclet.members, function(doclet) {return doclet.kind === 'constant';});
 	each constant in tools.sortByName(constants)
 		+simpleDoclet(constant)
 	each func in tools.sortByName(functions)
 		+funcDoclet(func, false, doclet.name)
+		if func.params
+			+paramsList(func.params)
 	
 	
 
@@ -40,6 +65,8 @@ mixin module(id)
 		h2.modulename(id=module)
 			span module
 			span= tools.modulename(id)
+		if module.doclet.description
+			p.moduledescription= module.doclet.description
 	each constant in tools.sortByName(module.constants)
 		article.constant
 			+simpleDoclet(constant)

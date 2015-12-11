@@ -1,3 +1,26 @@
+html {
+	font-family: "LatoWebRegular", "Myriad Pro", "Helvetica Neue", sans-serif;
+	font-size: 16px;
+	line-height: 1.5;
+	font-size: 18px;
+}
+
+p {
+	color: #515151;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: .5rem;
+    font-weight: bold;
+    line-height: 1.25;
+    color: #313131;
+    text-rendering: optimizeLegibility;
+}
+
+code, pre {
+    font-family: Menlo, Monaco, "Courier New", monospace;
+}
+
 body {
 	position: relative;
 	margin: 0 0;
@@ -38,7 +61,7 @@ nav .clazzname {
 	display: block;
 }
 
-.clazz > ul, .interface > ul {
+nav .clazz > ul, nav .interface > ul {
 	list-style: none;
 	padding-left: 1em;
 }
@@ -112,11 +135,11 @@ nav .clazzname {
 }
 
 .main h3 {
-	padding-top: 3em;
+	padding-top: 1em;
 }
 
 .main .module {
-	padding-top: 4em;
+	padding-top: 1.5em;
 }
 
 .main .module:first-of-type {
@@ -129,3 +152,31 @@ nav .clazzname {
 	margin-left: auto;
 	margin-right: auto;
 }
+
+.params {
+	list-style: initial;
+}
+
+.paramname .types {
+	list-style: none;
+	padding-left: 0;
+	display: inline;
+}
+
+.types > li {
+	display: inline;
+}
+
+.types:before {
+	content: '{';
+}
+
+.types:after {
+	content: '}';
+}
+
+.types > li + li:before {
+	content: '|';
+}
+
+
