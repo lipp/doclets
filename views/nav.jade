@@ -1,20 +1,24 @@
 
 mixin funcdecl(func, isCtor)
-	- var title = isCtor ? 'new ' + func.name : func.name;
-	span= title
-	ul.args
-		if func.params
-			each param in _.filter(func.params, function(param) {return param.name.indexOf('.') === -1;})
-				li(class=param.optional ? 'optional' : undefined)= param.name
-	if !isCtor && func.returns && func.returns[0]
-		- var names = _.map(func.returns[0].type.names, tools.shortName);
-		ul.returns
-			each name in names
-				li.return= name
+	a(href='#' + func.longname + (isCtor ? '~ctor' : ''))
+		- var title = isCtor ? 'new ' + func.name : func.name;
+		span= title
+		ul.args
+			if func.params
+				each param in _.filter(func.params, function(param) {return param.name.indexOf('.') === -1;})
+					li(class=param.optional ? 'optional' : undefined)= param.name
+		if !isCtor && func.returns && func.returns[0]
+			- var names = _.map(func.returns[0].type.names, tools.shortName);
+			ul.returns
+				each name in names
+					li.return= name
+		span.link
+			a(href='#' + func.longname)
 		
 
 mixin clazz(clazz)
-	h4.clazzname(class=clazz.kind=='interface' ? 'interface' : undefined)= clazz.name
+	h4.clazzname(class=clazz.kind=='interface' ? 'interface' : undefined)
+		a(href='#' + clazz.longname)= clazz.name
 	- var functions = _.filter(clazz.members, function(doclet) {return doclet.kind === 'function';});
 	- var constants = _.filter(clazz.members, function(doclet) {return doclet.kind === 'constant';});
 	
@@ -32,11 +36,13 @@ mixin clazz(clazz)
 
 mixin module(id)
 	- var module = modules[id];
-	h3.modulename= tools.modulename(id)
+	if id !== '_GLOBAL'
+		h3.modulename= tools.modulename(id)
 	if module.constants.length > 0
 		ul.constants
 			each constant in tools.sortByName(module.constants)
-				li.constant= constant.name
+				li.constant
+					a(href='#' + constant.longname)= constant.name
 	if module.functions.length > 0
 		ul.functions
 			each func in tools.sortByName(module.functions)
@@ -56,6 +62,8 @@ mixin module(id)
 
 nav
 	ul.modules
-		each id in _.keys(modules)
+		li.module
+			+module('_GLOBAL')
+		each id in _.filter(_.keys(modules), function(name) { return name !== '_GLOBAL'; })
 			li.module
 				+module(id)

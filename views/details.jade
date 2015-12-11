@@ -1,9 +1,9 @@
 
 mixin funcDoclet(func, isCtor, parent)
 	- var title = isCtor ? 'new ' + func.name : func.name;
-	h3
+	h3(id=func.longname + (isCtor ? '~ctor' : ''))
 		if parent
-			span= parent + '#'
+			span.parent= parent + '#'
 		span= title
 		ul.args
 			if func.params
@@ -14,19 +14,19 @@ mixin funcDoclet(func, isCtor, parent)
 			ul.returns
 				each name in names
 					li.return= name
-		span
-			a= '#'
+		span.link
+			a(href='#' + func.longname)= '#'
 	if func.description
 		p.description= func.description
 	
 		
 mixin title(doclet, prefix)
-	h3
+	h3(id=doclet.longname)
 		if prefix
 			span= prefix
 		span= doclet.name
-		span
-			a= '#'
+		span.link
+			a(href="#" + doclet.longname)= '#'
 
 mixin simpleDoclet(doclet)
 	+title(doclet)
@@ -49,7 +49,10 @@ mixin clazzDoclet(doclet)
 
 mixin module(id)
 	- var module = modules[id];
-	h2.modulename= tools.modulename(id)
+	if id !== '_GLOBAL'
+		h2.modulename(id=module)
+			span module
+			span= tools.modulename(id)
 	each constant in tools.sortByName(module.constants)
 		article.constant
 			+simpleDoclet(constant)
@@ -64,7 +67,8 @@ mixin module(id)
 			+clazzDoclet(clazz)
 
 
-	
-each id in _.keys(modules)
+section.module
+	+module('_GLOBAL')
+each id in _.filter(_.keys(modules), function(name) {return name !== '_GLOBAL';})
 	section.module
 		+module(id)

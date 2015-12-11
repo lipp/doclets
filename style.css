@@ -1,3 +1,48 @@
+body {
+	position: relative;
+	margin: 0 0;
+	height: 100%;
+	width: 100%;
+}
+
+nav {
+	position: absolute;
+	left: 0;
+	width: 300px;
+	background-color: lightgray;
+	height: 100%;
+	overflow-y: scroll;
+	box-sizing: border-box;
+	padding-left: 0.5em;
+}
+
+nav a {
+	text-decoration: none;
+}
+
+nav .clazzname {
+	margin-bottom: 0.5em;
+}
+
+.main {
+	position: absolute;
+	left: 300px;
+	right: 0;
+	height: 100%;
+	overflow-y: scroll;
+}
+
+.main:after {
+	content: '';
+	height: 90%;
+	display: block;
+}
+
+.clazz > ul, .interface > ul {
+	list-style: none;
+	padding-left: 1em;
+}
+
 .args, .returns {
 	display: inline;
 	padding-left: 0;
@@ -62,3 +107,25 @@
 	text-decoration: underline;
 }
 
+.parent {
+	color: lightgray;
+}
+
+.main h3 {
+	padding-top: 3em;
+}
+
+.main .module {
+	padding-top: 4em;
+}
+
+.main .module:first-of-type {
+	padding-top: 1em;
+}
+
+.main > * {
+	width: 95%;
+	max-width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+}
