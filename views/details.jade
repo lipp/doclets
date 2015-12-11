@@ -1,19 +1,6 @@
-
 mixin funcDoclet(func, isCtor, parent)
-	- var title = isCtor ? 'new ' + func.name : func.name;
 	h3(id=func.longname + (isCtor ? '~ctor' : ''))
-		if parent
-			span.parent= parent + '#'
-		span= title
-		ul.args
-			if func.params
-				each param in _.filter(func.params, function(param) {return param.name.indexOf('.') === -1;})
-					li(class=param.optional ? 'optional' : undefined)= param.name
-		if !isCtor && func.returns && func.returns[0]
-			- var names = _.map(func.returns[0].type.names, tools.shortName);
-			ul.returns
-				each name in names
-					li.return= name
+		+funcdeclx(func, isCtor, parent)
 		span.link
 			a(href='#' + func.longname)= '#'
 	if func.description

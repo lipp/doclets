@@ -1,3 +1,18 @@
+mixin funcdeclx(func, isCtor, parent)
+	- var title = isCtor ? 'new ' + func.name : func.name;
+	if parent
+		span.parent= parent + '#'
+	span= title
+	ul.args
+		if func.params
+			each param in _.filter(func.params, function(param) {return param.name.indexOf('.') === -1;})
+				li(class=param.optional ? 'optional' : undefined)= param.name
+	if !isCtor && func.returns && func.returns[0]
+		- var names = _.map(func.returns[0].type.names, tools.shortName);
+		ul.returns
+			each name in names
+				li.return= name
+
 html
 	head
 		link(rel="stylesheet", href="./style.css")
