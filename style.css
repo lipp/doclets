@@ -2,11 +2,12 @@ html {
 	font-family: "LatoWebRegular", "Myriad Pro", "Helvetica Neue", sans-serif;
 	font-size: 16px;
 	line-height: 1.5;
-	font-size: 18px;
+	font-size: 16px;
 }
 
 p {
 	color: #515151;
+	margin: 0.6em 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -15,10 +16,18 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.25;
     color: #313131;
     text-rendering: optimizeLegibility;
+    font-family: Menlo, Monaco, "Courier New", monospace;
+}
+
+.new {
+	font-weight: normal;
+	padding-right: 0.3em;
 }
 
 code, pre {
     font-family: Menlo, Monaco, "Courier New", monospace;
+		background-color: #EAEAEA;
+    padding: 0.2em;
 }
 
 body {
@@ -39,8 +48,18 @@ nav {
 	padding-left: 0.5em;
 }
 
+::-webkit-scrollbar {
+	display: none;
+}
+
+
 nav a {
 	text-decoration: none;
+	color: #313131;
+}
+
+nav a:visited {
+	color: #313131;
 }
 
 nav .clazzname {
@@ -66,10 +85,19 @@ nav .clazz > ul, nav .interface > ul {
 	padding-left: 1em;
 }
 
+nav .funcname {
+	font-weight: bold;
+}
+
 .args, .returns {
-	display: inline;
+	display: inline-table;
 	padding-left: 0;
 	list-style: none;
+	margin: 0 0;
+}
+
+.main .args {
+	margin-left: -0.6em;
 }
 
 .args:before {
@@ -112,8 +140,17 @@ nav .clazz > ul, nav .interface > ul {
 }
 
 .returns:before {
-	content: '{';
+	content: '\2192	{';
 	display: inline;
+}
+
+nav {
+	-webkit-filter: invert(100%);
+}
+
+.returns {
+	font-weight: normal;
+	font-size: 80%;
 }
 
 .returns:after {
@@ -132,6 +169,9 @@ nav .clazz > ul, nav .interface > ul {
 
 .parent {
 	color: lightgray;
+	display: block;
+	font-size: 80%;
+	font-weight: normal;
 }
 
 .main h3 {
@@ -155,12 +195,13 @@ nav .clazz > ul, nav .interface > ul {
 
 .params {
 	list-style: initial;
+	margin: 0 0;
 }
 
 .paramname .types {
 	list-style: none;
 	padding-left: 0;
-	display: inline;
+	display: inline-table;
 }
 
 .types > li {
@@ -179,4 +220,26 @@ nav .clazz > ul, nav .interface > ul {
 	content: '|';
 }
 
+.main h3 .link {
+	float: right;
+}
 
+.main a{
+	text-decoration: none;
+	color: #313131;
+}
+
+.params .paramname {
+	margin-top: 0.5em;
+	margin-bottom: 0.0em;
+}
+
+.params p {
+	margin: 0.1em 0;
+}
+
+.paramname .optional {
+	font-weight: lighter;
+	font-style: italic;
+	margin-left: 2em;
+}

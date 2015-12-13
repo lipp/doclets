@@ -1,8 +1,15 @@
+mixin optMarkdown(desc, className)
+	if desc.indexOf('<') === 0
+		div(class=className)!= desc
+	else
+		p(class=className)= desc
+
 mixin funcdeclx(func, isCtor, parent)
-	- var title = isCtor ? 'new ' + func.name : func.name;
 	if parent
 		span.parent= parent + '#'
-	span= title
+	if isCtor
+		span.new new
+	span.funcname= func.name
 	ul.args
 		if func.params
 			each param in _.filter(func.params, function(param) {return param.name.indexOf('.') === -1;})
@@ -17,9 +24,14 @@ html
 	head
 		link(href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext', rel='stylesheet', type='text/css')
 		link(rel="stylesheet", href="./style.css")
+		link(rel="stylesheet", href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/styles/default.min.css")
+		script(src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/highlight.min.js")
+		script.
+			hljs.initHighlightingOnLoad()
 	body
 		include nav.jade
 		.main
 			include details.jade
+
 
 
