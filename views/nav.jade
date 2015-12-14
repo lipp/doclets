@@ -11,12 +11,17 @@ mixin clazz(clazz)
 		a(href='#' + clazz.longname)= clazz.name
 	- var functions = _.filter(clazz.members, function(doclet) {return doclet.kind === 'function';});
 	- var constants = _.filter(clazz.members, function(doclet) {return doclet.kind === 'constant';});
+	- var members = _.filter(clazz.members, function(doclet) {return doclet.kind === 'member' && !doclet.inherited;});
 	- var callbacks = _.filter(clazz.members, function(doclet) {return doclet.kind === 'typedef';}); // && doclet.type && doclet.type.names.find('function')});
 	
 	if constants.length > 0
 		ul.constants
 			each constant in tools.sortByName(constants)
 				li.constant= constant.name
+	if members.length > 0
+		ul.members
+			each member in tools.sortByName(members)
+				li.member= member.name
 	if functions.length > 0
 		ul.functions
 			li

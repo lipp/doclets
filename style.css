@@ -53,6 +53,11 @@ nav {
 	padding-left: 0.5em;
 }
 
+nav li {
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
 ::-webkit-scrollbar {
 	display: none;
 }
@@ -212,6 +217,8 @@ nav {
 .params {
 	list-style: initial;
 	margin: 0 0;
+	margin-top: -0.5em;
+	margin-bottom: 1em;
 }
 
 .paramname .types {
@@ -243,23 +250,28 @@ nav {
 }
 
 .main a {
-	text-decoration: none;
 	color: inherit;
 }
 
 .params .paramname {
 	margin-top: 0.5em;
 	margin-bottom: 0.0em;
+	font-size: 90%;
+    margin: 0 0;
+    color: #3EA7CA;
 }
 
 .params p {
 	margin: 0.1em 0;
 }
 
-.paramname .optional {
+.paramname .optional, .paramname .default, .paramname .defaultvalue {
 	font-weight: lighter;
 	font-style: italic;
-	margin-left: 2em;
+}
+
+.paramname .optional {
+	margin-left: 1em;
 }
 
 article {

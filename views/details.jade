@@ -1,3 +1,8 @@
+mixin examples(examplesArray)
+	each example in examplesArray
+		pre.example
+			code= example
+
 
 mixin see(seeArray)
 	span Links:
@@ -20,6 +25,8 @@ mixin funcDoclet(func, isCtor, parent)
 		+paramsList(func.returns)
 	if func.description
 		+optMarkdown(func.description, 'description')
+	if func.examples
+		+examples(func.examples)
 	if func.see
 		+see(func.see)
 
@@ -37,6 +44,8 @@ mixin simpleDoclet(doclet)
 	+title(doclet)
 	if doclet.description
 		+optMarkdown(doclet.description, 'description')
+	if doclet.examples
+		+examples(doclet.examples)
 	if doclet.see
 		+see(doclet.see)
 
@@ -53,10 +62,9 @@ mixin paramDetails(param)
 							a(href='#' + type)= type
 		if param.optional
 			span.optional optional
-	if param.defaultvalue !== undefined
-		span.default Default value: 
-		span.defaultvalue= param.defaultvalue
-		span .
+		if param.defaultvalue !== undefined
+			span.default , default: 
+			span.defaultvalue= param.defaultvalue
 	if param.description
 		+optMarkdown(param.description, 'description')
 
@@ -73,9 +81,12 @@ mixin clazzDoclet(doclet)
 	+funcDoclet(doclet, true)
 	- var functions = _.filter(doclet.members, function(doclet) {return doclet.kind === 'function';});
 	- var constants = _.filter(doclet.members, function(doclet) {return doclet.kind === 'constant';});
+	- var members = _.filter(doclet.members, function(doclet) {return doclet.kind === 'member' && !doclet.inherited;});
 	- var callbacks = _.filter(doclet.members, function(doclet) {return doclet.kind === 'typedef';}); // && doclet.type && doclet.type.names.find('function')});
 	each constant in tools.sortByName(constants)
 		+simpleDoclet(constant)
+	each member in tools.sortByName(members)
+		+simpleDoclet(member)
 	each func in tools.sortByName(functions)
 		+funcDoclet(func, false, doclet.name)
 	each callback in tools.sortByName(callbacks)
