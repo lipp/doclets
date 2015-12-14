@@ -3,34 +3,26 @@ var child_process = require('child_process');
 var publish = require('../lib/publish');
 var fs = require('fs');
 var _ = require('underscore');
-var taffy = require('taffy');
+var recursive = require('recursive-readdir');
 
 describe('The publish module', function() {
     var taffyData;
 
     describe('using the acme-jsdoc-example data', function() {
         before(function(done) {
-            var jsdoc = child_process.spawn('./node_modules/.bin/jsdoc', [
-                //'-r', './node_modules/jade/lib',
-                '-r', '../node-jet/lib/',
-                //'./node_modules/angular/angular.js',
-                //'./node_modules/morgan/index.js',
-                //						'-r', './node_modules/acme-jsdoc-example/src', 
-                '-t', './test/capture-template',
-                '-c', 'jsdoc.conf'
-            ]);
-            //jsdoc.stdout.pipe(process.stdout);
-            jsdoc.on('close', function(code) {
-                if (code === 0) {
-                    taffyData = taffy(JSON.parse(fs.readFileSync('./taffy.json')));
-                    done();
-                } else {
-                    done('jsdoc failed');
+
+            recursive('../node-jet/lib/', function(err, files) {
+                if (err) {
+                    done(err);
+                    return;
                 }
+                taffyData = publish.createTaffyData(files);
+                done();
             });
-        });
-        after(function() {
-            fs.unlink('./taffy.json');
+            //'-r', './node_modules/jade/lib',
+            //'./node_modules/angular/angular.js',
+            //'./node_modules/morgan/index.js',
+            //						'-r', './node_modules/acme-jsdoc-example/src', 
         });
 
         describe('html= publish.render method', function() {

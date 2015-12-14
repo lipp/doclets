@@ -1,30 +1,24 @@
 var assert = require('assert');
-var child_process = require('child_process');
 var utils = require('../lib/utils');
-var fs = require('fs');
+var publish = require('../lib/publish');
 var _ = require('underscore');
-var taffy = require('taffy');
+var recursive = require('recursive-readdir');
 
 describe('The utils module', function() {
     var taffyData;
 
     describe('using the acme-jsdoc-example data', function() {
         before(function(done) {
-            var jsdoc = child_process.spawn('./node_modules/.bin/jsdoc', ['-r', './node_modules/acme-jsdoc-example/src', '-t', './test/capture-template']);
-            //jsdoc.stdout.pipe(process.stdout);
-            jsdoc.on('close', function(code) {
-                if (code === 0) {
-                    taffyData = taffy(JSON.parse(fs.readFileSync('./taffy.json')));
-                    done();
-                } else {
-                    done('jsdoc failed');
+            recursive('./node_modules/acme-jsdoc-example/src', function(err, files) {
+                if (err) {
+                    done(err);
+                    return;
                 }
+                taffyData = publish.createTaffyData(files);
+                done();
             });
         });
 
-        after(function() {
-            fs.unlink('./taffy.json');
-        });
 
         it('taffyData is TAFFY', function() {
             assert.ok(taffyData.TAFFY);

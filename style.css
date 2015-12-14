@@ -14,7 +14,7 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: .5rem;
     font-weight: bold;
     line-height: 1.25;
-    color: #313131;
+    color: #252525;
     text-rendering: optimizeLegibility;
     font-family: Menlo, Monaco, "Courier New", monospace;
 }
@@ -43,7 +43,7 @@ body {
 }
 
 nav {
-	background-color: #313131;
+	background-color: #252525;
 	color: #F0F0F0; 
 	position: absolute;
 	left: 0;
@@ -208,7 +208,7 @@ nav .returns {
 	color: white;
 	margin-top: 3em;
 	padding: 0.4em;
-	background-color: #313131;
+	background-color: #252525;
 	color: white;
 	display: inline-block; 
 	margin-left: -0.4em;
@@ -261,7 +261,7 @@ nav .returns {
 .main h3 .link {
 	position: absolute;
 	right: 0;
-	color: #313131;
+	color: #252525;
 }
 
 .main a {
