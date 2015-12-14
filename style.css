@@ -19,15 +19,20 @@ h1, h2, h3, h4, h5, h6 {
     font-family: Menlo, Monaco, "Courier New", monospace;
 }
 
-.new {
+.clazz > h3:first-child {
+	background-color: #E05B5B;
+}
+
+.new, .prefix {
 	font-weight: normal;
 	padding-right: 0.3em;
 }
 
 code, pre {
     font-family: Menlo, Monaco, "Courier New", monospace;
-		background-color: #EAEAEA;
     padding: 0.2em;
+	font-size: 90%;
+	background-color: #F0F0F0;
 }
 
 body {
@@ -87,6 +92,10 @@ nav .clazz > ul, nav .interface > ul {
 
 nav .funcname {
 	font-weight: bold;
+}
+
+nav .returns {
+	display: none;
 }
 
 .args, .returns {
@@ -172,10 +181,17 @@ nav {
 	display: block;
 	font-size: 80%;
 	font-weight: normal;
+	margin: 0;
 }
 
 .main h3 {
-	padding-top: 1em;
+	color: white;
+	margin-top: 3em;
+	padding: 0.4em;
+	background-color: #313131;
+	color: white;
+	display: inline-block; 
+	margin-left: -0.4em;
 }
 
 .main .module {
@@ -205,7 +221,7 @@ nav {
 }
 
 .types > li {
-	display: inline;
+	display: inline-table;
 }
 
 .types:before {
@@ -216,17 +232,19 @@ nav {
 	content: '}';
 }
 
-.types > li + li:before {
+.types > li + li:before, .returns > li + li:before {
 	content: '|';
 }
 
 .main h3 .link {
-	float: right;
+	position: absolute;
+	right: 0;
+	color: #313131;
 }
 
-.main a{
+.main a {
 	text-decoration: none;
-	color: #313131;
+	color: inherit;
 }
 
 .params .paramname {
@@ -242,4 +260,8 @@ nav {
 	font-weight: lighter;
 	font-style: italic;
 	margin-left: 2em;
+}
+
+article {
+	position: relative;
 }

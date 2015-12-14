@@ -18,7 +18,11 @@ mixin funcdeclx(func, isCtor, parent)
 		- var names = _.map(func.returns[0].type.names, tools.shortName);
 		ul.returns
 			each name in names
-				li.return= name
+				li.return
+					if tools.isBuiltInType(name)
+						span= name
+					else
+						a(href='#' + name)= name
 
 html
 	head

@@ -1,3 +1,12 @@
+
+mixin see(seeArray)
+	span Links:
+	ul
+		each see in seeArray
+			- var link = tools.linkFromSee(see);
+			li
+				a(href=link.url)= link.name || link.url
+
 mixin funcDoclet(func, isCtor, parent)
 	h3(id=func.longname + (isCtor ? '~ctor' : ''))
 		+funcdeclx(func, isCtor, parent)
@@ -11,13 +20,15 @@ mixin funcDoclet(func, isCtor, parent)
 		+paramsList(func.returns)
 	if func.description
 		+optMarkdown(func.description, 'description')
+	if func.see
+		+see(func.see)
 
 	
 		
 mixin title(doclet, prefix)
 	h3(id=doclet.longname)
 		if prefix
-			span= prefix
+			span.prefix= prefix
 		span= doclet.name
 		span.link
 			a(href="#" + doclet.longname)= '#'
@@ -26,6 +37,8 @@ mixin simpleDoclet(doclet)
 	+title(doclet)
 	if doclet.description
 		+optMarkdown(doclet.description, 'description')
+	if doclet.see
+		+see(doclet.see)
 
 
 mixin paramDetails(param)
@@ -33,7 +46,11 @@ mixin paramDetails(param)
 		if param.type
 			ul.types
 				each type in param.type.names
-					li.typename= type
+					li.typename
+						if tools.isBuiltInType(type)
+							span= type
+						else
+							a(href='#' + type)= type
 		if param.optional
 			span.optional optional
 	if param.defaultvalue !== undefined
@@ -50,16 +67,19 @@ mixin paramsList(params)
 				+paramDetails(param)
 
 mixin clazzDoclet(doclet)
-	+title(doclet, 'Class:')
+	+title(doclet, 'class')
 	if doclet.classdesc
 		+optMarkdown(doclet.classdesc, 'classdesc')
 	+funcDoclet(doclet, true)
 	- var functions = _.filter(doclet.members, function(doclet) {return doclet.kind === 'function';});
 	- var constants = _.filter(doclet.members, function(doclet) {return doclet.kind === 'constant';});
+	- var callbacks = _.filter(doclet.members, function(doclet) {return doclet.kind === 'typedef';}); // && doclet.type && doclet.type.names.find('function')});
 	each constant in tools.sortByName(constants)
 		+simpleDoclet(constant)
 	each func in tools.sortByName(functions)
 		+funcDoclet(func, false, doclet.name)
+	each callback in tools.sortByName(callbacks)
+		+funcDoclet(callback, false, doclet.name)
 	
 	
 
@@ -83,6 +103,9 @@ mixin module(id)
 	each clazz in tools.sortByName(module.classes)
 		article.clazz
 			+clazzDoclet(clazz)
+	each external in tools.sortByName(module.externals)
+		article.external
+			+simpleDoclet(external)
 
 
 section.module
