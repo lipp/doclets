@@ -20,7 +20,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .clazz > h3:first-child {
-	background-color: #E05B5B;
+	background-color: #DA3F7E;
 }
 
 .new, .prefix {
@@ -43,14 +43,19 @@ body {
 }
 
 nav {
+	background-color: #313131;
+	color: #F0F0F0; 
 	position: absolute;
 	left: 0;
 	width: 300px;
-	background-color: lightgray;
 	height: 100%;
 	overflow-y: scroll;
 	box-sizing: border-box;
 	padding-left: 0.5em;
+}
+
+nav h4, nav h3 {
+	color: #F0F0F0; 
 }
 
 nav li {
@@ -65,15 +70,15 @@ nav li {
 
 nav a {
 	text-decoration: none;
-	color: #313131;
+	color: inherit;
 }
 
 nav a:visited {
-	color: #313131;
+	color: inherit;
 }
 
 nav .clazzname {
-	margin-bottom: 0.5em;
+	margin-bottom: 0em;
 }
 
 .main {
@@ -88,6 +93,19 @@ nav .clazzname {
 	content: '';
 	height: 90%;
 	display: block;
+}
+
+.module  .clazz .functions {
+		margin-bottom: 1.5em;
+}
+
+nav .clazzname {
+		margin-top: 0;
+		color: #DA3F7E;
+}
+
+nav li {
+		line-height: 1.1;
 }
 
 nav .clazz > ul, nav .interface > ul {
@@ -158,9 +176,6 @@ nav .returns {
 	display: inline;
 }
 
-nav {
-	-webkit-filter: invert(100%);
-}
 
 .returns {
 	font-weight: normal;
