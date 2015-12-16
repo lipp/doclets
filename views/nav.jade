@@ -11,7 +11,7 @@ mixin clazz(clazz)
 		a(href='#' + clazz.longname)= clazz.name
 	- var functions = _.filter(clazz.members, function(doclet) {return doclet.kind === 'function';});
 	- var constants = _.filter(clazz.members, function(doclet) {return doclet.kind === 'constant';});
-	- var members = _.filter(clazz.members, function(doclet) {return doclet.kind === 'member' && !doclet.inherited;});
+	- var members = _.filter(clazz.members, function(doclet) {return doclet.kind === 'member';});
 	- var callbacks = _.filter(clazz.members, function(doclet) {return doclet.kind === 'typedef';}); // && doclet.type && doclet.type.names.find('function')});
 	
 	if constants.length > 0
@@ -38,7 +38,8 @@ mixin clazz(clazz)
 mixin module(id)
 	- var module = modules[id];
 	if id !== '_GLOBAL'
-		h3.modulename= tools.modulename(id)
+		h4.modulename
+			a(href='#' + id)= tools.modulename(id)
 	if module.constants.length > 0
 		ul.constants
 			each constant in tools.sortByName(module.constants)

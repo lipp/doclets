@@ -13,9 +13,12 @@ mixin see(seeArray)
 				a(href=link.url)= link.name || link.url
 
 mixin funcDoclet(func, isCtor, parent)
-	h3(id=func.longname + (isCtor ? '~ctor' : ''))
+	br
+	h3.title(id=func.longname + (isCtor ? '~ctor' : ''))
 		+funcdeclx(func, isCtor, parent)
 		span.link
+			if func.meta.url
+				a(href=func.meta.url).braces= '</>'
 			a(href='#' + func.longname)= '#'
 	if func.params && func.params.length > 0
 		p Arguments:
@@ -33,21 +36,30 @@ mixin funcDoclet(func, isCtor, parent)
 	
 		
 mixin title(doclet, prefix)
-	h3(id=doclet.longname)
+	br
+	h3.title(id=doclet.longname)
 		if prefix
 			span.prefix= prefix
 		span= doclet.name
 		span.link
+			if doclet.meta.url
+				a(href=doclet.meta.url).braces= '</>'
 			a(href="#" + doclet.longname)= '#'
 
 mixin simpleDoclet(doclet)
 	+title(doclet)
-	if doclet.description
-		+optMarkdown(doclet.description, 'description')
-	if doclet.examples
-		+examples(doclet.examples)
-	if doclet.see
-		+see(doclet.see)
+	if doclet.inherited
+		div
+			span Inherited from: 
+				a(href='#' + doclet.inherits)= tools.shortName(doclet.inherits)
+	else
+		if doclet.description
+			+optMarkdown(doclet.description, 'description')
+		if doclet.examples
+			+examples(doclet.examples)
+		if doclet.see
+			+see(doclet.see)
+	
 
 
 mixin paramDetails(param)
@@ -81,7 +93,7 @@ mixin clazzDoclet(doclet)
 	+funcDoclet(doclet, true)
 	- var functions = _.filter(doclet.members, function(doclet) {return doclet.kind === 'function';});
 	- var constants = _.filter(doclet.members, function(doclet) {return doclet.kind === 'constant';});
-	- var members = _.filter(doclet.members, function(doclet) {return doclet.kind === 'member' && !doclet.inherited;});
+	- var members = _.filter(doclet.members, function(doclet) {return doclet.kind === 'member';});
 	- var callbacks = _.filter(doclet.members, function(doclet) {return doclet.kind === 'typedef';}); // && doclet.type && doclet.type.names.find('function')});
 	each constant in tools.sortByName(constants)
 		+simpleDoclet(constant)
@@ -97,8 +109,8 @@ mixin clazzDoclet(doclet)
 mixin module(id)
 	- var module = modules[id];
 	if id !== '_GLOBAL'
-		h2.modulename(id=module)
-			span module
+		h2.modulename(id=id)
+			span.moduleprefix module
 			span= tools.modulename(id)
 		if module.doclet.description
 			+optMarkdown(module.doclet.description, 'moduledescription')

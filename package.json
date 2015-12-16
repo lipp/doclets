@@ -15,12 +15,16 @@
   "author": "Gerhard Preuss",
   "license": "MIT",
   "dependencies": {
+    "fs-extra": "^0.26.2",
     "jade": "^1.11.0",
+    "nodegit": "^0.6.0",
     "recursive-readdir": "^1.3.0",
+    "recursive-readdir-sync": "^1.0.6",
     "underscore": "^1.8.3"
   },
   "devDependencies": {
     "acme-jsdoc-example": "lipp/acme-jsdoc-example",
+    "js-beautify": "^1.5.10",
     "jsdoc": "^3.4.0",
     "mocha": "^2.3.4",
     "taffy": "^2.6.2"

@@ -19,11 +19,11 @@ h1, h2, h3, h4, h5, h6 {
     font-family: Menlo, Monaco, "Courier New", monospace;
 }
 
-.clazz > h3:first-child {
+.clazz > h3:first-of-type {
 	background-color: #DA3F7E;
 }
 
-.new, .prefix {
+.new, .prefix, .moduleprefix {
 	font-weight: normal;
 	padding-right: 0.3em;
 }
@@ -79,6 +79,12 @@ nav a:visited {
 
 nav .clazzname {
 	margin-bottom: 0em;
+		margin-top: 0;
+		color: #DA3F7E;
+}
+
+nav .modulename {
+	color: #2CC5C5;
 }
 
 .main {
@@ -99,10 +105,6 @@ nav .clazzname {
 		margin-bottom: 1.5em;
 }
 
-nav .clazzname {
-		margin-top: 0;
-		color: #DA3F7E;
-}
 
 nav li {
 		line-height: 1.1;
@@ -192,9 +194,6 @@ nav .returns {
 	padding-left: 0;
 }
 
-.modules .modulename {
-	text-decoration: underline;
-}
 
 .parent {
 	color: lightgray;
@@ -204,14 +203,21 @@ nav .returns {
 	margin: 0;
 }
 
-.main h3 {
+.main h3, .main h2 {
 	color: white;
 	margin-top: 3em;
 	padding: 0.4em;
-	background-color: #252525;
 	color: white;
 	display: inline-block; 
 	margin-left: -0.4em;
+}
+
+.main .modulename {
+	background-color: #2CC5C5;
+}
+
+.main .title {
+	background-color: #252525;
 }
 
 .main .module {
@@ -262,6 +268,17 @@ nav .returns {
 	position: absolute;
 	right: 0;
 	color: #252525;
+}
+
+.main .link a {
+    text-decoration: none;
+    color: #BFBFBF;
+    margin-left: 1em;
+    font-size: 90%;
+}
+
+.main .link a:hover {
+	color: inherit;
 }
 
 .main a {
