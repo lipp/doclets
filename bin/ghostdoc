@@ -1,0 +1,169 @@
+#!/usr/bin/env node
+
+/* vim: set syntax=javascript */
+
+var prompt = require('prompt');
+var colors = require('colors');
+var path = require('path');
+var fs = require('fs');
+var yaml = require('js-yaml');
+var GitHubApi = require('github');
+prompt.message = 'ghostdoc'.blue;
+
+var log = function (message) {
+	console.log('ghostdoc: '.blue + message);
+};
+
+var logerr = function (message) {
+	console.error('ghostdoc: '.blue + message.red);
+};
+
+
+var getDefaultConfig = function () {
+	try {
+		console.log('ghostdoc: Reading package.json ok'.blue);
+		var config = JSON.parse(fs.readFileSync('package.json'));
+		config.repository = config.repository || {};
+		if (config.main && fs.lstatSync(config.main).isFile()) {
+			config.main = path.dirname(config.main);
+			return config;
+		};
+	} catch (err) {
+		log('Could not read package.json'.yellow);
+		return {};
+	}
+};
+
+
+
+var initRepo = function () {
+	var configDefaults = getDefaultConfig();
+	var setupRepo = function (config) {
+		console.dir(config);
+		var github = new GitHubApi({
+			version: '3.0.0',
+			debug: true,
+			protocol: 'https',
+			host: 'api.github.com',
+			timeout: 5000,
+			headers: {
+				'user-agent': 'ghostdoc'
+			}
+
+		});
+		github.authenticate({
+			type: 'basic',
+			username: config.user,
+			password: config.password
+		});
+		github.repos.createHook({
+			user: config.user,
+			repo: 'node-jet',
+			name: 'web',
+			activate: true,
+			events: ['push'],
+			config: {
+				url: 'http://thisisfunny.com',
+				'content-type': 'json'
+			}
+		}, function (err, res) {
+			if (err) {
+				logerr(err);
+			} else {
+				console.log('TOKEN', res.token);
+			}
+		});
+		log((config.repository + ' successfully added to ghostdoc').green);
+	};
+
+	var initSchema = {
+		properties: {
+			user: {
+				description: 'GitHub user name',
+				required: true,
+			},
+			password: {
+				description: 'GitHub user password',
+				hidden: true,
+				required: true
+			},
+			repository: {
+				description: 'GitHub repository to add to ghostdoc',
+				required: true,
+				default: configDefaults.repository.url
+			}
+		}
+	};
+	prompt.get(initSchema, function (err, result) {
+		if (err) {
+			console.error('Sorry, information not complete'.red);
+			process.exit(1);
+		} else {
+			setupRepo(result);
+		}
+	});
+};
+
+var config = function () {
+
+	var writeConfigYaml = function (inputs) {
+		var config = {};
+		config.name = inputs.name;
+		if (inputs.readme !== '') {
+			config.articles = [];
+			var articleEntry = {};
+			articleEntry[inputs.readme] = 'README.md';
+			config.articles.push(articleEntry);
+		}
+		console.dir(config);
+	};
+
+	var configDefaults = getDefaultConfig();
+	var configSchema = {
+		properties: {
+			name: {
+				description: 'The project name to appear on ghostdoc',
+				required: true,
+				default: configDefaults.name
+			},
+			dir: {
+				description: 'Root folder of source code',
+				default: configDefaults.main || 'lib'
+			}
+		}
+	};
+
+	try {
+		fs.accessSync('README.md');
+		configSchema.properties.readme = {
+			description: 'Title of README.md article',
+			default: 'About',
+			required: true
+		};
+
+	} catch (err) {}
+
+	prompt.get(configSchema, function (err, result) {
+		if (err) {
+			console.error('Sorry, information not complete'.red);
+			process.exit(1);
+		} else {
+			writeConfigYaml(result);
+		}
+	});
+};
+
+var commands = {
+	init: initRepo,
+	config: config
+};
+
+var command = process.argv[2];
+
+if (!command || Object.keys(commands).indexOf(command) === -1) {
+	console.log('usage: ghostdoc init | config'.yellow);
+	process.exit(1);
+}
+
+prompt.start();
+commands[command]();
