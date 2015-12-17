@@ -10,6 +10,7 @@ var yaml = require('js-yaml');
 var GitHubApi = require('github');
 var repoName = require('git-repo-name');
 prompt.message = 'ghostdoc'.blue;
+var webhookUrl = 'http://8d51ff27.ngrok.io/github/callback';
 
 var log = function (message) {
 	console.log('ghostdoc: '.blue + message);
@@ -70,8 +71,9 @@ var initRepo = function () {
 			activate: true,
 			events: ['push', 'create'],
 			config: {
-				url: 'http://thisisfunny.com',
-				'content-type': 'json'
+				secret: '12345678',
+				url: webhookUrl,
+				'content_type': 'json'
 			}
 		}, function (err, res) {
 			if (err) {
