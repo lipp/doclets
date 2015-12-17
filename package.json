@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "acme-jsdoc-example": "lipp/acme-jsdoc-example",
+    "csslint": "^0.10.0",
     "js-beautify": "^1.5.10",
     "jsdoc": "^3.4.0",
     "mocha": "^2.3.4",
