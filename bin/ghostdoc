@@ -8,6 +8,7 @@ var path = require('path');
 var fs = require('fs');
 var yaml = require('js-yaml');
 var GitHubApi = require('github');
+var repoName = require('git-repo-name');
 prompt.message = 'ghostdoc'.blue;
 
 var log = function (message) {
@@ -26,8 +27,8 @@ var getDefaultConfig = function () {
 		config.repository = config.repository || {};
 		if (config.main && fs.lstatSync(config.main).isFile()) {
 			config.main = path.dirname(config.main);
-			return config;
 		};
+		return config;
 	} catch (err) {
 		log('Could not read package.json'.yellow);
 		return {};
@@ -38,11 +39,17 @@ var getDefaultConfig = function () {
 
 var initRepo = function () {
 	var configDefaults = getDefaultConfig();
+	var repoOwner
+	if (configDefaults.repository && configDefaults.repository.url) {
+		var match = configDefaults.repository.url.match(/github\.com\/([^\/]+)\/.*/);
+		if (match) {
+			repoOwner = match[1];
+		}
+	}
 	var setupRepo = function (config) {
-		console.dir(config);
 		var github = new GitHubApi({
 			version: '3.0.0',
-			debug: true,
+			//debug: true,
 			protocol: 'https',
 			host: 'api.github.com',
 			timeout: 5000,
@@ -57,23 +64,27 @@ var initRepo = function () {
 			password: config.password
 		});
 		github.repos.createHook({
-			user: config.user,
-			repo: 'node-jet',
+			user: config.owner,
+			repo: config.repository,
 			name: 'web',
 			activate: true,
-			events: ['push'],
+			events: ['push', 'create'],
 			config: {
 				url: 'http://thisisfunny.com',
 				'content-type': 'json'
 			}
 		}, function (err, res) {
 			if (err) {
+				try {
+					err = JSON.parse(err.message).message;
+				} catch (_) {
+					err = err.message;
+				}
 				logerr(err);
 			} else {
-				console.log('TOKEN', res.token);
+				log('Webhook successfully added'.green);
 			}
 		});
-		log((config.repository + ' successfully added to ghostdoc').green);
 	};
 
 	var initSchema = {
@@ -81,6 +92,7 @@ var initRepo = function () {
 			user: {
 				description: 'GitHub user name',
 				required: true,
+				default: repoOwner
 			},
 			password: {
 				description: 'GitHub user password',
@@ -88,9 +100,14 @@ var initRepo = function () {
 				required: true
 			},
 			repository: {
-				description: 'GitHub repository to add to ghostdoc',
+				description: 'GitHub repository name',
 				required: true,
-				default: configDefaults.repository.url
+				default: repoName.sync()
+			},
+			owner: {
+				description: 'GitHub repository owner',
+				required: true,
+				default: repoOwner
 			}
 		}
 	};
@@ -109,13 +126,17 @@ var config = function () {
 	var writeConfigYaml = function (inputs) {
 		var config = {};
 		config.name = inputs.name;
-		if (inputs.readme !== '') {
+		config.dir = inputs.dir;
+		config.flavor = 'jsdoc';
+		if (inputs.readme && inputs.readme !== '') {
 			config.articles = [];
 			var articleEntry = {};
 			articleEntry[inputs.readme] = 'README.md';
 			config.articles.push(articleEntry);
 		}
-		console.dir(config);
+		fs.writeFileSync('.autodoc.yml', yaml.dump(config));
+		log('.autodoc.yml created'.green);
+		log('commit and push to generate initial documentation'.green);
 	};
 
 	var configDefaults = getDefaultConfig();
@@ -141,7 +162,9 @@ var config = function () {
 			required: true
 		};
 
-	} catch (err) {}
+	} catch (err) {
+		console.log('no readme');
+	}
 
 	prompt.get(configSchema, function (err, result) {
 		if (err) {
