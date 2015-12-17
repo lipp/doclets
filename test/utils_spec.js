@@ -78,13 +78,13 @@ describe('The utils module', function () {
 
 			it('heavy/Tool has correct member', function () {
 				var interfaces = _.indexBy(modules['module:heavy'].interfaces, 'longname');
-				assert.equal(interfaces['module:heavy~Tool'].members.length, 1);
+				assert.equal(interfaces['module:heavy~Tool'].members.length, 2);
 				assert.equal(interfaces['module:heavy~Tool'].members[0].longname, 'module:heavy~Tool#action');
+				assert.equal(interfaces['module:heavy~Tool'].members[1].longname, 'module:heavy~Tool.actionMode');
 			});
 
 			it('funny/Coyote has correct member', function () {
 				var members = modules['module:funny'].classes[0].members;
-				console.log(members[0]);
 				assert.equal(members.length, 3);
 			});
 
