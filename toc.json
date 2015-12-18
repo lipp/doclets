@@ -10,5 +10,20 @@
 				}
 			]
 		}
+	},
+	"https://github.com/lipp/node-jet": {
+		"master": {
+			"dir": "lib",
+			"name": "node-jet",
+			"flavor": "jsdoc",
+			"articles": [
+				{
+					"Overview": "README.md"
+				},
+				{
+					"Todo App": "examples/todo/README.md"
+				}
+			]
+		}
 	}
 }
