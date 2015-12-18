@@ -68,6 +68,12 @@ mixin module(id)
 
 
 nav
+	if articles.length > 0
+		h2.articles-header Articles
+		ul.articles
+			each article in articles
+				li= article.title
+	h2.apidoc-header API Doc
 	ul.modules
 		li.module
 			+module('_GLOBAL')

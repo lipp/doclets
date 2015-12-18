@@ -1,0 +1,7 @@
+extends layout.jade
+
+block content
+	- var article = articles[index];
+	h1 Hello
+	h2= article.title
+	include:markdown-it 123456.md
