@@ -1,6 +1,7 @@
 var assert = require('assert');
 var child_process = require('child_process');
 var publish = require('../lib/publish');
+var utils = require('../lib/utils');
 var fs = require('fs');
 var _ = require('underscore');
 var recursive = require('recursive-readdir');
@@ -9,6 +10,7 @@ describe('The publish module', function () {
 	var taffyData;
 
 	describe('using the acme-jsdoc-example data', function () {
+		var modules;
 		before(function (done) {
 
 			recursive('../node-jet/lib/', function (err, files) {
@@ -16,7 +18,8 @@ describe('The publish module', function () {
 					done(err);
 					return;
 				}
-				taffyData = publish.createTaffyData(files);
+				var taffyData = publish.createTaffyData(files);
+				modules = utils.buildHierarchy(taffyData, {});
 				done();
 			});
 			//'-r', './node_modules/jade/lib',
@@ -28,9 +31,7 @@ describe('The publish module', function () {
 		describe('html= publish.render method', function () {
 			var html;
 			before(function () {
-				html = publish.render(taffyData, {
-					repoBase: 'http://github.com/lipp/node-jet/blob/master/lib/jet'
-				});
+				html = publish.render(modules, []);
 				fs.writeFileSync('test.html', html);
 				//    console.log(html);
 			});

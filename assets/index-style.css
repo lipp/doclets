@@ -1,0 +1,23 @@
+
+			html {
+    		font-family: "LatoWebRegular", "Myriad Pro", "Helvetica Neue", sans-serif;
+    		font-size: 16px;
+    		line-height: 1.5;
+    		font-size: 16px;
+			}
+			.hero {
+				background-color: #313131;
+				height: 50vh;
+				width: 100%;
+				position: relative;
+			}
+
+			.hero h1 {
+				font-size: 4em;
+				margin: 0 auto;
+				position: absolute;
+				color: white;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, 50%);
+			}

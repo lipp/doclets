@@ -1,0 +1,19 @@
+
+html
+	head
+		link(href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext', rel='stylesheet', type='text/css')
+		style
+			include ../assets/index-style.css
+			
+	body
+		.hero
+			h1 ghostdoc
+		ul.packages
+			each package in packages
+				li.package
+					h3= package.name
+					ul.versions
+						each version in package.versions
+							li.version
+								a(href=package.name + '/' + version + '/api.html')= version
+
