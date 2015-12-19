@@ -35,5 +35,19 @@
 				}
 			]
 		}
+	},
+	"https://github.com/lipp/handoff": {
+		"master": {
+			"name": "handoff",
+			"files": [
+				"index.js"
+			],
+			"flavor": "jsdoc",
+			"articles": [
+				{
+					"About": "README.md"
+				}
+			]
+		}
 	}
 }
