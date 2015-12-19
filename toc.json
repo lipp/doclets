@@ -9,6 +9,16 @@
 					"About": "README.md"
 				}
 			]
+		},
+		"v1.0.3": {
+			"name": "acme-jsdoc-example",
+			"dir": "src",
+			"flavor": "jsdoc",
+			"articles": [
+				{
+					"About": "README.md"
+				}
+			]
 		}
 	},
 	"https://github.com/lipp/node-jet": {

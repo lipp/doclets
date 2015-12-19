@@ -1,0 +1,12 @@
+
+html
+	head
+		link(href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext', rel='stylesheet', type='text/css')
+			
+	body
+		h1= package.name
+		ul.versions
+			each version in package.versions
+				li.version
+					a(href=version + '/api.html')= version
+

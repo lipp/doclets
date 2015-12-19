@@ -68,6 +68,9 @@ mixin module(id)
 
 
 nav
+	h1.packagename= name
+	h2.version= repo.branch
+	a.otherversions(href='../') other versions
 	if articles.length > 0
 		h2.articles-header Articles
 		ul.articles
