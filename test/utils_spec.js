@@ -1,6 +1,6 @@
 var assert = require('assert');
-var utils = require('../lib/utils');
-var publish = require('../lib/publish');
+var structure = require('../lib/structure');
+var gather = require('../lib/gather');
 var _ = require('underscore');
 var recursive = require('recursive-readdir');
 
@@ -14,20 +14,18 @@ describe('The utils module', function () {
 					done(err);
 					return;
 				}
-				taffyData = publish.createTaffyData(files);
+				taffyData = gather.createDoclets(files);
 				done();
 			});
 		});
 
 
-		it('taffyData is TAFFY', function () {
-			assert.ok(taffyData.TAFFY);
-		});
-
 		describe('utils.buildHierarchy', function () {
 			var modules;
 			before(function () {
-				modules = utils.buildHierarchy(taffyData);
+				modules = structure.buildHierarchy({
+					doclets: taffyData
+				}, true);
 			});
 
 			it('_.keys(modules) are the module longnames', function () {
