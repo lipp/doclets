@@ -16,6 +16,7 @@
   "license": "MIT",
   "dependencies": {
     "colors": "^1.1.2",
+    "cradle": "^0.6.9",
     "express": "^4.13.3",
     "fs-extra": "^0.26.2",
     "git-repo-name": "^0.5.1",

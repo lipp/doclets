@@ -69,14 +69,14 @@ mixin module(id)
 
 nav
 	h1.packagename= name
-	h2.version= repo.branch
+	h2.version= version
 	a.otherversions(href='../') other versions
 	if articles.length > 0
 		h2.articles-header Articles
 		ul.articles
 			each article in articles
 				li
-					a(href=article.htmlFile)= article.title
+					a(href='./_/' + article.id)= article.title
 	h2.apidoc-header API Doc
 	ul.modules
 		li.module
