@@ -11,6 +11,9 @@ var GitHubApi = require('github');
 var repoName = require('git-repo-name');
 prompt.message = 'ghostdoc'.blue;
 var webhookUrl = 'http://7d650001.ngrok.io/github/callback';
+var fse = require('fs-extra');
+var gather = require('../lib/gather');
+var express = require('express');
 
 var log = function (message) {
 	console.log('ghostdoc: '.blue + message);
@@ -178,9 +181,6 @@ var config = function () {
 	});
 };
 
-var fse = require('fs-extra');
-var publish = require('../lib/publish');
-var express = require('express');
 
 var preview = function () {
 	var configDefaults = getDefaultConfig();
@@ -223,18 +223,13 @@ var preview = function () {
 			var githubUrl = 'https://github.com/' + result.owner + '/' + result.repository;
 			log('generating doc in dir: ' + result.dir.yellow);
 			fse.mkdirsSync(result.dir);
-			var dir = publish.generateGitDoc('./', githubUrl, 'demo', 'preview');
+			var db = require('../lib/db-fake');
+			var server = require('../lib/server');
+			server.init(result.port, db);
+			var docData = gather.gatherDocletsAndMeta('./', githubUrl, 'demo');
+			db.put(result.owner + '/' + result.repository, 'demo', docData, function () {});
 			log('finished'.yellow);
 			log('starting webserver...'.yellow);
-			var app = express();
-			app.use(express.static('./'));
-			app.use(express.static(path.join(__dirname, '../', 'assets')));
-			app.get('/', function (req, res) {
-				res.redirect(path.join('/', dir, 'api.html'));
-			});
-			app.listen(parseInt(result.port), function () {
-				log(('http://localhost:' + result.port + '/').green);
-			});
 		}
 	});
 };

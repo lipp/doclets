@@ -1,0 +1,30 @@
+couchdb:
+  image: klaemo/couchdb
+  restart: always
+  volumes:
+    - ./couchdb-dev:/usr/local/var/lib/couchdb
+  ports:
+    - 5984:5984
+    
+api-server:
+  dockerfile: ./api-server.docker
+  build: ./
+  links:
+    - couchdb:couchdb
+  ports:
+    - 3420:3420
+  restart: always
+  environment:
+    - NODE_ENV=dev
+
+web-server:
+  dockerfile: ./web-server.docker
+  build: ./
+  links:
+    - couchdb:couchdb
+  ports:
+    - 8080:8080
+  restart: always
+  environment:
+    - NODE_ENV=dev
+
