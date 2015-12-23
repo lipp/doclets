@@ -9,24 +9,24 @@ var fs = require('fs');
 var yaml = require('js-yaml');
 var GitHubApi = require('github');
 var repoName = require('git-repo-name');
-prompt.message = 'ghostdoc'.blue;
+prompt.message = 'doclets'.blue;
 var webhookUrl = 'http://7d650001.ngrok.io/github/callback';
 var fse = require('fs-extra');
 var gather = require('../lib/gather');
 var express = require('express');
 
 var log = function (message) {
-	console.log('ghostdoc: '.blue + message);
+	console.log('doclets: '.blue + message);
 };
 
 var logerr = function (message) {
-	console.error('ghostdoc: '.blue + message.red);
+	console.error('doclets: '.blue + message.red);
 };
 
 
 var getDefaultConfig = function () {
 	try {
-		console.log('ghostdoc: Reading package.json ok'.blue);
+		console.log('doclets: Reading package.json ok'.blue);
 		var config = JSON.parse(fs.readFileSync('package.json'));
 		config.repository = config.repository || {};
 		if (config.main && fs.lstatSync(config.main).isFile()) {
@@ -58,7 +58,7 @@ var initRepo = function () {
 			host: 'api.github.com',
 			timeout: 5000,
 			headers: {
-				'user-agent': 'ghostdoc'
+				'user-agent': 'doclets'
 			}
 
 		});
@@ -148,7 +148,7 @@ var config = function () {
 	var configSchema = {
 		properties: {
 			name: {
-				description: 'The project name to appear on ghostdoc',
+				description: 'The project name to appear on doclets.io',
 				required: true,
 				default: configDefaults.name
 			},
@@ -163,7 +163,7 @@ var config = function () {
 		fs.accessSync('README.md');
 		configSchema.properties.readme = {
 			description: 'Title of README.md article',
-			default: 'About',
+			default: 'Readme',
 			required: true
 		};
 
@@ -207,11 +207,6 @@ var preview = function () {
 				description: 'Preview webserver port',
 				required: true,
 				default: 8081
-			},
-			dir: {
-				description: 'Local dir to use for doc generation',
-				required: true,
-				default: 'preview'
 			}
 		}
 	};
@@ -221,8 +216,6 @@ var preview = function () {
 			process.exit(1);
 		} else {
 			var githubUrl = 'https://github.com/' + result.owner + '/' + result.repository;
-			log('generating doc in dir: ' + result.dir.yellow);
-			fse.mkdirsSync(result.dir);
 			var db = require('../lib/db-fake');
 			var server = require('../lib/server');
 			server.init(result.port, db);
@@ -243,7 +236,7 @@ var commands = {
 var command = process.argv[2];
 
 if (!command || Object.keys(commands).indexOf(command) === -1) {
-	console.log('usage: ghostdoc init | config'.yellow);
+	console.log('usage: doclets init | config | preview'.yellow);
 	process.exit(1);
 }
 
