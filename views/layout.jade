@@ -32,6 +32,10 @@ html
 		script(src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/highlight.min.js")
 		script.
 			hljs.initHighlightingOnLoad()
+		script.
+			window.onload = function() {
+				window.location = window.location.href;
+			};
 	body
 		include nav.jade
 		.main

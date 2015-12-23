@@ -4,9 +4,9 @@ html
 		link(href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext', rel='stylesheet', type='text/css')
 			
 	body
-		h1= package.name
+		h1= user
 		ul.versions
-			each version in package.versions
-				li.version
-					a(href=version + '/api.html')= version
+			each doclet in doclets
+				li.doclet
+					a(href=user + '/' + doclet.repo + '/' + doclet.version)= doclet.repo + ' ' + doclet.version
 

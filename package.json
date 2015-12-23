@@ -12,22 +12,23 @@
     "api",
     "continuous integration"
   ],
-	"bin": {
-		"doclets": "./bin/doclets.js"
-	},
+  "bin": {
+    "doclets": "./bin/doclets.js"
+  },
   "author": "Gerhard Preuss",
   "license": "MIT",
   "dependencies": {
     "colors": "^1.1.2",
     "cradle": "^0.6.9",
     "express": "^4.13.3",
+    "express-slash": "^2.0.1",
     "fs-extra": "^0.26.2",
     "git-repo-name": "^0.5.1",
     "github": "^0.2.4",
     "github-webhook-handler": "^0.5.0",
     "jade": "^1.11.0",
-    "jsdoc": "^3.4.0",
     "js-yaml": "^3.4.6",
+    "jsdoc": "^3.4.0",
     "jstransformer-markdown-it": "^0.2.2",
     "marked": "^0.3.5",
     "prompt": "^0.2.14",

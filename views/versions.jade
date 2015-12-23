@@ -1,0 +1,14 @@
+
+html
+	head
+		link(href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext', rel='stylesheet', type='text/css')
+			
+	body
+		h1= name
+		span by
+			a(href='./')= user
+		ul.versions
+			each version in versions
+				li.version
+					a(href=name + '/' + version.version)= version.version
+

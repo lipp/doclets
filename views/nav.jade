@@ -1,14 +1,14 @@
 
 mixin funcdecl(func, isCtor)
-	a(href='api.html#' + func.longname + (isCtor ? '~ctor' : ''))
+	a(href=apiPath + '#' + func.longname + (isCtor ? '~ctor' : ''))
 		+funcdeclx(func, isCtor)
 		span.link
-			a(href='api.html#' + func.longname)
+			a(href=apiPath + '#' + func.longname)
 		
 
 mixin clazz(clazz)
 	h4.clazzname(class=clazz.kind=='interface' ? 'interface' : undefined)
-		a(href='api.html#' + clazz.longname)= clazz.name
+		a(href=apiPath + '#' + clazz.longname)= clazz.name
 	- var functions = _.filter(clazz.members, function(doclet) {return doclet.kind === 'function';});
 	- var constants = _.filter(clazz.members, function(doclet) {return doclet.kind === 'constant';});
 	- var members = _.filter(clazz.members, function(doclet) {return doclet.kind === 'member';});
@@ -39,12 +39,12 @@ mixin module(id)
 	- var module = modules[id];
 	if id !== '_GLOBAL'
 		h4.modulename
-			a(href='api.html#' + id)= tools.modulename(id)
+			a(href=apiPath + '#' + id)= tools.modulename(id)
 	if module.constants.length > 0
 		ul.constants
 			each constant in tools.sortByName(module.constants)
 				li.constant
-					a(href='api.html#' + constant.longname)= constant.name
+					a(href=apiPath + '#' + constant.longname)= constant.name
 	if module.functions.length > 0
 		ul.functions
 			each func in tools.sortByName(module.functions)
@@ -64,19 +64,21 @@ mixin module(id)
 		ul.externals
 			each external in tools.sortByName(module.externals)
 				li.external
-					a(href='api.html#' + external.longname)= external.name
+					a(href=apiPath + '#' + external.longname)= external.name
 
 
 nav
 	h1.packagename= name
 	h2.version= version
-	a.otherversions(href='../') other versions
+	span by
+		a(href='../')= user
+	a.otherversions(href=versionsPath) other versions
 	if articles.length > 0
 		h2.articles-header Articles
 		ul.articles
 			each article in articles
 				li
-					a(href='./_/' + article.id)= article.title
+					a(href=articlesPath + article.id)= article.title
 	h2.apidoc-header API Doc
 	ul.modules
 		li.module
