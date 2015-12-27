@@ -2,11 +2,16 @@ var assert = require('assert');
 var gather = require('../lib/gather');
 var path = require('path');
 
+var loadFixture = function (name) {
+	var dir = path.join(__dirname, 'fixtures', name);
+	return gather.gatherDocletsAndMeta(dir, 'http://github.com/foo/bar', 'v1.0.0');
+};
+
 describe('The gather module', function () {
 	describe('minimal_1 fixture', function () {
 		var data;
 		before(function () {
-			data = gather.gatherDocletsAndMeta(path.join(__dirname, 'fixtures', 'minimal_1'), 'http://github.com/foo/bar', 'v1.0.0');
+			data = loadFixture('minimal_1');
 		});
 
 		it('basic info is correct', function () {
@@ -50,7 +55,7 @@ describe('The gather module', function () {
 	describe('minimal_2 fixture', function () {
 		var data;
 		before(function () {
-			data = gather.gatherDocletsAndMeta(path.join(__dirname, 'fixtures', 'minimal_2'), 'http://github.com/foo/bar', 'v1.0.0');
+			data = loadFixture('minimal_2');
 		});
 
 		it('.doclets filename is relative to dir', function () {
