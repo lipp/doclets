@@ -1,0 +1,7 @@
+type: jsdoc
+version: 1.0.0
+dir: lib
+packageJson: ./lib/package.json
+articles:
+  - About: ./docs/README.md
+

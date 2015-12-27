@@ -4,7 +4,8 @@
   "description": "Hosted automated jsdoc documentation.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test"
+    "test": "istanbul cover _mocha -- --recursive test",
+    "test_nocover": "mocha  test"
   },
   "keywords": [
     "jsdoc",
@@ -40,6 +41,7 @@
   "devDependencies": {
     "acme-jsdoc-example": "lipp/acme-jsdoc-example",
     "csslint": "^0.10.0",
+    "istanbul": "^0.4.1",
     "js-beautify": "^1.5.10",
     "mocha": "^2.3.4",
     "sinon": "^1.17.2"

@@ -10,7 +10,7 @@ var yaml = require('js-yaml');
 var GitHubApi = require('github');
 var repoName = require('git-repo-name');
 prompt.message = 'doclets'.blue;
-var webhookUrl = 'http://7d650001.ngrok.io/github/callback';
+var webhookUrl = 'http://api.doclets.io/github/callback';
 var fse = require('fs-extra');
 var gather = require('../lib/gather');
 var express = require('express');
@@ -139,8 +139,8 @@ var config = function () {
 			articleEntry[inputs.readme] = 'README.md';
 			config.articles.push(articleEntry);
 		}
-		fs.writeFileSync('.autodoc.yml', yaml.dump(config));
-		log('.autodoc.yml created'.green);
+		fs.writeFileSync('.doclets.yml', yaml.dump(config));
+		log('.doclets.yml created'.green);
 		log('commit and push to generate initial documentation'.green);
 	};
 
@@ -183,6 +183,13 @@ var config = function () {
 
 
 var preview = function () {
+	try {
+		var configFile = fs.readFileSync('.doclets.yml');
+	} catch (err) {
+		logerr('Could not read ./doclets.yml');
+		logerr('Please run:\n\t $ doclets config'.green);
+		return;
+	}
 	var configDefaults = getDefaultConfig();
 	var repoOwner
 	if (configDefaults.repository && configDefaults.repository.url) {

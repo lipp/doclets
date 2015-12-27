@@ -1,0 +1,8 @@
+type: jsdoc
+version: 1.0.0
+files: 
+  - index.js
+packageJson: package.json
+articles:
+  - About: README.md
+

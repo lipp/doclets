@@ -2,21 +2,15 @@ var assert = require('assert');
 var structure = require('../lib/structure');
 var gather = require('../lib/gather');
 var _ = require('underscore');
-var recursive = require('recursive-readdir');
 
 describe('The utils module', function () {
 	var taffyData;
 
 	describe('using the acme-jsdoc-example data', function () {
-		before(function (done) {
-			recursive('./node_modules/acme-jsdoc-example/src', function (err, files) {
-				if (err) {
-					done(err);
-					return;
-				}
-				taffyData = gather.createDoclets(files);
-				done();
-			});
+		before(function () {
+			taffyData = gather.createDoclets({
+				dir: 'src'
+			}, './node_modules/acme-jsdoc-example');
 		});
 
 
