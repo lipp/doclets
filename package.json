@@ -40,6 +40,7 @@
   },
   "devDependencies": {
     "acme-jsdoc-example": "lipp/acme-jsdoc-example",
+    "coveralls": "^2.11.6",
     "csslint": "^0.10.0",
     "istanbul": "^0.4.1",
     "js-beautify": "^1.5.10",
