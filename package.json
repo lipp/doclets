@@ -32,9 +32,11 @@
     "jsdoc": "^3.4.0",
     "jstransformer-markdown-it": "^0.2.2",
     "marked": "^0.3.5",
+    "path-is-absolute": "^1.0.0",
     "prompt": "^0.2.14",
     "recursive-readdir": "^1.3.0",
     "recursive-readdir-sync": "^1.0.6",
+    "sync-exec": "^0.6.2",
     "underscore": "^1.8.3",
     "uuid": "^2.0.1"
   },
