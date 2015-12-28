@@ -4,7 +4,7 @@
   "description": "Hosted automated jsdoc documentation.",
   "main": "index.js",
   "scripts": {
-    "test": "istanbul cover _mocha -- --recursive test",
+    "test": "standard && istanbul cover _mocha -- --recursive test",
     "test_nocover": "mocha  test"
   },
   "keywords": [
