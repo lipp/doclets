@@ -4,7 +4,7 @@
   "description": "Hosted automated jsdoc documentation.",
   "main": "index.js",
   "scripts": {
-    "test": "istanbul cover _mocha -- --recursive test",
+    "test": "standard && istanbul cover _mocha -- --recursive test",
     "test_nocover": "mocha  test"
   },
   "keywords": [
@@ -48,6 +48,12 @@
     "js-beautify": "^1.5.10",
     "mocha": "^2.3.4",
     "sinon": "^1.17.2",
+    "standard": "^5.4.1",
     "taffydb": "^2.7.2"
+  },
+  "standard": {
+    "ignore": [
+      "test/fixtures/"
+    ]
   }
 }
