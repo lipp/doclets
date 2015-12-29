@@ -47,6 +47,7 @@
     "istanbul": "^0.4.1",
     "js-beautify": "^1.5.10",
     "mocha": "^2.3.4",
+    "request": "^2.67.0",
     "sinon": "^1.17.2",
     "standard": "^5.4.1",
     "taffydb": "^2.7.2"
