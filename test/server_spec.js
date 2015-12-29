@@ -9,9 +9,9 @@ var request = require('request')
 var user = 'bart'
 var repo = 'test'
 describe('The gather module', function () {
-  before(function () {
+  before(function (done) {
     var githubUrl = 'https://github.com/' + user + '/' + repo
-    server.init(4444, db)
+    server.init(4444, db, done)
     var dir = path.join(__dirname, 'fixtures', 'minimal_1')
     var docData = gather.gatherDocletsAndMeta(dir, githubUrl, 'demo')
     db.put(user + '/' + repo, 'demo', docData, function () {})
@@ -63,6 +63,13 @@ describe('The gather module', function () {
   it('GET /bart2', function (done) {
     request('http://localhost:4444/bart2', function (err, res, body) {
       assert.equal(res.statusCode, 500)
+      done(err)
+    })
+  })
+
+  it('GET /bart/test/demo/about', function (done) {
+    request('http://localhost:4444/bart/test/demo/about', function (err, res, body) {
+      assert.equal(res.statusCode, 200)
       done(err)
     })
   })
