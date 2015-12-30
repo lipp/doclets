@@ -9,13 +9,10 @@ html
 			
 	body
 		.hero
-			h1 ghostdoc
-		ul.packages
-			each package in packages
-				li.package
-					h3= package.name
-					ul.versions
-						each version in package.versions
-							li.version
-								a(href=package.name + '/' + version + '/api.html')= version
+			h1 doclets
+		
+		ul.doclets
+			each doclet in doclets
+				li.doclet
+					a(href=doclet.repo.user + '/' + doclet.repo.name + '/' + doclet.repo.branch)= doclet.repo.name + ' ' + doclet.repo.branch
 
