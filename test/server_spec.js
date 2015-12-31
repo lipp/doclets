@@ -73,4 +73,11 @@ describe('The gather module', function () {
       done(err)
     })
   })
+
+  it('GET /bart/test/demo2/about', function (done) {
+    request('http://localhost:4444/bart/test/demo2/about', function (err, res, body) {
+      assert.equal(res.statusCode, 500)
+      done(err)
+    })
+  })
 })
