@@ -1,16 +1,10 @@
-
-html
-	head
-		link(href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext', rel='stylesheet', type='text/css')
-		style
-			include ../node_modules/normalize.css/normalize.css
-			
-	body
-		h1= name
-		span by
-			a(href='./')= user
-		ul.versions
-			each version in versions
-				li.version
-					a(href=name + '/' + version.repo.branch)= version.repo.branch
+extends layout.jade
+block content
+	h1= name
+	span by
+		a(href='./')= user
+	ul.versions
+		each version in versions
+			li.version
+				a(href=name + '/' + version.repo.branch)= version.repo.branch
 
