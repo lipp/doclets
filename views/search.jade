@@ -1,0 +1,24 @@
+extends layout.jade
+
+block scripts
+	script.
+		window.onload = function() {
+			document.getElementById('site-search').value = '#{query}'
+		}
+
+block content
+	header
+		include searchform.jade
+
+	if doclets.length > 0
+		h2= '' + doclets.length + ' results for '
+			strong= query
+		ul#results
+			each doclet in doclets
+				li.doclet
+					a(href=doclet.repo.user + '/' + doclet.repo.name + '/' + doclet.repo.branch)= doclet.repo.name + ' ' + doclet.repo.branch
+
+	else
+		h2 No serach results for 
+			strong= query
+

@@ -1,49 +1,27 @@
-mixin optMarkdown(desc, className)
-	if desc.indexOf('<') === 0
-		div(class=className)!= desc
-	else
-		p(class=className)= desc
 
-mixin funcdeclx(func, isCtor, parent)
-	if parent
-		span.parent= parent + '#'
-	if isCtor
-		span.new new
-	span.funcname= func.name
-	ul.args
-		if func.params
-			each param in _.filter(func.params, function(param) {return param.name.indexOf('.') === -1;})
-				li(class=param.optional ? 'optional' : undefined)= param.name
-	if !isCtor && func.returns && func.returns[0]
-		- var names = _.map(func.returns[0].type.names, tools.shortName);
-		ul.returns
-			each name in names
-				li.return
-					if tools.isBuiltInType(name)
-						span= name
-					else
-						a(href='#' + name)= name
-
-html
+html(lang='en')
 	head
+		meta(charset='utf-8')
+		title doclets
+		link(rel='canonical', href='https://www.doclets.io/')
+		link(href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext', rel='stylesheet', type='text/css')
 		style
 			include ../node_modules/normalize.css/normalize.css
-		link(href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext', rel='stylesheet', type='text/css')
-		link(rel="stylesheet", href="/style.css")
-		link(rel="stylesheet", href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/styles/default.min.css")
-		script(src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/highlight.min.js")
-		script.
-			hljs.initHighlightingOnLoad()
-		script.
-			window.onload = function() {
-				//if (window.location.href
-				//window.location = window.location.href;
-				console.log(window.location.href);
-			};
-	body
-		include nav.jade
-		.main
-			block content
 
+		block scripts
+			
+	body(itemscope='', itemtype='http://schema.org/WebSite')
+		meta(itemprop='url', content='https://www.doclets.io/')
+		nav
+			a#home(href='/') doclets
+			a.github-button(href='https://github.com/lipp/doclets', data-icon='octicon-star', data-style='mega', data-count-href='/lipp/doclets/stargazers', data-count-api='/repos/lipp/doclets#stargazers_count', data-count-aria-label='# stargazers on GitHub', aria-label='Star lipp/doclets on GitHub') Star
+		
 
+		block content
+
+		footer
+			span Made with &hearts; in
+				a(href='https://www.google.de/maps/place/Darmstadt/data=!4m2!3m1!1s0x47bd70641173cdd9:0x422435029b0c5f0?sa=X&ved=0ahUKEwjA09z6x4nKAhUEzRQKHZtaC2cQ8gEIHjAA') Darmstadt
+
+		script#github-bjs(async='', defer='', src='https://buttons.github.io/buttons.js')
 

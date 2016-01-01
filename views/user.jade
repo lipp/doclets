@@ -1,18 +1,12 @@
-
-html
-	head
-		link(href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext', rel='stylesheet', type='text/css')
-		style
-			include ../node_modules/normalize.css/normalize.css
-			
-	body
-		h1= user
-		if doclets.length > 0
-			img.avatar(src=doclets[0].repo.user_image)
-			ul.versions
-				each doclet in doclets
-					li.doclet
-						a(href=user + '/' + doclet.repo.name + '/' + doclet.repo.branch)= doclet.repo.name + ' ' + doclet.repo.branch
-		else
-			span No modules by this user
+extends layout.jade
+block content
+	h1= user
+	if doclets.length > 0
+		img.avatar(src=doclets[0].repo.user_image)
+		ul.versions
+			each doclet in doclets
+				li.doclet
+					a(href=user + '/' + doclet.repo.name + '/' + doclet.repo.branch)= doclet.repo.name + ' ' + doclet.repo.branch
+	else
+		span No modules by this user
 

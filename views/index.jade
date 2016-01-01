@@ -1,18 +1,15 @@
+extends layout.jade
+block content
 
-html
-	head
-		link(href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext', rel='stylesheet', type='text/css')
-		style
-			include ../node_modules/normalize.css/normalize.css
-		style
-			include ../assets/index-style.css
-			
-	body
-		.hero
-			h1 doclets
-		
-		ul.doclets
+	header
+		h1#logo doclets
+		include searchform.jade
+
+	#recents
+		h2 recently update packages
+		ul
 			each doclet in doclets
 				li.doclet
 					a(href=doclet.repo.user + '/' + doclet.repo.name + '/' + doclet.repo.branch)= doclet.repo.name + ' ' + doclet.repo.branch
+	#install
 
