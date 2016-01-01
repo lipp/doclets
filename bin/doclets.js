@@ -214,14 +214,15 @@ var preview = function () {
       console.error('Sorry, information not complete'.red)
       process.exit(1)
     } else {
-      var githubUrl = 'https://github.com/' + result.owner + '/' + result.repository
       var db = require('../lib/db-fake')
       var server = require('../lib/server')
       server.init(result.port, db)
-      var docData = gather.gatherDocletsAndMeta('./', githubUrl, 'demo')
-      db.put(result.owner + '/' + result.repository, 'demo', docData, function () {})
+      var docData = gather.gatherDocletsAndMeta('./')
+      db.put(result.owner + '/' + result.repository, 'local', {data: docData}, function () {})
       log('finished'.yellow)
       log('starting webserver...'.yellow)
+      log('visit:')
+      log('http://localhost:' + result.port + '/' + result.owner + '/' + result.repository + '/local')
     }
   })
 }

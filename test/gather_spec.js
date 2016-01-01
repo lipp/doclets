@@ -5,7 +5,7 @@ var path = require('path')
 
 var loadFixture = function (name) {
   var dir = path.join(__dirname, 'fixtures', name)
-  return gather.gatherDocletsAndMeta(dir, 'http://github.com/foo/bar', 'v1.0.0')
+  return gather.gatherDocletsAndMeta(dir)
 }
 
 describe('The gather module', function () {
@@ -16,22 +16,8 @@ describe('The gather module', function () {
     })
 
     it('basic info is correct', function () {
-      var date
       assert.equal(data.version, '1.0.0')
       assert.equal(data.type, 'jsdoc')
-      assert.doesNotThrow(function () {
-        date = new Date(data.date)
-      })
-      assert((date - new Date()) < 5000, 'date is plausible')
-    })
-
-    it('repo info is correct', function () {
-      assert.equal(data.repo.type, 'github')
-      assert.equal(data.repo.user, 'foo')
-      assert.equal(data.repo.name, 'bar')
-      assert.equal(data.repo.branch, 'v1.0.0')
-      assert.equal(data.repo.private, false)
-      assert.equal(data.repo.url, 'http://github.com/foo/bar')
     })
 
     it('.articles[0] is correct', function () {

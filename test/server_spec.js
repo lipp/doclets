@@ -10,11 +10,10 @@ var user = 'bart'
 var repo = 'test'
 describe('The gather module', function () {
   before(function (done) {
-    var githubUrl = 'https://github.com/' + user + '/' + repo
     server.init(4444, db, done)
     var dir = path.join(__dirname, 'fixtures', 'minimal_1')
-    var docData = gather.gatherDocletsAndMeta(dir, githubUrl, 'demo')
-    db.put(user + '/' + repo, 'demo', docData, function () {})
+    var docData = gather.gatherDocletsAndMeta(dir)
+    db.put(user + '/' + repo, 'demo', {data: docData}, function () {})
   })
 
   it('GET /bart/test/demo', function (done) {
