@@ -68,10 +68,10 @@ mixin module(id)
 
 
 nav
-	h1.packagename= name
-	h2.version= version
+	h1.packagename= repo.name
+	h2.version= repo.version
 	span by
-		a(href='../')= user
+		a(href='../')= repo.user
 	a.otherversions(href=versionsPath) other versions
 	if articles.length > 0
 		h2.articles-header Articles
