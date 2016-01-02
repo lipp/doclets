@@ -2,14 +2,20 @@ extends layout.jade
 block content
 
 	header
-		h1#logo doclets
+		h1#logo doclets.io
+		h2#tagline Hosted automated package documentation for Javascript
 		include searchform.jade
 
 	#recents
-		h2 recently update packages
+		h2 recently updated doclets
 		ul
 			each doclet in doclets
 				li.doclet
-					a(href=doclet.repo.user + '/' + doclet.repo.name + '/' + doclet.repo.branch)= doclet.repo.name + ' ' + doclet.repo.branch
-	#install
+					h3
+						a(href=doclet.repo.user + '/' + doclet.repo.name)= doclet.repo.name
+					p.description= doclet.description
+					p.version
+						a(href=doclet.repo.user + '/' + doclet.repo.name + '/' + doclet.repo.branch)= doclet.repo.branch
+						| published by
+						a(href=doclet.repo.user)= doclet.repo.user
 
