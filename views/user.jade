@@ -1,12 +1,20 @@
 extends layout.jade
 block content
-	h1= user
-	if doclets.length > 0
-		img.avatar(src=doclets[0].repo.user_image)
-		ul.versions
-			each doclet in doclets
-				li.doclet
-					a(href=user + '/' + doclet.repo.name + '/' + doclet.repo.branch)= doclet.repo.name + ' ' + doclet.repo.branch
-	else
-		span No modules by this user
+	- var first = doclets[0]
+	- var _ = first._
+	h2
+		a(href='#')= first.repo.user
+			img.avatar(src=first.repo.user_image, style='width: 100px')
+	
+	h3= '' + doclets.length + ' doclets by ' + first.repo.user
+	ul.versions
+		each docletsByName, name in _.groupBy(doclets, function(doclet) {return doclet.repo.name})
+			- var first = docletsByName[0]
+			li.doclet
+				h3
+					a(href=name)= first.repo.name
+				p.description= first.description
+				p.version
+					each version in _.map(docletsByName, function(doclet) {return doclet.repo.branch})
+						a(href=name + '/' + version)= version
 
