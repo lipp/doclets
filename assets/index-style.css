@@ -1,23 +1,42 @@
+html {
+    font-family: "LatoWebRegular", "Myriad Pro", "Helvetica Neue", sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    font-size: 16px;
+}
 
-			html {
-    		font-family: "LatoWebRegular", "Myriad Pro", "Helvetica Neue", sans-serif;
-    		font-size: 16px;
-    		line-height: 1.5;
-    		font-size: 16px;
-			}
-			.hero {
-				background-color: #313131;
-				height: 50vh;
-				width: 100%;
-				position: relative;
-			}
+a:link, a:visited {
+	text-decoration: none;
+	color: inherit;
+}
 
-			.hero h1 {
-				font-size: 4em;
-				margin: 0 auto;
-				position: absolute;
-				color: white;
-				top: 50%;
-				left: 50%;
-				transform: translate(-50%, 50%);
-			}
+a:hover {
+	text-decoration: underline;
+}
+
+body > * {
+	padding: 10px 20px;
+}
+
+body > nav {
+	height: 50px;
+	display: flex;
+	background-color: lightgrey; 
+}
+
+.hero {
+    background-color: #313131;
+    height: 50vh;
+    width: 100%;
+    position: relative;
+}
+
+.hero h1 {
+    font-size: 4em;
+    margin: 0 auto;
+    position: absolute;
+    color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+}
