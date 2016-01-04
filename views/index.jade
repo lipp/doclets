@@ -16,6 +16,6 @@ block content
 					p.description= doclet.description
 					p.version
 						a(href=doclet.repo.user + '/' + doclet.repo.name + '/' + doclet.repo.branch)= doclet.repo.branch
-						| published by
+						| published #{moment(doclet.date).fromNow()} by
 						a(href=doclet.repo.user)= doclet.repo.user
 

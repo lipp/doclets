@@ -14,7 +14,12 @@ html(lang='en')
 		meta(itemprop='url', content='https://www.doclets.io/')
 		nav
 			a#home(href='/') Home
-			a.github-button(href='https://github.com/lipp/doclets', data-icon='octicon-star', data-style='mega', data-count-href='/lipp/doclets/stargazers', data-count-api='/repos/lipp/doclets#stargazers_count', data-count-aria-label='# stargazers on GitHub', aria-label='Star lipp/doclets on GitHub') Star
+			if user
+				a(href='/account')= user.username
+				a(href='/logout') logout
+			else
+				a(href='/login') Login
+			//a.github-button(href='https://github.com/lipp/doclets', data-icon='octicon-star', data-style='mega', data-count-href='/lipp/doclets/stargazers', data-count-api='/repos/lipp/doclets#stargazers_count', data-count-aria-label='# stargazers on GitHub', aria-label='Star lipp/doclets on GitHub') Star
 		
 
 		block content
@@ -23,5 +28,5 @@ html(lang='en')
 			span Made with &hearts; in
 				a(href='https://www.google.de/maps/place/Darmstadt/data=!4m2!3m1!1s0x47bd70641173cdd9:0x422435029b0c5f0?sa=X&ved=0ahUKEwjA09z6x4nKAhUEzRQKHZtaC2cQ8gEIHjAA') Darmstadt
 
-		script#github-bjs(async='', defer='', src='https://buttons.github.io/buttons.js')
+		//script#github-bjs(async='', defer='', src='https://buttons.github.io/buttons.js')
 
