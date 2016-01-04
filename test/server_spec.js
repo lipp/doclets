@@ -13,11 +13,54 @@ describe('The gather module', function () {
     server.init(4444, db, done)
     var dir = path.join(__dirname, 'fixtures', 'minimal_1')
     var docData = gather.gatherDocletsAndMeta(dir)
-    db.put(user + '/' + repo, 'demo', {data: docData}, function () {})
+    db.put(user + '/' + repo, 'demo', {
+      data: docData,
+      event: {
+        ref: 'v1.0.0',
+        ref_type: 'tag',
+        repository: {
+          full_name: user + '/' + repo,
+          name: repo,
+          owner: {
+            login: user
+          }
+        },
+        sender: {}
+      }
+    }, function () {})
   })
 
   it('GET /bart/test/demo', function (done) {
     request('http://localhost:4444/bart/test/demo', function (err, res, body) {
+      assert.equal(res.statusCode, 200)
+      done(err)
+    })
+  })
+
+  it('GET /', function (done) {
+    request('http://localhost:4444/', function (err, res, body) {
+      assert.equal(res.statusCode, 200)
+      done(err)
+    })
+  })
+
+  it('GET /login', function (done) {
+    request('http://localhost:4444/login', function (err, res, body) {
+      assert.equal(res.statusCode, 200)
+      done(err)
+    })
+  })
+
+  it('GET /search?q=' + user, function (done) {
+    request('http://localhost:4444/search?q=' + user, function (err, res, body) {
+      assert.equal(res.statusCode, 200)
+      done(err)
+    })
+  })
+
+  it('GET /account redirects', function (done) {
+    request('http://localhost:4444/account', function (err, res, body) {
+      assert.equal(res.request.uri.pathname, '/login')
       assert.equal(res.statusCode, 200)
       done(err)
     })
