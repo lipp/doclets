@@ -1,0 +1,11 @@
+extends layout
+
+block content
+	form#repos(action='/account/repos', method='post', name='repos')
+		ul
+			each repo in repos
+				label(for=repo.name)= repo.name
+				input(type='hidden', name=repo.name, checked=repo.docletsEnabled)= repo.name
+				input(type='checkbox', id=repo.name, name=repo.name, checked=repo.docletsEnabled)= repo.name
+				br
+		input(type='submit', value='submit')
