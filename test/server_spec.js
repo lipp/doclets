@@ -1,4 +1,8 @@
 /* global describe it before */
+
+// disable session store
+process.env.NODE_ENV = 'test'
+
 var assert = require('assert')
 var server = require('../lib/server')
 var db = require('../lib/db-fake')
@@ -8,7 +12,9 @@ var request = require('request')
 
 var user = 'bart'
 var repo = 'test'
-describe('The gather module', function () {
+describe('The server module', function () {
+  this.timeout(4000)
+
   before(function (done) {
     server.init(4444, db, done)
     var dir = path.join(__dirname, 'fixtures', 'minimal_1')

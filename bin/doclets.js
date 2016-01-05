@@ -7,10 +7,8 @@ require('colors')
 var path = require('path')
 var fs = require('fs')
 var yaml = require('js-yaml')
-var GitHubApi = require('github')
 var repoName = require('git-repo-name')
 prompt.message = 'doclets'.blue
-var webhookUrl = 'http://api.doclets.io/github/callback'
 var gather = require('../lib/gather')
 
 var log = function (message) {
@@ -36,95 +34,9 @@ var getDefaultConfig = function () {
   }
 }
 
-var initRepo = function () {
-  var configDefaults = getDefaultConfig()
-  var repoOwner
-  if (configDefaults.repository && configDefaults.repository.url) {
-    var match = configDefaults.repository.url.match(/github\.com\/([^\/]+)\/.*/)
-    if (match) {
-      repoOwner = match[1]
-    }
-  }
-  var setupRepo = function (config) {
-    var github = new GitHubApi({
-      version: '3.0.0',
-      // debug: true,
-      protocol: 'https',
-      host: 'api.github.com',
-      timeout: 5000,
-      headers: {
-        'user-agent': 'doclets'
-      }
-
-    })
-    github.authenticate({
-      type: 'basic',
-      username: config.user,
-      password: config.password
-    })
-    github.repos.createHook({
-      user: config.owner,
-      repo: config.repository,
-      name: 'web',
-      activate: true,
-      events: ['push', 'create'],
-      config: {
-        secret: '12345678',
-        url: webhookUrl,
-        'content_type': 'json'
-      }
-    }, function (err, res) {
-      if (err) {
-        try {
-          err = JSON.parse(err.message).message
-        } catch (_) {
-          err = err.message
-        }
-        logerr(err)
-      } else {
-        log('Webhook successfully added'.green)
-      }
-    })
-  }
-
-  var initSchema = {
-    properties: {
-      user: {
-        description: 'GitHub user name',
-        required: true,
-        default: repoOwner
-      },
-      password: {
-        description: 'GitHub user password',
-        hidden: true,
-        required: true
-      },
-      repository: {
-        description: 'GitHub repository name',
-        required: true,
-        default: repoName.sync()
-      },
-      owner: {
-        description: 'GitHub repository owner',
-        required: true,
-        default: repoOwner
-      }
-    }
-  }
-  prompt.get(initSchema, function (err, result) {
-    if (err) {
-      console.error('Sorry, information not complete'.red)
-      process.exit(1)
-    } else {
-      setupRepo(result)
-    }
-  })
-}
-
 var config = function () {
   var writeConfigYaml = function (inputs) {
     var config = {}
-    config.name = inputs.name
     config.dir = inputs.dir
     config.flavor = 'jsdoc'
     if (inputs.readme && inputs.readme !== '') {
@@ -141,11 +53,6 @@ var config = function () {
   var configDefaults = getDefaultConfig()
   var configSchema = {
     properties: {
-      name: {
-        description: 'The project name to appear on doclets.io',
-        required: true,
-        default: configDefaults.name
-      },
       dir: {
         description: 'Root folder of source code',
         default: configDefaults.main || 'lib'
@@ -215,6 +122,7 @@ var preview = function () {
       process.exit(1)
     } else {
       var db = require('../lib/db-fake')
+      process.env.NODE_ENV = 'test'
       var server = require('../lib/server')
       server.init(result.port, db)
       var docData = gather.gatherDocletsAndMeta('./')
@@ -228,7 +136,6 @@ var preview = function () {
 }
 
 var commands = {
-  init: initRepo,
   config: config,
   preview: preview
 }
@@ -236,7 +143,7 @@ var commands = {
 var command = process.argv[2]
 
 if (!command || Object.keys(commands).indexOf(command) === -1) {
-  console.log('usage: doclets init | config | preview'.yellow)
+  console.log('usage: doclets config | preview'.yellow)
   process.exit(1)
 }
 
