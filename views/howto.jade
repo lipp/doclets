@@ -2,20 +2,24 @@ extends layout
 
 block content
 	#howto
-		h2 How to add you project
-		p Setting up your project needs not more than three minutes!
-		p Your projects needs to be on <a href='http://github.com'>GitHub</a> to be added to doclets.io though.
+		h1 Getting started
+		p Setting up your project is very simple!
+		h2 What you need:
+		ul
+			li A Javascript project repository hosted at <a href='http://github.com'>GitHub</a>
+			li <a href='http://usejsdoc.org'>JSDoc</a> formated source code comments. Well, this may be some work... but it pays off shortly!
 
-		h3 Step
+		p If you have this in place, just follow these simple steps.
+		h2 Steps
 		ol
 			li 
 				h4 Log in
-				p <a href='/auth/github'>Log in</a> with yout GitHub account and grant doclets access to
+				p <a href='/auth/github'>Log in</a> with your GitHub account and grant doclets access to
 					| your profile. Doclets also needs access to your repositories webhooks in order to work.
 
 			li
 				h4 Enable your Repo
-				p Enable your respective repository in your <a href='/account'>Account</a> section.
+				p Enable your respective repository in your account's <a href='/account'>repository</a> section.
 					| Doclets will create a webhook for every enabled repository to get informed about
 					| changes to your repository and tag creation.
 			
@@ -28,4 +32,6 @@ block content
 
 			li
 				h4 Push!
-				p Add, commit and push your repository changes to GitHub. 
+				p Add, commit and push your repository changes to GitHub. Your documentation will be published
+					| to doclets.io automatically.
+

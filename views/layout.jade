@@ -18,14 +18,15 @@ html(lang='en')
 		nav
 			a#slogan(href='/') Documentation is fun
 			a#setup(href='/howto') How to 
+			a#jsdoc(href='http://usejsdoc.org/') JSDoc
 		header
 			a#logo(href='/') logo
 			include searchform.jade
 			if user
 				#user
-					a.account(href='/account')= user.username
+					a.account(href='/' + user.username)= user.username
 					a.logout(href='/logout') log out
-				a.avatar(href='/account')
+				a.avatar(href='/' + user.username)
 					img(src=user._json.avatar_url)
 			else
 				a.login(href='/auth/github') Log in
