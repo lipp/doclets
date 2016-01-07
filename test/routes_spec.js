@@ -3,6 +3,7 @@ var assert = require('assert')
 var Routes = require('../lib/routes').Routes
 var db = require('../lib/db-fake')
 var sinon = require('sinon')
+var repo = require('../lib/repo')
 
 var github = {
   repos: {}
@@ -85,25 +86,40 @@ describe('The routes module', function () {
       render: sinon.spy()
     }
     var req = {
+      query: {},
       user: {
         profile: {
           username: 'foo'
         }
       }
     }
-    github.repos.getFromUser = function (config, done) {
-      assert.equal(config.user, 'foo')
-      assert.equal(config.type, 'owner')
-      assert.equal(config.per_page, 100)
+
+    repo.getUserRepos = function (user, done) {
+      assert.equal(user, 'foo')
       done(null, [{
         full_name: 'foo/bar'
       }])
     }
+
+    repo.getHook = function (user, repo, auth, done) {
+      done(null, {
+        active: false
+      })
+    }
+
     db.putRepo = function (key, repo, done) {
       assert.equal(key, 'foo/bar')
-      assert.deepEqual(repo, {full_name: 'foo/bar', docletsEnabled: false})
+      assert.deepEqual(repo, {
+        hook: {
+          active: false
+        },
+        muted: [],
+        repo: {full_name: 'foo/bar'},
+        docletsEnabled: false
+      })
       done(null)
     }
+
     routes.account(req, res)
     assert(res.render.calledWith('account.jade'))
   })
@@ -113,6 +129,7 @@ describe('The routes module', function () {
       redirect: sinon.spy()
     }
     var req = {
+      query: {},
       user: {
         profile: {
           username: 'foo'
@@ -125,35 +142,49 @@ describe('The routes module', function () {
         'bar4': ''
       }
     }
+
+    repo.addHook = sinon.spy(function (user, repo, auth, done) {
+      done()
+    })
+
+    repo.removeHook = sinon.spy(function (user, repo, auth, hook, done) {
+      done()
+    })
+
     db.getReposByUser = function (user, done) {
       assert.equal(user, 'foo')
       done(null, [{
-        full_name: 'foo/bar',
-        name: 'bar',
+        repo: {
+          full_name: 'foo/bar',
+          name: 'bar'
+        },
         docletsEnabled: false
       }, {
-        full_name: 'foo/bar2',
-        name: 'bar2',
+        repo: {
+          full_name: 'foo/bar2',
+          name: 'bar2'
+        },
         docletsEnabled: false
       }, {
-        full_name: 'foo/bar3',
-        name: 'bar3',
+        repo: {
+          full_name: 'foo/bar3',
+          name: 'bar3'
+        },
         docletsEnabled: true
       }, {
-        full_name: 'foo/bar4',
-        name: 'bar4',
+        repo: {
+          full_name: 'foo/bar4',
+          name: 'bar4'
+        },
         docletsEnabled: true
       }
       ])
     }
-    db.putRepo = function (key, repo, done) {
-      done(null)
-    }
-    db.putRepo = sinon.spy(db.putRepo)
     routes.accountRepos(req, res)
-    assert(db.putRepo.calledTwice)
-    assert(db.putRepo.calledWith('foo/bar2'))
-    assert(db.putRepo.calledWith('foo/bar4'))
-    assert(res.redirect.calledWith('/account'))
+    assert(repo.addHook.calledOnce)
+    assert(repo.removeHook.calledOnce)
+    assert(repo.addHook.calledWith('foo', 'bar2'))
+    assert(repo.removeHook.calledWith('foo', 'bar4'))
+    assert(res.redirect.calledWith('/account?sync=true'))
   })
 })

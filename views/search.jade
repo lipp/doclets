@@ -7,11 +7,9 @@ block scripts
 		}
 
 block content
-	header
-		include searchform.jade
 
 	if doclets.length > 0
-		h2= '' + doclets.length + ' results for '
+		h2= '' + doclets.length + ' doclet names match for '
 			strong= query
 		ul#results
 			each doclet in doclets
@@ -19,6 +17,6 @@ block content
 					a(href=doclet.repo.user + '/' + doclet.repo.name + '/' + doclet.repo.branch)= doclet.repo.name + ' ' + doclet.repo.branch
 
 	else
-		h2 No serach results for 
+		h2 No doclet names match for 
 			strong= query
 

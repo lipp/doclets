@@ -5,6 +5,12 @@ html {
     font-size: 16px;
 }
 
+.api {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
 p {
     color: #515151;
     margin: 0.6em 0;
@@ -50,7 +56,7 @@ body {
     width: 100%;
 }
 
-nav {
+.api nav {
     background-color: #252525;
     color: #F0F0F0;
     position: absolute;
@@ -62,12 +68,12 @@ nav {
     padding-left: 0.5em;
 }
 
-nav h4,
-nav h3 {
+.api nav h4,
+.api nav h3 {
     color: #F0F0F0;
 }
 
-nav li {
+.api nav li {
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -76,22 +82,22 @@ nav li {
     display: none;
 }
 
-nav a {
+.api nav a {
     text-decoration: none;
     color: inherit;
 }
 
-nav a:visited {
+.api nav a:visited {
     color: inherit;
 }
 
-nav .clazzname {
+.api nav .clazzname {
     margin-bottom: 0em;
     margin-top: 0;
     color: #DA3F7E;
 }
 
-nav .modulename {
+.api nav .modulename {
     color: #2CC5C5;
 }
 
@@ -113,21 +119,21 @@ nav .modulename {
     margin-bottom: 1.5em;
 }
 
-nav li {
+.api nav li {
     line-height: 1.1;
 }
 
-nav .clazz > ul,
-nav .interface > ul {
+.api nav .clazz > ul,
+.api nav .interface > ul {
     list-style: none;
     padding-left: 1em;
 }
 
-nav .funcname {
+.api nav .funcname {
     font-weight: bold;
 }
 
-nav .returns {
+.api nav .returns {
     display: none;
 }
 

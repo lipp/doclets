@@ -1,11 +1,40 @@
 extends layout
 
 block content
+	h1 Settings
 	form#repos(action='/account/repos', method='post', name='repos')
+		h2 enabled repositories
+		p Documentation for your enabled repositories will be generated for <strong>new tags</strong>
+			| and <strong>selected branches</strong>. You can unpublished tags or branches to hide them from other users.
+		p Visit your <a href='/#{user.username}'>public profile</a>.
 		ul
-			each repo in repos
-				label(for=repo.name)= repo.name
-				input(type='hidden', name=repo.name, checked=repo.docletsEnabled)= repo.name
-				input(type='checkbox', id=repo.name, name=repo.name, checked=repo.docletsEnabled)= repo.name
-				br
-		input(type='submit', value='submit')
+			each repoSetting in _.where(repoSettings, {docletsEnabled: true})
+				- var repo = repoSetting.repo
+				.repo
+					h3= repo.name
+					label enabled
+					input(type='hidden', name=repo.name, checked=repoSettings.docletsEnabled)= repo.name
+					input(type='checkbox', id=repo.name, name=repo.name, checked=repoSetting.docletsEnabled)= repo.name
+					
+					each type in [{type: 'branch', name: 'Branches'}, {type: 'tag', name: 'Tags'}]
+						- var subset = _.where(repoSetting.doclets, {type: type.type}) 
+						if subset.length > 0
+							h4= type.name
+							each doclet in subset
+								span= doclet.name
+								label(for=repo.name + doclet.name) published
+								input(type='checkbox', id=repo.name + doclet.name, name=doclet.name, checked=!doclet.muted)= doclet.name
+
+					input(type='submit', value='submit')
+
+		h2 disabled repositories
+		ul
+			each repoSetting in _.reject(repoSettings, {docletsEnabled: true})
+				- var repo = repoSetting.repo
+				.repo
+					h3= repo.name
+					label(for=repo.name)= enabled
+					input(type='hidden', name=repo.name, checked=repoSettings.docletsEnabled)= repo.name
+					input(type='checkbox', id=repo.name, name=repo.name, checked=repoSetting.docletsEnabled)= repo.name
+					input(type='submit', value='submit')
+
