@@ -1,0 +1,10 @@
+#profile
+	- var info = owner.profile._json
+	img(src=info.avatar_url)
+	h2= info.login
+	h3= info.name
+	a(href=info.html_url) Visit on GitHub
+	br
+	if user
+		a(href='/account') Settings
+

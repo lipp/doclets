@@ -34,6 +34,16 @@ describe('The server module', function () {
         sender: {}
       }
     }, function () {})
+
+    db.putUser('asdkjd', {
+      profile: {
+        username: 'bart',
+        _json: {
+          login: 'bart',
+          avatar_url: 'bla'
+        }
+      }
+    }, function () {})
   })
 
   it('GET /bart/test/demo', function (done) {

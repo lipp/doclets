@@ -3,8 +3,8 @@ block content
 	- var first = versions[0]
 	h2
 		a.name(href='#')= first.repo.name
+		span /
 		a.user(href='./')= first.repo.user
-			img(src=first.repo.user_image, style='width: 100px')
 	p.description= first.description
 	if first.tags
 		p.tags= first.tags.join(', ')

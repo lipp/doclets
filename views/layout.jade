@@ -5,28 +5,37 @@ html(lang='en')
 		title doclets
 		link(rel='canonical', href='https://www.doclets.io/')
 		link(href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext', rel='stylesheet', type='text/css')
+		link(rel='stylesheet', href='/index-style.css')
 		style
 			include ../node_modules/normalize.css/normalize.css
+
+		block styles
 
 		block scripts
 			
 	body(itemscope='', itemtype='http://schema.org/WebSite')
 		meta(itemprop='url', content='https://www.doclets.io/')
 		nav
-			a#home(href='/') Home
+			a#slogan(href='/') Documentation is fun
+			a#setup(href='/howto') How to 
+		header
+			a#logo(href='/') logo
+			include searchform.jade
 			if user
-				a(href='/account')= user.username
-				a(href='/logout') logout
+				#user
+					a.account(href='/account')= user.username
+					a.logout(href='/logout') log out
+				a.avatar(href='/account')
+					img(src=user._json.avatar_url)
 			else
-				a(href='/login') Login
-			//a.github-button(href='https://github.com/lipp/doclets', data-icon='octicon-star', data-style='mega', data-count-href='/lipp/doclets/stargazers', data-count-api='/repos/lipp/doclets#stargazers_count', data-count-aria-label='# stargazers on GitHub', aria-label='Star lipp/doclets on GitHub') Star
+				a.login(href='/auth/github') Log in
+					span with GitHub
 		
 
 		block content
 
 		footer
-			span Made with &hearts; in
+			h4#greet Made with &hearts; in &nbsp;
 				a(href='https://www.google.de/maps/place/Darmstadt/data=!4m2!3m1!1s0x47bd70641173cdd9:0x422435029b0c5f0?sa=X&ved=0ahUKEwjA09z6x4nKAhUEzRQKHZtaC2cQ8gEIHjAA') Darmstadt
 
-		//script#github-bjs(async='', defer='', src='https://buttons.github.io/buttons.js')
 
