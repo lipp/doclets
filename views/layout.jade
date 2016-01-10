@@ -24,10 +24,10 @@ html(lang='en')
 			include searchform.jade
 			if user
 				#user
-					a.account(href='/' + user.username)= user.username
+					a.account(href='/' + user._id)= user._id
 					a.logout(href='/logout') log out
-				a.avatar(href='/' + user.username)
-					img(src=user._json.avatar_url)
+				a.avatar(href='/' + user._id)
+					img(src=user.image)
 			else
 				a.login(href='/auth/github') Log in
 					span with GitHub

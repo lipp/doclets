@@ -6,7 +6,7 @@ block content
 		h2 enabled repositories
 		p Documentation for your enabled repositories will be generated for <strong>new tags</strong>
 			| and <strong>selected branches</strong>. You can unpublished tags or branches to hide them from other users.
-		p Visit your <a href='/#{user.username}'>public profile</a>.
+		p Visit your <a href='/#{user._id}'>public profile</a>.
 		ul
 			each repoSetting in _.where(repoSettings, {docletsEnabled: true})
 				- var repo = repoSetting.repo

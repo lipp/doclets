@@ -2,9 +2,9 @@ extends layout.jade
 block content
 	- var first = versions[0]
 	h2
-		a.name(href='#')= first.repo.name
+		a.name(href='#')= first.repo
 		span /
-		a.user(href='./')= first.repo.user
+		a.user(href='./')= user._id
 	p.description= first.description
 	if first.tags
 		p.tags= first.tags.join(', ')
@@ -13,5 +13,5 @@ block content
 		each doclet in versions
 			li
 				h4
-					a(href=doclet.repo.name + '/' + doclet.repo.branch)= doclet.repo.branch
+					a(href=doclet.repo + '/' + doclet.version)= doclet.version
 
