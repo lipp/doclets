@@ -32,7 +32,7 @@
     "github": "^0.2.4",
     "github-webhook-handler": "^0.5.0",
     "jade": "^1.11.0",
-    "js-yaml": "^3.4.6",
+    "js-yaml": "^3.5.2",
     "jsdoc": "^3.4.0",
     "jstransformer-markdown-it": "^0.2.2",
     "marked": "^0.3.5",
