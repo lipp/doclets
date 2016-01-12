@@ -1,4 +1,3 @@
 var apiServer = require('../lib/api-server')
-var gitRoot = 'git-root'
-var server = apiServer.init(gitRoot)
+var server = apiServer.init()
 server.listen(3420)
