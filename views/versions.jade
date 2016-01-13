@@ -4,7 +4,7 @@ block content
 	h2
 		a.name(href='#')= first.repo
 		span /
-		a.user(href='./')= user._id
+		a.user(href='./')= owner._id
 	p.description= first.description
 	if first.tags
 		p.tags= first.tags.join(', ')
