@@ -68,7 +68,7 @@ describe('The server module', function () {
       clearDb,
       doclet.save.bind(doclet),
       user.save.bind(user),
-      repo.save.bind(repo),
+      repo.save.bind(repo)
     ], done)
   })
 
