@@ -1,4 +1,7 @@
 var apiServer = require('../lib/api-server')
-var gitRoot = 'git-root'
-var server = apiServer.init(gitRoot)
-server.listen(3420)
+apiServer.init(3420)
+console.log('api-server started')
+process.on('SIGTERM', function () {
+  console.log('api-server shutdown')
+  process.exit(0)
+})

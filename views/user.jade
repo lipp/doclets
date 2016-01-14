@@ -4,18 +4,18 @@ block content
 		include profile.jade
 		
 		#repos
-			- var username = owner.profile.username
+			- var username = owner._id
 			h3= '' + doclets.length + ' doclets by ' + username
 			ul.versions
-				each docletsByName, name in _.groupBy(doclets, function(doclet) {return doclet.repo.name})
+				each docletsByName, name in _.groupBy(doclets, function(doclet) {return doclet.repo})
 					- var first = docletsByName[0]
 					li.doclet
 						h3
-							a(href=username + '/' + name)= first.repo.name
+							a(href=username + '/' + name)= first.repo
 						p.description= first.description
 						p.version
 							ul
-								each version in _.map(docletsByName, function(doclet) {return doclet.repo.branch})
+								each version in _.map(docletsByName, function(doclet) {return doclet.version})
 									li
 										a(href=username + '/' + name + '/' + version)= version
 

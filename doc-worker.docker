@@ -3,6 +3,4 @@ RUN apt-get update -y && apt-get install libkrb5-dev -y
 ADD package.json package.json
 RUN npm install
 ADD . .
-CMD ["node", "bin/api-server.js"]
-EXPOSE 3420
-
+CMD ["node", "bin/doc-worker.js"]

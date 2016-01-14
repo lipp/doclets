@@ -14,7 +14,7 @@ block content
 		ul#results
 			each doclet in doclets
 				li.doclet
-					a(href=doclet.repo.user + '/' + doclet.repo.name + '/' + doclet.repo.branch)= doclet.repo.name + ' ' + doclet.repo.branch
+					a(href=doclet.owner + '/' + doclet.repo + '/' + doclet.version)= doclet.repo + ' ' + doclet.version
 
 	else
 		h2 No doclet names match for 

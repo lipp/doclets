@@ -1,19 +1,30 @@
-couchdb:
-  image: klaemo/couchdb
-  restart: always
-  volumes:
-    - ./couchdb-dev:/usr/local/var/lib/couchdb
+redis:
+  image: redis
+  command: redis-server --appendonly yes
   ports:
-    - 5984:5984
-    
+    - 6379:6379
+
+mongodb:
+  image: mongo
+  ports:
+    - 27017:27017
+
+doc-worker:
+  dockerfile: ./doc-worker.docker
+  build: ./
+  links:
+    - redis
+    - mongodb
+  environment:
+    - NODE_ENV=dev
+
 api-server:
   dockerfile: ./api-server.docker
   build: ./
   links:
-    - couchdb:couchdb
+    - redis
   ports:
     - 3420:3420
-  restart: always
   environment:
     - NODE_ENV=dev
 
@@ -21,10 +32,12 @@ web-server:
   dockerfile: ./web-server.docker
   build: ./
   links:
-    - couchdb:couchdb
+    - mongodb
+    - redis
   ports:
     - 8080:8080
   restart: always
   environment:
     - NODE_ENV=dev
+    - HOST_NAME=192.168.99.100
 
