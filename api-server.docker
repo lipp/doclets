@@ -1,4 +1,5 @@
-FROM nodesource/node:LTS
+FROM nodesource/wheezy:LTS
+RUN apt-get update -y && apt-get install libkrb5-dev -y
 ADD package.json package.json
 RUN npm install
 ADD . .

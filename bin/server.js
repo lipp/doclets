@@ -4,5 +4,9 @@ require('../lib/server').init(8080, function (err) {
     process.exit(1)
   } else {
     console.log('running on port 8080')
+    process.on('SIGTERM', function () {
+      console.log('server shutdown')
+      process.exit(0)
+    })
   }
 })

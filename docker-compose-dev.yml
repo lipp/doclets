@@ -39,4 +39,5 @@ web-server:
   restart: always
   environment:
     - NODE_ENV=dev
+    - HOST_NAME=192.168.99.100
 

@@ -1,8 +1,5 @@
 /* global describe it before after */
 
-// disable session store
-process.env.NODE_ENV = 'test'
-
 var assert = require('assert')
 var server = require('../lib/server')
 var gather = require('../lib/gather')
@@ -19,7 +16,7 @@ var repoName = 'test'
 var version = 'v1.0.1'
 
 var clearDb = function (done) {
-  mongoose.connection.on('open', function () {
+  mongoose.connection.once('open', function () {
     mongoose.connection.db.dropDatabase(done)
   })
 }
@@ -146,7 +143,7 @@ describe('The server module', function () {
 
   it('GET /bart2', function (done) {
     request('http://localhost:4444/bart2', function (err, res, body) {
-      assert.equal(res.statusCode, 500)
+      assert.equal(res.statusCode, 404)
       done(err)
     })
   })
