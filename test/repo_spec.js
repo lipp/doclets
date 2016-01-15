@@ -50,14 +50,67 @@ describe('The repo module', function () {
     })
 
     it('.getHook()', function (done) {
-      sinon.stub(repo.github(), 'authenticate').returns()
-      sinon.stub(repo.github().repos, 'getHooks')
+      sandbox.stub(repo.github(), 'authenticate').returns()
+      sandbox.stub(repo.github().repos, 'getHooks')
         .withArgs({user: 'lipp', repo: 'bar', per_page: 100})
         .yields(null, [{config: {url: 'http://api.doclets.io/github/callback'}}])
 
       repo.getHook('lipp', 'bar', {foo: 1}, function (err, hook) {
         assert(!err)
         assert.equal(hook.config.url, 'http://api.doclets.io/github/callback')
+        done()
+      })
+    })
+
+    it('.getHook() wrong url', function (done) {
+      sandbox.stub(repo.github(), 'authenticate').returns()
+      sandbox.stub(repo.github().repos, 'getHooks')
+        .withArgs({user: 'lipp', repo: 'bar', per_page: 100})
+        .yields(null, [{config: {url: 'hrr'}}])
+
+      repo.getHook('lipp', 'bar', {foo: 1}, function (err, hook) {
+        assert(!err)
+        assert(!hook)
+        done()
+      })
+    })
+
+    it('.getHook() wrong url', function (done) {
+      sandbox.stub(repo.github(), 'authenticate').returns()
+      sandbox.stub(repo.github().repos, 'getHooks')
+        .withArgs({user: 'lipp', repo: 'bar', per_page: 100})
+        .yields(null, [{config: {url: 'hrr'}}])
+
+      sandbox.stub(repo.github().repos, 'createHook')
+        .withArgs({
+          user: 'lipp',
+          repo: 'bar',
+          name: 'web',
+          activate: true,
+          events: ['push', 'create'],
+          config: {
+            secret: '12345678',
+            url: 'http://api.doclets.io/github/callback',
+            'content_type': 'json'
+          }
+        }).yields(null, 123)
+
+      repo.addHook('lipp', 'bar', {foo: 1}, function (err, hook) {
+        assert(!err)
+        assert.equal(hook, 123)
+        done()
+      })
+    })
+
+    it('.getUserRepos() ', function (done) {
+      sandbox.stub(repo.github(), 'authenticate').returns()
+      sandbox.stub(repo.github().repos, 'getFromUser')
+        .withArgs({user: 'lipp', type: 'owner', per_page: 100})
+        .yields(null, [1, 2])
+
+      repo.getUserRepos('lipp', {foo: 1}, function (err, repos) {
+        assert(!err)
+        assert.deepEqual(repos, [1, 2])
         done()
       })
     })
