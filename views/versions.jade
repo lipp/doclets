@@ -4,7 +4,7 @@ block content
 	h2
 		a.name(href='#')= first.repo
 		span /
-		a.user(href='./')= owner._id
+		a.user(href='./')= username
 	p.description= first.description
 	if first.tags
 		p.tags= first.tags.join(', ')
@@ -14,4 +14,7 @@ block content
 			li
 				h4
 					a(href=doclet.repo + '/' + doclet.version)= doclet.version
+
+	if user && user._id == username
+		a(href='/account/' + first.repo) Repository settings
 

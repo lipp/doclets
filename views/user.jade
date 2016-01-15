@@ -4,7 +4,6 @@ block content
 		include profile.jade
 		
 		#repos
-			- var username = owner._id
 			h3= '' + doclets.length + ' doclets by ' + username
 			ul.versions
 				each docletsByName, name in _.groupBy(doclets, function(doclet) {return doclet.repo})
