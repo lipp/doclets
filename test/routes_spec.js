@@ -113,14 +113,28 @@ describe('The routes module', function () {
       },
       params: {
         repo: 'tt'
-      }
+      },
+      flash: sinon.spy(function (which) {
+        return which === 'error' ? [1] : [2]
+      })
     }
     var res = {}
     res.render = sinon.spy()
     routes.getAccountRepo(req, res)
     var resArgs = res.render.args[0]
     assert.equal(resArgs[0], 'repo.jade')
-    assert.deepEqual(resArgs[1], {user: req.user, repo: 123, _: _, doclets: 333, owner: req.user})
+    var expectedParams = {
+      user: req.user,
+      repo: 123,
+      _: _,
+      doclets: 333,
+      owner: req.user,
+      error: 1,
+      result: 2
+    }
+    assert.deepEqual(resArgs[1], expectedParams)
+    assert(req.flash.calledWith('error'))
+    assert(req.flash.calledWith('result'))
   })
 
   it('.setAccountRepo(req, res) calls Repo.findById and enables webhook and res.redirect("/account/<repo>")', function () {
@@ -137,7 +151,8 @@ describe('The routes module', function () {
       },
       body: {
         enabled: 'on'
-      }
+      },
+      flash: sinon.spy()
     }
     var res = {}
     res.redirect = sinon.spy()
