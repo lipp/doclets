@@ -23,6 +23,7 @@
     "body-parser": "^1.14.2",
     "bull": "^0.7.0",
     "colors": "^1.1.2",
+    "connect-flash": "^0.1.1",
     "connect-redis": "^3.0.2",
     "express": "^4.13.3",
     "express-session": "^1.12.1",

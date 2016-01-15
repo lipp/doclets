@@ -1,13 +1,19 @@
 extends layout
 
 block content
+	if error
+		.message
+			span= error
+	if result
+		.message
+			span= result
 	.user-split
 		include profile.jade
 		
 		#settings
 			h1= repo.name
 			form#repos(action='/account/' + repo.name, method='post', name='settings')
-				label(for='enabled') CI enabled + #{repo.isWebHookEnabled()}
+				label(for='enabled') CI enabled
 				input(type='checkbox', id='enabled', name='enabled', checked=repo.isWebHookEnabled())
 				//input(name='asd')
 				each type in [{type: 'branch', name: 'Branches'}, {type: 'tag', name: 'Tags'}]
