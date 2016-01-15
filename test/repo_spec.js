@@ -9,6 +9,7 @@ var gitDir = path.join(__dirname, 'here')
 
 describe('The repo module', function () {
   this.slow(10000)
+  this.timeout(20000)
 
   after(function () {
     fse.removeSync(gitDir)
