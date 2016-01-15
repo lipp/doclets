@@ -100,7 +100,7 @@ describe('The routes module', function () {
     routes.account(req, res)
     var resArgs = res.render.args[0]
     assert.equal(resArgs[0], 'account.jade')
-    assert.deepEqual(resArgs[1], {user: req.user, repos: 123, _: _})
+    assert.deepEqual(resArgs[1], {user: req.user, repos: 123, _: _, owner: req.user})
   })
 
   it('.getAccountRepo(req, res) calls Repo.findById and Doclet.find and res.render("repo.jade")', function () {
