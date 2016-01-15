@@ -1,10 +1,12 @@
 #profile
-	- var owner = owner || {}
-	img(src=owner.image)
-	h2= owner._id
-	h3= owner.name
-	a(href=owner.url) Visit on GitHub
-	br
-	if user
-		a(href='/account') Settings
+	if owner
+		img(src=owner.image)
+		h2= owner._id
+		h3= owner.name
+		a(href=owner.url) Visit on GitHub
+		br
+		if user
+			a(href='/account') Settings
+	else
+		h2 No Profile information
 
