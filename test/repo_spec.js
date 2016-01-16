@@ -63,7 +63,9 @@ describe('The repo module', function () {
     })
 
     it('.getHook() wrong url', function (done) {
-      sandbox.stub(repo.github(), 'authenticate').returns()
+      sandbox.stub(repo.github(), 'authenticate')
+        .withArgs({foo: 1})
+        .returns()
       sandbox.stub(repo.github().repos, 'getHooks')
         .withArgs({user: 'lipp', repo: 'bar', per_page: 100})
         .yields(null, [{config: {url: 'hrr'}}])
@@ -75,8 +77,10 @@ describe('The repo module', function () {
       })
     })
 
-    it('.getHook() wrong url', function (done) {
-      sandbox.stub(repo.github(), 'authenticate').returns()
+    it('.addHook() creating new hook', function (done) {
+      sandbox.stub(repo.github(), 'authenticate')
+        .withArgs({foo: 1})
+        .returns()
       sandbox.stub(repo.github().repos, 'getHooks')
         .withArgs({user: 'lipp', repo: 'bar', per_page: 100})
         .yields(null, [{config: {url: 'hrr'}}])
@@ -96,6 +100,88 @@ describe('The repo module', function () {
         }).yields(null, 123)
 
       repo.addHook('lipp', 'bar', {foo: 1}, function (err, hook) {
+        assert(!err)
+        assert.equal(hook, 123)
+        done()
+      })
+    })
+
+    it('.addHook() updating existing hook', function (done) {
+      var hook = {
+        config: {
+          url: 'http://api.doclets.io/github/callback'
+        },
+        id: 123
+      }
+      sandbox.stub(repo.github(), 'authenticate')
+        .withArgs({foo: 1})
+        .returns()
+      sandbox.stub(repo.github().repos, 'getHooks')
+        .withArgs({user: 'lipp', repo: 'bar', per_page: 100})
+        .yields(null, [hook])
+
+      sandbox.stub(repo.github().repos, 'updateHook')
+        .withArgs({
+          user: 'lipp',
+          repo: 'bar',
+          name: 'web',
+          active: true,
+          id: hook.id,
+          config: {
+            secret: '12345678',
+            url: 'http://api.doclets.io/github/callback',
+            'content_type': 'json'
+          }
+        }).yields(null, 123)
+
+      repo.addHook('lipp', 'bar', {foo: 1}, function (err, hook) {
+        assert(!err)
+        assert.equal(hook, 123)
+        done()
+      })
+    })
+
+    it('.addHook() forwards getHook error', function (done) {
+      sandbox.stub(repo.github(), 'authenticate')
+        .withArgs({foo: 1})
+        .returns()
+      sandbox.stub(repo.github().repos, 'getHooks')
+        .withArgs({user: 'lipp', repo: 'bar', per_page: 100})
+        .yields('some error')
+
+      repo.addHook('lipp', 'bar', {foo: 1}, function (err, hook) {
+        assert.equal(err, 'some error')
+        assert(!hook)
+        done()
+      })
+    })
+
+    it('.removeHook() an existing hook', function (done) {
+      var hook = {
+        config: {
+          url: 'http://api.doclets.io/github/callback'
+        },
+        id: 123
+      }
+      sandbox.stub(repo.github(), 'authenticate')
+        .withArgs({foo: 1})
+        .returns()
+
+      sandbox.stub(repo.github().repos, 'updateHook')
+        .withArgs({
+          user: 'lipp',
+          repo: 'bar',
+          name: 'web',
+          active: false,
+          id: hook.id,
+          config: {
+            secret: '12345678',
+            url: 'http://api.doclets.io/github/callback',
+            'content_type': 'json'
+          }
+        }).yields(null, 123)
+
+      repo.removeHook('lipp', 'bar', {foo: 1}, hook, function (err, hook) {
         assert(!err)
         assert.equal(hook, 123)
         done()
