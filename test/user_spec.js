@@ -18,7 +18,9 @@ describe('The user module', function () {
   })
 
   it('.createFromGitHubPassport creates db entry', function (done) {
-    var ghPassport = {token: 'token',
+    var ghPassport = {
+      token: 'token',
+      refreshToken: 'token2',
       profile: {
         id: '123',
         username: 'lipp',
@@ -45,6 +47,7 @@ describe('The user module', function () {
             assert.equal(user.url, ghPassport.profile._json.html_url)
             assert.equal(user.image, ghPassport.profile._json.avatar_url)
             assert.equal(user.token, ghPassport.token)
+            assert.equal(user.refreshToken, ghPassport.refreshToken)
             done()
           }
         })
