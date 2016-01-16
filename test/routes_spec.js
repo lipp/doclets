@@ -4,6 +4,7 @@ var Routes = require('../lib/routes').Routes
 var sinon = require('sinon')
 var Repo = require('../lib/models/repo')
 var Doclet = require('../lib/models/doclet')
+var User = require('../lib/models/user')
 var _ = require('underscore')
 
 describe('The routes module', function () {
@@ -159,5 +160,72 @@ describe('The routes module', function () {
     routes.setAccountRepo(req, res)
     assert(res.redirect.calledWith('/account/tt'))
     assert(repo.enableWebHook.calledWith())
+  })
+
+  it('.serializeUser() creating a new User', function (done) {
+    var ghUser = {
+      profile: {
+        id: 123
+      }
+    }
+    sandbox.stub(User, 'findOne')
+      .withArgs({passportId: ghUser.profile.id})
+      .yields(null, null)
+
+    sandbox.stub(User, 'createFromGitHubPassport')
+      .withArgs(ghUser)
+      .yields(null, ghUser.profile.id)
+
+    routes.serializeUser(ghUser, function (err, id) {
+      assert(!err)
+      assert.equal(id, ghUser.profile.id)
+      done()
+    })
+  })
+
+  it('.serializeUser() retrieving an existing User', function (done) {
+    var ghUser = {
+      profile: {
+        id: 123
+      }
+    }
+    sandbox.stub(User, 'findOne')
+      .withArgs({passportId: ghUser.profile.id})
+      .yields(null, 444)
+
+    routes.serializeUser(ghUser, function (err, id) {
+      assert(!err)
+      assert.equal(id, 123)
+      done()
+    })
+  })
+
+  it('.serializeUser() propagates error', function (done) {
+    var ghUser = {
+      profile: {
+        id: 123
+      }
+    }
+    sandbox.stub(User, 'findOne')
+      .withArgs({passportId: ghUser.profile.id})
+      .yields('some error')
+
+    routes.serializeUser(ghUser, function (err, id) {
+      assert.equal(err, 'some error')
+      assert(!id)
+      done()
+    })
+  })
+
+  it('.deserializeUser() calls User.findOne', function (done) {
+    sandbox.stub(User, 'findOne')
+      .withArgs({passportId: 123})
+      .yields(null, 'user')
+
+    routes.deserializeUser(123, function (err, user) {
+      assert(!err)
+      assert.equal(user, 'user')
+      done()
+    })
   })
 })
