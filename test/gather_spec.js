@@ -4,7 +4,7 @@ var gather = require('../lib/gather')
 var path = require('path')
 
 var loadFixture = function (name) {
-  var dir = path.join(__dirname, 'fixtures', name)
+  var dir = path.join(__dirname, '../fixtures', name)
   return gather.gatherDocletsAndMeta(dir)
 }
 

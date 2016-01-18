@@ -9,7 +9,7 @@ var fs = require('fs')
 var mongoose = require('mongoose')
 var sinon = require('sinon')
 
-var repoData = JSON.parse(fs.readFileSync(path.join(__dirname, 'fixtures', 'repos.json'))).slice(0, 4)
+var repoData = JSON.parse(fs.readFileSync(path.join(__dirname, '../fixtures', 'repos.json'))).slice(0, 4)
 
 describe('The repo model module', function () {
   var sandbox
