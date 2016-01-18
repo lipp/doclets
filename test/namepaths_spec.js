@@ -8,6 +8,7 @@ var structure = require('../lib/structure')
 var loadFixture = function (name) {
   var dir = path.join(__dirname, '../fixtures', name)
   var doclets = gather.gatherDocletsAndMeta(dir)
+  console.log(doclets)
   return structure.buildHierarchy(doclets, '', '')
 }
 
@@ -80,15 +81,71 @@ describe('namespaces', function () {
     })
   })
 
-/*  describe('commonjs style', function () {
-    var doclets
+  describe('commonjs style', function () {
+    var modules
 
     before(function () {
-      doclets = loadFixture('commonjs')
+      modules = loadFixture('commonjs')
     })
 
-    it('cal', function () {
-      console.dir(doclets)
+    it('modules["module:bookshelf"].kind() === "module"', function () {
+      assert.equal(modules['module:bookshelf'].kind(), 'module')
     })
-  }) */
+
+    it('modules["module:bookshelf"].classes.length === 1', function () {
+      assert.equal(modules['module:bookshelf'].classes.length, 1)
+    })
+
+    it('modules["module:bookshelf"].classes[0].name === "Book"', function () {
+      assert.equal(modules['module:bookshelf'].classes[0].name, 'Book')
+    })
+
+    it('modules["module:color/mixer"].kind() === "module"', function () {
+      assert.equal(modules['module:color/mixer'].kind(), 'module')
+    })
+
+    it('modules["module:color/mixer"].functions.length === 2', function () {
+      assert.equal(modules['module:color/mixer'].functions.length, 2)
+    })
+
+    it('modules["module:color/mixer"].functions[0].name === "blend"', function () {
+      assert.equal(modules['module:color/mixer'].functions[0].name, 'blend')
+    })
+
+    it('modules["module:color/mixer"].functions[1].name === "darken"', function () {
+      assert.equal(modules['module:color/mixer'].functions[1].name, 'darken')
+    })
+
+    it('modules["module:color/mixer2"].kind() === "function"', function () {
+      assert.equal(modules['module:color/mixer2'].kind(), 'function')
+    })
+
+    it('modules["module:color/mixer2"].functions[0].name === "module:color/mixer2"', function () {
+      assert.equal(modules['module:color/mixer2'].functions[0].name, 'module:color/mixer2')
+    })
+
+    it('modules["module:color/mixer3"].kind() === "function"', function () {
+      assert.equal(modules['module:color/mixer3'].kind(), 'function')
+    })
+
+    it('modules["module:color/mixer3"].functions[0].name === "module:color/mixer3"', function () {
+      assert.equal(modules['module:color/mixer3'].functions[0].name, 'module:color/mixer3')
+    })
+
+    it('modules["module:my/shirt2"].kind() === "module"', function () {
+      assert.equal(modules['module:my/shirt2'].kind(), 'module')
+    })
+
+    it('modules["module:my/shirt2"].functions.length === 1', function () {
+      assert.equal(modules['module:my/shirt2'].functions.length, 1)
+    })
+
+    it('modules["module:my/shirt2"].functions[0].name === "wash"', function () {
+      assert.equal(modules['module:my/shirt2'].functions[0].name, 'wash')
+    })
+
+    it('modules["module:wotd"].kind() === "string"', function () {
+      assert.equal(modules['module:wotd'].kind(), 'string')
+    })
+  })
 })
