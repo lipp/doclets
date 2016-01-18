@@ -8,7 +8,7 @@ var structure = require('../lib/structure')
 var loadFixture = function (name) {
   var dir = path.join(__dirname, '../fixtures', name)
   var doclets = gather.gatherDocletsAndMeta(dir)
-  console.log(doclets)
+  //  console.log(doclets)
   return structure.buildHierarchy(doclets, '', '')
 }
 
@@ -146,6 +146,21 @@ describe('namespaces', function () {
 
     it('modules["module:wotd"].kind() === "string"', function () {
       assert.equal(modules['module:wotd'].kind(), 'string')
+    })
+  })
+
+  describe('module variants', function () {
+    var modules
+
+    before(function () {
+      modules = loadFixture('modules')
+    })
+
+    it('modules are defined', function () {
+      assert(modules['module:explicit/stuff'])
+      assert(modules['module:auto'])
+      assert(modules['module:sub/auto'])
+      assert(modules['module:sub/sub/auto2'])
     })
   })
 })
