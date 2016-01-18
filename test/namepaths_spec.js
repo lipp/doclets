@@ -19,8 +19,11 @@ describe('namespaces', function () {
     })
 
     it('modules["module:my/jacket"].kind() === "class"', function () {
-      //     console.log(modules)
       assert.equal(modules['module:my/jacket'].kind(), 'class')
+    })
+
+    it('modules["module:my/jacket2"].kind() === "class"', function () {
+      assert.equal(modules['module:my/jacket2'].kind(), 'class')
     })
   })
 
