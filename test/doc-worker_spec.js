@@ -11,7 +11,7 @@ var docWorker = require('../lib/doc-worker')
 var sinon = require('sinon')
 
 var loadGitHubEvent = function (eventDir) {
-  var payload = fs.readFileSync(path.join(__dirname, 'fixtures/events', eventDir, 'payload.json'))
+  var payload = fs.readFileSync(path.join(__dirname, '../fixtures/events', eventDir, 'payload.json'))
   return JSON.parse(payload)
 }
 

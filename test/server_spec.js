@@ -29,7 +29,7 @@ describe('The server module', function () {
   })
 
   before(function (done) {
-    var dir = path.join(__dirname, 'fixtures', 'minimal_1')
+    var dir = path.join(__dirname, '../fixtures', 'minimal_1')
 
     var doclet = new Doclet()
     doclet._id = [userName, repoName, version].join('/')

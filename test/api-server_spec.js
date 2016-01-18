@@ -9,8 +9,8 @@ var path = require('path')
 var fs = require('fs')
 
 var replayGitHubEvent = function (eventDir, done) {
-  var payload = fs.readFileSync(path.join(__dirname, 'fixtures/events', eventDir, 'payload.json'))
-  var headers = require(path.join(__dirname, 'fixtures/events', eventDir, 'headers.js'))
+  var payload = fs.readFileSync(path.join(__dirname, '../fixtures/events', eventDir, 'payload.json'))
+  var headers = require(path.join(__dirname, '../fixtures/events', eventDir, 'headers.js'))
   request({
     url: 'http://localhost:9876/github/callback',
     method: headers.method,
