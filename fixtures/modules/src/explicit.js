@@ -5,8 +5,10 @@
  */
 
 /**
- * Does stuff
- * @function
+ * Create a foo
+ * @class 
+ *
  */
+module.exports.Foo = function() {}
 
-module.exports = function () {}
+
