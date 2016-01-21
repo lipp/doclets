@@ -37,7 +37,7 @@ describe('tree', function () {
       it('Turutleneck has size child', function () {
         var tChilds = structure.childs(mod.childs.Turtleneck)
         assert.equal(_.keys(tChilds).length, 1)
-        assert.equal(tChilds.size.__doclet.longname, 'module:my/shirt.Turtleneck#size')
+        assert.equal(tChilds[0].node.__doclet.longname, 'module:my/shirt.Turtleneck#size')
       })
 
       it('size has no childs', function () {
@@ -198,24 +198,26 @@ describe('tree', function () {
       modules = loadFixture('namespaces')
     })
 
-    describe('_GLOBAL', function () {
+    describe('globals', function () {
       var mod
       before(function () {
-        mod = modules._GLOBAL
+        mod = _.findWhere(modules, {longname: 'globals'})
         assert(mod)
       })
 
       it('has stuff child of kind namespace', function () {
-        assert.equal(_.keys(mod.childs).length, 1)
-        assert.equal(mod.childs.stuff.__doclet.longname, 'stuff')
-        assert.equal(mod.childs.stuff.__doclet.kind, 'namespace')
+        var childs = structure.childs(mod.childs)
+        assert.equal(childs.length, 1)
+        assert.equal(childs[0].node.__doclet.longname, 'stuff')
+        assert.equal(childs[0].node.__doclet.kind, 'namespace')
       })
 
       it('stuff has foo child of kind member', function () {
         var childs = structure.childs(mod.childs.stuff)
         assert.equal(_.keys(childs).length, 1)
-        assert.equal(childs.foo.__doclet.longname, 'stuff.foo')
-        assert.equal(childs.foo.__doclet.kind, 'member')
+        assert.equal(childs[0].name, 'foo')
+        assert.equal(childs[0].node.__doclet.longname, 'stuff.foo')
+        assert.equal(childs[0].node.__doclet.kind, 'member')
       })
     })
   })
@@ -227,26 +229,27 @@ describe('tree', function () {
       modules = loadFixture('events')
     })
 
-    describe('_GLOBAL', function () {
+    describe('globals', function () {
       var mod
       before(function () {
-        mod = modules._GLOBAL
+        mod = _.findWhere(modules, {longname: 'globals'})
         assert(mod)
       })
 
       it('has Hurl child with no __doclet', function () {
-        assert.equal(_.keys(mod.childs).length, 1)
-        assert(mod.childs.Hurl)
-        assert(!mod.childs.Hurl.__doclet)
+        var childs = structure.childs(mod.childs)
+        assert.equal(childs.length, 1)
+        assert.equal(childs[0].name, 'Hurl')
+        assert(!childs[0].node.__doclet)
       })
 
       it('Hurl has child snowball of kind function and event:snowball of kind event', function () {
         var childs = structure.childs(mod.childs.Hurl)
         assert.equal(_.keys(childs).length, 2)
-        assert.equal(childs['event:snowball'].__doclet.longname, 'Hurl#event:snowball')
-        assert.equal(childs['event:snowball'].__doclet.kind, 'event')
-        assert.equal(childs['snowball'].__doclet.longname, 'Hurl#snowball')
-        assert.equal(childs['snowball'].__doclet.kind, 'function')
+        assert.equal(childs[0].node.__doclet.longname, 'Hurl#event:snowball')
+        assert.equal(childs[0].node.__doclet.kind, 'event')
+        assert.equal(childs[1].node.__doclet.longname, 'Hurl#snowball')
+        assert.equal(childs[1].node.__doclet.kind, 'function')
       })
     })
   })
@@ -258,10 +261,10 @@ describe('tree', function () {
       modules = loadFixture('enums')
     })
 
-    describe('_GLOBAL', function () {
+    describe('globals', function () {
       var mod
       before(function () {
-        mod = modules._GLOBAL
+        mod = _.findWhere(modules, {longname: 'globals'})
         assert(mod)
       })
 
@@ -275,10 +278,10 @@ describe('tree', function () {
       it('triState has enum childs', function () {
         var childs = structure.childs(mod.childs.triState)
         assert.equal(_.keys(childs).length, 3)
-        assert.equal(childs.TRUE.__doclet.longname, 'triState.TRUE')
-        assert.equal(childs.FALSE.__doclet.longname, 'triState.FALSE')
-        assert.equal(childs.MAYBE.__doclet.longname, 'triState.MAYBE')
-        assert.equal(childs.MAYBE.__doclet.kind, 'member')
+        assert.equal(childs[2].node.__doclet.longname, 'triState.TRUE')
+        assert.equal(childs[0].node.__doclet.longname, 'triState.FALSE')
+        assert.equal(childs[1].node.__doclet.longname, 'triState.MAYBE')
+        assert.equal(childs[2].node.__doclet.kind, 'member')
       })
     })
   })

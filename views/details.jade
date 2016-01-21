@@ -42,7 +42,7 @@ mixin title(doclet, prefix)
 			span.prefix= prefix
 		span= doclet.name
 		span.link
-			if doclet.meta.url
+			if doclet.meta && doclet.meta.url
 				a(href=doclet.meta.url).braces= '</>'
 			a(href="#" + doclet.longname)= '#'
 
@@ -91,48 +91,34 @@ mixin clazzDoclet(doclet)
 	if doclet.classdesc
 		+optMarkdown(doclet.classdesc, 'classdesc')
 	+funcDoclet(doclet, true)
-	- var functions = _.filter(doclet.members, function(doclet) {return doclet.kind === 'function';});
-	- var constants = _.filter(doclet.members, function(doclet) {return doclet.kind === 'constant';});
-	- var members = _.filter(doclet.members, function(doclet) {return doclet.kind === 'member';});
-	- var callbacks = _.filter(doclet.members, function(doclet) {return doclet.kind === 'typedef';}); // && doclet.type && doclet.type.names.find('function')});
-	each constant in tools.sortByName(constants)
-		+simpleDoclet(constant)
-	each member in tools.sortByName(members)
-		+simpleDoclet(member)
-	each func in tools.sortByName(functions)
-		+funcDoclet(func, false, doclet.name)
-	each callback in tools.sortByName(callbacks)
-		+funcDoclet(callback, false, doclet.name)
 	
 	
-
-mixin module(id)
-	- var module = modules[id];
-	if id !== '_GLOBAL'
-		h2.modulename(id=id)
-			span.moduleprefix module
-			span= tools.modulename(id)
-		if module.doclet.description
-			+optMarkdown(module.doclet.description, 'moduledescription')
-	each constant in tools.sortByName(module.constants)
-		article.constant
-			+simpleDoclet(constant)
-	each func in tools.sortByName(module.functions)
-		article.function
-			+funcDoclet(func)
-	each interface in tools.sortByName(module.interfaces)
-		article.interface
-			+clazzDoclet(interface)
-	each clazz in tools.sortByName(module.classes)
-		article.clazz
-			+clazzDoclet(clazz)
-	each external in tools.sortByName(module.externals)
-		article.external
-			+simpleDoclet(external)
+mixin details(doclet)
+	case doclet.kind
+		when 'module'
+			article.module
+				+module2(doclet)
+		when 'class'
+			article.clazz
+				+clazzDoclet(doclet)
+		when 'interface'
+			article.interface
+				+clazzDoclet(doclet)
+		when 'function'
+			article.function
+				+funcDoclet(doclet)
+		default
+			article(class=doclet.kind)
+				+simpleDoclet(doclet)
+	
+mixin module2(module)
+	h2.modulename(id=module.longname)
+		span.moduleprefix module
+		span= tools.modulename(module.longname)
+	if module.description
+		+optMarkdown(module.description, 'moduledescription')
 
 
 section.module
-	+module('_GLOBAL')
-each id in _.filter(_.keys(modules), function(name) {return name !== '_GLOBAL';})
-	section.module
-		+module(id)
+	each doclet in flat
+		+details(doclet)
