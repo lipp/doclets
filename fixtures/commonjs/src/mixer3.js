@@ -3,7 +3,9 @@
  * @module color/mixer3
  */
 
-/** Create a color mixer. */
+/** Create a color mixer. 
+ * @class
+ */
 module.exports = function ColorMixer () {
   // ...
 }

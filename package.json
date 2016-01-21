@@ -28,6 +28,7 @@
     "express": "^4.13.3",
     "express-session": "^1.12.1",
     "express-slash": "^2.0.1",
+    "flat": "^1.6.0",
     "fs-extra": "^0.26.2",
     "git-repo-name": "^0.5.1",
     "github": "^0.2.4",
