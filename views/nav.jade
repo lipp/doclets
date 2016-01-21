@@ -6,72 +6,33 @@ mixin funcdecl(func, isCtor)
 			a(href=apiPath + '#' + func.longname)
 		
 
-mixin clazz(clazz)
-	h4.clazzname(class=clazz.kind=='interface' ? 'interface' : undefined)
-		a(href=apiPath + '#' + clazz.longname)= clazz.name
-	- var functions = _.filter(clazz.members, function(doclet) {return doclet.kind === 'function';});
-	- var constants = _.filter(clazz.members, function(doclet) {return doclet.kind === 'constant';});
-	- var members = _.filter(clazz.members, function(doclet) {return doclet.kind === 'member';});
-	- var callbacks = _.filter(clazz.members, function(doclet) {return doclet.kind === 'typedef';}); // && doclet.type && doclet.type.names.find('function')});
-	
-	if constants.length > 0
-		ul.constants
-			each constant in tools.sortByName(constants)
-				li.constant= constant.name
-	if members.length > 0
-		ul.members
-			each member in tools.sortByName(members)
-				li.member= member.name
-	if functions.length > 0
-		ul.functions
+mixin childlist(node)
+	ul
+		each child in childs(node)
 			li
-				+funcdecl(clazz, true)
-			each func in tools.sortByName(functions)
-				li
-					+funcdecl(func)
-	if callbacks.length > 0
-		ul.callbacks
-			each callback in tools.sortByName(callbacks)
-				li
-					+funcdecl(callback)
+				h4
+					- var doclet = child.node.__doclet
+					if doclet
+						a(href=apiPath + '#' + doclet.longname)= child.name
+							span.kind(class=doclet.kind)= doclet.kind.substr(0,2).toUpperCase()
+					else
+						span= child.name
+						span.kind(class='namespace') NA
+				+childlist(child.node)
 
-mixin module(id)
-	- var module = modules[id];
-	if id !== '_GLOBAL'
-		h4.modulename
-			a(href=apiPath + '#' + id)= tools.modulename(id)
-	if module.constants.length > 0
-		ul.constants
-			each constant in tools.sortByName(module.constants)
-				li.constant
-					a(href=apiPath + '#' + constant.longname)= constant.name
-	if module.functions.length > 0
-		ul.functions
-			each func in tools.sortByName(module.functions)
-				li.function
-					+funcdecl(func)
-	if module.interfaces.length > 0
-		ul.interfaces
-			each interface in tools.sortByName(module.interfaces)
-				li.interface
-					+clazz(interface)
-	if module.classes.length > 0
-		ul.clazzes
-			each clazz in tools.sortByName(module.classes)
-				li.clazz
-					+clazz(clazz)
-	if module.externals.length > 0
-		ul.externals
-			each external in tools.sortByName(module.externals)
-				li.external
-					a(href=apiPath + '#' + external.longname)= external.name
+mixin module(module)
+	h4.modulename
+		- var id = module.longname
+		a(href=apiPath + '#' + id)= tools.modulename(id)
+			span.kind(class='module') MO
+	+childlist(module.childs)
 
 
 nav
-	h1.packagename= repo.name
-	h2.version= repo.version
+	h1.packagename= repo
+	h2.version= version
 	span by
-		a(href='../')= repo.user
+		a(href='../')= owner
 	a.otherversions(href=versionsPath) other versions
 	if articles.length > 0
 		h2.articles-header Articles
@@ -81,8 +42,7 @@ nav
 					a(href=articlesPath + article.id)= article.title
 	h2.apidoc-header API Doc
 	ul.modules
-		li.module
-			+module('_GLOBAL')
-		each id in _.filter(_.keys(modules), function(name) { return name !== '_GLOBAL'; })
+		each module in tree
 			li.module
-				+module(id)
+				+module(module)
+
