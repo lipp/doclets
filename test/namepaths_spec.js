@@ -4,11 +4,16 @@ var assert = require('assert')
 var gather = require('../lib/gather')
 var path = require('path')
 var structure = require('../lib/structure')
+var _ = require('underscore')
 
 var loadFixture = function (name) {
   var dir = path.join(__dirname, '../fixtures', name)
   var doclets = gather.gatherDocletsAndMeta(dir)
-  //  console.log(doclets)
+  var tree = structure.tree(doclets.doclets)
+  var myShirt = _.findWhere(tree, {longname: 'module:my/jacket'})
+  console.log(myShirt)
+  // console.log(structure.childs(myShirt.childs.Turtleneck))
+
   return structure.buildHierarchy(doclets, '', '')
 }
 
@@ -124,12 +129,12 @@ describe('namespaces', function () {
       assert.equal(modules['module:color/mixer2'].functions[0].name, 'module:color/mixer2')
     })
 
-    it('modules["module:color/mixer3"].kind() === "function"', function () {
-      assert.equal(modules['module:color/mixer3'].kind(), 'function')
+    it('modules["module:color/mixer3"].kind() === "class"', function () {
+      assert.equal(modules['module:color/mixer3'].kind(), 'class')
     })
 
-    it('modules["module:color/mixer3"].functions[0].name === "module:color/mixer3"', function () {
-      assert.equal(modules['module:color/mixer3'].functions[0].name, 'module:color/mixer3')
+    it('modules["module:color/mixer3"].classes[0].name === "module:color/mixer3"', function () {
+      assert.equal(modules['module:color/mixer3'].classes[0].name, 'module:color/mixer3')
     })
 
     it('modules["module:my/shirt2"].kind() === "module"', function () {
@@ -161,6 +166,22 @@ describe('namespaces', function () {
       assert(modules['module:auto'])
       assert(modules['module:sub/auto'])
       assert(modules['module:sub/sub/auto2'])
+    })
+  })
+
+  describe('namespaces', function () {
+    var modules
+
+    before(function () {
+      modules = loadFixture('namespaces')
+    })
+
+    it('modules._GLOBAL.namespaces.length === 1', function () {
+      assert.equal(modules._GLOBAL.namespaces.length, 1)
+    })
+
+    it('modules._GLOBAL.namespaces[0].name === "stuff"', function () {
+      assert.equal(modules._GLOBAL.namespaces[0].name, 'stuff')
     })
   })
 })
