@@ -30,7 +30,6 @@ body {
 }
 
 .main h2 {
-	font-family: Menlo;
 }
 
 .api {
@@ -220,9 +219,18 @@ body > .api {
     display: inline-table;
 }
 
+/*
 p, h4, li {
   line-height: 1.4285em;
 	font-size: 17px !important;
+} */
+
+.main p, .params li {
+	font-size: 17px !important;
+}
+
+.args li {
+	font-weight: 100;
 }
 
 .codelink {
@@ -254,12 +262,20 @@ code, pre {
     content: '|';
 }
 
+.params .description {
+	margin-top: -13px;
+}
+
+.params .types {
+	margin-left: 4px;
+}
+
 .params .paramname {
     margin-top: 0.5em;
     margin-bottom: 0.0em;
-    font-size: 90%;
+    font-size: 17px;
     margin: 0 0;
-    color: #3EA7CA;
+		color: #353535;
 }
 
 .params p {

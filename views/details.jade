@@ -15,8 +15,13 @@ mixin see(seeArray)
 
 		
 mixin title(doclet, id)
+	- var symbols = {'class': 'cube', 'module': 'cubes'}
+	- var colors = {'class': 'blue', 'module': 'purple', 'function': 'green', 'member': 'magenta'}
 	h2.title
-		.ui.horizontal.big.label.red= doclet.kind
+		//.ui.circular.label(class=colors[doclet.kind])
+		i.icon(class=symbols[doclet.kind] || 'leaf', style='color: ' + colors[doclet.kind] + ';')
+
+			
 		- var names = tools.splitName(doclet)
 		.names
 			span.module= names.module

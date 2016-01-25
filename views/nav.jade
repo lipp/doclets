@@ -8,12 +8,6 @@ mixin funcdecl(func, isCtor)
 		
 
 mixin childlist(node, root)
-	if root && root.kind == 'class'
-		- var id = tools.idFromLongname(root.longname) + '-ctor'
-		.leaf(id='nav-' + id)
-			a(href=apiPath + '#' + id)
-				em constructor
-				span.kind(class='ctor')= 'CTOR'
 	each child in childs(node)
 		- var hasChildren = childs(child.node).length > 0
 		- var doclet = child.node.__doclet
@@ -31,7 +25,7 @@ mixin childlist(node, root)
 						span= child.name
 							span.kind.ui.red.mini.horizontal.label(class='namespace') {}
 				.content.active
-					+childlist(child.node, doclet)
+					+childlist(child.node)
 		else if doclet
 			.leaf(id='nav-' + id)
 				a(href=apiPath + '#' + id)= child.name
@@ -66,7 +60,8 @@ nav.ui.left.inline.inverted.large.vertical.menu.visible
 	each article in articles
 		a.item(href=articlesPath + article.id)= article.title
 	.item.api
-		h2.header API
+		h2.header 
+			a(href='#') API
 		each module in tree
 			+module(module)
 
