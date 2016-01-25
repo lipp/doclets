@@ -13,8 +13,8 @@ mongoose.connect('mongodb://192.168.99.100/app', function () {
 })
 
 var replayGitHubEvent = function (eventDir, done) {
-  var payload = fs.readFileSync(path.join(__dirname, '../test/fixtures/events', eventDir, 'payload.json'))
-  var headers = require(path.join(__dirname, '../test/fixtures/events', eventDir, 'headers.js'))
+  var payload = fs.readFileSync(path.join(__dirname, '../fixtures/events', eventDir, 'payload.json'))
+  var headers = require(path.join(__dirname, '../fixtures/events', eventDir, 'headers.js'))
   request({
     url: 'http://192.168.99.100:3420/github/callback',
     method: headers.method,
