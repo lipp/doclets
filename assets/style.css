@@ -25,8 +25,12 @@ body {
     right: 0;
     height: 100%;
 	top: 0;
-	padding: 0 15px;
+	padding: 0 30px;
     overflow-y: scroll;
+}
+
+.main h2 {
+	font-family: Menlo;
 }
 
 .api {
@@ -45,8 +49,17 @@ body {
 	border-radius: 0;
 }
 
+.accordion .title.active, .accordion .content.active {
+}
+
+.leaf a {
+		color: #9C9C9C !important;
+}
+
 .api > nav .item.api {
 	padding-right: 0;
+	margin-left: 1.14285714em;
+	padding-left: 0;
 }
 
 nav .active-scroll {
@@ -54,15 +67,30 @@ nav .active-scroll {
 	border-right: 5px solid orange;
 }
 
+body {
+	display: flex;
+	flex-direction: column;
+}
+
+body > .api {
+		flex-grow: 1;
+		overflow: hidden;
+}
+
 .main .wrap {
-	padding: 0 15px;
-	transition: box-shadow 0.5s ease-in;
-	box-shadow: 0;
+}
+
+.main .wrap .title .label {
+	transition: box-shadow 0.5s 0.1s ease-in;
+	box-shadow: 0px 0px 0px gray;
 }
 
 .main .active-scroll .title .label {
-	transition: box-shadow 0.5s ease-in;
 	box-shadow: 2px 3px 8px gray
+}
+
+.main .active-scroll .names .module {
+		color: orange;
 }
 
 .names span.module {
@@ -70,6 +98,7 @@ nav .active-scroll {
     font-size: 13px;
     line-height: 13px;
     color: #A5A5A5;
+	transition: color 0.5s 0.1s ease-in;
 }
 
 .names {

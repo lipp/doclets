@@ -44,8 +44,13 @@ mixin module(module)
 			- var id = tools.idFromLongname(module.longname)
 			.title.active(id='nav-' + id)
 				i.dropdown.icon
-				a(href=apiPath + '#' + id)= tools.modulename(module.longname)
-					span.kind(class='module') MO
+				if module.longname != 'globals'
+					a(href=apiPath + '#' + id)= tools.modulename(module.longname)
+						span.kind(class='module') MO
+				else
+					a(href=apiPath + '#' + id)
+						em Globals
+						span.kind(class='module') MO
 			.content.active
 				+childlist(module.childs)
 
@@ -63,9 +68,5 @@ nav.ui.left.inline.inverted.large.vertical.menu.visible
 	.item.api
 		h2.header API
 		each module in tree
-			if module.longname == 'globals'
-				.module
-					+childlist(module.childs)
-			else 
-				+module(module)
+			+module(module)
 

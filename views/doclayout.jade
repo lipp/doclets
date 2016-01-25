@@ -4,12 +4,12 @@ mixin optMarkdown(desc, className)
 	else
 		p(class=className)= desc
 
-mixin funcdeclx(name, func, isCtor, parent)
-	if parent
-		span.parent= parent + '#'
+mixin funcdeclx(name, func, isCtor)
 	if isCtor
-		span.new new
-	span.funcname= name
+		span.funcname= name + '#'
+			em constructor
+	else
+		span.funcname= name
 	ul.args
 		if func.params
 			each param in _.filter(func.params, function(param) {return param.name.indexOf('.') === -1;})

@@ -173,8 +173,14 @@ body header {
   text-decoration: none; }
 
 footer {
-  margin-top: 100px;
-  min-height: 50px; }
+  min-height: 50px; 
+  position: fixed;
+  z-index: 2;
+  bottom: 0;
+  width: 100%;
+  opacity: 0.9;
+  background-color: white;
+}
 
 #greet {
   margin: 0;
