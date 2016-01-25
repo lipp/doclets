@@ -13,13 +13,16 @@ mixin see(seeArray)
 				a(href=link.url)= link.name || link.url
 
 mixin funcDoclet(func, isCtor, parent)
-	br
-	h3.title(id=func.longname + (isCtor ? '~ctor' : ''))
+	h2.title
+		span.ui.horizontal.cyan.big.label 
+			em f
 		+funcdeclx(func, isCtor, parent)
-		span.link
+		span.link.right.floated
 			if func.meta.url
-				a(href=func.meta.url).braces= '</>'
-			a(href='#' + func.longname)= '#'
+				a(href=func.meta.url).braces
+					i.icon.code
+			a(href='#' + func.longname)
+				i.icon.linkify
 	if func.params && func.params.length > 0
 		p Arguments:
 		+paramsList(func.params)
@@ -36,15 +39,21 @@ mixin funcDoclet(func, isCtor, parent)
 	
 		
 mixin title(doclet, prefix)
-	br
-	h3.title(id=doclet.longname)
+	h2.title
+		.ui.horizontal.big.label.red= doclet.kind
 		if prefix
-			span.prefix= prefix
+			span.prefix= prefix + ' '
 		span= doclet.name
-		span.link
+	h5
+		span Fullname: 
+		span= doclet.longname
+		span.link.right.floated
 			if doclet.meta && doclet.meta.url
-				a(href=doclet.meta.url).braces= '</>'
-			a(href="#" + doclet.longname)= '#'
+				a(href=doclet.meta.url).braces
+					i.icon.code
+			a(href="#" + doclet.longname)
+				i.icon.linkify
+	
 
 mixin simpleDoclet(doclet)
 	+title(doclet)
@@ -55,6 +64,9 @@ mixin simpleDoclet(doclet)
 	else
 		if doclet.description
 			+optMarkdown(doclet.description, 'description')
+		else
+			p
+				em No description available.
 		if doclet.examples
 			+examples(doclet.examples)
 		if doclet.see
@@ -87,38 +99,64 @@ mixin paramsList(params)
 				+paramDetails(param)
 
 mixin clazzDoclet(doclet)
-	+title(doclet, 'class')
+	+title(doclet)
 	if doclet.classdesc
 		+optMarkdown(doclet.classdesc, 'classdesc')
-	+funcDoclet(doclet, true)
+
+mixin interfaceDoclet(doclet)
+	+title(doclet)
+	if doclet.classdesc
+		+optMarkdown(doclet.classdesc, 'classdesc')
+	if doclet.description
+		+optMarkdown(doclet.description, 'description')
+	if !doclet.classdesc && !doclet.description
+		p
+			em No description available.
 	
+
+mixin detailsFooter(doclet)
+	a.codelink(href=doclet.meta.url, target='_blank')
+		i.icon.code
+		span= doclet.meta.filename + ':' + doclet.meta.lineno
 	
 mixin details(doclet)
+	- var id = tools.idFromLongname(doclet.longname)
 	case doclet.kind
 		when 'module'
-			article.module
-				+module2(doclet)
+			article.module(id=id)
+				+module(doclet)
+				+detailsFooter(doclet)
 		when 'class'
-			article.clazz
+			article.clazz(id=id)
 				+clazzDoclet(doclet)
+				+detailsFooter(doclet)
+			article.ctor(id=id+'-ctor')
+				+funcDoclet(doclet, true)
+				+detailsFooter(doclet)
 		when 'interface'
-			article.interface
-				+clazzDoclet(doclet)
+			article.interface(id=id)
+				+interfaceDoclet(doclet)
+				+detailsFooter(doclet)
 		when 'function'
-			article.function
+			article.function(id=id)
 				+funcDoclet(doclet)
+				+detailsFooter(doclet)
 		default
-			article(class=doclet.kind)
+			article(class=doclet.kind, id=id)
 				+simpleDoclet(doclet)
+				+detailsFooter(doclet)
 	
-mixin module2(module)
+mixin module(module)
 	h2.modulename(id=module.longname)
-		span.moduleprefix module
+		.ui.horizontal.big.purple.label module
 		span= tools.modulename(module.longname)
 	if module.description
 		+optMarkdown(module.description, 'moduledescription')
+	else
+		p
+			em No description available.
 
 
-section.module
-	each doclet in flat
-		+details(doclet)
+each doclet in flat
+	+details(doclet)
+

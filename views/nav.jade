@@ -1,48 +1,71 @@
 
 mixin funcdecl(func, isCtor)
-	a(href=apiPath + '#' + func.longname + (isCtor ? '~ctor' : ''))
+	- var id = func && tools.idFromLongname(func.longname)
+	a(href=apiPath + '#' + id + (isCtor ? '-ctor' : ''))
 		+funcdeclx(func, isCtor)
 		span.link
-			a(href=apiPath + '#' + func.longname)
+			a(href=apiPath + '#' + id)
 		
 
-mixin childlist(node)
-	ul
-		each child in childs(node)
-			li
-				h4
-					- var doclet = child.node.__doclet
-					if doclet
-						a(href=apiPath + '#' + doclet.longname)= child.name
+mixin childlist(node, root)
+	if root && root.kind == 'class'
+		- var id = tools.idFromLongname(root.longname) + '-ctor'
+		.leaf(id='nav-' + id)
+			a(href=apiPath + '#' + id)
+				em constructor
+				span.kind(class='ctor')= 'CTOR'
+	each child in childs(node)
+		- var hasChildren = childs(child.node).length > 0
+		- var doclet = child.node.__doclet
+		- var id = doclet && tools.idFromLongname(doclet.longname)
+		if hasChildren
+			.ui.inverted.accordion
+				if doclet
+					.title.active(id='nav-' + id)
+						i.dropdown.icon
+						a(href=apiPath + '#' + id)= child.name
 							span.kind(class=doclet.kind)= doclet.kind.substr(0,2).toUpperCase()
-					else
+				else
+					.title.active
+						i.dropdown.icon
 						span= child.name
-						span.kind(class='namespace') NA
-				+childlist(child.node)
+							span.kind.ui.red.mini.horizontal.label(class='namespace') NA
+				.content.active
+					+childlist(child.node, doclet)
+		else if doclet
+			.leaf(id='nav-' + id)
+				a(href=apiPath + '#' + id)= child.name
+					span.kind(class=doclet.kind)= doclet.kind.substr(0,2).toUpperCase()
+
 
 mixin module(module)
-	h4.modulename
-		- var id = module.longname
-		a(href=apiPath + '#' + id)= tools.modulename(id)
-			span.kind(class='module') MO
-	+childlist(module.childs)
+	.module
+		.ui.inverted.accordion
+			- var id = tools.idFromLongname(module.longname)
+			.title.active(id='nav-' + id)
+				i.dropdown.icon
+				a(href=apiPath + '#' + id)= tools.modulename(module.longname)
+					span.kind(class='module') MO
+			.content.active
+				+childlist(module.childs)
 
 
-nav
-	h1.packagename= repo
-	h2.version= version
-	span by
-		a(href='../')= owner
-	a.otherversions(href=versionsPath) other versions
-	if articles.length > 0
-		h2.articles-header Articles
-		ul.articles
-			each article in articles
-				li
-					a(href=articlesPath + article.id)= article.title
-	h2.apidoc-header API Doc
-	ul.modules
+nav.ui.left.inline.inverted.large.vertical.menu.visible
+	.item.header
+		h1= repo
+		span by
+			a(href='../')= ' ' + owner
+		h2.version= version
+		span
+			a(href=versionsPath) other versions
+	each article in articles
+		a.item(href=articlesPath + article.id)= article.title
+	.item.api
+		h2.header API
 		each module in tree
-			li.module
+			if module.longname == 'globals'
+				.module
+					+childlist(module.childs)
+			else 
 				+module(module)
 
