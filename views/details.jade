@@ -14,9 +14,16 @@ mixin see(seeArray)
 
 mixin funcDoclet(func, isCtor, parent)
 	h2.title
-		span.ui.horizontal.cyan.big.label 
+		.ui.horizontal.cyan.big.label 
 			em f
-		+funcdeclx(func, isCtor, parent)
+		- var names = tools.splitName(func)
+		.names
+			span.module= names.module
+			span.name
+				+funcdeclx(names.name, func, isCtor, parent)
+	h5
+		span fullname: 
+		span= func.longname 
 		span.link.right.floated
 			if func.meta.url
 				a(href=func.meta.url).braces
@@ -41,11 +48,12 @@ mixin funcDoclet(func, isCtor, parent)
 mixin title(doclet, prefix)
 	h2.title
 		.ui.horizontal.big.label.red= doclet.kind
-		if prefix
-			span.prefix= prefix + ' '
-		span= doclet.name
+		- var names = tools.splitName(doclet)
+		.names
+			span.module= names.module
+			span.name= names.name
 	h5
-		span Fullname: 
+		span fullname: 
 		span= doclet.longname
 		span.link.right.floated
 			if doclet.meta && doclet.meta.url
@@ -124,27 +132,33 @@ mixin details(doclet)
 	case doclet.kind
 		when 'module'
 			article.module(id=id)
-				+module(doclet)
-				+detailsFooter(doclet)
+				.wrap
+					+module(doclet)
+					+detailsFooter(doclet)
 		when 'class'
 			article.clazz(id=id)
-				+clazzDoclet(doclet)
-				+detailsFooter(doclet)
+				.wrap
+					+clazzDoclet(doclet)
+					+detailsFooter(doclet)
 			article.ctor(id=id+'-ctor')
-				+funcDoclet(doclet, true)
-				+detailsFooter(doclet)
+				.wrap
+					+funcDoclet(doclet, true)
+					+detailsFooter(doclet)
 		when 'interface'
 			article.interface(id=id)
-				+interfaceDoclet(doclet)
-				+detailsFooter(doclet)
+				.wrap
+					+interfaceDoclet(doclet)
+					+detailsFooter(doclet)
 		when 'function'
 			article.function(id=id)
-				+funcDoclet(doclet)
-				+detailsFooter(doclet)
+				.wrap
+					+funcDoclet(doclet)
+					+detailsFooter(doclet)
 		default
 			article(class=doclet.kind, id=id)
-				+simpleDoclet(doclet)
-				+detailsFooter(doclet)
+				.wrap
+					+simpleDoclet(doclet)
+					+detailsFooter(doclet)
 	
 mixin module(module)
 	h2.modulename(id=module.longname)

@@ -4,12 +4,12 @@ mixin optMarkdown(desc, className)
 	else
 		p(class=className)= desc
 
-mixin funcdeclx(func, isCtor, parent)
+mixin funcdeclx(name, func, isCtor, parent)
 	if parent
 		span.parent= parent + '#'
 	if isCtor
 		span.new new
-	span.funcname= func.name
+	span.funcname= name
 	ul.args
 		if func.params
 			each param in _.filter(func.params, function(param) {return param.name.indexOf('.') === -1;})
@@ -46,11 +46,12 @@ block scripts
 				var targetId = '#nav-' + el.id
 				new ScrollMagic.Scene({
 						triggerElement: triggerId,
-						triggerHook: -5,
+						triggerHook: 0.3,
 						duration: $(triggerId).outerHeight(true)
 					})
-					.setClassToggle(targetId, 'active-scroll')
-					//.setClassToggle(targetId + ',' + triggerId, 'active-scroll')
+					//.setClassToggle(targetId, 'active-scroll')
+					.setClassToggle(targetId + ',' + triggerId, 'active-scroll')
+					//.addIndicators()
 					.addTo(controller)
 			})
 		})
@@ -58,16 +59,16 @@ block scripts
 		$(function() {
 		$('a[href^="#"').on('click', function(e) {
 			var target = this.hash.substr(1);
-			console.log(target)
+			//console.log(target)
 			var el = document.getElementById(target);
-			console.log(el && true)
-			e.preventDefault()
+			//console.log(el && true)
+			//e.preventDefault()
 			$.smoothScroll({
 				scrollElement: $('.main'),
 				scrollTarget: $(el),
-				offset: -1 * $('.main').scrollTop()
+				offset: -1 * $('.main').scrollTop() - 200
 			});
-			return false;
+			//return false;
 		}) })
 	script.
 		$(function() {

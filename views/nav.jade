@@ -2,7 +2,7 @@
 mixin funcdecl(func, isCtor)
 	- var id = func && tools.idFromLongname(func.longname)
 	a(href=apiPath + '#' + id + (isCtor ? '-ctor' : ''))
-		+funcdeclx(func, isCtor)
+		+funcdeclx(func.name, func, isCtor)
 		span.link
 			a(href=apiPath + '#' + id)
 		

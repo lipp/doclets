@@ -24,8 +24,8 @@ body {
     left: 300px;
     right: 0;
     height: 100%;
-		top: 0;
-		padding: 0 30px;
+	top: 0;
+	padding: 0 15px;
     overflow-y: scroll;
 }
 
@@ -54,9 +54,26 @@ nav .active-scroll {
 	border-right: 5px solid orange;
 }
 
-.main .active-scroll h2,
-.main .active-scroll h3 {
-	border-bottom: 2px solid orange;
+.main .wrap {
+	padding: 0 15px;
+	transition: box-shadow 0.5s ease-in;
+	box-shadow: 0;
+}
+
+.main .active-scroll .title .label {
+	transition: box-shadow 0.5s ease-in;
+	box-shadow: 2px 3px 8px gray
+}
+
+.names span.module {
+	display: block;
+    font-size: 13px;
+    line-height: 13px;
+    color: #A5A5A5;
+}
+
+.names {
+		display: inline-block;
 }
 
 .api > nav .leaf {
