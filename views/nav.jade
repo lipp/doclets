@@ -29,7 +29,7 @@ mixin childlist(node, root)
 					.title.active
 						i.dropdown.icon
 						span= child.name
-							span.kind.ui.red.mini.horizontal.label(class='namespace') NA
+							span.kind.ui.red.mini.horizontal.label(class='namespace') {}
 				.content.active
 					+childlist(child.node, doclet)
 		else if doclet

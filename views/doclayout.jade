@@ -5,11 +5,7 @@ mixin optMarkdown(desc, className)
 		p(class=className)= desc
 
 mixin funcdeclx(name, func, isCtor)
-	if isCtor
-		span.funcname= name + '#'
-			em constructor
-	else
-		span.funcname= name
+	span.funcname= name
 	ul.args
 		if func.params
 			each param in _.filter(func.params, function(param) {return param.name.indexOf('.') === -1;})
@@ -40,8 +36,9 @@ block scripts
 	script(src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js")
 	script.
 		$(function() {
-			var controller = new ScrollMagic.Controller({container: '.main', loglevel: 3, globalSceneOptions: {loglevel: 3}});
+			var controller = new ScrollMagic.Controller({container: '.main', globalSceneOptions: {}});
 			$('article').each(function(index, el) {
+			try {
 				var triggerId = '#' + el.id
 				var targetId = '#nav-' + el.id
 				new ScrollMagic.Scene({
@@ -53,6 +50,9 @@ block scripts
 					.setClassToggle(targetId + ',' + triggerId, 'active-scroll')
 					//.addIndicators()
 					.addTo(controller)
+					} catch(err) {
+					console.log('installing scrollspy failed for', triggerId, err)
+					}
 			})
 		})
 	script.

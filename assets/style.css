@@ -169,6 +169,10 @@ body > .api {
     display: inline;
 }
 
+.main p {
+	margin: 1em 0 !important;
+}
+
 .args > li::before {
     content: ',';
     margin-right: 0.1em;

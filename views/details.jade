@@ -12,75 +12,25 @@ mixin see(seeArray)
 			li
 				a(href=link.url)= link.name || link.url
 
-mixin funcDoclet(func, isCtor, parent)
-	h2.title
-		.ui.horizontal.cyan.big.label 
-			em f
-		- var names = tools.splitName(func)
-		.names
-			span.module= names.module
-			span.name
-				+funcdeclx(names.name, func, isCtor, parent)
-	h5
-		span fullname: 
-		span= func.longname 
-		span.link.right.floated
-			if func.meta.url
-				a(href=func.meta.url).braces
-					i.icon.code
-			a(href='#' + func.longname)
-				i.icon.linkify
-	if func.params && func.params.length > 0
-		p Arguments:
-		+paramsList(func.params)
-	if func.returns && func.returns.length > 0
-		p Returns:
-		+paramsList(func.returns)
-	if func.description
-		+optMarkdown(func.description, 'description')
-	if func.examples
-		+examples(func.examples)
-	if func.see
-		+see(func.see)
 
-	
 		
-mixin title(doclet, prefix)
+mixin title(doclet, id)
 	h2.title
 		.ui.horizontal.big.label.red= doclet.kind
 		- var names = tools.splitName(doclet)
 		.names
 			span.module= names.module
-			span.name= names.name
-	h5
-		span fullname: 
-		span= doclet.longname
-		span.link.right.floated
-			if doclet.meta && doclet.meta.url
-				a(href=doclet.meta.url).braces
-					i.icon.code
-			a(href="#" + doclet.longname)
-				i.icon.linkify
+			if doclet.kind == 'class'
+				span.name
+					+funcdeclx(names.name, doclet, true)
+			else if doclet.kind == 'function'
+				span.name
+					+funcdeclx(names.name, doclet, false)
+			else
+				span.name= names.name
+		a(href="#" + id)
+			i.icon.linkify
 	
-
-mixin simpleDoclet(doclet)
-	+title(doclet)
-	if doclet.inherited
-		div
-			span Inherited from: 
-				a(href='#' + doclet.inherits)= tools.shortName(doclet.inherits)
-	else
-		if doclet.description
-			+optMarkdown(doclet.description, 'description')
-		else
-			p
-				em No description available.
-		if doclet.examples
-			+examples(doclet.examples)
-		if doclet.see
-			+see(doclet.see)
-	
-
 
 mixin paramDetails(param)
 	h4.paramname= param.name
@@ -91,7 +41,7 @@ mixin paramDetails(param)
 						if tools.isBuiltInType(type)
 							span= type
 						else
-							a(href='#' + type)= type
+							a(href='#' + tools.idFromLongname(type))= type
 		if param.optional
 			span.optional optional
 		if param.defaultvalue !== undefined
@@ -106,59 +56,51 @@ mixin paramsList(params)
 			li
 				+paramDetails(param)
 
-mixin clazzDoclet(doclet)
-	+title(doclet)
-	if doclet.classdesc
-		+optMarkdown(doclet.classdesc, 'classdesc')
-
-mixin interfaceDoclet(doclet)
-	+title(doclet)
-	if doclet.classdesc
-		+optMarkdown(doclet.classdesc, 'classdesc')
+mixin details(doclet)
 	if doclet.description
 		+optMarkdown(doclet.description, 'description')
+	if doclet.classdesc
+		+optMarkdown(doclet.classdesc, 'classdesc')
 	if !doclet.classdesc && !doclet.description
 		p
 			em No description available.
+	if doclet.params && doclet.params.length > 0
+		p Arguments:
+		+paramsList(doclet.params)
+	if doclet.returns && doclet.returns.length > 0
+		p Returns:
+		+paramsList(doclet.returns)
+	if doclet.examples
+		+examples(doclet.examples)
+	if doclet.see
+		+see(doclet.see)
 	
 
-mixin detailsFooter(doclet)
-	a.codelink(href=doclet.meta.url, target='_blank')
-		i.icon.code
-		span= doclet.meta.filename + ':' + doclet.meta.lineno
+mixin infolist(doclet)
+	.ui.very.relaxed.horizontal.list
+		.item
+			i.large.tag.middle.aligned.icon
+			.content
+				.description Type
+				.header= doclet.kind
+		if doclet.scope
+			.item
+				i.large.unhide.middle.aligned.icon
+				.content
+					.description Scope
+					.header= doclet.scope
+		.item
+			i.large.code.middle.aligned.icon
+			.content
+				.description Source
+				a.header= doclet.meta.filename + ':' + doclet.meta.lineno
 	
-mixin details(doclet)
+mixin doclet(doclet)
 	- var id = tools.idFromLongname(doclet.longname)
-	case doclet.kind
-		when 'module'
-			article.module(id=id)
-				.wrap
-					+module(doclet)
-					+detailsFooter(doclet)
-		when 'class'
-			article.clazz(id=id)
-				.wrap
-					+clazzDoclet(doclet)
-					+detailsFooter(doclet)
-			article.ctor(id=id+'-ctor')
-				.wrap
-					+funcDoclet(doclet, true)
-					+detailsFooter(doclet)
-		when 'interface'
-			article.interface(id=id)
-				.wrap
-					+interfaceDoclet(doclet)
-					+detailsFooter(doclet)
-		when 'function'
-			article.function(id=id)
-				.wrap
-					+funcDoclet(doclet)
-					+detailsFooter(doclet)
-		default
-			article(class=doclet.kind, id=id)
-				.wrap
-					+simpleDoclet(doclet)
-					+detailsFooter(doclet)
+	article.module(id=id)
+		+title(doclet, id)
+		+infolist(doclet)
+		+details(doclet)
 	
 mixin module(module)
 	h2.modulename(id=module.longname)
@@ -172,5 +114,5 @@ mixin module(module)
 
 
 each doclet in flat
-	+details(doclet)
+	+doclet(doclet)
 
