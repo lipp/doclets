@@ -219,11 +219,11 @@ body > .api {
     display: inline-table;
 }
 
-/*
-p, h4, li {
+
+.params p {
   line-height: 1.4285em;
 	font-size: 17px !important;
-} */
+} 
 
 .main p, .params li {
 	font-size: 17px !important;
