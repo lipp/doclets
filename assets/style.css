@@ -29,7 +29,23 @@ body {
     overflow-y: scroll;
 }
 
-.main h2 {
+
+.main .title {
+		position: relative;
+}
+
+.main .title .permalink {
+		opacity: 0.0;
+		margin-left: 10px;
+		transition: opacity 0.3s ease;
+		color: inherit;
+}
+.main .title:hover .permalink {
+		opacity: 1.0;
+}
+.main .title .icon.linkify:before {
+		font-size: 17px;
+		color: inherit;
 }
 
 .api {
@@ -79,9 +95,24 @@ body > .api {
 .main .wrap {
 }
 
-.main .wrap .title .label {
-	transition: box-shadow 0.5s 0.1s ease-in;
-	box-shadow: 0px 0px 0px gray;
+.main .title {
+		display: flex;
+		align-items: center;
+}
+
+.main .title .label {
+		padding: 10px;
+    height: 24px;
+    width: 24px;
+    border-radius: 100%;
+    transition: box-shadow 0.5s 0.1s ease-in;
+    border: 1px solid;
+    box-shadow: 0px 0px 0px gray;
+    line-height: 20px;
+    display: inline-block;
+    text-align: center;
+	font-style: italic;
+	font-family: Menlo;
 }
 
 .main .active-scroll .title .label {
@@ -100,8 +131,32 @@ body > .api {
 	transition: color 0.5s 0.1s ease-in;
 }
 
+.infolist {
+		padding: 8px 0 !important;
+		border-top: 1px solid #f1f1f1;
+		border-bottom: 1px solid #f1f1f1;
+		display: flex !important;
+		flex-wrap: wrap;
+}
+
+.infolist .item {
+		margin-left: 0 !important;
+		padding-left: 0 !important;
+		padding-right: 50px !important;
+    	margin: 5px 0;
+}
+
+.names span.parent {
+    color: #A5A5A5;
+	display: block;
+	font-size: 15px;
+	font-weight: 100;
+	line-height: 20px;
+}
+
 .names {
 		display: inline-block;
+		margin-left: 1em;
 }
 
 .api > nav .leaf {
@@ -168,8 +223,8 @@ body > .api {
     display: inline;
 }
 
-.main p {
-	margin: 1em 0 !important;
+.main p, .main h4 {
+	margin: 0.9em 0 !important;
 }
 
 .args > li::before {
@@ -213,7 +268,7 @@ body > .api {
     margin-bottom: 1em;
 }
 
-.paramname .types {
+ .types {
     list-style: none;
     padding-left: 0;
     display: inline-table;
@@ -266,11 +321,15 @@ code, pre {
 	margin-top: -13px;
 }
 
-.params .types {
-	margin-left: 4px;
+ .types {
+ 	margin: 0;
 }
 
-.params .paramname {
+.paramname .types {
+	margin-left: 6px;
+}
+
+.main h4 {
     margin-top: 0.5em;
     margin-bottom: 0.0em;
     font-size: 17px;
@@ -298,6 +357,6 @@ article {
 	display: block;
 	height: auto;
 	min-height: 40px;
-	padding-top: 120px;
+	padding-top: 100px;
 	box-sizing: content-box;
 }

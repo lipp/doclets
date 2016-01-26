@@ -18,13 +18,13 @@ mixin title(doclet, id)
 	- var symbols = {'class': 'cube', 'module': 'cubes'}
 	- var colors = {'class': 'blue', 'module': 'purple', 'function': 'green', 'member': 'magenta'}
 	h2.title
+		span.label= doclet.kind.substr(0,1)
 		//.ui.circular.label(class=colors[doclet.kind])
-		i.icon(class=symbols[doclet.kind] || 'leaf', style='color: ' + colors[doclet.kind] + ';')
-
-			
+		//i.icon(class=symbols[doclet.kind] || 'leaf', style='color: ' + colors[doclet.kind] + ';')
 		- var names = tools.splitName(doclet)
 		.names
 			span.module= names.module
+			span.parent= names.parent
 			if doclet.kind == 'class'
 				span.name
 					+funcdeclx(names.name, doclet, true)
@@ -33,20 +33,23 @@ mixin title(doclet, id)
 					+funcdeclx(names.name, doclet, false)
 			else
 				span.name= names.name
-		a(href="#" + id)
-			i.icon.linkify
+		a(href="#" + id).permalink
+			i.tiny.icon.linkify
+
+mixin typeList(type)
+	ul.types
+		each t in type.names
+			li.typename
+				if tools.isBuiltInType(t)
+					span= t
+				else
+					a(href='#' + tools.idFromLongname(t))= t
 	
 
 mixin paramDetails(param)
 	h4.paramname= param.name
 		if param.type
-			ul.types
-				each type in param.type.names
-					li.typename
-						if tools.isBuiltInType(type)
-							span= type
-						else
-							a(href='#' + tools.idFromLongname(type))= type
+			+typeList(param.type)
 		if param.optional
 			span.optional optional
 		if param.defaultvalue !== undefined
@@ -69,11 +72,14 @@ mixin details(doclet)
 	if !doclet.classdesc && !doclet.description
 		p
 			em No description available.
+	if doclet.defaultvalue !== undefined
+		p Default:
+			span= doclet.defaultvalue
 	if doclet.params && doclet.params.length > 0
-		p Arguments:
+		h4 Arguments:
 		+paramsList(doclet.params)
 	if doclet.returns && doclet.returns.length > 0
-		p Returns:
+		h4 Returns:
 		+paramsList(doclet.returns)
 	if doclet.examples
 		+examples(doclet.examples)
@@ -82,12 +88,31 @@ mixin details(doclet)
 	
 
 mixin infolist(doclet)
-	.ui.very.relaxed.horizontal.list
+	.ui.very.relaxed.horizontal.list.infolist
 		.item
 			i.large.tag.middle.aligned.icon
 			.content
-				.description Type
+				.description Kind
 				.header= doclet.kind
+		if doclet.type
+			.item
+				i.large.diamon.middle.aligned.icon
+				.content
+					.description Type
+					.header
+						+typeList(doclet.type)
+		if doclet.implements
+			.item
+				i.large.spy.middle.aligned.icon
+				.content
+					.description Implements
+					.header= doclet.implements
+		if doclet.inherits
+			.item
+				i.large.sitemap.middle.aligned.icon
+				.content
+					.description Inherits
+					.header= doclet.inherits
 		if doclet.scope
 			.item
 				i.large.unhide.middle.aligned.icon
@@ -98,7 +123,7 @@ mixin infolist(doclet)
 			i.large.code.middle.aligned.icon
 			.content
 				.description Source
-				a.header= doclet.meta.filename + ':' + doclet.meta.lineno
+				a.header(href=doclet.meta.url)= doclet.meta.filename + ':' + doclet.meta.lineno
 	
 mixin doclet(doclet)
 	- var id = tools.idFromLongname(doclet.longname)
@@ -106,6 +131,7 @@ mixin doclet(doclet)
 		+title(doclet, id)
 		+infolist(doclet)
 		+details(doclet)
+		//p= JSON.stringify(doclet)
 	
 mixin module(module)
 	h2.modulename(id=module.longname)
