@@ -81,6 +81,9 @@ mixin details(doclet)
 	if doclet.returns && doclet.returns.length > 0
 		h4 Returns:
 		+paramsList(doclet.returns)
+	if doclet.properties
+		h4 Properties:
+		+paramsList(doclet.properties)
 	if doclet.examples
 		+examples(doclet.examples)
 	if doclet.see
@@ -131,7 +134,8 @@ mixin doclet(doclet)
 		+title(doclet, id)
 		+infolist(doclet)
 		+details(doclet)
-		//p= JSON.stringify(doclet)
+		//if doclet.kind == 'event'
+			p= JSON.stringify(doclet)
 	
 mixin module(module)
 	h2.modulename(id=module.longname)
