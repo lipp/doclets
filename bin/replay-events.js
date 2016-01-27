@@ -23,8 +23,9 @@ var replayGitHubEvent = function (eventDir, done) {
   }, function () {})
 }
 
-var x = ['acme-push', 'acme-tag']
+var x = ['acme-push', 'acme-tag', 'ejs-push', 'noderestify-push', 'shouldjs-push', 'redux-push']
 
 x.forEach(function (event) {
+  console.log(event)
   replayGitHubEvent(event)
 })

@@ -58,8 +58,8 @@ mixin paramDetails(param)
 	if param.description
 		+optMarkdown(param.description, 'description')
 
-mixin paramsList(params)
-	ul.params
+mixin paramsList(params, className)
+	ol.params(class=className)
 		each param in params
 			li
 				+paramDetails(param)
@@ -77,7 +77,7 @@ mixin details(doclet)
 			span= doclet.defaultvalue
 	if doclet.params && doclet.params.length > 0
 		h4 Arguments:
-		+paramsList(doclet.params)
+		+paramsList(doclet.params, 'argumentlist')
 	if doclet.returns && doclet.returns.length > 0
 		h4 Returns:
 		+paramsList(doclet.returns)
@@ -96,7 +96,7 @@ mixin infolist(doclet)
 				.header= doclet.kind
 		if doclet.type
 			.item
-				i.large.diamon.middle.aligned.icon
+				i.large.diamond.middle.aligned.icon
 				.content
 					.description Type
 					.header

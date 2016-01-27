@@ -225,6 +225,7 @@ body > .api {
 
 .main p, .main h4 {
 	margin: 0.9em 0 !important;
+	line-height: 1.4285em;
 }
 
 .args > li::before {
@@ -264,7 +265,6 @@ body > .api {
 .params {
     list-style: initial;
     margin: 0 0;
-    margin-top: -0.5em;
     margin-bottom: 1em;
 }
 
@@ -293,7 +293,25 @@ body > .api {
 }
 
 code, pre {
-	font-size: 16px !important;
+	font-size: 15px !important;
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family: Menlo, monospace !important;
+  font-size: 15px !important;
+  line-height: 1.7 !important;
+}
+
+.main h1, .main h2, .main h3, .main h4 {
+	font-size: 1.2em;
+}
+
+.hljs {
+	color: rgba(0, 0, 0, 0.87) !important;
+    background: #FBFBFB !important;
 }
 
 .types > li {
@@ -321,11 +339,15 @@ code, pre {
 	margin-top: -13px;
 }
 
+.main article {
+	font-size: 17px;
+}
+
  .types {
  	margin: 0;
 }
 
-.paramname .types {
+.argumentlist .paramname .types {
 	margin-left: 6px;
 }
 

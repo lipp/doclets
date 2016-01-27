@@ -1,0 +1,162 @@
+{
+  "ref": "refs/heads/add-to-doclets",
+  "before": "0000000000000000000000000000000000000000",
+  "after": "d2a41fec254e26ca91727174d93bfb83093fa110",
+  "created": true,
+  "deleted": false,
+  "forced": true,
+  "base_ref": null,
+  "compare": "https://github.com/lipp/should.js/commit/d2a41fec254e",
+  "commits": [
+    {
+      "id": "d2a41fec254e26ca91727174d93bfb83093fa110",
+      "distinct": true,
+      "message": "add doclets config",
+      "timestamp": "2016-01-27T11:07:30+01:00",
+      "url": "https://github.com/lipp/should.js/commit/d2a41fec254e26ca91727174d93bfb83093fa110",
+      "author": {
+        "name": "Gerhard Preuss",
+        "email": "gelipp@gmail.com",
+        "username": "lipp"
+      },
+      "committer": {
+        "name": "Gerhard Preuss",
+        "email": "gelipp@gmail.com",
+        "username": "lipp"
+      },
+      "added": [
+        ".doclets.yml"
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+
+      ]
+    }
+  ],
+  "head_commit": {
+    "id": "d2a41fec254e26ca91727174d93bfb83093fa110",
+    "distinct": true,
+    "message": "add doclets config",
+    "timestamp": "2016-01-27T11:07:30+01:00",
+    "url": "https://github.com/lipp/should.js/commit/d2a41fec254e26ca91727174d93bfb83093fa110",
+    "author": {
+      "name": "Gerhard Preuss",
+      "email": "gelipp@gmail.com",
+      "username": "lipp"
+    },
+    "committer": {
+      "name": "Gerhard Preuss",
+      "email": "gelipp@gmail.com",
+      "username": "lipp"
+    },
+    "added": [
+      ".doclets.yml"
+    ],
+    "removed": [
+
+    ],
+    "modified": [
+
+    ]
+  },
+  "repository": {
+    "id": 50496376,
+    "name": "should.js",
+    "full_name": "lipp/should.js",
+    "owner": {
+      "name": "lipp",
+      "email": "gelipp@gmail.com"
+    },
+    "private": false,
+    "html_url": "https://github.com/lipp/should.js",
+    "description": "BDD style assertions for node.js -- test framework agnostic",
+    "fork": true,
+    "url": "https://github.com/lipp/should.js",
+    "forks_url": "https://api.github.com/repos/lipp/should.js/forks",
+    "keys_url": "https://api.github.com/repos/lipp/should.js/keys{/key_id}",
+    "collaborators_url": "https://api.github.com/repos/lipp/should.js/collaborators{/collaborator}",
+    "teams_url": "https://api.github.com/repos/lipp/should.js/teams",
+    "hooks_url": "https://api.github.com/repos/lipp/should.js/hooks",
+    "issue_events_url": "https://api.github.com/repos/lipp/should.js/issues/events{/number}",
+    "events_url": "https://api.github.com/repos/lipp/should.js/events",
+    "assignees_url": "https://api.github.com/repos/lipp/should.js/assignees{/user}",
+    "branches_url": "https://api.github.com/repos/lipp/should.js/branches{/branch}",
+    "tags_url": "https://api.github.com/repos/lipp/should.js/tags",
+    "blobs_url": "https://api.github.com/repos/lipp/should.js/git/blobs{/sha}",
+    "git_tags_url": "https://api.github.com/repos/lipp/should.js/git/tags{/sha}",
+    "git_refs_url": "https://api.github.com/repos/lipp/should.js/git/refs{/sha}",
+    "trees_url": "https://api.github.com/repos/lipp/should.js/git/trees{/sha}",
+    "statuses_url": "https://api.github.com/repos/lipp/should.js/statuses/{sha}",
+    "languages_url": "https://api.github.com/repos/lipp/should.js/languages",
+    "stargazers_url": "https://api.github.com/repos/lipp/should.js/stargazers",
+    "contributors_url": "https://api.github.com/repos/lipp/should.js/contributors",
+    "subscribers_url": "https://api.github.com/repos/lipp/should.js/subscribers",
+    "subscription_url": "https://api.github.com/repos/lipp/should.js/subscription",
+    "commits_url": "https://api.github.com/repos/lipp/should.js/commits{/sha}",
+    "git_commits_url": "https://api.github.com/repos/lipp/should.js/git/commits{/sha}",
+    "comments_url": "https://api.github.com/repos/lipp/should.js/comments{/number}",
+    "issue_comment_url": "https://api.github.com/repos/lipp/should.js/issues/comments{/number}",
+    "contents_url": "https://api.github.com/repos/lipp/should.js/contents/{+path}",
+    "compare_url": "https://api.github.com/repos/lipp/should.js/compare/{base}...{head}",
+    "merges_url": "https://api.github.com/repos/lipp/should.js/merges",
+    "archive_url": "https://api.github.com/repos/lipp/should.js/{archive_format}{/ref}",
+    "downloads_url": "https://api.github.com/repos/lipp/should.js/downloads",
+    "issues_url": "https://api.github.com/repos/lipp/should.js/issues{/number}",
+    "pulls_url": "https://api.github.com/repos/lipp/should.js/pulls{/number}",
+    "milestones_url": "https://api.github.com/repos/lipp/should.js/milestones{/number}",
+    "notifications_url": "https://api.github.com/repos/lipp/should.js/notifications{?since,all,participating}",
+    "labels_url": "https://api.github.com/repos/lipp/should.js/labels{/name}",
+    "releases_url": "https://api.github.com/repos/lipp/should.js/releases{/id}",
+    "deployments_url": "https://api.github.com/repos/lipp/should.js/deployments",
+    "created_at": 1453886833,
+    "updated_at": "2016-01-27T09:27:14Z",
+    "pushed_at": 1453889257,
+    "git_url": "git://github.com/lipp/should.js.git",
+    "ssh_url": "git@github.com:lipp/should.js.git",
+    "clone_url": "https://github.com/lipp/should.js.git",
+    "svn_url": "https://github.com/lipp/should.js",
+    "homepage": "http://shouldjs.github.io",
+    "size": 1348,
+    "stargazers_count": 0,
+    "watchers_count": 0,
+    "language": "JavaScript",
+    "has_issues": false,
+    "has_downloads": true,
+    "has_wiki": true,
+    "has_pages": false,
+    "forks_count": 0,
+    "mirror_url": null,
+    "open_issues_count": 0,
+    "forks": 0,
+    "open_issues": 0,
+    "watchers": 0,
+    "default_branch": "master",
+    "stargazers": 0,
+    "master_branch": "master"
+  },
+  "pusher": {
+    "name": "lipp",
+    "email": "gelipp@gmail.com"
+  },
+  "sender": {
+    "login": "lipp",
+    "id": 445883,
+    "avatar_url": "https://avatars.githubusercontent.com/u/445883?v=3",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/lipp",
+    "html_url": "https://github.com/lipp",
+    "followers_url": "https://api.github.com/users/lipp/followers",
+    "following_url": "https://api.github.com/users/lipp/following{/other_user}",
+    "gists_url": "https://api.github.com/users/lipp/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/lipp/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/lipp/subscriptions",
+    "organizations_url": "https://api.github.com/users/lipp/orgs",
+    "repos_url": "https://api.github.com/users/lipp/repos",
+    "events_url": "https://api.github.com/users/lipp/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/lipp/received_events",
+    "type": "User",
+    "site_admin": false
+  }
+}
