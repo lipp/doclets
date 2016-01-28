@@ -87,6 +87,8 @@ mixin details(doclet)
 	if doclet.properties
 		h4 Properties:
 			+paramsList(doclet.properties)
+	if !doclet.properties
+		+members(doclet)
 		//p= JSON.stringify(doclet.properties)
 	if doclet.examples
 		+examples(doclet.examples)
@@ -131,6 +133,17 @@ mixin infolist(doclet)
 			.content
 				.description Source
 				a.header(href=doclet.meta.url, target='_blank')= doclet.meta.filename + ':' + doclet.meta.lineno
+
+
+mixin members(doclet)
+	- var members = _.chain(flat).where({memberof: doclet.longname}).sortBy('longname').value()
+	if members.length > 0
+		h4 Members:
+		ul.members
+			each member in members
+				- var id = tools.idFromLongname(member.longname)
+				li
+					a(href='#' + id)= member.name
 	
 mixin doclet(doclet)
 	- var id = tools.idFromLongname(doclet.longname)
@@ -153,5 +166,6 @@ mixin module(module)
 
 
 each doclet in flat
+	if doclet
 	+doclet(doclet)
 

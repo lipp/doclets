@@ -54,6 +54,18 @@ body {
 	padding: 0;
 }
 
+.members {
+  columns: 2;
+  -webkit-columns: 2;
+  -moz-columns: 2;
+list-style-position: inside;
+	
+}
+
+.members li {
+	line-height: 24px;
+}
+
 .api > nav {
 	height: 100%;
 	width: 300px !important;
