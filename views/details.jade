@@ -31,10 +31,12 @@ mixin title(doclet, id)
 			else if doclet.kind == 'function'
 				span.name
 					+funcdeclx(names.name, doclet, false)
+						a(href="#" + id).permalink
+							i.tiny.icon.linkify
 			else
 				span.name= names.name
-		a(href="#" + id).permalink
-			i.tiny.icon.linkify
+					a(href="#" + id).permalink
+						i.tiny.icon.linkify
 
 mixin typeList(type)
 	ul.types
@@ -47,16 +49,17 @@ mixin typeList(type)
 	
 
 mixin paramDetails(param)
-	h4.paramname= param.name
-		if param.type
-			+typeList(param.type)
-		if param.optional
-			span.optional optional
-		if param.defaultvalue !== undefined
-			span.default , default: 
-			span.defaultvalue= param.defaultvalue
-	if param.description
-		+optMarkdown(param.description, 'description')
+	if param
+		h4.paramname= param.name
+			if param.type
+				+typeList(param.type)
+			if param.optional
+				span.optional optional
+			if param.defaultvalue !== undefined
+				span.default , default: 
+				span.defaultvalue= param.defaultvalue
+		if param.description
+			+optMarkdown(param.description, 'description')
 
 mixin paramsList(params, className)
 	ol.params(class=className)
@@ -83,7 +86,8 @@ mixin details(doclet)
 		+paramsList(doclet.returns)
 	if doclet.properties
 		h4 Properties:
-		+paramsList(doclet.properties)
+			+paramsList(doclet.properties)
+		//p= JSON.stringify(doclet.properties)
 	if doclet.examples
 		+examples(doclet.examples)
 	if doclet.see
@@ -126,7 +130,7 @@ mixin infolist(doclet)
 			i.large.code.middle.aligned.icon
 			.content
 				.description Source
-				a.header(href=doclet.meta.url)= doclet.meta.filename + ':' + doclet.meta.lineno
+				a.header(href=doclet.meta.url, target='_blank')= doclet.meta.filename + ':' + doclet.meta.lineno
 	
 mixin doclet(doclet)
 	- var id = tools.idFromLongname(doclet.longname)

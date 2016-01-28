@@ -13,7 +13,7 @@ mixin childlist(node, root)
 		- var doclet = child.node.__doclet
 		- var id = doclet && tools.idFromLongname(doclet.longname)
 		if hasChildren
-			.ui.inverted.accordion
+			.ui.inverte.accordion
 				if doclet
 					.title.active(id='nav-' + id)
 						i.dropdown.icon
@@ -34,7 +34,7 @@ mixin childlist(node, root)
 
 mixin module(module)
 	.module
-		.ui.inverted.accordion
+		.ui.inverte.accordion
 			- var id = tools.idFromLongname(module.longname)
 			.title.active(id='nav-' + id)
 				i.dropdown.icon
@@ -49,7 +49,7 @@ mixin module(module)
 				+childlist(module.childs)
 
 
-nav.ui.left.inline.inverted.large.vertical.menu.visible
+nav.ui.left.inline.inverte.large.vertical.menu.visible
 	.item.header
 		h1= repo
 		span by
@@ -63,6 +63,13 @@ nav.ui.left.inline.inverted.large.vertical.menu.visible
 	.item.api
 		h2.header 
 			a(href='#') API
-		each module in tree
-			+module(module)
+		- var globals = _.findWhere(tree, {longname: 'globals'})
+		if tree.length > 1 && childs(globals).length > 0
+			each module in tree
+				+module(module)
+		else
+			.module
+				+childlist(globals.childs)
+
+
 
