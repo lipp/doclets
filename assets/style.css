@@ -1,89 +1,9 @@
-html {
-    font-family: "LatoWebRegular", "Myriad Pro", "Helvetica Neue", sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-    font-size: 16px;
-}
-
-.api {
-	position: relative;
-	width: 100%;
-	height: 100%;
-}
-
-p {
-    color: #515151;
-    margin: 0.6em 0;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    margin-bottom: .5rem;
-    font-weight: bold;
-    line-height: 1.25;
-    color: #252525;
-    text-rendering: optimizeLegibility;
-    font-family: Menlo, Monaco, "Courier New", monospace;
-}
-
-.clazz > h3:first-of-type {
-    background-color: #DA3F7E;
-}
-
-.new,
-.prefix,
-.moduleprefix {
-    font-weight: normal;
-    padding-right: 0.3em;
-}
-
-code,
-pre {
-    font-family: Menlo, Monaco, "Courier New", monospace;
-    padding: 0.2em;
-    font-size: 90%;
-    background-color: #F0F0F0;
-}
 
 body {
     position: relative;
     margin: 0 0;
     height: 100%;
     width: 100%;
-}
-
-.api nav {
-    background-color: #252525;
-    color: #F0F0F0;
-    position: absolute;
-    left: 0;
-    width: 300px;
-    height: 100%;
-    overflow-y: scroll;
-    box-sizing: border-box;
-    padding-left: 0.5em;
-}
-
-.api nav h4,
-.api nav h3 {
-    color: #F0F0F0;
-}
-
-.api nav ul ul {
-	padding-left: 1em
-}
-
-.api nav > ul, .api nav > ul > li > ul {
-	padding-left: 0
-}
-
-.api nav li {
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .kind {
@@ -99,59 +19,184 @@ body {
     display: none;
 }
 
-.api nav a {
-    text-decoration: none;
-    color: inherit;
-}
-
-.api nav a:visited {
-    color: inherit;
-}
-
-.api nav .clazzname {
-    margin-bottom: 0em;
-    margin-top: 0;
-    color: #DA3F7E;
-}
-
-.api nav .modulename {
-    color: #2CC5C5;
-}
-
 .main {
     position: absolute;
     left: 300px;
     right: 0;
     height: 100%;
+	top: 0;
+	padding: 0 30px;
     overflow-y: scroll;
 }
+
+
+.main .title {
+		position: relative;
+}
+
+.main .title .permalink {
+		opacity: 0.0;
+		margin-left: 10px;
+		transition: opacity 0.3s ease;
+		color: inherit;
+}
+.main .title:hover .permalink {
+		opacity: 1.0;
+}
+.main .title .icon.linkify:before {
+		font-size: 17px;
+		color: inherit;
+}
+
+.api {
+	position: relative;
+	margin: 0;
+	padding: 0;
+}
+
+.api > nav {
+	height: 100%;
+	width: 300px !important;
+	overflow-y: scroll;
+}
+
+.api > nav.ui.menu {
+	border-radius: 0;
+}
+
+.accordion .title.active, .accordion .content.active {
+}
+
+.leaf a {
+		color: #9C9C9C !important;
+}
+
+.api > nav .item.api {
+	padding-right: 0;
+	margin-left: 1.14285714em;
+	padding-left: 0;
+}
+
+nav .active-scroll {
+	color: white !important;
+	border-right: 5px solid orange;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+}
+
+body > .api {
+		flex-grow: 1;
+		overflow: hidden;
+}
+
+.main .wrap {
+}
+
+.main .title {
+		display: flex;
+		align-items: center;
+}
+
+.main .title .label {
+		padding: 10px;
+    height: 24px;
+    width: 24px;
+    border-radius: 100%;
+    transition: box-shadow 0.5s 0.1s ease-in;
+    border: 1px solid;
+    box-shadow: 0px 0px 0px gray;
+    line-height: 20px;
+    display: inline-block;
+    text-align: center;
+	font-style: italic;
+	font-family: Menlo;
+}
+
+.main .active-scroll .title .label {
+	box-shadow: 2px 3px 8px gray
+}
+
+.main .active-scroll .names .module {
+		color: orange;
+}
+
+.names span.module {
+	display: block;
+    font-size: 13px;
+    line-height: 13px;
+    color: #A5A5A5;
+	transition: color 0.5s 0.1s ease-in;
+}
+
+.infolist {
+		padding: 8px 0 !important;
+		border-top: 1px solid #f1f1f1;
+		border-bottom: 1px solid #f1f1f1;
+		display: flex !important;
+		flex-wrap: wrap;
+}
+
+.infolist .item {
+		margin-left: 0 !important;
+		padding-left: 0 !important;
+		padding-right: 50px !important;
+    	margin: 5px 0;
+}
+
+.names span.parent {
+    color: #A5A5A5;
+	display: block;
+	font-size: 15px;
+	font-weight: 100;
+	line-height: 20px;
+}
+
+.names {
+		display: inline-block;
+		margin-left: 1em;
+}
+
+.api > nav .leaf {
+	padding: 0.5em 0;
+	margin-left: 1.0em;
+}
+
+.api > nav .item.api a {
+	color: rgba(255,255,255,0.901961);
+}
+
+/*.api > nav.ui.menu .menu {
+	padding-left: 0.4em;
+} */
+
+.api > nav .ui.accordion > .content {
+	margin-left: 0.5em;
+}
+
+.api > nav .ui.accordion > .title {
+	margin-left: -0.3em;
+} 
+
+.api > nav .ui.accordion > .title > i {
+	margin-right: -0.0em !important;
+}
+
+.api > nav .ui.accordion .accordion {
+	margin: 0;
+}
+
+.ui.accordion:not(.styled) .title ~ .content:not(.ui), .ui.accordion:not(.styled) .accordion .title ~ .content:not(.ui) {
+	padding: 0 !important;
+}
+
 
 .main:after {
     content: '';
     height: 90%;
     display: block;
-}
-
-.module .clazz .functions {
-    margin-bottom: 1.5em;
-}
-
-.api nav li {
-    line-height: 1.1;
-}
-
-.api nav .clazz > ul,
-.api nav .interface > ul {
-    list-style: none;
-    padding-left: 1em;
-}
-
-.api nav .funcname {
-    font-weight: bold;
-}
-
-.api nav .returns {
-    display: none;
 }
 
 .args,
@@ -176,6 +221,11 @@ body {
 .args > li,
 .returns > li {
     display: inline;
+}
+
+.main p, .main h4 {
+	margin: 0.9em 0 !important;
+	line-height: 1.4285em;
 }
 
 .args > li::before {
@@ -207,74 +257,61 @@ body {
     display: inline;
 }
 
-.returns {
-    font-weight: normal;
-    font-size: 80%;
-}
-
 .returns:after {
     content: '}';
     display: inline;
 }
 
-.modules,
-.modules > li > ul {
-    list-style: none;
-    padding-left: 0;
-}
-
-.parent {
-    color: lightgray;
-    display: block;
-    font-size: 80%;
-    font-weight: normal;
-    margin: 0;
-}
-
-.main h3,
-.main h2 {
-    color: white;
-    margin-top: 3em;
-    padding: 0.4em;
-    color: white;
-    display: inline-block;
-    margin-left: -0.4em;
-}
-
-.main .modulename {
-    background-color: #2CC5C5;
-}
-
-.main .title {
-    background-color: #252525;
-}
-
-.main .module {
-    padding-top: 1.5em;
-}
-
-.main .module:first-of-type {
-    padding-top: 1em;
-}
-
-.main > * {
-    width: 95%;
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 .params {
     list-style: initial;
     margin: 0 0;
-    margin-top: -0.5em;
     margin-bottom: 1em;
 }
 
-.paramname .types {
+ .types {
     list-style: none;
     padding-left: 0;
     display: inline-table;
+}
+
+
+.params p {
+  line-height: 1.4285em;
+	font-size: 17px !important;
+} 
+
+.main p, .params li {
+	font-size: 17px !important;
+}
+
+.args li {
+	font-weight: 100;
+}
+
+.codelink {
+	font-size: 16px;
+}
+
+code, pre {
+	font-size: 15px !important;
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family: Menlo, monospace !important;
+  font-size: 15px !important;
+  line-height: 1.7 !important;
+}
+
+.main h1, .main h2, .main h3, .main h4 {
+	font-size: 1.2em;
+}
+
+.hljs {
+	color: rgba(0, 0, 0, 0.87) !important;
+    background: #FBFBFB !important;
 }
 
 .types > li {
@@ -289,38 +326,37 @@ body {
     content: '}';
 }
 
+.title .returns {
+	display: none;
+}
+
 .types > li + li:before,
 .returns > li + li:before {
     content: '|';
 }
 
-.main h3 .link {
-    position: absolute;
-    right: 0;
-    color: #252525;
+.params .description {
+	margin-top: -13px;
 }
 
-.main .link a {
-    text-decoration: none;
-    color: #BFBFBF;
-    margin-left: 1em;
-    font-size: 90%;
+.main article {
+	font-size: 17px;
 }
 
-.main .link a:hover {
-    color: inherit;
+ .types {
+ 	margin: 0;
 }
 
-.main a {
-    color: inherit;
+.argumentlist .paramname .types {
+	margin-left: 6px;
 }
 
-.params .paramname {
+.main h4 {
     margin-top: 0.5em;
     margin-bottom: 0.0em;
-    font-size: 90%;
+    font-size: 17px;
     margin: 0 0;
-    color: #3EA7CA;
+		color: #353535;
 }
 
 .params p {
@@ -339,5 +375,10 @@ body {
 }
 
 article {
-    position: relative;
+	padding: 20px 0;
+	display: block;
+	height: auto;
+	min-height: 40px;
+	padding-top: 100px;
+	box-sizing: content-box;
 }

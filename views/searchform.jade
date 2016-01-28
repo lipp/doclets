@@ -1,5 +1,6 @@
 form#search(action='/search', method='get', itemprop='potentialAction', itemscope='http://schema.org/SearchAction')
 	meta(itemprop='target', content='https://www.doclets.io/search?q={q}')
-	#site-search-container
+	#site-search-container.ui.action.input
 		input#site-search(name='q', value='', type='search', placeholder='find packages', tabindex='1', autocorrect='off', autocapitalize='off', itemprop='query-input', autocomplete='off')
-		input#site-search-submit(type='submit', value='Search')
+		button#site-search-submit.ui.icon.button(type='submit', value='Search')
+			i.search.icon

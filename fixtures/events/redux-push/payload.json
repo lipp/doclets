@@ -1,0 +1,162 @@
+{
+  "ref": "refs/heads/add-to-doclets",
+  "before": "0000000000000000000000000000000000000000",
+  "after": "1de7f41abb815a916e1bded471dd6066363616b4",
+  "created": true,
+  "deleted": false,
+  "forced": true,
+  "base_ref": null,
+  "compare": "https://github.com/lipp/redux/commit/1de7f41abb81",
+  "commits": [
+    {
+      "id": "1de7f41abb815a916e1bded471dd6066363616b4",
+      "distinct": true,
+      "message": "add doclets config",
+      "timestamp": "2016-01-27T13:12:17+01:00",
+      "url": "https://github.com/lipp/redux/commit/1de7f41abb815a916e1bded471dd6066363616b4",
+      "author": {
+        "name": "Gerhard Preuss",
+        "email": "gelipp@gmail.com",
+        "username": "lipp"
+      },
+      "committer": {
+        "name": "Gerhard Preuss",
+        "email": "gelipp@gmail.com",
+        "username": "lipp"
+      },
+      "added": [
+        ".doclets.yml"
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+
+      ]
+    }
+  ],
+  "head_commit": {
+    "id": "1de7f41abb815a916e1bded471dd6066363616b4",
+    "distinct": true,
+    "message": "add doclets config",
+    "timestamp": "2016-01-27T13:12:17+01:00",
+    "url": "https://github.com/lipp/redux/commit/1de7f41abb815a916e1bded471dd6066363616b4",
+    "author": {
+      "name": "Gerhard Preuss",
+      "email": "gelipp@gmail.com",
+      "username": "lipp"
+    },
+    "committer": {
+      "name": "Gerhard Preuss",
+      "email": "gelipp@gmail.com",
+      "username": "lipp"
+    },
+    "added": [
+      ".doclets.yml"
+    ],
+    "removed": [
+
+    ],
+    "modified": [
+
+    ]
+  },
+  "repository": {
+    "id": 50504917,
+    "name": "redux",
+    "full_name": "lipp/redux",
+    "owner": {
+      "name": "lipp",
+      "email": "gelipp@gmail.com"
+    },
+    "private": false,
+    "html_url": "https://github.com/lipp/redux",
+    "description": "Predictable state container for JavaScript apps",
+    "fork": true,
+    "url": "https://github.com/lipp/redux",
+    "forks_url": "https://api.github.com/repos/lipp/redux/forks",
+    "keys_url": "https://api.github.com/repos/lipp/redux/keys{/key_id}",
+    "collaborators_url": "https://api.github.com/repos/lipp/redux/collaborators{/collaborator}",
+    "teams_url": "https://api.github.com/repos/lipp/redux/teams",
+    "hooks_url": "https://api.github.com/repos/lipp/redux/hooks",
+    "issue_events_url": "https://api.github.com/repos/lipp/redux/issues/events{/number}",
+    "events_url": "https://api.github.com/repos/lipp/redux/events",
+    "assignees_url": "https://api.github.com/repos/lipp/redux/assignees{/user}",
+    "branches_url": "https://api.github.com/repos/lipp/redux/branches{/branch}",
+    "tags_url": "https://api.github.com/repos/lipp/redux/tags",
+    "blobs_url": "https://api.github.com/repos/lipp/redux/git/blobs{/sha}",
+    "git_tags_url": "https://api.github.com/repos/lipp/redux/git/tags{/sha}",
+    "git_refs_url": "https://api.github.com/repos/lipp/redux/git/refs{/sha}",
+    "trees_url": "https://api.github.com/repos/lipp/redux/git/trees{/sha}",
+    "statuses_url": "https://api.github.com/repos/lipp/redux/statuses/{sha}",
+    "languages_url": "https://api.github.com/repos/lipp/redux/languages",
+    "stargazers_url": "https://api.github.com/repos/lipp/redux/stargazers",
+    "contributors_url": "https://api.github.com/repos/lipp/redux/contributors",
+    "subscribers_url": "https://api.github.com/repos/lipp/redux/subscribers",
+    "subscription_url": "https://api.github.com/repos/lipp/redux/subscription",
+    "commits_url": "https://api.github.com/repos/lipp/redux/commits{/sha}",
+    "git_commits_url": "https://api.github.com/repos/lipp/redux/git/commits{/sha}",
+    "comments_url": "https://api.github.com/repos/lipp/redux/comments{/number}",
+    "issue_comment_url": "https://api.github.com/repos/lipp/redux/issues/comments{/number}",
+    "contents_url": "https://api.github.com/repos/lipp/redux/contents/{+path}",
+    "compare_url": "https://api.github.com/repos/lipp/redux/compare/{base}...{head}",
+    "merges_url": "https://api.github.com/repos/lipp/redux/merges",
+    "archive_url": "https://api.github.com/repos/lipp/redux/{archive_format}{/ref}",
+    "downloads_url": "https://api.github.com/repos/lipp/redux/downloads",
+    "issues_url": "https://api.github.com/repos/lipp/redux/issues{/number}",
+    "pulls_url": "https://api.github.com/repos/lipp/redux/pulls{/number}",
+    "milestones_url": "https://api.github.com/repos/lipp/redux/milestones{/number}",
+    "notifications_url": "https://api.github.com/repos/lipp/redux/notifications{?since,all,participating}",
+    "labels_url": "https://api.github.com/repos/lipp/redux/labels{/name}",
+    "releases_url": "https://api.github.com/repos/lipp/redux/releases{/id}",
+    "deployments_url": "https://api.github.com/repos/lipp/redux/deployments",
+    "created_at": 1453896649,
+    "updated_at": "2016-01-27T12:10:50Z",
+    "pushed_at": 1453896741,
+    "git_url": "git://github.com/lipp/redux.git",
+    "ssh_url": "git@github.com:lipp/redux.git",
+    "clone_url": "https://github.com/lipp/redux.git",
+    "svn_url": "https://github.com/lipp/redux",
+    "homepage": "http://redux.js.org",
+    "size": 2642,
+    "stargazers_count": 0,
+    "watchers_count": 0,
+    "language": "JavaScript",
+    "has_issues": false,
+    "has_downloads": true,
+    "has_wiki": false,
+    "has_pages": false,
+    "forks_count": 0,
+    "mirror_url": null,
+    "open_issues_count": 0,
+    "forks": 0,
+    "open_issues": 0,
+    "watchers": 0,
+    "default_branch": "master",
+    "stargazers": 0,
+    "master_branch": "master"
+  },
+  "pusher": {
+    "name": "lipp",
+    "email": "gelipp@gmail.com"
+  },
+  "sender": {
+    "login": "lipp",
+    "id": 445883,
+    "avatar_url": "https://avatars.githubusercontent.com/u/445883?v=3",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/lipp",
+    "html_url": "https://github.com/lipp",
+    "followers_url": "https://api.github.com/users/lipp/followers",
+    "following_url": "https://api.github.com/users/lipp/following{/other_user}",
+    "gists_url": "https://api.github.com/users/lipp/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/lipp/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/lipp/subscriptions",
+    "organizations_url": "https://api.github.com/users/lipp/orgs",
+    "repos_url": "https://api.github.com/users/lipp/repos",
+    "events_url": "https://api.github.com/users/lipp/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/lipp/received_events",
+    "type": "User",
+    "site_admin": false
+  }
+}

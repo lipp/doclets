@@ -4,12 +4,8 @@ mixin optMarkdown(desc, className)
 	else
 		p(class=className)= desc
 
-mixin funcdeclx(func, isCtor, parent)
-	if parent
-		span.parent= parent + '#'
-	if isCtor
-		span.new new
-	span.funcname= func.name
+mixin funcdeclx(name, func, isCtor)
+	span.funcname= name
 	ul.args
 		if func.params
 			each param in _.filter(func.params, function(param) {return param.name.indexOf('.') === -1;})
@@ -29,9 +25,62 @@ extends layout
 block styles
 	link(rel="stylesheet", href="/style.css")
 	link(rel="stylesheet", href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/styles/default.min.css")
+	link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.css')
 
 block scripts
+	script(src='//cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js')
 	script(src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/highlight.min.js")
+	script(src='//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.js')
+	script(src='//cdnjs.cloudflare.com/ajax/libs/jquery-smooth-scroll/1.7.1/jquery.smooth-scroll.min.js')
+	script(src='//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js')
+	script(src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js")
+	//script.
+		$(function() {
+			var controller = new ScrollMagic.Controller({container: '.main', globalSceneOptions: {}});
+			$('article').each(function(index, el) {
+			try {
+				var triggerId = '#' + el.id
+				var targetId = '#nav-' + el.id
+				new ScrollMagic.Scene({
+						triggerElement: triggerId,
+						triggerHook: 0.3,
+						duration: $(triggerId).outerHeight(true)
+					})
+					//.setClassToggle(targetId, 'active-scroll')
+					.setClassToggle(targetId + ',' + triggerId, 'active-scroll')
+					//.addIndicators()
+					.addTo(controller)
+					} catch(err) {
+					console.log('installing scrollspy failed for', triggerId, err)
+					}
+			})
+		})
+	script.
+		$(function() {
+		$('a[href^="#"').on('click', function(e) {
+			var target = this.hash.substr(1);
+			//console.log(target)
+			var el = document.getElementById(target);
+			//console.log(el && true)
+			//e.preventDefault()
+			$.smoothScroll({
+				scrollElement: $('.main'),
+				scrollTarget: $(el),
+				offset: -1 * $('.main').scrollTop() - 200
+			});
+			//return false;
+		}) })
+	script.
+		$(function() {
+			$('nav .module > .ui.accordion').accordion({
+				selector: {
+					trigger: '.title .icon',
+					exclusive: false,
+					closeNested: false,
+					duration: 300
+				}
+			})
+		})
 	script.
 		hljs.initHighlightingOnLoad()
 	script.

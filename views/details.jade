@@ -12,66 +12,44 @@ mixin see(seeArray)
 			li
 				a(href=link.url)= link.name || link.url
 
-mixin funcDoclet(func, isCtor, parent)
-	br
-	h3.title(id=func.longname + (isCtor ? '~ctor' : ''))
-		+funcdeclx(func, isCtor, parent)
-		span.link
-			if func.meta.url
-				a(href=func.meta.url).braces= '</>'
-			a(href='#' + func.longname)= '#'
-	if func.params && func.params.length > 0
-		p Arguments:
-		+paramsList(func.params)
-	if func.returns && func.returns.length > 0
-		p Returns:
-		+paramsList(func.returns)
-	if func.description
-		+optMarkdown(func.description, 'description')
-	if func.examples
-		+examples(func.examples)
-	if func.see
-		+see(func.see)
 
-	
 		
-mixin title(doclet, prefix)
-	br
-	h3.title(id=doclet.longname)
-		if prefix
-			span.prefix= prefix
-		span= doclet.name
-		span.link
-			if doclet.meta && doclet.meta.url
-				a(href=doclet.meta.url).braces= '</>'
-			a(href="#" + doclet.longname)= '#'
+mixin title(doclet, id)
+	- var symbols = {'class': 'cube', 'module': 'cubes'}
+	- var colors = {'class': 'blue', 'module': 'purple', 'function': 'green', 'member': 'magenta'}
+	h2.title
+		span.label= doclet.kind.substr(0,1)
+		//.ui.circular.label(class=colors[doclet.kind])
+		//i.icon(class=symbols[doclet.kind] || 'leaf', style='color: ' + colors[doclet.kind] + ';')
+		- var names = tools.splitName(doclet)
+		.names
+			span.module= names.module
+			span.parent= names.parent
+			if doclet.kind == 'class'
+				span.name
+					+funcdeclx(names.name, doclet, true)
+			else if doclet.kind == 'function'
+				span.name
+					+funcdeclx(names.name, doclet, false)
+			else
+				span.name= names.name
+		a(href="#" + id).permalink
+			i.tiny.icon.linkify
 
-mixin simpleDoclet(doclet)
-	+title(doclet)
-	if doclet.inherited
-		div
-			span Inherited from: 
-				a(href='#' + doclet.inherits)= tools.shortName(doclet.inherits)
-	else
-		if doclet.description
-			+optMarkdown(doclet.description, 'description')
-		if doclet.examples
-			+examples(doclet.examples)
-		if doclet.see
-			+see(doclet.see)
+mixin typeList(type)
+	ul.types
+		each t in type.names
+			li.typename
+				if tools.isBuiltInType(t)
+					span= t
+				else
+					a(href='#' + tools.idFromLongname(t))= t
 	
-
 
 mixin paramDetails(param)
 	h4.paramname= param.name
 		if param.type
-			ul.types
-				each type in param.type.names
-					li.typename
-						if tools.isBuiltInType(type)
-							span= type
-						else
-							a(href='#' + type)= type
+			+typeList(param.type)
 		if param.optional
 			span.optional optional
 		if param.defaultvalue !== undefined
@@ -80,45 +58,96 @@ mixin paramDetails(param)
 	if param.description
 		+optMarkdown(param.description, 'description')
 
-mixin paramsList(params)
-	ul.params
+mixin paramsList(params, className)
+	ol.params(class=className)
 		each param in params
 			li
 				+paramDetails(param)
 
-mixin clazzDoclet(doclet)
-	+title(doclet, 'class')
+mixin details(doclet)
+	if doclet.description
+		+optMarkdown(doclet.description, 'description')
 	if doclet.classdesc
 		+optMarkdown(doclet.classdesc, 'classdesc')
-	+funcDoclet(doclet, true)
+	if !doclet.classdesc && !doclet.description
+		p
+			em No description available.
+	if doclet.defaultvalue !== undefined
+		p Default:
+			span= doclet.defaultvalue
+	if doclet.params && doclet.params.length > 0
+		h4 Arguments:
+		+paramsList(doclet.params, 'argumentlist')
+	if doclet.returns && doclet.returns.length > 0
+		h4 Returns:
+		+paramsList(doclet.returns)
+	if doclet.properties
+		h4 Properties:
+		+paramsList(doclet.properties)
+	if doclet.examples
+		+examples(doclet.examples)
+	if doclet.see
+		+see(doclet.see)
 	
+
+mixin infolist(doclet)
+	.ui.very.relaxed.horizontal.list.infolist
+		.item
+			i.large.tag.middle.aligned.icon
+			.content
+				.description Kind
+				.header= doclet.kind
+		if doclet.type
+			.item
+				i.large.diamond.middle.aligned.icon
+				.content
+					.description Type
+					.header
+						+typeList(doclet.type)
+		if doclet.implements
+			.item
+				i.large.spy.middle.aligned.icon
+				.content
+					.description Implements
+					.header= doclet.implements
+		if doclet.inherits
+			.item
+				i.large.sitemap.middle.aligned.icon
+				.content
+					.description Inherits
+					.header= doclet.inherits
+		if doclet.scope
+			.item
+				i.large.unhide.middle.aligned.icon
+				.content
+					.description Scope
+					.header= doclet.scope
+		.item
+			i.large.code.middle.aligned.icon
+			.content
+				.description Source
+				a.header(href=doclet.meta.url)= doclet.meta.filename + ':' + doclet.meta.lineno
 	
-mixin details(doclet)
-	case doclet.kind
-		when 'module'
-			article.module
-				+module2(doclet)
-		when 'class'
-			article.clazz
-				+clazzDoclet(doclet)
-		when 'interface'
-			article.interface
-				+clazzDoclet(doclet)
-		when 'function'
-			article.function
-				+funcDoclet(doclet)
-		default
-			article(class=doclet.kind)
-				+simpleDoclet(doclet)
+mixin doclet(doclet)
+	- var id = tools.idFromLongname(doclet.longname)
+	article.module(id=id)
+		+title(doclet, id)
+		+infolist(doclet)
+		+details(doclet)
+		//if doclet.kind == 'event'
+			p= JSON.stringify(doclet)
 	
-mixin module2(module)
+mixin module(module)
 	h2.modulename(id=module.longname)
-		span.moduleprefix module
+		.ui.horizontal.big.purple.label module
 		span= tools.modulename(module.longname)
 	if module.description
 		+optMarkdown(module.description, 'moduledescription')
+	else
+		p
+			em No description available.
 
 
-section.module
-	each doclet in flat
-		+details(doclet)
+each doclet in flat
+	+doclet(doclet)
+

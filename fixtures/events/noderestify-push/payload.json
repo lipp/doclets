@@ -1,0 +1,162 @@
+{
+  "ref": "refs/heads/add-to-doclets",
+  "before": "0000000000000000000000000000000000000000",
+  "after": "71ef7eeffebe3733a17e5532f8b0a9e9f8c66367",
+  "created": true,
+  "deleted": false,
+  "forced": true,
+  "base_ref": null,
+  "compare": "https://github.com/lipp/node-restify/commit/71ef7eeffebe",
+  "commits": [
+    {
+      "id": "71ef7eeffebe3733a17e5532f8b0a9e9f8c66367",
+      "distinct": true,
+      "message": "add doclets config",
+      "timestamp": "2016-01-27T11:20:36+01:00",
+      "url": "https://github.com/lipp/node-restify/commit/71ef7eeffebe3733a17e5532f8b0a9e9f8c66367",
+      "author": {
+        "name": "Gerhard Preuss",
+        "email": "gelipp@gmail.com",
+        "username": "lipp"
+      },
+      "committer": {
+        "name": "Gerhard Preuss",
+        "email": "gelipp@gmail.com",
+        "username": "lipp"
+      },
+      "added": [
+        ".doclets.yml"
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+
+      ]
+    }
+  ],
+  "head_commit": {
+    "id": "71ef7eeffebe3733a17e5532f8b0a9e9f8c66367",
+    "distinct": true,
+    "message": "add doclets config",
+    "timestamp": "2016-01-27T11:20:36+01:00",
+    "url": "https://github.com/lipp/node-restify/commit/71ef7eeffebe3733a17e5532f8b0a9e9f8c66367",
+    "author": {
+      "name": "Gerhard Preuss",
+      "email": "gelipp@gmail.com",
+      "username": "lipp"
+    },
+    "committer": {
+      "name": "Gerhard Preuss",
+      "email": "gelipp@gmail.com",
+      "username": "lipp"
+    },
+    "added": [
+      ".doclets.yml"
+    ],
+    "removed": [
+
+    ],
+    "modified": [
+
+    ]
+  },
+  "repository": {
+    "id": 50496360,
+    "name": "node-restify",
+    "full_name": "lipp/node-restify",
+    "owner": {
+      "name": "lipp",
+      "email": "gelipp@gmail.com"
+    },
+    "private": false,
+    "html_url": "https://github.com/lipp/node-restify",
+    "description": "node.js REST framework specifically meant for web service APIs",
+    "fork": true,
+    "url": "https://github.com/lipp/node-restify",
+    "forks_url": "https://api.github.com/repos/lipp/node-restify/forks",
+    "keys_url": "https://api.github.com/repos/lipp/node-restify/keys{/key_id}",
+    "collaborators_url": "https://api.github.com/repos/lipp/node-restify/collaborators{/collaborator}",
+    "teams_url": "https://api.github.com/repos/lipp/node-restify/teams",
+    "hooks_url": "https://api.github.com/repos/lipp/node-restify/hooks",
+    "issue_events_url": "https://api.github.com/repos/lipp/node-restify/issues/events{/number}",
+    "events_url": "https://api.github.com/repos/lipp/node-restify/events",
+    "assignees_url": "https://api.github.com/repos/lipp/node-restify/assignees{/user}",
+    "branches_url": "https://api.github.com/repos/lipp/node-restify/branches{/branch}",
+    "tags_url": "https://api.github.com/repos/lipp/node-restify/tags",
+    "blobs_url": "https://api.github.com/repos/lipp/node-restify/git/blobs{/sha}",
+    "git_tags_url": "https://api.github.com/repos/lipp/node-restify/git/tags{/sha}",
+    "git_refs_url": "https://api.github.com/repos/lipp/node-restify/git/refs{/sha}",
+    "trees_url": "https://api.github.com/repos/lipp/node-restify/git/trees{/sha}",
+    "statuses_url": "https://api.github.com/repos/lipp/node-restify/statuses/{sha}",
+    "languages_url": "https://api.github.com/repos/lipp/node-restify/languages",
+    "stargazers_url": "https://api.github.com/repos/lipp/node-restify/stargazers",
+    "contributors_url": "https://api.github.com/repos/lipp/node-restify/contributors",
+    "subscribers_url": "https://api.github.com/repos/lipp/node-restify/subscribers",
+    "subscription_url": "https://api.github.com/repos/lipp/node-restify/subscription",
+    "commits_url": "https://api.github.com/repos/lipp/node-restify/commits{/sha}",
+    "git_commits_url": "https://api.github.com/repos/lipp/node-restify/git/commits{/sha}",
+    "comments_url": "https://api.github.com/repos/lipp/node-restify/comments{/number}",
+    "issue_comment_url": "https://api.github.com/repos/lipp/node-restify/issues/comments{/number}",
+    "contents_url": "https://api.github.com/repos/lipp/node-restify/contents/{+path}",
+    "compare_url": "https://api.github.com/repos/lipp/node-restify/compare/{base}...{head}",
+    "merges_url": "https://api.github.com/repos/lipp/node-restify/merges",
+    "archive_url": "https://api.github.com/repos/lipp/node-restify/{archive_format}{/ref}",
+    "downloads_url": "https://api.github.com/repos/lipp/node-restify/downloads",
+    "issues_url": "https://api.github.com/repos/lipp/node-restify/issues{/number}",
+    "pulls_url": "https://api.github.com/repos/lipp/node-restify/pulls{/number}",
+    "milestones_url": "https://api.github.com/repos/lipp/node-restify/milestones{/number}",
+    "notifications_url": "https://api.github.com/repos/lipp/node-restify/notifications{?since,all,participating}",
+    "labels_url": "https://api.github.com/repos/lipp/node-restify/labels{/name}",
+    "releases_url": "https://api.github.com/repos/lipp/node-restify/releases{/id}",
+    "deployments_url": "https://api.github.com/repos/lipp/node-restify/deployments",
+    "created_at": 1453886819,
+    "updated_at": "2016-01-27T09:27:00Z",
+    "pushed_at": 1453890039,
+    "git_url": "git://github.com/lipp/node-restify.git",
+    "ssh_url": "git@github.com:lipp/node-restify.git",
+    "clone_url": "https://github.com/lipp/node-restify.git",
+    "svn_url": "https://github.com/lipp/node-restify",
+    "homepage": "http://restifyjs.com",
+    "size": 3169,
+    "stargazers_count": 0,
+    "watchers_count": 0,
+    "language": "JavaScript",
+    "has_issues": false,
+    "has_downloads": true,
+    "has_wiki": true,
+    "has_pages": false,
+    "forks_count": 0,
+    "mirror_url": null,
+    "open_issues_count": 0,
+    "forks": 0,
+    "open_issues": 0,
+    "watchers": 0,
+    "default_branch": "5.x",
+    "stargazers": 0,
+    "master_branch": "5.x"
+  },
+  "pusher": {
+    "name": "lipp",
+    "email": "gelipp@gmail.com"
+  },
+  "sender": {
+    "login": "lipp",
+    "id": 445883,
+    "avatar_url": "https://avatars.githubusercontent.com/u/445883?v=3",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/lipp",
+    "html_url": "https://github.com/lipp",
+    "followers_url": "https://api.github.com/users/lipp/followers",
+    "following_url": "https://api.github.com/users/lipp/following{/other_user}",
+    "gists_url": "https://api.github.com/users/lipp/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/lipp/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/lipp/subscriptions",
+    "organizations_url": "https://api.github.com/users/lipp/orgs",
+    "repos_url": "https://api.github.com/users/lipp/repos",
+    "events_url": "https://api.github.com/users/lipp/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/lipp/received_events",
+    "type": "User",
+    "site_admin": false
+  }
+}
