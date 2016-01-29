@@ -16,9 +16,9 @@ mixin see(seeArray)
 		
 mixin title(doclet, id)
 	- var symbols = {'class': 'cube', 'module': 'cubes'}
-	- var colors = {'class': 'blue', 'module': 'purple', 'function': 'green', 'member': 'magenta'}
+	- var colors = {'class': 'orange', 'module': 'purple', 'function': 'teal', 'member': 'blue', 'constant': 'red'}
 	h2.title
-		span.label= doclet.kind.substr(0,1)
+		span.ui.label(class=colors[doclet.kind])= doclet.kind.substr(0,1)
 		//.ui.circular.label(class=colors[doclet.kind])
 		//i.icon(class=symbols[doclet.kind] || 'leaf', style='color: ' + colors[doclet.kind] + ';')
 		- var names = tools.splitName(doclet)
@@ -86,11 +86,12 @@ mixin details(doclet)
 		+paramsList(doclet.returns)
 	if doclet.properties
 		h4 Properties:
-			+paramsList(doclet.properties)
+		+paramsList(doclet.properties)
 	if !doclet.properties
 		+members(doclet)
 		//p= JSON.stringify(doclet.properties)
 	if doclet.examples
+		h4 Example code:
 		+examples(doclet.examples)
 	if doclet.see
 		+see(doclet.see)
@@ -163,7 +164,6 @@ mixin module(module)
 	else
 		p
 			em No description available.
-
 
 each doclet in flat
 	if doclet

@@ -57,21 +57,27 @@ block scripts
 		})
 	script.
 		$(function() {
-		$('a[href^="#"').on('click', function(e) {
+			var controller = new ScrollMagic.Controller();
+			var scene = new ScrollMagic.Scene({triggerElement: '#xxx', triggerHook: 0.0})
+				.setPin('#api-nav')
+				.addTo(controller)
+		})
+	script.
+		$(function() {
+		$('a').on('click', function(e) {
+			if (this.hash.indexOf('#') !== 0) {
+				return;
+			}
 			var target = this.hash.substr(1);
-			//console.log(target)
 			var el = document.getElementById(target);
-			//console.log(el && true)
-			//e.preventDefault()
 			$.smoothScroll({
-				scrollElement: $('.main'),
 				scrollTarget: $(el),
 				offset: -1 * $('.main').scrollTop() - 50
 			});
-			//return false;
 		}) })
 	script.
 		$(function() {
+			console.log('init semantic ui')
 			$('nav .module > .ui.accordion').accordion({
 				selector: {
 					trigger: '.title .icon',
@@ -90,11 +96,22 @@ block scripts
 			console.log(window.location.href);
 		};
 
+
+block header
+
 block content
-	.api
-		include nav.jade
+	#title
+		h1= repo
+		h2 by
+			a(href='/' + owner)= ' ' + owner
+				img.ui.left.spaced.avatar.image(src=_owner.image, style='border-radius: 0px;')
+		h3.version= version
+		h4
+			a(href=versionsPath) other versions
+	#xxx.api
+		#nav-wrap
+			include nav.jade
 		.main
 			block api
-
 
 
