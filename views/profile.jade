@@ -1,12 +1,30 @@
-#profile
-	if owner
-		img(src=owner.image)
-		h2= owner._id
-		h3= owner.name
-		a(href=owner.url) Visit on GitHub
-		br
+if owner
+	.ui.card
+		.image
+			img(src=owner.image)
+		.content
+			.header= owner._id
+			.meta
+				span= owner.name
+			.ui.middle.aligned.very.relaxed.divided.list
+				.item
+					i.github.icon
+					.content
+						a(href=owner.url) GitHub Profile
+				.item
+					i.mail.icon
+					.content
+						a(href='mailto:' + owner.email)= owner.email
+				.item
+					i.user.icon
+					.content
+						a(href='/' + owner._id) Doclets Profile
 		if user
-			a(href='/account') Settings
-	else
-		h2 No Profile information
+			.extra.content
+				a(href='/account')
+					i.setting.icon
+					| Repositories
+
+else
+	h2 No Profile information
 

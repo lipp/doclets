@@ -1,13 +1,23 @@
 extends layout.jade
 block content
 	- var first = versions[0]
-	h2
-		a.name(href='#')= first.repo
+	- var repo = first._repo
+	- var packageJson = first.data.packageJson || {}
+	- var description = packageJson.description || repo.description
+	h1
+		a.name(href='#')= repo.name
 		span /
 		a.user(href='./')= username
-	p.description= first.description
-	if first.tags
-		p.tags= first.tags.join(', ')
+	if description
+		p.description= description
+	else
+		p.description
+			em No description available
+	if packageJson.tags
+		i.icon.tags
+		.ui.horizontal.bulleted.list
+			each tag in packageJson.tags
+				.item= tag
 	h3= '' + versions.length + ' versions documented'
 	ul
 		each doclet in versions

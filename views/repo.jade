@@ -1,28 +1,54 @@
 extends layout
 
 block content
-	if error
-		.message
-			span= error
-	if result
-		.message
-			span= result
-	.user-split
-		include profile.jade
-		
-		#settings
-			h1= repo.name
-			form#repos(action='/account/' + repo.name, method='post', name='settings')
-				label(for='enabled') CI enabled
-				input(type='checkbox', id='enabled', name='enabled', checked=repo.isWebHookEnabled())
-				//input(name='asd')
-				each type in [{type: 'branch', name: 'Branches'}, {type: 'tag', name: 'Tags'}]
-					- var subset = _.where(doclets, {type: type.type}) 
-					if subset.length > 0
-						h4= type.name
-						each doclet in subset
-							span= doclet.name
-							label(for=doclet.name) published
-							input(type='checkbox', id=doclet.name, name=doclet.name, checked=!doclet.muted)= doclet.name
-
-				input(type='submit', value='submit')
+	.ui.container
+		.ui.grid
+			- var enabled = repo.isWebHookEnabled()
+			.ui.row
+				.twelve.wide.column
+					h1= repo.name
+					if repo.description
+						p= repo.description
+					else
+						p
+							em No description available.
+			.twelve.wide.column
+				form.ui.large.form#repos(action='/account/' + repo.name, method='post', name='settings', class=enabled ? 'success' : 'warning')
+					h4.ui.dividing.header General Settings
+					.field
+						.ui.toggle.checkbox
+							input(type='checkbox', id='enabled', name='enabled', checked=repo.isWebHookEnabled())
+							label(for='enabled') Doclets generation enabled
+						.ui.warning.small.message
+							i.icon.close
+							.header Attention
+							p No documentation will be generated, if this switch is disabled.
+						.ui.success.small.message
+							i.icon.close
+							.header Ready!
+							p Documentation will be generated automatically for all branches and new tags.
+					//input(name='asd')
+					each type in [{type: 'branch', name: 'Branches'}, {type: 'tag', name: 'Tags'}]
+						- var subset = _.where(doclets, {type: type.type}) 
+						if subset.length > 0
+							h4.ui.dividing.header= 'Published ' + type.name
+							each doclet in subset
+								.field
+									.ui.checkbox
+										input(type='checkbox', id=doclet._id, name=doclet._id, checked=true)
+										label= doclet.version
+	
+					input.ui.button.primary(type='submit', value='submit')
+				if error
+					.ui.error.message
+						i.close.icon
+						.header Changes not applied.
+						p= error
+				if result
+					.ui.success.message
+						i.close.icon
+						.header
+							Change applied successfully.
+						p= result
+			.four.wide.column
+				include profile.jade

@@ -1,20 +1,49 @@
 extends layout.jade
 block content
-	.user-split
-		include profile.jade
+	- var docletsByRepository = _.groupBy(doclets, function(doclet) {return doclet.repo})
+	- var repoNames = _.sortBy(_.keys(docletsByRepository), function(name) {return name.toLowerCase()})
+	.ui.container
+		.ui.grid
+			.ui.row
+				.twelve.wide.column
+					.ui.four.statistics
+						.ui.horizontal.statistic
+							.value= doclets.length
+							.label Doclets
+						.ui.horizontal.statistic
+							.value= repoNames.length
+							.label Repositories
+			.twelve.wide.column
+
+				.ui.two.stacked.cards
+					each name in repoNames
+						- var docletsByName = docletsByRepository[name]
+						- var first = docletsByName[0]
+						.ui.card
+							.content
+								.header
+									a(href=username + '/' + name)= first.repo
+								.description= first.description || first._repo.description
+								if user
+									.ui.horizontal.bulleted.link.list
+										each version in _.map(docletsByName, function(doclet) {return doclet.version})
+											a.item(href=username + '/' + name + '/' + version)= version
+							if !user
+								.extra.content
+									.ui.horizontal.bulleted.link.list
+										each version in _.map(docletsByName, function(doclet) {return doclet.version})
+											a.item(href=username + '/' + name + '/' + version)= version
+							if user
+								.extra.content
+									if first._repo.isWebHookEnabled()
+										i.green.check.icon
+										| CI Webhook enabled
+									else
+										i.red.remove.icon
+										| CI Webhook disabled
+									a.right.floated(href='/account/' + first.repo) Settings
+										i.icon.setting
+			.four.wide.column
+				include profile.jade
 		
-		#repos
-			h3= '' + doclets.length + ' doclets by ' + username
-			ul.versions
-				each docletsByName, name in _.groupBy(doclets, function(doclet) {return doclet.repo})
-					- var first = docletsByName[0]
-					li.doclet
-						h3
-							a(href=username + '/' + name)= first.repo
-						p.description= first.description
-						p.version
-							ul
-								each version in _.map(docletsByName, function(doclet) {return doclet.version})
-									li
-										a(href=username + '/' + name + '/' + version)= version
 

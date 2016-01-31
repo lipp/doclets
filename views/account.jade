@@ -1,26 +1,24 @@
 extends layout
 
+extends layout.jade
 block content
-	.user-split
-		include profile.jade
-		
-		#settings
-			h1 Settings
-			h2 enabled repositories
-			p Documentation for your enabled repositories will be generated for <strong>new tags</strong>
-				| and <strong>selected branches</strong>. You can unpublished tags or branches to hide them from other users.
-			p Visit your <a href='/#{user._id}'>public profile</a>.
-			ul
-				each repo in _.filter(repos, function(repo) {return repo.isWebHookEnabled()})
-					li
-						h3= repo.name
-						a(href='/account/' + repo.name) Settings
-		
-			h2 disabled repositories
-			ul
-				each repo in _.filter(repos, function(repo) {return !repo.isWebHookEnabled()})
-					li
-						h3= repo.name
-						a(href='/account/' + repo.name) Settings
-							
-		
+	.ui.container
+		h1 Your GitHub Repositories
+		.ui.grid
+			.twelve.wide.column
+				.ui.two.divided.items
+					- var disabledRepos = _.chain(repos).filter(function(repo) {return !repo.isWebHookEnabled()}).sortBy(function(repo) {return repo.name.toLowerCase()}).value() 
+					each repo in disabledRepos 
+						.item
+							.content
+								.header(href='/account/'+repo.name)= repo.name
+								if repo.description
+									p.description= repo.description
+								else 
+									p.description
+										em No description available.
+								.extra
+									a.ui.button.right.floated(href='/account/'+repo.name) Add
+									
+			.four.wide.column
+				include profile.jade
