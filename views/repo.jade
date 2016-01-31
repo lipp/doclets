@@ -27,7 +27,6 @@ block content
 							i.icon.close
 							.header Ready!
 							p Documentation will be generated automatically for all branches and new tags.
-					//input(name='asd')
 					each type in [{type: 'branch', name: 'Branches'}, {type: 'tag', name: 'Tags'}]
 						- var subset = _.where(doclets, {type: type.type}) 
 						if subset.length > 0
