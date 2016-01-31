@@ -19,28 +19,29 @@ block content
 					each name in repoNames
 						- var docletsByName = docletsByRepository[name]
 						- var first = docletsByName[0]
+						- var isOwnProfile = user && user._id === username
 						.ui.card
 							.content
 								.header
 									a(href=username + '/' + name)= first.repo
 								.description= first.description || first._repo.description
-								if user
+								if isOwnProfile
 									.ui.horizontal.bulleted.link.list
 										each version in _.map(docletsByName, function(doclet) {return doclet.version})
 											a.item(href=username + '/' + name + '/' + version)= version
-							if !user
+							if !isOwnProfile
 								.extra.content
 									.ui.horizontal.bulleted.link.list
 										each version in _.map(docletsByName, function(doclet) {return doclet.version})
 											a.item(href=username + '/' + name + '/' + version)= version
-							if user
+							if isOwnProfile
 								.extra.content
 									if first._repo.isWebHookEnabled()
 										i.green.check.icon
-										| CI Webhook enabled
+										| Webhook enabled
 									else
 										i.red.remove.icon
-										| CI Webhook disabled
+										| Webhook disabled
 									a.right.floated(href='/account/' + first.repo) Settings
 										i.icon.setting
 			.four.wide.column
