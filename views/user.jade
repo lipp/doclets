@@ -7,6 +7,12 @@ block content
 	.ui.container
 		.ui.grid
 			.twelve.wide.column
+				if repos.length == 0
+					.ui.message.info
+						i.icon.close
+						.header No Repositories added yet.
+						p Add one of your GitHub repositories from the list below and press "add". 
+
 
 				.ui.two.stacked.cards
 					each repo in _.sortBy(repos, function(repo) {return repo.name.toLowerCase()})
