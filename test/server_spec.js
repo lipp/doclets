@@ -30,13 +30,14 @@ describe('The server module', function () {
 
   before(function (done) {
     var dir = path.join(__dirname, '../fixtures', 'minimal_1')
+    var repoId = [userName, repoName].join('/')
 
     var doclet = new Doclet()
     doclet._id = [userName, repoName, version].join('/')
     doclet.version = version
     doclet.type = 'tag'
     doclet.repo = repoName
-    doclet._repo = repoName
+    doclet._repo = repoId
     doclet.owner = userName
     doclet._owner = userName
     doclet.tagOrHash = '1235'
@@ -52,7 +53,7 @@ describe('The server module', function () {
     user.image = 'bla'
 
     var repo = new Repo()
-    repo._id = [userName, repoName].join('/')
+    repo._id = repoId
     repo.name = repoName
     repo.owner = userName
     repo._owner = userName
