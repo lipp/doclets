@@ -1,43 +1,37 @@
 extends layout.jade
 block content
 	- var docletsByRepository = _.groupBy(doclets, function(doclet) {return doclet.repo})
-	- var repoNames = _.sortBy(_.keys(docletsByRepository), function(name) {return name.toLowerCase()})
+	- var enabledRepos = _.filter(repos, function(repo) {return repo.isWebHookEnabled()})
+	- var disabledRepos = _.filter(repos, function(repo) {return !repo.isWebHookEnabled()})
 	- var isOwnProfile = user && user._id === username
 	.ui.container
 		.ui.grid
-			.ui.row
-				.twelve.wide.column
-					.ui.four.statistics
-						.ui.horizontal.statistic
-							.value= doclets.length
-							.label Doclets
-						.ui.horizontal.statistic
-							.value= repoNames.length
-							.label Repositories
 			.twelve.wide.column
 
 				.ui.two.stacked.cards
-					each name in repoNames
-						- var docletsByName = docletsByRepository[name]
-						- var first = docletsByName[0]
-						.ui.card
-							.content
-								.header
-									a(href=username + '/' + name)= first.repo
-									if first._repo.isWebHookEnabled()
-										i.tiny.middle.aligned.green.check.icon
+					each repo in _.sortBy(repos, function(repo) {return repo.name.toLowerCase()})
+						- var versions = docletsByRepository[repo.name]
+						if repo.isWebHookEnabled() || versions
+							.ui.card
+								.content
+									.header
+										a(href=username + '/' + repo.name)= repo.name
+										if repo.isWebHookEnabled()
+											i.tiny.middle.aligned.green.check.icon
+										else
+											i.tiny.middle.aligned.red.remove.icon
+									.description= repo.description
+								.extra.content
+									if versions
+										.ui.horizontal.bulleted.link.list
+											each version in _.map(versions, function(doclet) {return doclet.version})
+												a.item(href=username + '/' + name + '/' + version)= version
 									else
-										i.tiny.middle.aligned.red.remove.icon
-								.description= first.getDescription()
-							.extra.content
-								.ui.horizontal.bulleted.link.list
-									each version in _.map(docletsByName, function(doclet) {return doclet.version})
-										a.item(href=username + '/' + name + '/' + version)= version
+										em No Doclets available yet
 
 				if isOwnProfile
 					.ui.dividing.header
 					form.ui.form(method='post', action='/account/addrepo')
-						- var disabledRepos = _.chain(repos).filter(function(repo) {return !repo.isWebHookEnabled()}).sortBy(function(repo) {return repo.name.toLowerCase()}).value() 
 						.fields
 							.six.wide.field
 								.ui.fluid.dropdown.labeled.search.icon.button
@@ -45,7 +39,7 @@ block content
 									span.text Select Repository
 									input(type='hidden', name='repo')
 									.menu
-										each repo in disabledRepos
+										each repo in _.sortBy(disabledRepos, function(repo) {return repo.name.toLowerCase()})
 											.item(data-value=repo._id)= repo.name
 							.four.wide.field
 								button#add.ui.labeled.icon.button.primary(type='submit') 
@@ -54,5 +48,12 @@ block content
 
 			.four.wide.column
 				include profile.jade
+				.ui.two.statistics
+					.ui.statistic
+						.value= doclets.length
+						.label Doclets
+					.ui.statistic
+						.value= enabledRepos.length
+						.label Repositories
 		
 
