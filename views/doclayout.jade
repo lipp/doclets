@@ -99,9 +99,9 @@ block content
 	#title
 		h1= repo
 		h2 by
-			a(href='/' + owner)= ' ' + owner
-				img.ui.left.spaced.avatar.image(src=_owner.image, style='border-radius: 0px;')
-		h3.version= version
+			a(href='/' + doclet.owner)= ' ' + doclet.owner
+				img.ui.left.spaced.avatar.image(src=doclet._owner.image, style='border-radius: 0px;')
+		h3.version= doclet.version
 		h4
 			a(href=versionsPath) other versions
 	#xxx.api

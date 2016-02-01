@@ -2,6 +2,7 @@ extends layout.jade
 block content
 	- var docletsByRepository = _.groupBy(doclets, function(doclet) {return doclet.repo})
 	- var repoNames = _.sortBy(_.keys(docletsByRepository), function(name) {return name.toLowerCase()})
+	- var isOwnProfile = user && user._id === username
 	.ui.container
 		.ui.grid
 			.ui.row
@@ -19,31 +20,38 @@ block content
 					each name in repoNames
 						- var docletsByName = docletsByRepository[name]
 						- var first = docletsByName[0]
-						- var isOwnProfile = user && user._id === username
 						.ui.card
 							.content
 								.header
 									a(href=username + '/' + name)= first.repo
-								.description= first.description || first._repo.description
-								if isOwnProfile
-									.ui.horizontal.bulleted.link.list
-										each version in _.map(docletsByName, function(doclet) {return doclet.version})
-											a.item(href=username + '/' + name + '/' + version)= version
-							if !isOwnProfile
-								.extra.content
-									.ui.horizontal.bulleted.link.list
-										each version in _.map(docletsByName, function(doclet) {return doclet.version})
-											a.item(href=username + '/' + name + '/' + version)= version
-							if isOwnProfile
-								.extra.content
 									if first._repo.isWebHookEnabled()
-										i.green.check.icon
-										| Webhook enabled
+										i.tiny.middle.aligned.green.check.icon
 									else
-										i.red.remove.icon
-										| Webhook disabled
-									a.right.floated(href='/account/' + first.repo) Settings
-										i.icon.setting
+										i.tiny.middle.aligned.red.remove.icon
+								.description= first.getDescription()
+							.extra.content
+								.ui.horizontal.bulleted.link.list
+									each version in _.map(docletsByName, function(doclet) {return doclet.version})
+										a.item(href=username + '/' + name + '/' + version)= version
+
+				if isOwnProfile
+					.ui.dividing.header
+					form.ui.form(method='post', action='/account/addrepo')
+						- var disabledRepos = _.chain(repos).filter(function(repo) {return !repo.isWebHookEnabled()}).sortBy(function(repo) {return repo.name.toLowerCase()}).value() 
+						.fields
+							.six.wide.field
+								.ui.fluid.dropdown.labeled.search.icon.button
+									i.icon.search
+									span.text Select Repository
+									input(type='hidden', name='repo')
+									.menu
+										each repo in disabledRepos
+											.item(data-value=repo._id)= repo.name
+							.four.wide.field
+								button#add.ui.labeled.icon.button.primary(type='submit') 
+									i.icon.plus
+									| Add
+
 			.four.wide.column
 				include profile.jade
 		

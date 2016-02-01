@@ -27,15 +27,16 @@ block content
 					| to your documentation
 
 	#recents
-		h2 recently updated doclets
+		h2 recently updated doclets 123
 		ul
-			each doclet in doclets
+			each docletParams in doclets
+				- var doclet = docletParams.doclet
 				li.doclet
 					h3
 						a(href=doclet.owner + '/' + doclet.repo)= doclet.repo
-					p.description= doclet.description
+					p.description= doclet.getDescription()
 					p.version
 						a(href=doclet.owner + '/' + doclet.repo + '/' + doclet.version)= doclet.version
-						| &nbsp;published #{moment(doclet.date).fromNow()} by&nbsp;
+						| &nbsp;published #{moment(doclet.createdAt).fromNow()} by&nbsp;
 						a(href=doclet.owner)= doclet.owner
 

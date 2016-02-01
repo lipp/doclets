@@ -98,14 +98,6 @@ describe('The server module', function () {
     })
   })
 
-  it('GET /account redirects', function (done) {
-    request('http://localhost:4444/account', function (err, res, body) {
-      assert.equal(res.request.uri.pathname, '/login')
-      assert.equal(res.statusCode, 200)
-      done(err)
-    })
-  })
-
   it('GET /bart/test/v1.0.1/ redirects', function (done) {
     request('http://localhost:4444/bart/test/v1.0.1/', function (err, res, body) {
       assert.equal(res.request.uri.pathname, '/bart/test/v1.0.1')

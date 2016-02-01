@@ -1,30 +1,31 @@
 extends layout.jade
 block content
-	- var first = versions[0]
-	- var repo = first._repo
-	- var packageJson = first.data.packageJson || {}
-	- var description = packageJson.description || repo.description
-	h1
-		a.name(href='#')= repo.name
-		span /
-		a.user(href='./')= username
-	if description
-		p.description= description
-	else
-		p.description
-			em No description available
-	if packageJson.tags
-		i.icon.tags
-		.ui.horizontal.bulleted.list
-			each tag in packageJson.tags
-				.item= tag
-	h3= '' + versions.length + ' versions documented'
-	ul
-		each doclet in versions
-			li
-				h4
-					a(href=doclet.repo + '/' + doclet.version)= doclet.version
-
-	if user && user._id == username
-		a(href='/account/' + first.repo) Repository settings
-
+	.ui.container
+		- var first = versions[0]
+		- var repo = first._repo
+		- var packageJson = first.data.packageJson || {}
+		- var description = first.getDescription()
+		h1
+			a.name(href='#')= repo.name
+		h3 by
+			a.user(href='./')= username
+		if description
+			p.description= description
+		else
+			p.description
+				em No description available
+		if packageJson.keywords
+			i.icon.tags
+			.ui.horizontal.bulleted.list
+				each tag in packageJson.keywords
+					.item= tag
+		if user && user._id == username
+			a(href='/account/' + first.repo) Repository settings
+				i.icon.configure
+		h3= '' + versions.length + ' versions documented'
+		.ui.huge.link.list
+			each doclet in versions
+				.item
+					a(href=doclet.repo + '/' +  doclet.version)= doclet.version
+	
+	

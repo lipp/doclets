@@ -2,10 +2,10 @@
 var assert = require('assert')
 var Routes = require('../lib/routes').Routes
 var sinon = require('sinon')
-var Repo = require('../lib/models/repo')
-var Doclet = require('../lib/models/doclet')
+// var Repo = require('../lib/models/repo')
+// var Doclet = require('../lib/models/doclet')
 var User = require('../lib/models/user')
-var _ = require('underscore')
+// var _ = require('underscore')
 
 describe('The routes module', function () {
   var routes
@@ -87,6 +87,7 @@ describe('The routes module', function () {
     assert(res.redirect.calledWith('/login'))
   })
 
+  /*
   it('.account(req, res) calls Repo.findByUser and res.render("account.jade")', function () {
     sandbox.stub(Repo, 'findByUser').yields(null, 123)
     var req = {
@@ -160,7 +161,7 @@ describe('The routes module', function () {
     routes.setAccountRepo(req, res)
     assert(res.redirect.calledWith('/account/tt'))
     assert(repo.enableWebHook.calledWith())
-  })
+  }) */
 
   it('.serializeUser() creating a new User', function (done) {
     var ghUser = {

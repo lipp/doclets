@@ -16,6 +16,9 @@ html(lang='en')
 				$('.ui.message .close').on('click', function() {
 					$(this).closest('.message').transition('fade')
 				})
+
+				$('.ui.dropdown').dropdown()
+
 			})
 		style
 			include ../node_modules/normalize.css/normalize.css

@@ -3,7 +3,8 @@ if owner
 		.image
 			img(src=owner.image)
 		.content
-			.header= owner._id
+			.header
+				a(href='/' + owner._id)= owner._id
 			.meta
 				span= owner.name
 			.ui.middle.aligned.very.relaxed.divided.list
@@ -15,15 +16,6 @@ if owner
 					i.mail.icon
 					.content
 						a(href='mailto:' + owner.email)= owner.email
-				.item
-					i.user.icon
-					.content
-						a(href='/' + owner._id) Doclets Profile
-		if user
-			.extra.content
-				a(href='/account')
-					i.setting.icon
-					| Repositories
 
 else
 	h2 No Profile information
