@@ -26,27 +26,38 @@ block content
 				- var first = versions[0]
 				- var packageJson = first && first.data.packageJson || {}
 				- var description = first && first.getDescription() || repo.description
-				h1
-					a.name(href='#')= repo.name
-				h3 by
-					a.user(href='./')= username
-				if description
-					p.description= description
-				else
-					p.description
-						em No description available
+				h1.ui.header
+					.content= repo.name
+						.sub.header by
+							a.user(href='./')= username
+
 				if packageJson.keywords
-					i.icon.tags
-					.ui.horizontal.bulleted.list
-						each tag in packageJson.keywords
-							.item= tag
-				h3= '' + versions.length + ' versions documented'
-				.ui.huge.link.list
+					.tags
+						i.icon.tags
+						.ui.large.horizontal.bulleted.list
+							each tag in packageJson.keywords
+								.item= tag
+				if description
+					p.big.description= description
+				else
+					p.big.description
+						em No description available
+				a(href=repo.url, target='_blank')
+					i.github.icon
+					| View on GitHub
+				h3 Doclets:
+				.ui.large.relaxed.celled.list
 					each doclet in versions
 						.item
-							a(href=doclet.repo + '/' +  doclet.version)= doclet.version
+							.image
+								if doclet.type == 'branch'
+									i.fork.icon
+								else
+									i.ticket.icon.image
+							.content
+								a.header(href=doclet.repo + '/' +  doclet.version)= doclet.version
+								p Published #{moment(doclet.createdAt).fromNow()} (#{moment(doclet.createdAt).format('MMMM Do YYYY')})
 				if user && user._id == username
-					h2.ui.dividing.header Settings
 					form.ui.large.form#repos(action='/account/' + repo.name, method='post', name='settings', class=enabled ? 'success' : 'warning')
 						.field
 							.ui.toggle.checkbox
@@ -56,10 +67,6 @@ block content
 								i.icon.close
 								.header Attention
 								p No documentation will be generated, if this switch is disabled.
-							.ui.success.small.message
-								i.icon.close
-								.header Ready!
-								p Documentation will be generated automatically for all branches and new tags.
 						each type in [{type: 'branch', name: 'Branches'}, {type: 'tag', name: 'Tags'}]
 							- var subset = _.where(doclets, {type: type.type}) 
 							if subset.length > 0

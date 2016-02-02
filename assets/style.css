@@ -28,6 +28,15 @@ body {
 }
 
 
+div.tags {
+		margin-top: -2em;
+		margin-bottom: 1em;
+}
+
+.big.description {
+		font-size: 16px;
+}
+
 .main .title {
 		position: relative;
 }
