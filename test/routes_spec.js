@@ -27,10 +27,14 @@ describe('The routes module', function () {
     routes.authGithub()
   })
 
-  it('.authGithubCallback(req, res) saves session and redirects to /', function () {
+  it('.authGithubCallback(req, res) saves session and redirects to /<user>', function () {
     var saveCalled
+    sandbox.stub(User, 'findOne').yields(null, {_id: 'horst'})
     var req = {
       session: {
+        passport: {
+          user: 12345
+        },
         save: function (done) {
           saveCalled = true
           done()
@@ -41,7 +45,7 @@ describe('The routes module', function () {
     res.redirect = sinon.spy()
     routes.authGithubCallback(req, res)
     assert.equal(saveCalled, true)
-    assert(res.redirect.calledWith('/'))
+    assert(res.redirect.calledWith('/horst'))
   })
 
   it('.logout(req, res) destroys session and redirects to /', function () {

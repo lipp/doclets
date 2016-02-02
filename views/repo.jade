@@ -1,5 +1,23 @@
 extends layout
 
+block scripts
+	script.
+		$(function() {
+			$('input').change(function() {
+				var hasChanges = false
+				$('input[type=checkbox]').each(function(index, input) {
+					input = $(input)
+					var wasChecked = input.data('waschecked')
+					if (input.prop('checked') && !wasChecked) {
+						hasChanges = true
+					} else if  (!input.prop('checked') && wasChecked) {
+						hasChanges = true
+					}
+				})
+				$('#submit').prop('disabled', !hasChanges)
+			})
+		})
+
 block content
 	.ui.container
 		.ui.grid
@@ -32,7 +50,7 @@ block content
 					form.ui.large.form#repos(action='/account/' + repo.name, method='post', name='settings', class=enabled ? 'success' : 'warning')
 						.field
 							.ui.toggle.checkbox
-								input(type='checkbox', id='enabled', name='enabled', checked=repo.isWebHookEnabled())
+								input(type='checkbox', id='enabled', name='enabled', data-waschecked=enabled, checked=enabled)
 								label(for='enabled') Doclets generation enabled
 							.ui.warning.small.message
 								i.icon.close
@@ -49,10 +67,10 @@ block content
 								each doclet in subset
 									.field
 										.ui.checkbox
-											input(type='checkbox', id=doclet._id, name=doclet._id, checked=true)
+											input(type='checkbox', id=doclet._id, name=doclet._id, data-waschecked=true, checked=true)
 											label= doclet.version
 		
-						input.ui.button.primary(type='submit', value='submit')
+						input.ui.button.primary#submit(type='submit', value='Apply changes', disabled=true)
 					if error
 						.ui.error.message
 							i.close.icon

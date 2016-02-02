@@ -1,4 +1,15 @@
 extends layout.jade
+
+block scripts
+
+	script.
+		$(function() {
+			$('.ui.dropdown').dropdown({
+				onChange: function() {
+					$('#add').prop('disabled', false)
+				}
+			})
+		})
 block content
 	- var docletsByRepository = _.groupBy(doclets, function(doclet) {return doclet.repo})
 	- var enabledRepos = _.filter(repos, function(repo) {return repo.isWebHookEnabled()})
@@ -48,7 +59,7 @@ block content
 										each repo in _.sortBy(disabledRepos, function(repo) {return repo.name.toLowerCase()})
 											.item(data-value=repo._id)= repo.name
 							.four.wide.field
-								button#add.ui.labeled.icon.button.primary(type='submit') 
+								button#add.ui.labeled.icon.button.primary(type='submit', disabled=true) 
 									i.icon.plus
 									| Add
 
