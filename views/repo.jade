@@ -28,7 +28,7 @@ block content
 				- var description = first && first.getDescription() || repo.description
 				h1.ui.header
 					.content= repo.name
-						.sub.header by
+						.sub.header by&nbsp;
 							a.user(href='./')= username
 
 				if packageJson.keywords
