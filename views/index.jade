@@ -1,42 +1,51 @@
 extends layout.jade
 block content
+	.ui.container		
+		.hero
+			h1#logo doclets.io
+			h2#tagline Documentation goes CI
+			span Automated documentation generation for <a href='http://usejsdoc.org'>JSDoc</a>umented Javascript repositories.
+			a#get-started(href=user ? '/' + user._id : '/auth/github') 
+				h3 Get started
+				if user
+					span add your repository
+				else
+					span Login with GitHub
 
-	.hero
-		h1#logo doclets.io
-		h2#tagline Documentation goes CI
-		span Automated documentation generation for <a href='http://usejsdoc.org'>JSDoc</a>umented Javascript repositories.
-		a#get-started(href='/howto') 
-			h3 Get started
-			span add your repository
-
-	#highlights
-		ul
-			li
-				h3 Automated
-				p Automatically built and published docs for 
-					| <strong>tags</strong> and selectable <strong>branches</strong> 
-  
-			li
-				h3 Hosted
-				p Free hosting at doclets.io for all of your projects.
-					| Don't mess around with domains and servers any more!
-  
-			li 
-				h3 Hassle-free
-				p A super simple configuration file lets you add <em>Javascript</em> and <em>Markdown</em> files
-					| to your documentation
-
-	#recents
-		h2 recently updated doclets 123
-		ul
-			each docletParams in doclets
-				- var doclet = docletParams.doclet
-				li.doclet
-					h3
-						a(href=doclet.owner + '/' + doclet.repo)= doclet.repo
-					p.description= doclet.getDescription()
-					p.version
-						a(href=doclet.owner + '/' + doclet.repo + '/' + doclet.version)= doclet.version
-						| &nbsp;published #{moment(doclet.createdAt).fromNow()} by&nbsp;
-						a(href=doclet.owner)= doclet.owner
-
+						
+	
+		//#highlights
+			ul
+				li
+					h3 Automated
+					p Automatically built and published docs for 
+						| <strong>tags</strong> and selectable <strong>branches</strong>  
+				li
+					h3 Hosted
+					p Free hosting at doclets.io for all of your projects.
+						| Don't mess around with domains and servers any more!
+	  
+				li 
+					h3 Hassle-free
+					p A super simple configuration file lets you add <em>Javascript</em> and <em>Markdown</em> files
+						| to your documentation
+	
+		.recents
+			h3.ui.dividing.header recently updated doclets
+			.ui.three.stacked.cards
+				each docletParams in doclets
+					- var doclet = docletParams.doclet
+					.card
+						.content
+							.header
+								a(href=doclet.getDocletUrl())= doclet.repo
+								.meta
+									span= doclet.version
+	
+							.description= doclet.getDescription()
+								br
+								a(href=doclet.getRepoUrl()) all versions
+						.extra.content
+							span Published #{moment(doclet.createdAt).fromNow()} by&nbsp;
+								a(href=doclet.owner)= doclet.owner
+	
