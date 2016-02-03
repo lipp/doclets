@@ -19,7 +19,7 @@ block content
 		.ui.grid
 			.twelve.wide.column
 				if isOwnProfile
-					if repos.length != 0
+					if repos.length == 0
 						.ui.message.info
 							i.icon.close
 							.header Welcome #{user._id},
