@@ -18,12 +18,21 @@ block content
 	.ui.container
 		.ui.grid
 			.twelve.wide.column
-				if repos.length == 0
-					.ui.message.info
-						i.icon.close
-						.header No Repositories added yet.
-						p Add one of your GitHub repositories from the list below and press "add". 
-
+				if isOwnProfile
+					if repos.length != 0
+						.ui.message.info
+							i.icon.close
+							.header Welcome #{user._id},
+							p great to have you here!
+							p You have no repositories added to Doclets yet.
+								| Add one of your GitHub repositories from the <a href="#add">list below</a> and press "add". 
+					if repos.length > 0 && doclets.length == 0
+						.ui.message.info
+							i.icon.close
+							.header Almost done...
+							p You are close to create your first automated generated Doclet.
+							p To create a Doclet, just create a <a>.doclets.yml</a> file and push your changes to
+								| your respective GitHub repository.
 
 				.ui.two.stacked.cards
 					each repo in _.sortBy(repos, function(repo) {return repo.name.toLowerCase()})
