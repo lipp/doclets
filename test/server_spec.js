@@ -84,13 +84,6 @@ describe('The server module', function () {
     })
   })
 
-  it('GET /login', function (done) {
-    request('http://localhost:4444/login', function (err, res, body) {
-      assert.equal(res.statusCode, 200)
-      done(err)
-    })
-  })
-
   it('GET /search?q=' + repoName, function (done) {
     request('http://localhost:4444/search?q=' + repoName, function (err, res, body) {
       assert.equal(res.statusCode, 200)
