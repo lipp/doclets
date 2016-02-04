@@ -97,13 +97,14 @@ block header
 
 block content
 	#title
-		h1= repo
+		h1= doclet.repo
 		h2 by
 			a(href='/' + doclet.owner)= ' ' + doclet.owner
-				img.ui.left.spaced.avatar.image(src=doclet._owner.image, style='border-radius: 0px;')
+				if doclet._owner
+					img.ui.left.spaced.avatar.image(src=doclet._owner.image, style='border-radius: 0px;')
 		h3.version= doclet.version
 		h4
-			a(href=versionsPath) other versions
+			a(href=doclet.getRepoUrl()) all versions
 	#xxx.api
 		#nav-wrap
 			include nav.jade
