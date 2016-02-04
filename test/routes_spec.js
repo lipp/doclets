@@ -152,6 +152,46 @@ describe('The routes module', function () {
     })
   })
 
+  it('.sync(req, res) calls Repo.sync and redirects to "/user"', function () {
+    sandbox.stub(Repo, 'sync').yields(null)
+    var req = {
+      user: {
+        _id: 'asd2',
+        token: 'asd'
+      },
+      params: {
+        user: 'asd2'
+      }
+    }
+    var res = {}
+    res.redirect = sinon.spy()
+    routes.sync(req, res)
+    var resArgs = res.redirect.args[0]
+    assert.equal(resArgs[0], '/asd2')
+  })
+
+  it('.sync(req, res) calls Repo.sync and fails 500', function () {
+    sandbox.stub(Repo, 'sync').yields('argh')
+    var req = {
+      user: {
+        _id: 'asd2',
+        token: 'asd'
+      },
+      params: {
+        user: 'asd2'
+      }
+    }
+    var res = {}
+    res.status = sinon.spy(function () {
+      return {
+        send: function () {}
+      }
+    })
+    routes.sync(req, res)
+    var resArgs = res.status.args[0]
+    assert.equal(resArgs[0], 500)
+  })
+
   it('.serializeUser() creating a new User', function (done) {
     var ghUser = {
       profile: {
