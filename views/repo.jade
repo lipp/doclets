@@ -15,6 +15,13 @@ block scripts
 					}
 				})
 				$('#submit').prop('disabled', !hasChanges)
+				setTimeout(function() {
+					if (!$('#enabled').prop('checked')) {
+						$('form').addClass('warning')
+					} else {
+						$('form').removeClass('warning')
+					}
+				}, 500)
 			})
 		})
 
@@ -24,7 +31,17 @@ block content
 			- var enabled = repo.isWebHookEnabled()
 			- var isOwnRepo = user && user._id === username
 			.twelve.wide.column
-				if versions.length == 0 && enabled
+				if error
+					.ui.error.message
+						i.close.icon
+						.header Changes not applied.
+						p= error
+				if result
+					.ui.success.message
+						i.close.icon
+						.header Changes applied
+							
+				if !error && !result && versions.length == 0 && enabled && isOwnRepo
 					.ui.message.info
 						i.icon.close
 						.header Great,
@@ -78,19 +95,8 @@ block content
 							.ui.warning.small.message
 								i.icon.close
 								.header Attention
-								p No documentation will be generated, if this switch is disabled.
+								p No documentation will be generated, if this switch is turned off.
 		
 						input.ui.button.primary#submit(type='submit', value='Apply changes', disabled=true)
-					if error
-						.ui.error.message
-							i.close.icon
-							.header Changes not applied.
-							p= error
-					if result
-						.ui.success.message
-							i.close.icon
-							.header
-								Change applied successfully.
-							p= result
 			.four.wide.column
 				include profile.jade
