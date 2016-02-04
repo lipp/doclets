@@ -179,5 +179,24 @@ describe('The doclet module', function () {
         done()
       })
     })
+
+    it('.hasUserAccess() when public is true', function () {
+      assert.equal(doclet.hasUserAccess(), true)
+    })
+
+    it('.hasUserAccess() when NOT public is false', function () {
+      doclet.isPublic = false
+      assert.equal(doclet.hasUserAccess(), false)
+    })
+
+    it('.hasUserAccess({_id: <owner>}) when NOT public is true', function () {
+      doclet.isPublic = false
+      assert.equal(doclet.hasUserAccess({_id: 'lipp'}), true)
+    })
+
+    it('.hasUserAccess({_id: <other>}) when NOT public is false', function () {
+      doclet.isPublic = false
+      assert.equal(doclet.hasUserAccess({_id: 'lipp2'}), false)
+    })
   })
 })

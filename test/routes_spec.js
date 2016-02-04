@@ -8,6 +8,12 @@ var User = require('../lib/models/user')
 var _ = require('underscore')
 var moment = require('moment')
 
+var fakeDoclet = {
+  hasUserAccess: function () {
+    return true
+  }
+}
+
 describe('The routes module', function () {
   var routes
   var sandbox
@@ -93,7 +99,7 @@ describe('The routes module', function () {
   })
 
   it('.user(req, res) (own repo) res.render("user.jade")', function () {
-    sandbox.stub(Doclet, 'findByOwner').yields(null, 345)
+    sandbox.stub(Doclet, 'findByOwner').yields(null, [fakeDoclet])
     sandbox.stub(User, 'findById').yields(null, 555)
     sandbox.stub(Repo, 'findOrSyncByUser').yields(null, 123)
     var req = {
@@ -116,14 +122,14 @@ describe('The routes module', function () {
       repos: 123,
       _: _,
       owner: 555,
-      doclets: 345,
+      doclets: [fakeDoclet],
       moment: moment,
       username: 'asd'
     })
   })
 
   it('.user(req, res) (other repo) res.render("user.jade")', function () {
-    sandbox.stub(Doclet, 'findByOwner').yields(null, 345)
+    sandbox.stub(Doclet, 'findByOwner').yields(null, [fakeDoclet])
     sandbox.stub(User, 'findById').yields(null, 555)
     sandbox.stub(Repo, 'find').yields(null, 123)
     var req = {
@@ -146,7 +152,7 @@ describe('The routes module', function () {
       repos: 123,
       _: _,
       owner: 555,
-      doclets: 345,
+      doclets: [fakeDoclet],
       moment: moment,
       username: 'asd'
     })
@@ -253,6 +259,44 @@ describe('The routes module', function () {
     var resArgs = res.redirect.args[0]
     assert(req.flash.calledWith, 'error', 'argh')
     assert.equal(resArgs[0], '/asd2/foo')
+  })
+
+  it('.addRepo(req, res) calls Repo.findById and enables webhook', function () {
+    sandbox.stub(Repo, 'findById').yields(null, {enableWebHook: function (done) { done() }})
+    var req = {
+      params: {
+        user: 'lipp'
+      },
+      body: {
+        repo: 'lipp/foo'
+      }
+    }
+    var res = {}
+    req.flash = sinon.spy()
+    res.redirect = sinon.spy()
+    routes.addRepo(req, res)
+    var resArgs = res.redirect.args[0]
+    assert(req.flash.calledWith, 'result')
+    assert.equal(resArgs[0], '/lipp/foo')
+  })
+
+  it('.addRepo(req, res) calls Repo.findById and enables webhook', function () {
+    sandbox.stub(Repo, 'findById').yields('argh')
+    var req = {
+      params: {
+        user: 'lipp'
+      },
+      body: {
+        repo: 'lipp/foo'
+      }
+    }
+    var res = {}
+    req.flash = sinon.spy()
+    res.redirect = sinon.spy()
+    routes.addRepo(req, res)
+    var resArgs = res.redirect.args[0]
+    assert(req.flash.calledWith, 'error', 'argh')
+    assert.equal(resArgs[0], '/lipp')
   })
 
   it('.serializeUser() creating a new User', function (done) {
