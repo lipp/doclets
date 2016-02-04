@@ -6,6 +6,19 @@ html(lang='en')
 		link(rel='canonical', href='https://www.doclets.io/')
 		link(href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext', rel='stylesheet', type='text/css')
 		link(rel='stylesheet', href='/index-style.css')
+		link(rel='stylesheet', href='/style.css')
+		link(rel="stylesheet", href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/styles/default.min.css")
+		link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.css')
+		script(src='//cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js')
+		script(src='//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.js')
+
+		script.
+			$(function() {
+				$('.ui.message .close').on('click', function() {
+					$(this).closest('.message').transition('fade')
+				})
+
+			})
 		style
 			include ../node_modules/normalize.css/normalize.css
 
@@ -19,23 +32,25 @@ html(lang='en')
 			a#slogan(href='/') Documentation is fun
 			a#setup(href='/howto') How to 
 			a#jsdoc(href='http://usejsdoc.org/') JSDoc
-		header
-			a#logo(href='/') logo
-			include searchform.jade
-			if user
-				#user
-					a.account(href='/' + user._id)= user._id
-					a.logout(href='/logout') log out
-				a.avatar(href='/' + user._id)
-					img(src=user.image)
-			else
-				a.login(href='/auth/github') Log in
-					span with GitHub
+
+		block header 
+			header
+				a#logo(href='/') logo
+				include searchform.jade
+				if user
+					#user
+						a.account(href='/' + user._id)= user._id
+						a.logout(href='/logout') log out
+					a.avatar(href='/' + user._id)
+						img(src=user.image)
+				else
+					a.login(href='/auth/github') Log in
+						span with GitHub
 		
 
 		block content
 
-		footer
+		//footer
 			h4#greet Made with &hearts; in &nbsp;
 				a(href='https://www.google.de/maps/place/Darmstadt/data=!4m2!3m1!1s0x47bd70641173cdd9:0x422435029b0c5f0?sa=X&ved=0ahUKEwjA09z6x4nKAhUEzRQKHZtaC2cQ8gEIHjAA') Darmstadt
 

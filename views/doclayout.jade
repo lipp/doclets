@@ -24,13 +24,9 @@ extends layout
 
 block styles
 	link(rel="stylesheet", href="/style.css")
-	link(rel="stylesheet", href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/styles/default.min.css")
-	link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.css')
 
 block scripts
-	script(src='//cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js')
 	script(src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/highlight.min.js")
-	script(src='//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.js')
 	script(src='//cdnjs.cloudflare.com/ajax/libs/jquery-smooth-scroll/1.7.1/jquery.smooth-scroll.min.js')
 	script(src='//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js')
 	script(src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js")
@@ -57,21 +53,27 @@ block scripts
 		})
 	script.
 		$(function() {
-		$('a[href^="#"').on('click', function(e) {
+			var controller = new ScrollMagic.Controller();
+			var scene = new ScrollMagic.Scene({triggerElement: '#xxx', triggerHook: 0.0})
+				.setPin('#api-nav')
+				.addTo(controller)
+		})
+	script.
+		$(function() {
+		$('a').on('click', function(e) {
+			if (this.hash.indexOf('#') !== 0) {
+				return;
+			}
 			var target = this.hash.substr(1);
-			//console.log(target)
 			var el = document.getElementById(target);
-			//console.log(el && true)
-			//e.preventDefault()
 			$.smoothScroll({
-				scrollElement: $('.main'),
 				scrollTarget: $(el),
-				offset: -1 * $('.main').scrollTop() - 200
+				offset: -1 * $('.main').scrollTop() - 50
 			});
-			//return false;
 		}) })
 	script.
 		$(function() {
+			console.log('init semantic ui')
 			$('nav .module > .ui.accordion').accordion({
 				selector: {
 					trigger: '.title .icon',
@@ -90,11 +92,23 @@ block scripts
 			console.log(window.location.href);
 		};
 
+
+block header
+
 block content
-	.api
-		include nav.jade
+	#title
+		h1= doclet.repo
+		h2 by
+			a(href='/' + doclet.owner)= ' ' + doclet.owner
+				if doclet._owner
+					img.ui.left.spaced.avatar.image(src=doclet._owner.image, style='border-radius: 0px;')
+		h3.version= doclet.version
+		h4
+			a(href=doclet.getRepoUrl()) all versions
+	#xxx.api
+		#nav-wrap
+			include nav.jade
 		.main
 			block api
-
 
 

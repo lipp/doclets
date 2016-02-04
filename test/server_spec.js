@@ -30,13 +30,14 @@ describe('The server module', function () {
 
   before(function (done) {
     var dir = path.join(__dirname, '../fixtures', 'minimal_1')
+    var repoId = [userName, repoName].join('/')
 
     var doclet = new Doclet()
     doclet._id = [userName, repoName, version].join('/')
     doclet.version = version
     doclet.type = 'tag'
     doclet.repo = repoName
-    doclet._repo = repoName
+    doclet._repo = repoId
     doclet.owner = userName
     doclet._owner = userName
     doclet.tagOrHash = '1235'
@@ -52,7 +53,7 @@ describe('The server module', function () {
     user.image = 'bla'
 
     var repo = new Repo()
-    repo._id = [userName, repoName].join('/')
+    repo._id = repoId
     repo.name = repoName
     repo.owner = userName
     repo._owner = userName
@@ -83,23 +84,8 @@ describe('The server module', function () {
     })
   })
 
-  it('GET /login', function (done) {
-    request('http://localhost:4444/login', function (err, res, body) {
-      assert.equal(res.statusCode, 200)
-      done(err)
-    })
-  })
-
   it('GET /search?q=' + repoName, function (done) {
     request('http://localhost:4444/search?q=' + repoName, function (err, res, body) {
-      assert.equal(res.statusCode, 200)
-      done(err)
-    })
-  })
-
-  it('GET /account redirects', function (done) {
-    request('http://localhost:4444/account', function (err, res, body) {
-      assert.equal(res.request.uri.pathname, '/login')
       assert.equal(res.statusCode, 200)
       done(err)
     })

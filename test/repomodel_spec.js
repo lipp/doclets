@@ -34,10 +34,10 @@ describe('The repo model module', function () {
     sandbox.restore()
   })
 
-  it('.findByUser with sync=true returns fake repos', function (done) {
+  it('.findOrSyncByUser returns fake repos', function (done) {
     sandbox.stub(repoModule, 'getUserRepos').yields(null, repoData)
     sandbox.stub(repoModule, 'getHook').yields(null, 123)
-    Repo.findByUser('lipp', 'noauth', true, function (err, repos) {
+    Repo.findOrSyncByUser('lipp', 'noauth', function (err, repos) {
       if (err) {
         done(err)
       } else {
@@ -49,33 +49,36 @@ describe('The repo model module', function () {
     })
   })
 
-  it('.findByUser twice with sync=true will update from changed fake data', function (done) {
+  it('.findOrSyncByUser .sync .findOrSyncByUser will update from changed fake data', function (done) {
     sandbox.stub(repoModule, 'getUserRepos').yields(null, repoData)
     sandbox.stub(repoModule, 'getHook').yields(null, 123)
-    Repo.findByUser('lipp', 'noauth', true, function (err, repos) {
+    Repo.findOrSyncByUser('lipp', 'noauth', function (err, repos) {
       if (err) {
         done(err)
       } else {
         assert.equal(repos[0].stars, 0)
         assert.equal(repos.length, 4)
         repoData[0].stargazers_count = 2
-        Repo.findByUser('lipp', 'noauth', true, function (err, repos) {
-          repoData[0].stargazers_count = 0
-          if (err) {
-            done(err)
-          } else {
-            assert.equal(repos[0].stars, 2)
-            done()
-          }
+        Repo.sync('lipp', 'blatoken', function (err) {
+          assert(!err)
+          Repo.findOrSyncByUser('lipp', 'noauth', function (err, repos) {
+            repoData[0].stargazers_count = 0
+            if (err) {
+              done(err)
+            } else {
+              assert.equal(repos[0].stars, 2)
+              done()
+            }
+          })
         })
       }
     })
   })
 
-  it('.findByUser with sync=false will update from fake data (since repos.length ===0)', function (done) {
+  it('.findOrSyncByUser with will update from fake data (since repos.length ===0)', function (done) {
     sandbox.stub(repoModule, 'getUserRepos').yields(null, repoData)
     sandbox.stub(repoModule, 'getHook').yields(null, 123)
-    Repo.findByUser('lipp', 'noauth', false, function (err, repos) {
+    Repo.findOrSyncByUser('lipp', 'noauth', function (err, repos) {
       if (err) {
         done(err)
       } else {
@@ -87,9 +90,9 @@ describe('The repo model module', function () {
     })
   })
 
-  it('.findByUser with sync=false will update from fake data (since repos.length ===0)', function (done) {
+  it('.findOrSyncByUser will update from Repo data', function (done) {
     sandbox.stub(Repo, 'find').yields(null, [1, 2, 3])
-    Repo.findByUser('lipp', 'noauth', false, function (err, repos) {
+    Repo.findOrSyncByUser('lipp', 'noauth', function (err, repos) {
       if (err) {
         done(err)
       } else {
@@ -116,7 +119,7 @@ describe('The repo model module', function () {
       sandbox.stub(repoModule, 'getUserRepos').yields(null, repoData)
       sandbox.stub(repoModule, 'getHook').yields(null, 123)
       sandbox.stub(repoModule, 'addHook').yields(null, {active: true})
-      Repo.findByUser('lipp', 'noauth', true, function (err, repos) {
+      Repo.findOrSyncByUser('lipp', 'noauth', function (err, repos) {
         if (err) {
           done(err)
         } else {
@@ -139,7 +142,7 @@ describe('The repo model module', function () {
       sandbox.stub(repoModule, 'getUserRepos').yields(null, repoData)
       sandbox.stub(repoModule, 'getHook').yields(null, 123)
       sandbox.stub(repoModule, 'removeHook').yields(null, {active: false})
-      Repo.findByUser('lipp', 'noauth', true, function (err, repos) {
+      Repo.findOrSyncByUser('lipp', 'noauth', function (err, repos) {
         if (err) {
           done(err)
         } else {
@@ -151,6 +154,92 @@ describe('The repo model module', function () {
             } else {
               assert.equal(repo.webhook.active, false)
               assert.equal(repo.isWebHookEnabled(), false)
+              done()
+            }
+          })
+        }
+      })
+    })
+
+    it('.updateWebHook(form) enables webhook', function (done) {
+      sandbox.stub(repoModule, 'getUserRepos').yields(null, repoData)
+      sandbox.stub(repoModule, 'getHook').yields(null, {active: false})
+      sandbox.stub(repoModule, 'addHook').yields(null, {active: true})
+      Repo.findOrSyncByUser('lipp', 'noauth', function (err, repos) {
+        if (err) {
+          done(err)
+        } else {
+          var repo = repos[0]
+          assert.equal(repo.isWebHookEnabled(), false)
+          repo.updateWebHook({_enabled: 'on'}, function (err) {
+            if (err) {
+              done(err)
+            } else {
+              assert.equal(repo.isWebHookEnabled(), true)
+              done()
+            }
+          })
+        }
+      })
+    })
+
+    it('.updateWebHook(form) disables webhook', function (done) {
+      sandbox.stub(repoModule, 'getUserRepos').yields(null, repoData)
+      sandbox.stub(repoModule, 'getHook').yields(null, {active: true})
+      sandbox.stub(repoModule, 'removeHook').yields(null, {active: false})
+      Repo.findOrSyncByUser('lipp', 'noauth', function (err, repos) {
+        if (err) {
+          done(err)
+        } else {
+          var repo = repos[0]
+          assert.equal(repo.isWebHookEnabled(), true)
+          repo.updateWebHook({}, function (err) {
+            if (err) {
+              done(err)
+            } else {
+              assert.equal(repo.isWebHookEnabled(), false)
+              done()
+            }
+          })
+        }
+      })
+    })
+
+    it('.updateWebHook(form) does not change (disabled) webhook', function (done) {
+      sandbox.stub(repoModule, 'getUserRepos').yields(null, repoData)
+      sandbox.stub(repoModule, 'getHook').yields(null, {active: false})
+      Repo.findOrSyncByUser('lipp', 'noauth', function (err, repos) {
+        if (err) {
+          done(err)
+        } else {
+          var repo = repos[0]
+          assert.equal(repo.isWebHookEnabled(), false)
+          repo.updateWebHook({}, function (err) {
+            if (err) {
+              done(err)
+            } else {
+              assert.equal(repo.isWebHookEnabled(), false)
+              done()
+            }
+          })
+        }
+      })
+    })
+
+    it('.updateWebHook(form) does not change (enabled) webhook', function (done) {
+      sandbox.stub(repoModule, 'getUserRepos').yields(null, repoData)
+      sandbox.stub(repoModule, 'getHook').yields(null, {active: true})
+      Repo.findOrSyncByUser('lipp', 'noauth', function (err, repos) {
+        if (err) {
+          done(err)
+        } else {
+          var repo = repos[0]
+          assert.equal(repo.isWebHookEnabled(), true)
+          repo.updateWebHook({_enabled: 'on'}, function (err) {
+            if (err) {
+              done(err)
+            } else {
+              assert.equal(repo.isWebHookEnabled(), true)
               done()
             }
           })

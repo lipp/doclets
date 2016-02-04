@@ -1,20 +1,89 @@
 extends layout.jade
+
+block scripts
+
+	script.
+		$(function() {
+			$('.ui.dropdown').dropdown({
+				onChange: function() {
+					$('#add').prop('disabled', false)
+				}
+			})
+		})
 block content
-	.user-split
-		include profile.jade
+	- var docletsByRepository = _.groupBy(doclets, function(doclet) {return doclet.repo})
+	- var enabledRepos = _.filter(repos, function(repo) {return repo.isWebHookEnabled()})
+	- var disabledRepos = _.filter(repos, function(repo) {return !repo.isWebHookEnabled()})
+	- var isOwnProfile = user && user._id === username
+	.ui.container
+		.ui.grid
+			.twelve.wide.column
+				if isOwnProfile
+					if repos.length == 0
+						.ui.message.info
+							i.icon.close
+							.header Welcome #{user._id},
+							p great to have you here!
+							p You have no repositories added to Doclets yet.
+								| Add one of your GitHub repositories from the <a href="#add">list below</a> and press "add". 
+					if repos.length > 0 && doclets.length == 0
+						.ui.message.info
+							i.icon.close
+							.header Almost done...
+							p You are close to create your first automated generated Doclet.
+							p To create a Doclet, just create a <a>.doclets.yml</a> file and push your changes to
+								| your respective GitHub repository.
+
+				.ui.two.stacked.cards
+					each repo in _.sortBy(repos, function(repo) {return repo.name.toLowerCase()})
+						- var versions = docletsByRepository[repo.name]
+						if repo.isWebHookEnabled() || versions
+							.ui.card
+								.content
+									.header
+										a(href=username + '/' + repo.name)= repo.name
+										if repo.isWebHookEnabled()
+											i.tiny.middle.aligned.green.check.icon
+										else
+											i.tiny.middle.aligned.red.remove.icon
+									.description= repo.description
+								.extra.content
+									if versions
+										.ui.horizontal.bulleted.link.list
+											each version in _.map(versions, function(doclet) {return doclet.version})
+												a.item(href=username + '/' + name + '/' + version)= version
+									else
+										em No Doclets available yet
+
+				if isOwnProfile
+					.ui.dividing.header
+					form.ui.form(method='post', action='/account/addrepo')
+						.fields
+							.six.wide.field
+								.ui.fluid.dropdown.labeled.search.icon.button
+									i.icon.search
+									span.text Select Repository
+									input(type='hidden', name='repo')
+									.menu
+										each repo in _.sortBy(disabledRepos, function(repo) {return repo.name.toLowerCase()})
+											.item(data-value=repo._id)= repo.name
+							.four.wide.field
+								button#add.ui.labeled.icon.button.primary(type='submit', disabled=true) 
+									i.icon.plus
+									| Add
+					form.ui.large.from(action='/sync', method='post')
+						button.ui.labeled.icon.button(type='submit')
+							i.refresh.icon
+							| Sync
+
+			.four.wide.column
+				include profile.jade
+				.ui.two.statistics
+					.ui.statistic
+						.value= doclets.length
+						.label Doclets
+					.ui.statistic
+						.value= enabledRepos.length
+						.label Repositories
 		
-		#repos
-			h3= '' + doclets.length + ' doclets by ' + username
-			ul.versions
-				each docletsByName, name in _.groupBy(doclets, function(doclet) {return doclet.repo})
-					- var first = docletsByName[0]
-					li.doclet
-						h3
-							a(href=username + '/' + name)= first.repo
-						p.description= first.description
-						p.version
-							ul
-								each version in _.map(docletsByName, function(doclet) {return doclet.version})
-									li
-										a(href=username + '/' + name + '/' + version)= version
 

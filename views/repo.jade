@@ -1,28 +1,102 @@
 extends layout
 
-block content
-	if error
-		.message
-			span= error
-	if result
-		.message
-			span= result
-	.user-split
-		include profile.jade
-		
-		#settings
-			h1= repo.name
-			form#repos(action='/account/' + repo.name, method='post', name='settings')
-				label(for='enabled') CI enabled
-				input(type='checkbox', id='enabled', name='enabled', checked=repo.isWebHookEnabled())
-				//input(name='asd')
-				each type in [{type: 'branch', name: 'Branches'}, {type: 'tag', name: 'Tags'}]
-					- var subset = _.where(doclets, {type: type.type}) 
-					if subset.length > 0
-						h4= type.name
-						each doclet in subset
-							span= doclet.name
-							label(for=doclet.name) published
-							input(type='checkbox', id=doclet.name, name=doclet.name, checked=!doclet.muted)= doclet.name
+block scripts
+	script.
+		$(function() {
+			$('input').change(function() {
+				var hasChanges = false
+				$('input[type=checkbox]').each(function(index, input) {
+					input = $(input)
+					var wasChecked = input.data('waschecked')
+					if (input.prop('checked') && !wasChecked) {
+						hasChanges = true
+					} else if  (!input.prop('checked') && wasChecked) {
+						hasChanges = true
+					}
+				})
+				$('#submit').prop('disabled', !hasChanges)
+				setTimeout(function() {
+					if (!$('#enabled').prop('checked')) {
+						$('form').addClass('warning')
+					} else {
+						$('form').removeClass('warning')
+					}
+				}, 500)
+			})
+		})
 
-				input(type='submit', value='submit')
+block content
+	.ui.container
+		.ui.grid
+			- var enabled = repo.isWebHookEnabled()
+			- var isOwnRepo = user && user._id === username
+			.twelve.wide.column
+				if error
+					.ui.error.message
+						i.close.icon
+						.header Changes not applied.
+						p= error
+				if result
+					.ui.success.message
+						i.close.icon
+						.header Changes applied
+							
+				if !error && !result && versions.length == 0 && enabled && isOwnRepo
+					.ui.message.info
+						i.icon.close
+						.header Great,
+						p Your repository is enabled.
+						p To create the first Doclet for this repository, just create a <a>.doclets.yml</a> file and push your changes to GitHub.
+				- var first = versions[0]
+				- var packageJson = first && first.data.packageJson || {}
+				- var description = first && first.getDescription() || repo.description
+				h1.ui.header
+					.content= repo.name
+						.sub.header by&nbsp;
+							a.user(href='./')= username
+
+				if packageJson.keywords
+					.tags
+						i.icon.tags
+						.ui.large.horizontal.bulleted.list
+							each tag in packageJson.keywords
+								.item= tag
+				if description
+					p.big.description= description
+				else
+					p.big.description
+						em No description available
+				a(href=repo.url, target='_blank')
+					i.github.icon
+					| View on GitHub
+				h3 Doclets:
+				form.ui.form#repos(action='/account/' + repo.name, method='post', name='settings', class=enabled ? 'success' : 'warning')
+					.ui.relaxed.celled.list
+						each doclet in versions
+							.item
+								.image
+									if doclet.type == 'branch'
+										i.fork.icon
+									else
+										i.ticket.icon.image
+								.content
+									a.header(href=doclet.repo + '/' +  doclet.version)= doclet.version
+									p Published #{moment(doclet.createdAt).fromNow()} (#{moment(doclet.createdAt).format('MMMM Do YYYY')})
+									if isOwnRepo
+										.floated.right
+											.ui.checkbox
+												input(type='checkbox', data-waschecked=doclet.isPublic, checked=doclet.isPublic, name='_public-' + doclet.version)
+												label Public
+					if isOwnRepo
+						.field
+							.ui.toggle.checkbox
+								input(type='checkbox', id='enabled', name='_enabled', data-waschecked=enabled, checked=enabled)
+								label(for='_enabled') Doclets generation enabled
+							.ui.warning.small.message
+								i.icon.close
+								.header Attention
+								p No documentation will be generated, if this switch is turned off.
+		
+						input.ui.button.primary#submit(type='submit', value='Apply changes', disabled=true)
+			.four.wide.column
+				include profile.jade

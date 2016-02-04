@@ -6,6 +6,7 @@ mixin funcdecl(func, isCtor)
 		span.link
 			a(href=apiPath + '#' + id)
 		
+- var colors = {'class': 'orange', 'module': 'purple', 'function': 'teal', 'member': 'blue', 'constant': 'red'}
 
 mixin childlist(node, root)
 	each child in childs(node)
@@ -13,56 +14,59 @@ mixin childlist(node, root)
 		- var doclet = child.node.__doclet
 		- var id = doclet && tools.idFromLongname(doclet.longname)
 		if hasChildren
-			.ui.inverted.accordion
+			.ui.inverte.accordion
 				if doclet
 					.title.active(id='nav-' + id)
 						i.dropdown.icon
 						a(href=apiPath + '#' + id)= child.name
-							span.kind(class=doclet.kind)= doclet.kind.substr(0,2).toUpperCase()
+							span.kind.ui.circular.label(class=doclet.kind + ' ' + colors[doclet.kind])
 				else
 					.title.active
 						i.dropdown.icon
 						span= child.name
-							span.kind.ui.red.mini.horizontal.label(class='namespace') {}
+							span.kind(class='namespace') {}
 				.content.active
 					+childlist(child.node)
 		else if doclet
 			.leaf(id='nav-' + id)
 				a(href=apiPath + '#' + id)= child.name
-					span.kind(class=doclet.kind)= doclet.kind.substr(0,2).toUpperCase()
+					span.kind.ui.circular.label(class=doclet.kind + ' ' + colors[doclet.kind])
 
 
 mixin module(module)
 	.module
-		.ui.inverted.accordion
+		.ui.inverte.accordion
 			- var id = tools.idFromLongname(module.longname)
 			.title.active(id='nav-' + id)
 				i.dropdown.icon
 				if module.longname != 'globals'
 					a(href=apiPath + '#' + id)= tools.modulename(module.longname)
-						span.kind(class='module') MO
+						span.kind.ui.circular.label(class='module ' + colors.module)
 				else
 					a(href=apiPath + '#' + id)
 						em Globals
-						span.kind(class='module') MO
+						span.kind.ui.circular.label(class='module ' + colors.module)
 			.content.active
 				+childlist(module.childs)
 
 
-nav.ui.left.inline.inverted.large.vertical.menu.visible
-	.item.header
-		h1= repo
-		span by
-			a(href='../')= ' ' + owner
-				img.ui.left.spaced.avatar.image(src=_owner.image, style='border-radius: 0px;')
-		h2.version= version
-		span
-			a(href=versionsPath) other versions
-	each article in articles
+nav#api-nav.ui.left.inline.inverte.large.vertical.menu.visible
+	#nav-title.item.header
+		h3= doclet.repo
+		h4.version= 'Rev: ' + doclet.version
+	each article in doclet.data.articles
 		a.item(href=articlesPath + article.id)= article.title
 	.item.api
 		h2.header 
 			a(href='#') API
-		each module in tree
-			+module(module)
+		- var tree = doclet.asTree()
+		- var globals = _.findWhere(tree, {longname: 'globals'})
+		if tree.length > 1 && childs(globals).length > 0
+			each module in tree
+				+module(module)
+		else
+			.module
+				+childlist(globals.childs)
+
+
 
