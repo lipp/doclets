@@ -160,5 +160,91 @@ describe('The repo model module', function () {
         }
       })
     })
+
+    it('.updateWebHook(form) enables webhook', function (done) {
+      sandbox.stub(repoModule, 'getUserRepos').yields(null, repoData)
+      sandbox.stub(repoModule, 'getHook').yields(null, {active: false})
+      sandbox.stub(repoModule, 'addHook').yields(null, {active: true})
+      Repo.findOrSyncByUser('lipp', 'noauth', function (err, repos) {
+        if (err) {
+          done(err)
+        } else {
+          var repo = repos[0]
+          assert.equal(repo.isWebHookEnabled(), false)
+          repo.updateWebHook({_enabled: 'on'}, function (err) {
+            if (err) {
+              done(err)
+            } else {
+              assert.equal(repo.isWebHookEnabled(), true)
+              done()
+            }
+          })
+        }
+      })
+    })
+
+    it('.updateWebHook(form) disables webhook', function (done) {
+      sandbox.stub(repoModule, 'getUserRepos').yields(null, repoData)
+      sandbox.stub(repoModule, 'getHook').yields(null, {active: true})
+      sandbox.stub(repoModule, 'removeHook').yields(null, {active: false})
+      Repo.findOrSyncByUser('lipp', 'noauth', function (err, repos) {
+        if (err) {
+          done(err)
+        } else {
+          var repo = repos[0]
+          assert.equal(repo.isWebHookEnabled(), true)
+          repo.updateWebHook({}, function (err) {
+            if (err) {
+              done(err)
+            } else {
+              assert.equal(repo.isWebHookEnabled(), false)
+              done()
+            }
+          })
+        }
+      })
+    })
+
+    it('.updateWebHook(form) does not change (disabled) webhook', function (done) {
+      sandbox.stub(repoModule, 'getUserRepos').yields(null, repoData)
+      sandbox.stub(repoModule, 'getHook').yields(null, {active: false})
+      Repo.findOrSyncByUser('lipp', 'noauth', function (err, repos) {
+        if (err) {
+          done(err)
+        } else {
+          var repo = repos[0]
+          assert.equal(repo.isWebHookEnabled(), false)
+          repo.updateWebHook({}, function (err) {
+            if (err) {
+              done(err)
+            } else {
+              assert.equal(repo.isWebHookEnabled(), false)
+              done()
+            }
+          })
+        }
+      })
+    })
+
+    it('.updateWebHook(form) does not change (enabled) webhook', function (done) {
+      sandbox.stub(repoModule, 'getUserRepos').yields(null, repoData)
+      sandbox.stub(repoModule, 'getHook').yields(null, {active: true})
+      Repo.findOrSyncByUser('lipp', 'noauth', function (err, repos) {
+        if (err) {
+          done(err)
+        } else {
+          var repo = repos[0]
+          assert.equal(repo.isWebHookEnabled(), true)
+          repo.updateWebHook({_enabled: 'on'}, function (err) {
+            if (err) {
+              done(err)
+            } else {
+              assert.equal(repo.isWebHookEnabled(), true)
+              done()
+            }
+          })
+        }
+      })
+    })
   })
 })

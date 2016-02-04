@@ -192,6 +192,69 @@ describe('The routes module', function () {
     assert.equal(resArgs[0], 500)
   })
 
+  it('.changeRepo(req, res) looks up Doclet and Repo and redirects to "/asd2/foo"', function () {
+    sandbox.stub(Doclet, 'find').yields(null, [{updateIsPublic: function (a, done) { done() }}])
+    sandbox.stub(Repo, 'findById').yields(null, {updateWebHook: function (a, done) { done() }})
+    var req = {
+      user: {
+        _id: 'asd2',
+        token: 'asd'
+      },
+      params: {
+        repo: 'foo'
+      }
+    }
+    var res = {}
+    res.redirect = sinon.spy()
+    routes.changeRepo(req, res)
+    var resArgs = res.redirect.args[0]
+    assert.equal(resArgs[0], '/asd2/foo')
+  })
+
+  it('.changeRepo(req, res) looks up Doclet and Repo when fails 500 ', function () {
+    sandbox.stub(Doclet, 'find').yields('argh')
+    sandbox.stub(Repo, 'findById').yields(null, {updateWebHook: function (a, done) { done() }})
+    var req = {
+      user: {
+        _id: 'asd2',
+        token: 'asd'
+      },
+      params: {
+        repo: 'foo'
+      }
+    }
+    var res = {}
+    res.status = sinon.spy(function () {
+      return {
+        send: function () {}
+      }
+    })
+    routes.changeRepo(req, res)
+    var resArgs = res.status.args[0]
+    assert.equal(resArgs[0], 500)
+  })
+
+  it('.changeRepo(req, res) looks up Doclet and Repo when update fails adds flash error ', function () {
+    sandbox.stub(Doclet, 'find').yields(null, [{updateIsPublic: function (a, done) { done('argh') }}])
+    sandbox.stub(Repo, 'findById').yields(null, {updateWebHook: function (a, done) { done() }})
+    var req = {
+      user: {
+        _id: 'asd2',
+        token: 'asd'
+      },
+      params: {
+        repo: 'foo'
+      }
+    }
+    var res = {}
+    req.flash = sinon.spy()
+    res.redirect = sinon.spy()
+    routes.changeRepo(req, res)
+    var resArgs = res.redirect.args[0]
+    assert(req.flash.calledWith, 'error', 'argh')
+    assert.equal(resArgs[0], '/asd2/foo')
+  })
+
   it('.serializeUser() creating a new User', function (done) {
     var ghUser = {
       profile: {
