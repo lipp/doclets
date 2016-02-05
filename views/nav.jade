@@ -51,9 +51,6 @@ mixin module(module)
 
 
 nav#api-nav.ui.left.inline.inverte.large.vertical.menu.visible
-	#nav-title.item.header
-		h3= doclet.repo
-		h4.version= 'Rev: ' + doclet.version
 	each article in doclet.data.articles
 		a.item(href=articlesPath + article.id)= article.title
 	.item.api
