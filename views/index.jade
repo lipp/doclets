@@ -1,31 +1,31 @@
 extends layout.jade
 block content
+	.hero
+		h1.ui.icon.header
+			i.setting.icon
+			.content Doclets
+				.ui.sub.header API-Doc goes CI
+
+		p Automated documentation generation for JSDoc commented Javascript
+		.ui.list
+			.item
+				i.icon.check.circle
+				.content JSDoc
+			.item
+				i.icon.check.circle
+				.content GitHub Integration
+			.item
+				i.icon.check.circle
+				.content Tags and Branches
+		if !user
+			.login
+				a.ui.huge.button.primary#get-started(href='/auth/github') 
+					i.github.icon
+					.wrap
+						span Login with
+						| GitHub
+
 	.ui.container		
-		.hero
-			h1.ui.icon.header
-				i.setting.icon
-				.content Doclets
-					.ui.sub.header Automated API Docs
-
-			p Automated documentation generation for Javascript
-			.ui.list
-				.item
-					i.icon.green.checkmark
-					.content JSDoc
-				.item
-					i.icon.green.checkmark
-					.content GitHub Integration
-				.item
-					i.icon.green.checkmark
-					.content Tags and Branches
-			if !user
-				.login
-					a.ui.huge.button.primary#get-started(href='/auth/github') 
-						i.github.icon
-						.wrap
-							span Login with
-							| GitHub
-
 						
 	
 		//#highlights
@@ -46,13 +46,12 @@ block content
 	
 		.recents
 			h3.ui.dividing.header recently updated doclets
-			.ui.three.stacked.cards
+			.ui.three.stacked.stackable.cards
 				each docletParams in doclets
 					- var doclet = docletParams.doclet
 					.card
 						.content
-							.header
-								a(href=doclet.getDocletUrl())= doclet.repo
+							a.header(href=doclet.getDocletUrl())= doclet.repo
 								.meta
 									span= doclet.version
 	
