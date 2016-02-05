@@ -124,7 +124,8 @@ describe('The routes module', function () {
       owner: 555,
       doclets: [fakeDoclet],
       moment: moment,
-      username: 'asd'
+      username: 'asd',
+      path: '/asd'
     })
   })
 
@@ -154,7 +155,8 @@ describe('The routes module', function () {
       owner: 555,
       doclets: [fakeDoclet],
       moment: moment,
-      username: 'asd'
+      username: 'asd',
+      path: '/asd'
     })
   })
 

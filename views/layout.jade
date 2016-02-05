@@ -28,24 +28,31 @@ html(lang='en')
 			
 	body(itemscope='', itemtype='http://schema.org/WebSite')
 		meta(itemprop='url', content='https://www.doclets.io/')
-		nav
-			a#slogan(href='/') Documentation is fun
-			a#setup(href='/howto') How to 
-			a#jsdoc(href='http://usejsdoc.org/') JSDoc
 
-		block header 
-			header
-				a#logo(href='/') logo
-				include searchform.jade
-				if user
-					#user
-						a.account(href='/' + user._id)= user._id
-						a.logout(href='/logout') log out
-					a.avatar(href='/' + user._id)
-						img(src=user.image)
-				else
-					a.login(href='/auth/github') Log in
-						span with GitHub
+		nav.ui.menu
+			.ui.container
+				a.item(href='/', class= path === '/' ? 'active' : undefined) Doclets
+				if username
+					a.item(href='/' + username, class= !repo && !doclet ? 'active' : undefined)= username
+					if repo
+						a.item(href='/' + repo._id, class= !doclet ? 'active' : undefined)= repo.name
+					else if doclet
+							a.item(href=doclet.getRepoUrl())= doclet.repo
+							a.item.active(href=doclet.getDocletUrl())= doclet.version
+				.right.menu
+					a.item(href='http://usejsdoc.org', target='_blank') JSDoc	
+					if user
+						a.item(href='/logout')
+							i.icon.sign.out 
+							span logout
+						a.item(href='/' + user._id, class= path === ('/' + user._id) ? 'active' : undefined)
+							| Account
+							span.wrap
+								img.ui.avatar.image(src=user.image)
+					else
+						a.item(href='/auth/github')
+							i.icon.sign.in
+							| login
 		
 
 		block content

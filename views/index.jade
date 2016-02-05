@@ -2,15 +2,29 @@ extends layout.jade
 block content
 	.ui.container		
 		.hero
-			h1#logo doclets.io
-			h2#tagline Documentation goes CI
-			span Automated documentation generation for <a href='http://usejsdoc.org'>JSDoc</a>umented Javascript repositories.
-			a#get-started(href=user ? '/' + user._id : '/auth/github') 
-				h3 Get started
-				if user
-					span add your repository
-				else
-					span Login with GitHub
+			h1.ui.icon.header
+				i.setting.icon
+				.content Doclets
+					.ui.sub.header Automated API Docs
+
+			p Automated documentation generation for Javascript
+			.ui.list
+				.item
+					i.icon.green.checkmark
+					.content JSDoc
+				.item
+					i.icon.green.checkmark
+					.content GitHub Integration
+				.item
+					i.icon.green.checkmark
+					.content Tags and Branches
+			if !user
+				.login
+					a.ui.huge.button.primary#get-started(href='/auth/github') 
+						i.github.icon
+						.wrap
+							span Login with
+							| GitHub
 
 						
 	

@@ -50,8 +50,8 @@ block content
 								.extra.content
 									if versions
 										.ui.horizontal.bulleted.link.list
-											each version in _.map(versions, function(doclet) {return doclet.version})
-												a.item(href=username + '/' + name + '/' + version)= version
+											each version in versions
+												a.item(href=version.getDocletUrl())= version.version
 									else
 										em No Doclets available yet
 
