@@ -29,9 +29,11 @@ html(lang='en')
 	body(itemscope='', itemtype='http://schema.org/WebSite')
 		meta(itemprop='url', content='https://www.doclets.io/')
 
-		nav.ui.menu
+		nav.ui.top.large.inverted.fixed.menu
 			.ui.container
-				a.item(href='/', class= path === '/' ? 'active' : undefined) Doclets
+				a.item(href='/', class= path === '/' ? 'active' : undefined) 
+					i.icon.setting
+					| Doclets
 				if username
 					a.item(href='/' + username, class= !repo && !doclet ? 'active' : undefined)= username
 					if repo
@@ -54,7 +56,6 @@ html(lang='en')
 							i.icon.sign.in
 							| login
 		
-
 		block content
 
 		//footer
