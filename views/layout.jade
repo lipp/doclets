@@ -32,7 +32,7 @@ html(lang='en')
 		nav.ui.top.large.inverted.fixed.menu
 			.ui.container
 				a.item(href='/', class= path === '/' ? 'active' : undefined) 
-					i.icon.setting
+					img.icon.logo(src='/logo.svg')
 					| Doclets
 				if username
 					a.item(href='/' + username, class= !repo && !doclet ? 'active' : undefined)= username
@@ -42,7 +42,6 @@ html(lang='en')
 							a.item(href=doclet.getRepoUrl())= doclet.repo
 							a.item.active(href=doclet.getDocletUrl())= doclet.version
 				.right.menu
-					a.item(href='http://usejsdoc.org', target='_blank') JSDoc	
 					if user
 						a.item(href='/logout')
 							i.icon.sign.out 
@@ -59,7 +58,31 @@ html(lang='en')
 		block content
 
 		footer
-			h4#greet Made with &hearts; in &nbsp;
-				a(href='https://www.google.de/maps/place/Darmstadt/data=!4m2!3m1!1s0x47bd70641173cdd9:0x422435029b0c5f0?sa=X&ved=0ahUKEwjA09z6x4nKAhUEzRQKHZtaC2cQ8gEIHjAA') Darmstadt
+			.ui.container.center.aligned
+				.ui.stackable.equal.height.grid
+					.eight.wide.column
+						.ui.large.link.list
+							.header Follow
+							a.item
+								//i.icon.twitter 
+								| @gelipp2000
+							a.item
+								//i.icon.github
+								| GitHub Project
+					.eight.wide.column
+						.ui.large.link.list
+							.header Help
+							a.item
+								//i.icon.ticket
+								| Issue
+							a.item
+								//i.icon.mail
+								| Mail
+							a.item(href='http://usejsdoc.org', target='_blank')
+								//i.icon.question
+								| JSDoc
+				h4.ui.header#greet Made with &hearts; in &nbsp;
+					a(href='https://www.google.de/maps/place/Darmstadt/data=!4m2!3m1!1s0x47bd70641173cdd9:0x422435029b0c5f0?sa=X&ved=0ahUKEwjA09z6x4nKAhUEzRQKHZtaC2cQ8gEIHjAA') Darmstadt
+
 
 

@@ -3,9 +3,9 @@ block content
 	.hero
 		.background
 		h1.ui.icon.header
-			i.setting.icon
+			img.icon.logo(src='logo.svg')
 			.content Doclets
-				.ui.sub.header The API-Doc machine room
+				.ui.sub.header The API-Doc press
 
 		p Automated documentation generation for JSDoc commented Javascript
 		.ui.list
@@ -26,40 +26,24 @@ block content
 						span Login with
 						| GitHub
 
-	.ui.container		
+	.ui.vertical.segment
+		.ui.container		
 						
-	
-		//#highlights
-			ul
-				li
-					h3 Automated
-					p Automatically built and published docs for 
-						| <strong>tags</strong> and selectable <strong>branches</strong>  
-				li
-					h3 Hosted
-					p Free hosting at doclets.io for all of your projects.
-						| Don't mess around with domains and servers any more!
-	  
-				li 
-					h3 Hassle-free
-					p A super simple configuration file lets you add <em>Javascript</em> and <em>Markdown</em> files
-						| to your documentation
-	
-		.recents
-			h3.ui.dividing.header recently updated doclets
-			.ui.three.stacked.stackable.cards
-				each docletParams in doclets
-					- var doclet = docletParams.doclet
-					.card
-						.content
-							a.header(href=doclet.getDocletUrl())= doclet.repo
-								.meta
-									span= doclet.version
-	
-							.description= doclet.getDescription()
-								br
-								a(href=doclet.getRepoUrl()) all versions
-						.extra.content
-							span Published #{moment(doclet.createdAt).fromNow()} by&nbsp;
-								a(href=doclet.owner)= doclet.owner
+			.recents
+				h3.ui.dividing.header recently updated doclets
+				.ui.three.stacked.stackable.cards
+					each docletParams in doclets
+						- var doclet = docletParams.doclet
+						.card
+							.content
+								a.header(href=doclet.getDocletUrl())= doclet.repo
+									.meta
+										span= doclet.version
+		
+								.description= doclet.getDescription()
+									br
+									a(href=doclet.getRepoUrl()) all versions
+							.extra.content
+								span Published #{moment(doclet.createdAt).fromNow()} by&nbsp;
+									a(href=doclet.owner)= doclet.owner
 	

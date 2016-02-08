@@ -81,6 +81,7 @@ body header {
 .hero {
   min-height: 40vh;
   display: flex;
+	overflow: hidden;
   flex-direction: column;
   align-items: center; }
   .hero {
@@ -106,8 +107,8 @@ body header {
 		background-attachment : fixed;
     background-position   : top left;
 		-webkit-filter: saturate(50%) brightness(16%) blur(5px);
-		filter: saturate(80%) brightness(13%) blur(5px);
-		overflow: hidden;
+		transform: translateZ(0);
+		filter: saturate(50%) brightness(13%) blur(5px);
 	}
 
 	.hero > *:not(.background), #title > *:not(.background) {
@@ -223,8 +224,6 @@ footer {
 }
 
 #greet {
-  margin: 0;
-  padding: 0;
-  text-align: center; }
-
+	padding-top: 6em;
+}
 /*# sourceMappingURL=index-style.css.map */

@@ -308,7 +308,7 @@ describe('The routes module', function () {
     routes.addRepo(req, res)
     var resArgs = res.redirect.args[0]
     assert(req.flash.calledWith, 'result')
-    assert.equal(resArgs[0], '/lipp/foo')
+    assert.equal(resArgs[0], '/lipp')
   })
 
   it('.addRepo(req, res) calls Repo.findById and enables webhook', function () {

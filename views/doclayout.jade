@@ -22,8 +22,6 @@ mixin funcdeclx(name, func, isCtor)
 
 extends layout
 
-block styles
-	link(rel="stylesheet", href="/style.css")
 
 block scripts
 	script(src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/highlight.min.js")
@@ -99,12 +97,12 @@ block header
 block content
 	#title
 		.background
-		h1= doclet.repo
-		h2 by
+		h1.ui.inverted.header= doclet.repo
+		h2.version= doclet.version
+		h3 by
 			a(href='/' + doclet.owner)= ' ' + doclet.owner
 				if doclet._owner
 					img.ui.left.spaced.avatar.image(src=doclet._owner.image, style='border-radius: 0px;')
-		h3.version= doclet.version
 		h4
 			a(href=doclet.getRepoUrl()) all versions
 	#xxx.api
@@ -112,5 +110,8 @@ block content
 			include nav.jade
 		.main
 			block api
+	
+	a.big.circular.icon.button#scroll-top(href='#title')
+		i.circular.icon.angle.up
 
 

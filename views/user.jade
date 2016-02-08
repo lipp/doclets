@@ -19,20 +19,20 @@ block content
 		.ui.grid
 			.twelve.wide.column
 				if isOwnProfile
-					if repos.length == 0
+					if enabledRepos.length == 0
 						.ui.message.info
 							i.icon.close
 							.header Welcome #{user._id},
 							p great to have you here!
 							p You have no repositories added to Doclets yet.
 								| Add one of your GitHub repositories from the <a href="#add">list below</a> and press "add". 
-					if repos.length > 0 && doclets.length == 0
+					if enabledRepos.length > 0 && doclets.length == 0
 						.ui.message.info
 							i.icon.close
 							.header Almost done...
-							p You are close to create your first automated generated Doclet.
-							p To create a Doclet, just create a <a>.doclets.yml</a> file and push your changes to
-								| your respective GitHub repository.
+							p You are close to have your first Doclet.
+							p Just create a <a>.doclets.yml</a> file and push your changes to
+								| your respective GitHub repository. Doclets.io will automatically generate the API documentation for you.
 
 				.ui.two.stacked.cards
 					each repo in _.sortBy(repos, function(repo) {return repo.name.toLowerCase()})
