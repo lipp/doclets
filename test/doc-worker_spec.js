@@ -8,6 +8,7 @@ var fs = require('fs')
 var fse = require('fs-extra')
 var path = require('path')
 var docWorker = require('../lib/doc-worker')
+var repo = require('../lib/repo')
 var sinon = require('sinon')
 
 var loadGitHubEvent = function (eventDir) {
@@ -59,6 +60,24 @@ describe('The doc-worker module', function () {
         }
       })
     }, 3000)
+  })
+
+  it('a failing repo.checkout is handled', function (done) {
+    var event = loadGitHubEvent('acme-push')
+    var failed = new Bull('failed', services.redis.port, services.redis.host)
+    failed.on('ready', function () {
+      inbox.add(event)
+      failed.process(function (job, jobDone) {
+        assert.equal(job.data.ref, event.ref)
+        jobDone()
+        inbox.count().then(function (count) {
+          assert.equal(count, 0)
+          done()
+        })
+        failed.close()
+      })
+    })
+    sandbox.stub(repo, 'checkout').throws('some error')
   })
 
   it('a failing Doclet.createFromGitHubEvent is handled', function (done) {
