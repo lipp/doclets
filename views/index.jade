@@ -5,13 +5,13 @@ block content
 		h1.ui.icon.header
 			img.icon.logo(src='logo.svg')
 			.content Doclets
-				.ui.sub.header The API-Doc press
+				.ui.sub.header API-Doc goes <em>CI</em>
 
-		p Automated documentation generation for JSDoc commented Javascript
+		p Automated API documentation generation Javascript
 		.ui.list
 			.item
 				i.icon.check.circle
-				.content JSDoc
+				.content Beautiful &amp; Clear
 			.item
 				i.icon.check.circle
 				.content GitHub Integration
@@ -30,7 +30,7 @@ block content
 		.ui.container		
 						
 			.recents
-				h3.ui.dividing.header recently updated doclets
+				h1.ui.centered.header Newest Doclets
 				.ui.three.stacked.stackable.cards
 					each docletParams in doclets
 						- var doclet = docletParams.doclet

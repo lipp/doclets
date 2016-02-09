@@ -57,32 +57,17 @@ html(lang='en')
 		
 		block content
 
-		footer
+		footer.ui.vertical.segment
 			.ui.container.center.aligned
-				.ui.stackable.equal.height.grid
-					.eight.wide.column
-						.ui.large.link.list
-							.header Follow
-							a.item
-								//i.icon.twitter 
-								| @gelipp2000
-							a.item
-								//i.icon.github
-								| GitHub Project
-					.eight.wide.column
-						.ui.large.link.list
-							.header Help
-							a.item
-								//i.icon.ticket
-								| Issue
-							a.item
-								//i.icon.mail
-								| Mail
-							a.item(href='http://usejsdoc.org', target='_blank')
-								//i.icon.question
-								| JSDoc
-				h4.ui.header#greet Made with &hearts; in &nbsp;
-					a(href='https://www.google.de/maps/place/Darmstadt/data=!4m2!3m1!1s0x47bd70641173cdd9:0x422435029b0c5f0?sa=X&ved=0ahUKEwjA09z6x4nKAhUEzRQKHZtaC2cQ8gEIHjAA') Darmstadt
+				.ui.horizontal.large.bulleted.link.list
+					a.item Twitter
+					a.item GitHub Repo
+					a.item Create Issue
+					a.item Mail
+					a.item(href='http://usejsdoc.org', target='_blank') JSDoc Reference
+
+				h4.ui.header#greet Made with <i class="icon red heart" style="display: inline; font-size: 12px; margin-left: 2px;"> </i>in &nbsp;
+					a(href='https://www.google.de/maps/place/Darmstadt/data=!4m2!3m1!1s0x47bd70641173cdd9:0x422435029b0c5f0?sa=X&ved=0ahUKEwjA09z6x4nKAhUEzRQKHZtaC2cQ8gEIHjAA', style="color: inherit;") Darmstadt
 
 
 
