@@ -80,7 +80,7 @@ list-style-position: inside;
 	width: 300px !important;
 	overflow-y: scroll; /* has to be scroll, not auto */
   -webkit-overflow-scrolling: touch;
-	z-index: 1000;
+	z-index: 10;
 }
 
 .main {
@@ -105,8 +105,76 @@ list-style-position: inside;
 	height: 50%;
 }
 
+.hero {
+	font-size: 140%;
+}
+
+
+nav .item .wrap {
+	height: 14px;
+}
+
+nav .item .wrap > img {
+	top: -50%;
+	border-radius: 0 !important;
+	margin-left: 10px;
+}
+
+footer {
+	padding: 5em 0;
+}
+
+footer > div > * {
+	margin: 2em 0 !important;
+}
+
+nav.ui.menu .item > img:not(.ui) {
+	    width: 25px;
+    margin-right: 7px;
+}
+
 #api-nav.ui.menu {
 	border-radius: 0;
+}
+
+.hero .ui.header > .icon + .content {
+	padding-left: 0;
+}
+
+.icon.logo {
+	-webkit-filter: grayscale(100%) brightness(10);
+	filter: grayscale(100%) brightness(10);
+}
+
+.hero .ui.header > .icon.logo {
+	width: 100px;
+}
+
+.recents .header .meta {
+	font-size: 14px !important;
+}
+
+body > nav {
+	border-bottom: 4px solid orange !important;
+}
+
+body > nav ~ *:not(footer) {
+	margin-top: 40px;
+	padding-top: 30px;
+}
+
+body .ui.vertical.segment {
+	padding-top: 5em;
+	padding-bottom: 5em;
+}
+
+body .ui.cards > .card, body .ui.card {
+	box-shadow: none;
+}
+
+body .ui.cards > .card > .content, body .ui.card > .content {
+	padding-left: 0;
+	padding-right: 0;
 }
 
 .accordion .title.active, .accordion .content.active {
@@ -139,7 +207,7 @@ nav .active-scroll {
 		align-items: center;
 }
 
-.main .title .label, #scroll-top {
+.main .title .label {
 		padding: 10px;
     height: 24px;
     width: 24px;
@@ -434,7 +502,8 @@ samp {
 }
 
 #title {
-	min-height: 400px;
+	position: relative;
+	min-height: 600px;
 	margin: 0 0;
 	background-color: rgba(0, 0, 0, 0.87);
 	color: #e2e2e2;
@@ -442,6 +511,7 @@ samp {
 	flex-direction: column;
 	align-items: center;
 	width: 100%;
+	overflow: hidden;
 }
 
 #title h1 {
