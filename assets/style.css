@@ -31,6 +31,10 @@ body {
 	margin-bottom: 3em !important;
 }
 
+.hero .ui.list {
+	margin-top: 35px;
+}
+
 .hero-header span {
 	border-bottom: 3px solid orange !important;
 }

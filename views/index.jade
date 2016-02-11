@@ -5,9 +5,12 @@ block content
 		h1.ui.icon.header
 			img.icon.logo(src='logo.svg')
 			.content Doclets
-				.ui.sub.header API-Doc goes <em>CI</em>
+				.ui.sub.header JSDoc goes <em>CI</em>
 
 		p Automated API documentation generation Javascript
+		a.github-button(href='https://github.com/lipp/doclets', data-icon='octicon-star', data-style='mega', data-count-href='/lipp/doclets/stargazers', data-count-api='/repos/lipp/doclets#stargazers_count', data-count-aria-label='# stargazers on GitHub', aria-label='Star lipp/doclets on GitHub', style='display: none;') Star
+		script#github-bjs(async='', defer='', src='https://buttons.github.io/buttons.js')
+				
 		.ui.list
 			.item
 				i.icon.check.circle
@@ -30,8 +33,8 @@ block content
 		.ui.container
 			h1.ui.centered.header.hero-header 
 				span How it works
-			.ui.stackable.middle.aligned.grid
-				.ui.six.wide.column
+			.ui.two.column.middle.aligned.stackable.grid
+				.ui.column
 					//.ui.ordered.relaxed.huge.list
 						.item Login with GitHub
 						.item Add a repository
@@ -71,7 +74,7 @@ block content
 								.description Automatically create documentation
 
 
-				.ui.ten.wide.column
+				.ui.column
 					.ui.embed(data-url='https://youtube.com/embed/n-q5N7HEcqQ')
 
 

@@ -61,6 +61,10 @@ html(lang='en')
 							a.item(href=doclet.getRepoUrl())= doclet.repo
 							a.item.active(href=doclet.getDocletUrl())= doclet.version
 				.right.menu
+						.item
+							a.twitter-share-button(href='https://twitter.com/share', data-text='JSDoc goes CI! Automated documentation generation for Javascript.', data-via='doclets_io', data-size='large', data-related='gelipp2000', data-hashtags='doclets') Tweet
+							script.
+								!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
 					if user
 						a.item(href='/logout')
 							i.icon.sign.out 
@@ -79,10 +83,10 @@ html(lang='en')
 		footer.ui.vertical.segment
 			.ui.container.center.aligned
 				.ui.horizontal.large.bulleted.link.list
-					a.item Twitter
-					a.item GitHub Repo
-					a.item Create Issue
-					a.item Mail
+					a.item(href='https://twitter.com/doclets_io') Twitter
+					a.item(href='https://github.com/lipp/doclets') GitHub Repo
+					a.item(href='https://github.com/lipp/doclets/issues') Create Issue
+					a.item(href='mailto:doclets.io@gmail.com') Mail
 					a.item(href='http://usejsdoc.org', target='_blank') JSDoc Reference
 
 				h4.ui.header#greet Made with <i class="icon red heart" style="display: inline; font-size: 12px; margin-left: 2px;"> </i>in &nbsp;
@@ -93,7 +97,6 @@ html(lang='en')
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
 		ga('create', 'UA-42875905-4', 'auto');
 		ga('send', 'pageview');
 
