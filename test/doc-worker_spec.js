@@ -1,7 +1,7 @@
 /* global describe it before beforeEach after afterEach */
 var assert = require('assert')
 var Doclet = require('../lib/models/doclet')
-var services = require('../lib/services')
+var env = require('../lib/env')
 var mongoose = require('mongoose')
 var Bull = require('bull')
 var fs = require('fs')
@@ -26,7 +26,7 @@ describe('The doc-worker module', function () {
 
   before(function (done) {
     docWorker.init(tmpPath)
-    inbox = new Bull('inbox', services.redis.port, services.redis.host)
+    inbox = new Bull('inbox', env.redis.port, env.redis.host)
     inbox.on('ready', done)
   })
 
@@ -64,7 +64,7 @@ describe('The doc-worker module', function () {
 
   it('a failing repo.checkout is handled', function (done) {
     var event = loadGitHubEvent('acme-push')
-    var failed = new Bull('failed', services.redis.port, services.redis.host)
+    var failed = new Bull('failed', env.redis.port, env.redis.host)
     failed.on('ready', function () {
       inbox.add(event)
       failed.process(function (job, jobDone) {
@@ -82,7 +82,7 @@ describe('The doc-worker module', function () {
 
   it('a failing Doclet.createFromGitHubEvent is handled', function (done) {
     var event = loadGitHubEvent('acme-push')
-    var failed = new Bull('failed', services.redis.port, services.redis.host)
+    var failed = new Bull('failed', env.redis.port, env.redis.host)
     failed.on('ready', function () {
       inbox.add(event)
       failed.process(function (job, jobDone) {
@@ -119,7 +119,7 @@ describe('The doc-worker module', function () {
   it('pushing a trash event to the inbox will not create a doclet', function (done) {
     var event = {a: 123}
     sandbox.stub(Doclet, 'createFromGitHubEvent')
-    var failed = new Bull('failed', services.redis.port, services.redis.host)
+    var failed = new Bull('failed', env.redis.port, env.redis.host)
     failed.on('ready', function () {
       inbox.add(event)
       failed.process(function (job, jobDone) {
