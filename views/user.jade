@@ -15,75 +15,76 @@ block content
 	- var enabledRepos = _.filter(repos, function(repo) {return repo.isWebHookEnabled()})
 	- var disabledRepos = _.filter(repos, function(repo) {return !repo.isWebHookEnabled()})
 	- var isOwnProfile = user && user._id === username
-	.ui.container
-		.ui.grid
-			.twelve.wide.column.overview
-				if isOwnProfile
-					if enabledRepos.length == 0
-						.ui.message.info
-							i.icon.close
-							.header Welcome #{user._id},
-							p great to have you here!
-							p You have no repositories added to Doclets yet.
-								| Add one of your GitHub repositories from the <a href="#add">list below</a> and press "add". 
-					if enabledRepos.length > 0 && doclets.length == 0
-						.ui.message.info
-							i.icon.close
-							.header Almost done...
-							p You are close to have your first Doclet.
-							p Just create a <a>.doclets.yml</a> file and push your changes to
-								| your respective GitHub repository. Doclets.io will automatically generate the API documentation for you.
-
-				.ui.one.stacked.cards
-					each repo in _.sortBy(repos, function(repo) {return repo.name.toLowerCase()})
-						- var versions = docletsByRepository[repo.name]
-						if repo.isWebHookEnabled() || versions
-							.ui.card
-								.content
-									.header
-										a(href=username + '/' + repo.name)= repo.name
-										if repo.isWebHookEnabled()
-											i.tiny.middle.aligned.green.check.icon
+	.ui.vertical.segment
+		.ui.container
+			.ui.grid
+				.twelve.wide.column.overview
+					if isOwnProfile
+						if enabledRepos.length == 0
+							.ui.message.info
+								i.icon.close
+								.header Welcome #{user._id},
+								p great to have you here!
+								p You have no repositories added to Doclets yet.
+									| Add one of your GitHub repositories from the <a href="#add">list below</a> and press "add". 
+						if enabledRepos.length > 0 && doclets.length == 0
+							.ui.message.info
+								i.icon.close
+								.header Almost done...
+								p You are close to have your first Doclet.
+								p Just create a <a>.doclets.yml</a> file and push your changes to
+									| your respective GitHub repository. Doclets.io will automatically generate the API documentation for you.
+	
+					.ui.one.stacked.cards
+						each repo in _.sortBy(repos, function(repo) {return repo.name.toLowerCase()})
+							- var versions = docletsByRepository[repo.name]
+							if repo.isWebHookEnabled() || versions
+								.ui.card
+									.content
+										.header
+											a(href=username + '/' + repo.name)= repo.name
+											if repo.isWebHookEnabled()
+												i.tiny.middle.aligned.green.check.icon
+											else
+												i.tiny.middle.aligned.red.remove.icon
+										.description= repo.description
+									.extra.content
+										if versions
+											.ui.horizontal.bulleted.link.list
+												each version in versions
+													a.item(href=version.getDocletUrl())= version.version
 										else
-											i.tiny.middle.aligned.red.remove.icon
-									.description= repo.description
-								.extra.content
-									if versions
-										.ui.horizontal.bulleted.link.list
-											each version in versions
-												a.item(href=version.getDocletUrl())= version.version
-									else
-										em No Doclets available yet
-
-				if isOwnProfile
-					.ui.dividing.header
-					form.ui.form(method='post', action='/account/addrepo')
-						.fields
-							.six.wide.field
-								.ui.fluid.dropdown.labeled.search.icon.button
-									i.icon.search
-									span.text Select Repository
-									input(type='hidden', name='repo')
-									.menu
-										each repo in _.sortBy(disabledRepos, function(repo) {return repo.name.toLowerCase()})
-											.item(data-value=repo._id)= repo.name
-							.four.wide.field
-								button#add.ui.labeled.icon.button.primary(type='submit', disabled=true) 
-									i.icon.plus
-									| Add
-					form.ui.large.from(action='/sync', method='post')
-						button.ui.labeled.icon.button(type='submit')
-							i.refresh.icon
-							| Sync
-
-			.four.wide.column
-				include profile.jade
-				.ui.two.statistics
-					.ui.statistic
-						.value= doclets.length
-						.label Doclets
-					.ui.statistic
-						.value= enabledRepos.length
-						.label Repositories
-		
-
+											em No Doclets available yet
+	
+					if isOwnProfile
+						.ui.dividing.header
+						form.ui.form(method='post', action='/account/addrepo')
+							.fields
+								.six.wide.field
+									.ui.fluid.dropdown.labeled.search.icon.button
+										i.icon.search
+										span.text Select Repository
+										input(type='hidden', name='repo')
+										.menu
+											each repo in _.sortBy(disabledRepos, function(repo) {return repo.name.toLowerCase()})
+												.item(data-value=repo._id)= repo.name
+								.four.wide.field
+									button#add.ui.labeled.icon.button.primary(type='submit', disabled=true) 
+										i.icon.plus
+										| Add
+						form.ui.large.from(action='/sync', method='post')
+							button.ui.labeled.icon.button(type='submit')
+								i.refresh.icon
+								| Sync
+	
+				.four.wide.column
+					include profile.jade
+					.ui.two.statistics
+						.ui.statistic
+							.value= doclets.length
+							.label Doclets
+						.ui.statistic
+							.value= enabledRepos.length
+							.label Repositories
+			
+	
