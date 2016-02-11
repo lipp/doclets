@@ -27,10 +27,40 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
+.hero-header {
+	margin-bottom: 3em !important;
+}
+
+.hero-header span {
+	border-bottom: 3px solid orange !important;
+}
 
 div.tags {
 		margin-top: -2em;
 		margin-bottom: 1em;
+}
+
+#repos .item a.header {
+	margin-bottom: 4px;
+}
+
+#repos .list{
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+#repos .item .floated {
+	position: absolute;
+	right: 0;
+	top: 33px;
+}
+
+#repos .item{
+	position: relative;
+}
+
+#repos .item .description {
+	font-size: 0.8em;
 }
 
 .big.description {

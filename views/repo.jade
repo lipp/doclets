@@ -50,43 +50,45 @@ block content
 				- var first = versions[0]
 				- var packageJson = first && first.data.packageJson || {}
 				- var description = first && first.getDescription() || repo.description
-				h1.ui.header
-					.content= repo.name
-						.sub.header by&nbsp;
-							a.user(href='./')= username
+				.ui.segment
+					h1.ui.header
+						.content= repo.name
+							.sub.header by&nbsp;
+								a.user(href='./')= username
+	
+					if packageJson.keywords
+						.tags
+							i.icon.tags
+							.ui.large.horizontal.bulleted.list
+								each tag in packageJson.keywords
+									.item= tag
+					if description
+						p.big.description= description
+					else
+						p.big.description
+							em No description available
+					a(href=repo.url, target='_blank')
+						i.github.icon
+						| View on GitHub
 
-				if packageJson.keywords
-					.tags
-						i.icon.tags
-						.ui.large.horizontal.bulleted.list
-							each tag in packageJson.keywords
-								.item= tag
-				if description
-					p.big.description= description
-				else
-					p.big.description
-						em No description available
-				a(href=repo.url, target='_blank')
-					i.github.icon
-					| View on GitHub
-				h3 Doclets:
 				form.ui.form#repos(action='/account/' + repo.name, method='post', name='settings', class=enabled ? 'success' : 'warning')
-					.ui.relaxed.celled.list
+					.ui.very.relaxed.divided.big.list
 						each doclet in versions
 							.item
-								.image
+								.middle.aligned.image
 									if doclet.type == 'branch'
-										i.fork.icon
+										i.large.fork.icon
 									else
-										i.ticket.icon.image
-								.content
+										i.large.ticket.icon.image
+								.middle.aligned.content
 									a.header(href=doclet.repo + '/' +  doclet.version)= doclet.version
-									p Published #{moment(doclet.createdAt).fromNow()} (#{moment(doclet.createdAt).format('MMMM Do YYYY')})
-									if isOwnRepo
-										.floated.right
-											.ui.checkbox
-												input(type='checkbox', data-waschecked=doclet.isPublic, checked=doclet.isPublic, name='_public-' + doclet.version)
-												label Public
+									.description
+										p Created #{moment(doclet.createdAt).fromNow()} (#{moment(doclet.createdAt).format('MMMM Do YYYY')})
+								if isOwnRepo
+									.ui.right.floated
+										.ui.slider.checkbox
+											input(type='checkbox', data-waschecked=doclet.isPublic, checked=doclet.isPublic, name='_public-' + doclet.version)
+											label Public
 					if isOwnRepo
 						.field
 							.ui.toggle.checkbox
