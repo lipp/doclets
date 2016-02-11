@@ -136,7 +136,7 @@ list-style-position: inside;
 }
 
 .hero {
-	font-size: 140%;
+	font-size: 130%;
 }
 
 
@@ -197,15 +197,17 @@ body .ui.vertical.segment {
 	padding-top: 5em;
 	padding-bottom: 5em;
 }
-
-body .ui.cards > .card, body .ui.card {
+/*
+body .ui.cards > .card {
 	box-shadow: none;
 }
 
-body .ui.cards > .card > .content, body .ui.card > .content {
+body .ui.cards > .card > .content{
 	padding-left: 0;
 	padding-right: 0;
 }
+
+*/
 
 .accordion .title.active, .accordion .content.active {
 }
@@ -531,9 +533,13 @@ samp {
 	border-radius: 0;
 }
 
+.overview .ui.cards > .card {
+	margin-bottom: 2em;
+}
+
 #title {
 	position: relative;
-	min-height: 600px;
+	min-height: 420px;
 	margin: 0 0;
 	background-color: rgba(0, 0, 0, 0.87);
 	color: #e2e2e2;

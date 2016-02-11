@@ -50,7 +50,7 @@ block content
 				- var first = versions[0]
 				- var packageJson = first && first.data.packageJson || {}
 				- var description = first && first.getDescription() || repo.description
-				.ui.segment
+				//.ui.very.padded.raised.segment
 					h1.ui.header
 						.content= repo.name
 							.sub.header by&nbsp;
@@ -72,7 +72,24 @@ block content
 						| View on GitHub
 
 				form.ui.form#repos(action='/account/' + repo.name, method='post', name='settings', class=enabled ? 'success' : 'warning')
-					.ui.very.relaxed.divided.big.list
+					.ui.fluid.card.repo-info
+						.content
+							.header= repo.name
+							.meta
+								a(href=repo.url, target='_blank')
+									i.github.icon
+									| View on GitHub
+							if description
+								.description= description
+							else
+								.description
+									em No description available
+						.extra.content
+							.field
+								.ui.toggle.checkbox
+									input(type='checkbox', id='enabled', name='_enabled', disabled=!isOwnRepo, data-waschecked=enabled, checked=enabled)
+									label(for='_enabled') Enabled
+					.ui.very.relaxed.divided.large.list
 						each doclet in versions
 							.item
 								.middle.aligned.image
@@ -80,7 +97,7 @@ block content
 										i.large.fork.icon
 									else
 										i.large.ticket.icon.image
-								.middle.aligned.content
+								.content
 									a.header(href=doclet.repo + '/' +  doclet.version)= doclet.version
 									.description
 										p Created #{moment(doclet.createdAt).fromNow()} (#{moment(doclet.createdAt).format('MMMM Do YYYY')})
@@ -89,16 +106,8 @@ block content
 										.ui.slider.checkbox
 											input(type='checkbox', data-waschecked=doclet.isPublic, checked=doclet.isPublic, name='_public-' + doclet.version)
 											label Public
-					if isOwnRepo
-						.field
-							.ui.toggle.checkbox
-								input(type='checkbox', id='enabled', name='_enabled', data-waschecked=enabled, checked=enabled)
-								label(for='_enabled') Doclets generation enabled
-							.ui.warning.small.message
-								i.icon.close
-								.header Attention
-								p No documentation will be generated, if this switch is turned off.
 		
+					if isOwnRepo
 						input.ui.button.primary#submit(type='submit', value='Apply changes', disabled=true)
 			.four.wide.column
 				include profile.jade

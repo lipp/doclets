@@ -17,7 +17,7 @@ block content
 	- var isOwnProfile = user && user._id === username
 	.ui.container
 		.ui.grid
-			.twelve.wide.column
+			.twelve.wide.column.overview
 				if isOwnProfile
 					if enabledRepos.length == 0
 						.ui.message.info
@@ -34,7 +34,7 @@ block content
 							p Just create a <a>.doclets.yml</a> file and push your changes to
 								| your respective GitHub repository. Doclets.io will automatically generate the API documentation for you.
 
-				.ui.two.stacked.cards
+				.ui.one.stacked.cards
 					each repo in _.sortBy(repos, function(repo) {return repo.name.toLowerCase()})
 						- var versions = docletsByRepository[repo.name]
 						if repo.isWebHookEnabled() || versions
