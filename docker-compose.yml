@@ -18,6 +18,10 @@ doc-worker:
   environment:
     - NODE_ENV=dev
   env_file: ./secrets.env
+  log_driver: syslog
+  log_opt:
+    syslog-tag: "{{.Name}}"
+    syslog-address: "udp://logs3.papertrailapp.com:11565"
 
 api-server:
   dockerfile: ./api-server.docker
@@ -29,6 +33,10 @@ api-server:
   environment:
     - NODE_ENV=dev
   env_file: ./secrets.env
+  log_driver: syslog
+  log_opt:
+    syslog-tag: "{{.Name}}"
+    syslog-address: "udp://logs3.papertrailapp.com:11565"
 
 web-server:
   dockerfile: ./web-server.docker
@@ -42,7 +50,19 @@ web-server:
   environment:
     - NODE_ENV=dev
   env_file: ./secrets.env
+  log_driver: syslog
+  log_opt:
+    syslog-tag: "{{.Name}}"
+    syslog-address: "udp://logs3.papertrailapp.com:11565"
 
-  
+datadog:
+  image: datadog/docker-dd-agent
+  environment:
+    - API_KEY=df041f65c73f69be462b9922a9bb9167
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    - /proc/mounts:/host/proc/mounts:ro
+    - /sys/fs/cgroup:/host/sys/fs/cgroup:ro
+  privileged: true  
 
 
