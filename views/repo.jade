@@ -99,9 +99,13 @@ block content
 										else
 											i.large.ticket.icon.image
 									.content
+										- var url = doclet.getDocletUrl()
 										a.header(href=doclet.repo + '/' +  doclet.version)= doclet.version
 										.description
 											p Created #{moment(doclet.createdAt).fromNow()} (#{moment(doclet.createdAt).format('MMMM Do YYYY')})
+											if isOwnRepo
+												img.ui.image(src=url + '.svg')
+											//.badge-url [![API Doc](https://doclets.io/#{url}.svg)](https://doclets.io/#{url})
 									if isOwnRepo
 										.ui.right.floated
 											.ui.slider.checkbox
