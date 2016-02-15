@@ -1,51 +1,109 @@
 extends layout.jade
-block content
-	.ui.container		
-		.hero
-			h1#logo doclets.io
-			h2#tagline Documentation goes CI
-			span Automated documentation generation for <a href='http://usejsdoc.org'>JSDoc</a>umented Javascript repositories.
-			a#get-started(href=user ? '/' + user._id : '/auth/github') 
-				h3 Get started
-				if user
-					span add your repository
-				else
-					span Login with GitHub
 
-						
-	
-		//#highlights
-			ul
-				li
-					h3 Automated
-					p Automatically built and published docs for 
-						| <strong>tags</strong> and selectable <strong>branches</strong>  
-				li
-					h3 Hosted
-					p Free hosting at doclets.io for all of your projects.
-						| Don't mess around with domains and servers any more!
-	  
-				li 
-					h3 Hassle-free
-					p A super simple configuration file lets you add <em>Javascript</em> and <em>Markdown</em> files
-						| to your documentation
-	
-		.recents
-			h3.ui.dividing.header recently updated doclets
-			.ui.three.stacked.cards
-				each docletParams in doclets
-					- var doclet = docletParams.doclet
-					.card
-						.content
-							.header
-								a(href=doclet.getDocletUrl())= doclet.repo
-								.meta
-									span= doclet.version
-	
-							.description= doclet.getDescription()
-								br
-								a(href=doclet.getRepoUrl()) all versions
-						.extra.content
-							span Published #{moment(doclet.createdAt).fromNow()} by&nbsp;
-								a(href=doclet.owner)= doclet.owner
+block title
+	title Doclets
+	meta(name='description', content='JSDoc goes CI. Automated API-Doc generation for Javascript')
+
+block content
+	.hero
+		.background
+		h1.ui.icon.header
+			img.icon.logo(src='logo.svg')
+			.content Doclets
+				.ui.sub.header JSDoc goes <em>CI</em>
+
+		p Automated API-Doc generation for Javascript
+		.social
+			a.twitter-share-button(href='https://twitter.com/share', data-text='JSDoc goes CI! Automated API-Doc generation for Javascript.', data-via='doclets_io', data-size='large', data-related='gelipp2000', data-hashtags='doclets') Tweet
+			script.
+				!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+			a.github-button(href='https://github.com/lipp/doclets', data-icon='octicon-star', data-style='mega', data-count-href='/lipp/doclets/stargazers', data-count-api='/repos/lipp/doclets#stargazers_count', data-count-aria-label='# stargazers on GitHub', aria-label='Star lipp/doclets on GitHub', style='display: none;') Star
+			script#github-bjs(async='', defer='', src='https://buttons.github.io/buttons.js')
+				
+		.ui.list
+			.item
+				i.icon.check.circle
+				.content Beautiful &amp; Clear
+			.item
+				i.icon.check.circle
+				.content GitHub Integration
+			.item
+				i.icon.check.circle
+				.content Tags and Branches
+		if !user
+			.login
+				a.ui.huge.button.primary#get-started(href='/auth/github') 
+					i.github.icon
+					.wrap
+						span Login with
+						| GitHub
+
+	.ui.vertical.segment
+		.ui.container
+			h1.ui.centered.header.hero-header 
+				span How it works
+			.ui.two.column.middle.aligned.stackable.grid
+				.ui.column
+					//.ui.ordered.relaxed.huge.list
+						.item Login with GitHub
+						.item Add a repository
+						.item Create a <em>.doclets.yml</em> file
+						.item Push
+					.ui.small.fluid.vertical.ordered.steps
+						.step
+							.content
+								.title 
+									i.icon.github
+									| Login with GitHub
+								.description Doclets.io needs some permissions
+						.step
+							.content
+								.title 
+									i.icon.plus
+									| Add Repository
+								.description The source must be JSDoc commented
+						.step
+							.content
+								.title 
+									//.doclets.yml
+									i.icon.code 
+									| .doclets.yml
+								.description Create a simple <a href='/doclets.yml'>configuration file</a>
+						.step
+							.content
+								.title 
+									i.icon.cloud.upload
+									| Push
+								.description Commit and push your changes
+						.step
+							.content
+								.title 
+									i.icon.check
+									| Ready
+								.description Let Doclets.io automatically create documentation
+
+
+				.ui.column
+					.ui.embed(data-url='https://youtube.com/embed/n-q5N7HEcqQ')
+
+	.ui.vertical.segment
+		.ui.container
+			.recents
+				h1.ui.centered.header.hero-header 
+					span Newest Doclets
+				.ui.three.stacked.stackable.cards
+					each docletParams in doclets
+						- var doclet = docletParams.doclet
+						.card
+							.content
+								a.header(href=doclet.getDocletUrl())= doclet.repo
+									.meta
+										span= doclet.version
+		
+								.description= doclet.getDescription()
+									br
+									a(href=doclet.getRepoUrl()) all versions
+							.extra.content
+								span Published #{moment(doclet.createdAt).fromNow()} by&nbsp;
+									a(href=doclet.owner)= doclet.owner
 	

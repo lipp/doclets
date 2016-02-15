@@ -81,19 +81,64 @@ body header {
 .hero {
   min-height: 40vh;
   display: flex;
+	overflow: hidden;
   flex-direction: column;
   align-items: center; }
-  .hero #logo {
-    padding-top: 2em;
-    margin: 0; }
-  .hero #get-started {
-    padding: 10px;
-    border: 1px solid; }
+  .hero {
+		position: relative;
+    padding-top: 200px; 
+		padding-bottom: 100px;
+		background-color: #1b1c1d;
+		color: white;
+		}
+	.hero .header .sub.header {
+		color: orange !important;
+	}
+
+	.hero .background, #title .background {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background-image: url('code.jpg');
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-attachment : fixed;
+    background-position   : top left;
+		-webkit-filter: saturate(50%) brightness(16%) blur(5px);
+		transform: translateZ(0);
+		filter: saturate(50%) brightness(13%) blur(5px);
+	}
+
+	.hero > *:not(.background), #title > *:not(.background) {
+		z-index: 1;
+	}
+
+
+	.hero .ui.list, .hero p  {
+		color: #e0e0e0;
+	}
+
+	.hero .header {
+		color: white !important;
+	}
+		.hero #get-started {
+			margin-top: 80px;
+		}
     .hero #get-started span {
       display: block;
+			font-weight: 100;
       font-size: 14px; }
-  .hero * {
-    text-align: center; }
+	
+			#get-started {
+				display: flex;
+			}
+			#get-started .icon {
+				line-height: 41px;
+				font-size: 43px;
+				margin-right: 0;
+			}
 
 #highlights ul {
   color: black;
@@ -176,17 +221,6 @@ body header {
 
 footer {
   min-height: 50px; 
-  position: fixed;
-  z-index: 2;
-  bottom: 0;
-  width: 100%;
-  opacity: 0.9;
-  background-color: white;
 }
-
-#greet {
-  margin: 0;
-  padding: 0;
-  text-align: center; }
 
 /*# sourceMappingURL=index-style.css.map */

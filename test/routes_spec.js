@@ -124,7 +124,8 @@ describe('The routes module', function () {
       owner: 555,
       doclets: [fakeDoclet],
       moment: moment,
-      username: 'asd'
+      username: 'asd',
+      path: '/asd'
     })
   })
 
@@ -154,7 +155,8 @@ describe('The routes module', function () {
       owner: 555,
       doclets: [fakeDoclet],
       moment: moment,
-      username: 'asd'
+      username: 'asd',
+      path: '/asd'
     })
   })
 
@@ -293,9 +295,6 @@ describe('The routes module', function () {
   it('.addRepo(req, res) calls Repo.findById and enables webhook', function () {
     sandbox.stub(Repo, 'findById').yields(null, {enableWebHook: function (done) { done() }})
     var req = {
-      params: {
-        user: 'lipp'
-      },
       body: {
         repo: 'lipp/foo'
       }

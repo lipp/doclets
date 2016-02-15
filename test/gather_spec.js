@@ -54,4 +54,27 @@ describe('The gather module', function () {
       assert.equal(article.markdown, '#hello\n')
     })
   })
+
+  var failing = [
+    {dir: 'missing_dir', message: ''},
+    {dir: 'no_doclets_yml', message: ''},
+    {dir: 'invalid_doclets_yml', message: ''}
+  ]
+
+  failing.forEach(function (fail) {
+    describe(fail.dir + ' fixture', function () {
+      var data
+      before(function () {
+        data = loadFixture(fail.dir)
+      })
+
+      it('does not contain .doclets', function () {
+        assert(!data.doclets)
+      })
+
+      it('defines error', function () {
+        assert(data.error)
+      })
+    })
+  })
 })

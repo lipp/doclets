@@ -3,7 +3,7 @@ var assert = require('assert')
 var apiServer = require('../lib/api-server')
 var request = require('request')
 var Bull = require('bull')
-var services = require('../lib/services')
+var env = require('../lib/env')
 var async = require('async')
 var path = require('path')
 var fs = require('fs')
@@ -26,7 +26,7 @@ describe('The api-server module', function () {
 
   before(function (done) {
     apiServer.init(9876)
-    inbox = new Bull('inbox', services.redis.port, services.redis.host)
+    inbox = new Bull('inbox', env.redis.port, env.redis.host)
     inbox.on('ready', done)
   })
 

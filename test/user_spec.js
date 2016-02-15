@@ -1,12 +1,12 @@
 /* global describe it before beforeEach after */
 var assert = require('assert')
 var User = require('../lib/models/user')
-var services = require('../lib/services')
+var env = require('../lib/env')
 var mongoose = require('mongoose')
 
 describe('The user module', function () {
   before(function (done) {
-    mongoose.connect('mongodb://' + services.mongodb.host, done)
+    mongoose.connect('mongodb://' + env.mongodb.host, done)
   })
 
   after(function (done) {

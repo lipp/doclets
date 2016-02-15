@@ -29,3 +29,5 @@ node_modules
 *.swp
 *.swo
 
+
+secrets.env

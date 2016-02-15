@@ -2,7 +2,7 @@
 var assert = require('assert')
 var Doclet = require('../lib/models/doclet')
 var Repo = require('../lib/models/repo')
-var services = require('../lib/services')
+var env = require('../lib/env')
 var path = require('path')
 var fs = require('fs')
 var mongoose = require('mongoose')
@@ -16,7 +16,7 @@ var loadGitHubEvent = function (eventDir) {
 
 describe('The doclet module', function () {
   before(function () {
-    mongoose.connect('mongodb://' + services.mongodb.host)
+    mongoose.connect('mongodb://' + env.mongodb.host)
   })
 
   after(function () {

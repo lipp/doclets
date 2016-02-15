@@ -3,7 +3,7 @@ var assert = require('assert')
 var Repo = require('../lib/models/repo')
 var User = require('../lib/models/user')
 var repoModule = require('../lib/repo')
-var services = require('../lib/services')
+var env = require('../lib/env')
 var path = require('path')
 var fs = require('fs')
 var mongoose = require('mongoose')
@@ -15,7 +15,7 @@ describe('The repo model module', function () {
   var sandbox
 
   before(function (done) {
-    mongoose.connect('mongodb://' + services.mongodb.host)
+    mongoose.connect('mongodb://' + env.mongodb.host)
     User.remove({}, done)
   })
 

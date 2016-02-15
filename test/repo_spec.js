@@ -1,6 +1,7 @@
 /* global describe it after beforeEach afterEach */
 var assert = require('assert')
 var repo = require('../lib/repo')
+var env = require('../lib/env')
 var fs = require('fs')
 var fse = require('fs-extra')
 var path = require('path')
@@ -53,11 +54,11 @@ describe('The repo module', function () {
       sandbox.stub(repo.github(), 'authenticate').returns()
       sandbox.stub(repo.github().repos, 'getHooks')
         .withArgs({user: 'lipp', repo: 'bar', per_page: 100})
-        .yields(null, [{config: {url: 'http://api.doclets.io/github/callback'}}])
+        .yields(null, [{config: {url: 'https://ci.doclets.io/github/callback'}}])
 
       repo.getHook('lipp', 'bar', {foo: 1}, function (err, hook) {
         assert(!err)
-        assert.equal(hook.config.url, 'http://api.doclets.io/github/callback')
+        assert.equal(hook.config.url, 'https://ci.doclets.io/github/callback')
         done()
       })
     })
@@ -93,8 +94,8 @@ describe('The repo module', function () {
           activate: true,
           events: ['push', 'create'],
           config: {
-            secret: '12345678',
-            url: 'http://api.doclets.io/github/callback',
+            secret: env.api.secret,
+            url: 'https://ci.doclets.io/github/callback',
             'content_type': 'json'
           }
         }).yields(null, 123)
@@ -109,7 +110,7 @@ describe('The repo module', function () {
     it('.addHook() updating existing hook', function (done) {
       var hook = {
         config: {
-          url: 'http://api.doclets.io/github/callback'
+          url: 'https://ci.doclets.io/github/callback'
         },
         id: 123
       }
@@ -128,8 +129,8 @@ describe('The repo module', function () {
           active: true,
           id: hook.id,
           config: {
-            secret: '12345678',
-            url: 'http://api.doclets.io/github/callback',
+            secret: env.api.secret,
+            url: 'https://ci.doclets.io/github/callback',
             'content_type': 'json'
           }
         }).yields(null, 123)
@@ -159,7 +160,7 @@ describe('The repo module', function () {
     it('.removeHook() an existing hook', function (done) {
       var hook = {
         config: {
-          url: 'http://api.doclets.io/github/callback'
+          url: 'https://ci.doclets.io/github/callback'
         },
         id: 123
       }
@@ -175,8 +176,8 @@ describe('The repo module', function () {
           active: false,
           id: hook.id,
           config: {
-            secret: '12345678',
-            url: 'http://api.doclets.io/github/callback',
+            secret: env.api.secret,
+            url: 'https://ci.doclets.io/github/callback',
             'content_type': 'json'
           }
         }).yields(null, 123)

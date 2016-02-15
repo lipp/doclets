@@ -1,26 +1,68 @@
-couchdb:
-  image: klaemo/couchdb
-  restart: always
-  volumes:
-    - ./couchdb:/usr/local/var/lib/couchdb
-    
+redis:
+  image: redis
+  command: redis-server --appendonly yes
+  ports:
+    - 6379:6379
+
+mongodb:
+  image: mongo
+  ports:
+    - 27017:27017
+
+doc-worker:
+  dockerfile: ./doc-worker.docker
+  build: ./
+  links:
+    - redis
+    - mongodb
+  environment:
+    - NODE_ENV=dev
+  env_file: ./secrets.env
+  log_driver: syslog
+  log_opt:
+    syslog-tag: "{{.Name}}"
+    syslog-address: "udp://logs3.papertrailapp.com:11565"
+
 api-server:
   dockerfile: ./api-server.docker
   build: ./
   links:
-    - couchdb:couchdb
+    - redis
   ports:
     - 3420:3420
-  restart: always
+  environment:
+    - NODE_ENV=dev
+  env_file: ./secrets.env
+  log_driver: syslog
+  log_opt:
+    syslog-tag: "{{.Name}}"
+    syslog-address: "udp://logs3.papertrailapp.com:11565"
 
 web-server:
   dockerfile: ./web-server.docker
   build: ./
   links:
-    - couchdb:couchdb
+    - mongodb
+    - redis
   ports:
-    - 8080:8080
+    - 8030:8080
   restart: always
-  
+  environment:
+    - NODE_ENV=dev
+  env_file: ./secrets.env
+  log_driver: syslog
+  log_opt:
+    syslog-tag: "{{.Name}}"
+    syslog-address: "udp://logs3.papertrailapp.com:11565"
+
+datadog:
+  image: datadog/docker-dd-agent
+  environment:
+    - API_KEY=df041f65c73f69be462b9922a9bb9167
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    - /proc/mounts:/host/proc/mounts:ro
+    - /sys/fs/cgroup:/host/sys/fs/cgroup:ro
+  privileged: true  
 
 

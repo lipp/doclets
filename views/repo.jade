@@ -1,5 +1,9 @@
 extends layout
 
+block title
+	title= repo.name + ' - Doclets'
+	meta(name='description', content=versions.length + ' API-Doc versions of ' + repo.name + ' by ' + username)
+
 block scripts
 	script.
 		$(function() {
@@ -26,77 +30,95 @@ block scripts
 		})
 
 block content
-	.ui.container
-		.ui.grid
-			- var enabled = repo.isWebHookEnabled()
-			- var isOwnRepo = user && user._id === username
-			.twelve.wide.column
-				if error
-					.ui.error.message
-						i.close.icon
-						.header Changes not applied.
-						p= error
-				if result
-					.ui.success.message
-						i.close.icon
-						.header Changes applied
-							
-				if !error && !result && versions.length == 0 && enabled && isOwnRepo
-					.ui.message.info
-						i.icon.close
-						.header Great,
-						p Your repository is enabled.
-						p To create the first Doclet for this repository, just create a <a>.doclets.yml</a> file and push your changes to GitHub.
-				- var first = versions[0]
-				- var packageJson = first && first.data.packageJson || {}
-				- var description = first && first.getDescription() || repo.description
-				h1.ui.header
-					.content= repo.name
-						.sub.header by&nbsp;
-							a.user(href='./')= username
-
-				if packageJson.keywords
-					.tags
-						i.icon.tags
-						.ui.large.horizontal.bulleted.list
-							each tag in packageJson.keywords
-								.item= tag
-				if description
-					p.big.description= description
-				else
-					p.big.description
-						em No description available
-				a(href=repo.url, target='_blank')
-					i.github.icon
-					| View on GitHub
-				h3 Doclets:
-				form.ui.form#repos(action='/account/' + repo.name, method='post', name='settings', class=enabled ? 'success' : 'warning')
-					.ui.relaxed.celled.list
-						each doclet in versions
-							.item
-								.image
-									if doclet.type == 'branch'
-										i.fork.icon
-									else
-										i.ticket.icon.image
-								.content
-									a.header(href=doclet.repo + '/' +  doclet.version)= doclet.version
-									p Published #{moment(doclet.createdAt).fromNow()} (#{moment(doclet.createdAt).format('MMMM Do YYYY')})
+	.ui.vertical.segment
+		.ui.container
+			.ui.grid
+				- var enabled = repo.isWebHookEnabled()
+				- var isOwnRepo = user && user._id === username
+				.twelve.wide.column
+					if error
+						.ui.error.message
+							i.close.icon
+							.header Changes not applied.
+							p= error
+					if result
+						.ui.success.message
+							i.close.icon
+							.header Changes applied
+								
+					if !error && !result && versions.length == 0 && enabled && isOwnRepo
+						.ui.message.info
+							i.icon.close
+							.header Great,
+							p Your repository is enabled.
+							p To create the first Doclet for this repository, just create a <a href='/doclets.yml'>.doclets.yml</a> file and push your changes to GitHub.
+					- var first = versions[0]
+					- var packageJson = first && first.data.packageJson || {}
+					- var description = first && first.getDescription() || repo.description
+					//.ui.very.padded.raised.segment
+						h1.ui.header
+							.content= repo.name
+								.sub.header by&nbsp;
+									a.user(href='./')= username
+		
+						if packageJson.keywords
+							.tags
+								i.icon.tags
+								.ui.large.horizontal.bulleted.list
+									each tag in packageJson.keywords
+										.item= tag
+						if description
+							p.big.description= description
+						else
+							p.big.description
+								em No description available
+						a(href=repo.url, target='_blank')
+							i.github.icon
+							| View on GitHub
+	
+					form.ui.form#repos(action='/account/' + repo.name, method='post', name='settings', class=enabled ? 'success' : 'warning')
+						.ui.fluid.card.repo-info
+							.content
+								.header= repo.name
+								.meta
+									a(href=repo.url, target='_blank')
+										i.github.icon
+										| View on GitHub
+								if description
+									.description= description
+								else
+									.description
+										em No description available
+							.extra.content
+								.field
+									.ui.toggle.checkbox
+										input(type='checkbox', id='enabled', name='_enabled', disabled=!isOwnRepo, data-waschecked=enabled, checked=enabled)
+										label(for='_enabled') Enabled
+						.ui.very.relaxed.divided.large.list
+							each doclet in versions
+								.item
+									.middle.aligned.image
+										if doclet.type == 'branch'
+											i.large.fork.icon
+										else
+											i.large.ticket.icon.image
+									.content
+										- var url = doclet.getDocletUrl()
+										a.header(href=doclet.repo + '/' +  doclet.version)= doclet.version
+										.description
+											p Created #{moment(doclet.createdAt).fromNow()} (#{moment(doclet.createdAt).format('MMMM Do YYYY')})
+											if isOwnRepo
+												img.ui.image.badge-pop(src=url + '.svg')
+												.ui.flowing.popup 
+													.header Markdown
+													input.badge-url(disabled=true, style='width: 500px', value='[![API Doc](https://doclets.io/#{url}.svg)](https://doclets.io/#{url}')
 									if isOwnRepo
-										.floated.right
-											.ui.checkbox
+										.ui.right.floated
+											.ui.slider.checkbox
 												input(type='checkbox', data-waschecked=doclet.isPublic, checked=doclet.isPublic, name='_public-' + doclet.version)
 												label Public
-					if isOwnRepo
-						.field
-							.ui.toggle.checkbox
-								input(type='checkbox', id='enabled', name='_enabled', data-waschecked=enabled, checked=enabled)
-								label(for='_enabled') Doclets generation enabled
-							.ui.warning.small.message
-								i.icon.close
-								.header Attention
-								p No documentation will be generated, if this switch is turned off.
-		
-						input.ui.button.primary#submit(type='submit', value='Apply changes', disabled=true)
-			.four.wide.column
-				include profile.jade
+			
+						if isOwnRepo
+							input.ui.button.primary#submit(type='submit', value='Apply changes', disabled=true)
+				.four.wide.column
+					include profile.jade

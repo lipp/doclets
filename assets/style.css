@@ -27,10 +27,48 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
+.social > iframe {
+	margin: 5px;
+}
+
+.hero-header {
+	margin-bottom: 3em !important;
+}
+
+.hero .ui.list {
+	margin-top: 35px;
+}
+
+.hero-header span {
+	border-bottom: 3px solid orange !important;
+}
 
 div.tags {
 		margin-top: -2em;
 		margin-bottom: 1em;
+}
+
+#repos .item a.header {
+	margin-bottom: 4px;
+}
+
+#repos .list{
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+#repos .item .floated {
+	position: absolute;
+	right: 0;
+	top: 33px;
+}
+
+#repos .item{
+	position: relative;
+}
+
+#repos .item .description {
+	font-size: 0.8em;
 }
 
 .big.description {
@@ -69,7 +107,7 @@ list-style-position: inside;
 	
 }
 
-.members li {
+.members li, .links li {
 	line-height: 24px;
 }
 
@@ -80,7 +118,7 @@ list-style-position: inside;
 	width: 300px !important;
 	overflow-y: scroll; /* has to be scroll, not auto */
   -webkit-overflow-scrolling: touch;
-	z-index: 1000;
+	z-index: 10;
 }
 
 .main {
@@ -105,9 +143,79 @@ list-style-position: inside;
 	height: 50%;
 }
 
+.hero {
+	font-size: 130%;
+}
+
+
+nav .item .wrap {
+	height: 14px;
+}
+
+nav .item .wrap > img {
+	top: -50%;
+	border-radius: 0 !important;
+	margin-left: 10px;
+}
+
+footer {
+	padding: 5em 0;
+}
+
+footer > div > * {
+	margin: 2em 0 !important;
+}
+
+nav.ui.menu .item > img:not(.ui) {
+	    width: 25px;
+    margin-right: 7px;
+}
+
 #api-nav.ui.menu {
 	border-radius: 0;
 }
+
+.hero .ui.header > .icon + .content {
+	padding-left: 0;
+}
+
+.icon.logo {
+	-webkit-filter: grayscale(100%) brightness(10);
+	filter: grayscale(100%) brightness(10);
+}
+
+.hero .ui.header > .icon.logo {
+	width: 100px;
+}
+
+.recents .header .meta {
+	font-size: 14px !important;
+}
+
+body > nav {
+	border-bottom: 4px solid orange !important;
+}
+
+body > nav ~ *:not(footer) {
+	margin-top: 40px;
+	padding-top: 30px;
+}
+
+body .ui.vertical.segment {
+	padding-top: 5em;
+	padding-bottom: 5em;
+}
+/*
+body .ui.cards > .card {
+	box-shadow: none;
+}
+
+body .ui.cards > .card > .content{
+	padding-left: 0;
+	padding-right: 0;
+}
+
+*/
 
 .accordion .title.active, .accordion .content.active {
 }
@@ -139,7 +247,7 @@ nav .active-scroll {
 		align-items: center;
 }
 
-.main .title .label, #scroll-top {
+.main .title .label {
 		padding: 10px;
     height: 24px;
     width: 24px;
@@ -332,28 +440,32 @@ i.dropdown.icon {
 	font-weight: 100;
 }
 
-.codelink {
+.api .codelink {
 	font-size: 16px;
 }
 
-code, pre {
+.api code, pre {
 	font-size: 15px !important;
 }
 
-code,
-kbd,
-pre,
-samp {
+.api code,
+.api kbd,
+.api pre,
+.api samp {
   font-family: Menlo, monospace !important;
   font-size: 15px !important;
   line-height: 1.7 !important;
 }
 
-.main h1, .main h2, .main h3, .main h4 {
+.api article h1, .api article h2, .api article h3, .api article h4 {
 	font-size: 1em;
 }
 
-.main h2.title {
+.markdown {
+	padding-top: 3em;
+}
+
+.api h2.title {
 	font-size: 1.3em;
 }
 
@@ -433,8 +545,13 @@ samp {
 	border-radius: 0;
 }
 
+.overview .ui.cards > .card {
+	margin-bottom: 2em;
+}
+
 #title {
-	min-height: 400px;
+	position: relative;
+	min-height: 420px;
 	margin: 0 0;
 	background-color: rgba(0, 0, 0, 0.87);
 	color: #e2e2e2;
@@ -442,6 +559,7 @@ samp {
 	flex-direction: column;
 	align-items: center;
 	width: 100%;
+	overflow: hidden;
 }
 
 #title h1 {
