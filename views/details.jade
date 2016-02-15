@@ -5,12 +5,15 @@ mixin examples(examplesArray)
 
 
 mixin see(seeArray)
-	span Links:
-	ul
+	h4 Links:
+	ul.links
 		each see in seeArray
 			- var link = tools.linkFromSee(see);
-			li
-				a(href=link.url)= link.name || link.url
+			if link.url
+				li
+					a(href=link.url)= link.name || link.url
+			else
+				li= link.name
 
 
 		
@@ -18,7 +21,7 @@ mixin title(doclet, id)
 	- var symbols = {'class': 'cube', 'module': 'cubes'}
 	- var colors = {'class': 'orange', 'module': 'purple', 'function': 'teal', 'member': 'blue', 'constant': 'red'}
 	h2.title
-		span.ui.label(class=colors[doclet.kind])= doclet.kind.substr(0,1)
+		span.ui.label(class=colors[doclet.kind], style='background-color: #1B1C1D !important; border-width: 3px; ')= doclet.kind.substr(0,1)
 		//.ui.circular.label(class=colors[doclet.kind])
 		//i.icon(class=symbols[doclet.kind] || 'leaf', style='color: ' + colors[doclet.kind] + ';')
 		- var names = tools.splitName(doclet)
@@ -31,12 +34,11 @@ mixin title(doclet, id)
 			else if doclet.kind == 'function'
 				span.name
 					+funcdeclx(names.name, doclet, false)
-						a(href="#" + id).permalink
-							i.tiny.icon.linkify
 			else
 				span.name= names.name
-					a(href="#" + id).permalink
-						i.tiny.icon.linkify
+			
+			a(href="#" + id).permalink
+				i.tiny.icon.linkify
 
 mixin typeList(type)
 	ul.types
@@ -133,7 +135,7 @@ mixin infolist(doclet)
 			i.large.code.middle.aligned.icon
 			.content
 				.description Source
-				a.header(href=doclet.meta.url, target='_blank')= doclet.meta.filename + ':' + doclet.meta.lineno
+				a.header(href=doclet.meta.url)= doclet.meta.filename + ':' + doclet.meta.lineno
 
 
 mixin members(doclet)

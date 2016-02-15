@@ -17,6 +17,7 @@ doc-worker:
     - mongodb
   environment:
     - NODE_ENV=dev
+    - DEV=1
 
 api-server:
   dockerfile: ./api-server.docker
@@ -27,17 +28,6 @@ api-server:
     - 3420:3420
   environment:
     - NODE_ENV=dev
+    - DEV=1
 
-web-server:
-  dockerfile: ./web-server.docker
-  build: ./
-  links:
-    - mongodb
-    - redis
-  ports:
-    - 8080:8080
-  restart: always
-  environment:
-    - NODE_ENV=dev
-    - HOST_NAME=192.168.99.100
 

@@ -1,4 +1,9 @@
 extends layout.jade
+
+block title
+	title Doclets
+	meta(name='description', content='JSDoc goes CI. Automated API-Doc generation for Javascript')
+
 block content
 	.hero
 		.background
@@ -7,7 +12,7 @@ block content
 			.content Doclets
 				.ui.sub.header JSDoc goes <em>CI</em>
 
-		p Automated API documentation generation Javascript
+		p Automated API-Doc generation for Javascript
 		a.github-button(href='https://github.com/lipp/doclets', data-icon='octicon-star', data-style='mega', data-count-href='/lipp/doclets/stargazers', data-count-api='/repos/lipp/doclets#stargazers_count', data-count-aria-label='# stargazers on GitHub', aria-label='Star lipp/doclets on GitHub', style='display: none;') Star
 		script#github-bjs(async='', defer='', src='https://buttons.github.io/buttons.js')
 				
@@ -59,7 +64,7 @@ block content
 									//.doclets.yml
 									i.icon.code 
 									| .doclets.yml
-								.description Create a simple configuration file
+								.description Create a simple <a href='/doclets.yml'>configuration file</a>
 						.step
 							.content
 								.title 
@@ -71,16 +76,14 @@ block content
 								.title 
 									i.icon.check
 									| Ready
-								.description Automatically create documentation
+								.description Let Doclets.io automatically create documentation
 
 
 				.ui.column
 					.ui.embed(data-url='https://youtube.com/embed/n-q5N7HEcqQ')
 
-
 	.ui.vertical.segment
-		.ui.container		
-						
+		.ui.container
 			.recents
 				h1.ui.centered.header.hero-header 
 					span Newest Doclets

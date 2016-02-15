@@ -295,9 +295,6 @@ describe('The routes module', function () {
   it('.addRepo(req, res) calls Repo.findById and enables webhook', function () {
     sandbox.stub(Repo, 'findById').yields(null, {enableWebHook: function (done) { done() }})
     var req = {
-      params: {
-        user: 'lipp'
-      },
       body: {
         repo: 'lipp/foo'
       }
@@ -308,7 +305,7 @@ describe('The routes module', function () {
     routes.addRepo(req, res)
     var resArgs = res.redirect.args[0]
     assert(req.flash.calledWith, 'result')
-    assert.equal(resArgs[0], '/lipp')
+    assert.equal(resArgs[0], '/lipp/foo')
   })
 
   it('.addRepo(req, res) calls Repo.findById and enables webhook', function () {

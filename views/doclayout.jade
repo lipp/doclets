@@ -1,3 +1,7 @@
+block title
+	title= doclet.repo + ' - ' + doclet.version
+	meta(name='description', content='API Documentation of "' + doclet.repo + '" ' + doclet.type + ' "' + doclet.version +'". Created by ' + doclet.owner + '.')
+
 mixin optMarkdown(desc, className)
 	if desc.indexOf('<') === 0
 		div(class=className)!= desc
@@ -28,6 +32,7 @@ block scripts
 	script(src='//cdnjs.cloudflare.com/ajax/libs/jquery-smooth-scroll/1.7.1/jquery.smooth-scroll.min.js')
 	script(src='//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js')
 	script(src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js")
+	script.
 	//script.
 		$(function() {
 			var controller = new ScrollMagic.Controller({container: '.main', globalSceneOptions: {}});
@@ -59,14 +64,9 @@ block scripts
 		})
 	script.
 		$(function() {
-		$('a').on('click', function(e) {
-			if (this.hash.indexOf('#') !== 0) {
-				return;
-			}
-			var target = this.hash.substr(1);
-			var el = document.getElementById(target);
+		$('a[href^="#"]').on('click', function(e) {
 			$.smoothScroll({
-				scrollTarget: $(el),
+				scrollTarget: $(this.hash),
 				offset: -1 * $('.main').scrollTop() - 50
 			});
 		}) })
@@ -81,6 +81,21 @@ block scripts
 					duration: 300
 				}
 			})
+			var doclets = !{JSON.stringify(doclet.asFlat())}
+			var source = doclets.map(function(doclet) {
+				return {
+					title: doclet.longname,
+					description: doclet.description,
+					url: '#dl-Request-contentLength'
+				}
+			})
+			//$('.ui.search').search({source: source, content: source, type: 'category'})
+			$('.ui.search').search({source: source, onSelect: function(e) {
+				$.smoothScroll({
+					scrollTarget: $(e.url),
+					offset: -1 * $('.main').scrollTop() - 50
+				});
+			}})
 		})
 	script.
 		hljs.initHighlightingOnLoad()
@@ -105,6 +120,20 @@ block content
 					img.ui.left.spaced.avatar.image(src=doclet._owner.image, style='border-radius: 0px;')
 		h4
 			a(href=doclet.getRepoUrl()) all versions
+
+		//.ui.category.search
+			.ui.icon.input
+				input.prompt(type='text', autocomplete='off')
+				i.icon.search
+			//.results
+				each results,cat in doclet.byKind()
+					.category
+						.name= cat
+						each result in results
+							a(href='#'+tools.idFromLongname(result.longname)).result
+								.content
+									.title= result.name
+									.description= result.longname
 	#xxx.api
 		#nav-wrap
 			include nav.jade

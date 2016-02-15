@@ -56,6 +56,7 @@ nav#api-nav.ui.left.inline.inverte.large.vertical.menu.visible
 	.item.api
 		h2.header 
 			a(href='#') API
+
 		- var tree = doclet.asTree()
 		- var globals = _.findWhere(tree, {longname: 'globals'})
 		if tree.length > 1 && childs(globals).length > 0

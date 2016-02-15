@@ -1,5 +1,9 @@
 extends layout.jade
 
+block title
+	title= username + ' - Doclets'
+	meta(name='description', content=username + "'s has " + doclets.length + ' doclets for Javascript.')
+
 block scripts
 
 	script.

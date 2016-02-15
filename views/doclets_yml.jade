@@ -1,0 +1,52 @@
+extends layout.jade
+block content
+	.ui.vertical.segment
+		.ui.container
+			h1.ui.header .doclets.yml
+			p Doclets.io requires a small configuration file to create your repository's API-Doc.
+				| This file must be placed in the root directory of you repository similar to the popular .travis.yml for Travis-CI.
+
+			h3.header Example 1
+			p This example tells Doclets.io to parse the file <strong><code>index.js</code></strong> for JSDoc comments. 
+			.ui.raised.segment
+				code
+					p files: 
+					p &nbsp;&#09; &#09;- index.js
+		
+			h3.header Example 2
+			p This example tells Doclets.io to parse all files within the <strong><code>lib</code></strong> for JSDoc comments. 
+				| It also defines the <strong><code>packageJson</code></strong> to be considered for additional information 
+				| about the project and includes two markdown articles to be
+				| named "Overview" and "Todo App" respectively.
+			.ui.raised.segment
+				code
+					p dir: lib
+					p packageJson: package.json
+					p articles:
+					p &nbsp;&#09; &#09;- Overview: README.md 
+					p &nbsp;&#09; &#09;- Todo App: examples/todo/README.md
+			
+			h3.header Explained
+			table.ui.celled.table
+				thead
+					tr 
+						th Name
+						th Description
+				tbody
+					tr
+						td <code>lib</code>
+						td Specifies a directory to parse for JSDoc comments
+					tr
+						td <code>files</code>
+						td Specifies an array of files to parse for JSDoc comments
+					tr
+						td <code>packageJson</code>
+						td Specifies a package.json file path. Adds additional info to the repository.
+					tr
+						td <code>articles</code>
+						td A key/value array which allows to include Markdown files into the generated doclet.
+				tfoot
+					tr 
+						th(colspan=2) Either <strong><code>lib</code></strong> or <strong><code>files</code></strong> must be defined!
+							| Other fields are optional.
+					

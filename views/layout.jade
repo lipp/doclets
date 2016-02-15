@@ -2,6 +2,7 @@
 html(lang='en')
 	head
 		meta(charset='utf-8')
+		block title
 		title doclets
 		link(rel='apple-touch-icon', sizes='57x57', href='/apple-icon-57x57.png')
 		link(rel='apple-touch-icon', sizes='60x60', href='/apple-icon-60x60.png')
@@ -36,6 +37,8 @@ html(lang='en')
 				})
 
 				$('.ui.embed').embed()
+
+				$('.badge-pop').popup({hoverable: true})
 
 			})
 		style
@@ -88,6 +91,7 @@ html(lang='en')
 					a.item(href='https://github.com/lipp/doclets/issues') Create Issue
 					a.item(href='mailto:doclets.io@gmail.com') Mail
 					a.item(href='http://usejsdoc.org', target='_blank') JSDoc Reference
+					a.item(href='/doclets.yml') doclets.yml
 
 				h4.ui.header#greet Made with <i class="icon red heart" style="display: inline; font-size: 12px; margin-left: 2px;"> </i>in &nbsp;
 					a(href='https://www.google.de/maps/place/Darmstadt/data=!4m2!3m1!1s0x47bd70641173cdd9:0x422435029b0c5f0?sa=X&ved=0ahUKEwjA09z6x4nKAhUEzRQKHZtaC2cQ8gEIHjAA', style="color: inherit;") Darmstadt

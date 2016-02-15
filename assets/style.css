@@ -103,7 +103,7 @@ list-style-position: inside;
 	
 }
 
-.members li {
+.members li, .links li {
 	line-height: 24px;
 }
 
@@ -436,28 +436,32 @@ i.dropdown.icon {
 	font-weight: 100;
 }
 
-.codelink {
+.api .codelink {
 	font-size: 16px;
 }
 
-code, pre {
+.api code, pre {
 	font-size: 15px !important;
 }
 
-code,
-kbd,
-pre,
-samp {
+.api code,
+.api kbd,
+.api pre,
+.api samp {
   font-family: Menlo, monospace !important;
   font-size: 15px !important;
   line-height: 1.7 !important;
 }
 
-.main h1, .main h2, .main h3, .main h4 {
+.api article h1, .api article h2, .api article h3, .api article h4 {
 	font-size: 1em;
 }
 
-.main h2.title {
+.markdown {
+	padding-top: 3em;
+}
+
+.api h2.title {
 	font-size: 1.3em;
 }
 
