@@ -64,10 +64,6 @@ html(lang='en')
 							a.item(href=doclet.getRepoUrl())= doclet.repo
 							a.item.active(href=doclet.getDocletUrl())= doclet.version
 				.right.menu
-						.item
-							a.twitter-share-button(href='https://twitter.com/share', data-text='JSDoc goes CI! Automated documentation generation for Javascript.', data-via='doclets_io', data-size='large', data-related='gelipp2000', data-hashtags='doclets') Tweet
-							script.
-								!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
 					if user
 						a.item(href='/logout')
 							i.icon.sign.out 

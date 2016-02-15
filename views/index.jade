@@ -13,8 +13,12 @@ block content
 				.ui.sub.header JSDoc goes <em>CI</em>
 
 		p Automated API-Doc generation for Javascript
-		a.github-button(href='https://github.com/lipp/doclets', data-icon='octicon-star', data-style='mega', data-count-href='/lipp/doclets/stargazers', data-count-api='/repos/lipp/doclets#stargazers_count', data-count-aria-label='# stargazers on GitHub', aria-label='Star lipp/doclets on GitHub', style='display: none;') Star
-		script#github-bjs(async='', defer='', src='https://buttons.github.io/buttons.js')
+		.social
+			a.twitter-share-button(href='https://twitter.com/share', data-text='JSDoc goes CI! Automated API-Doc generation for Javascript.', data-via='doclets_io', data-size='large', data-related='gelipp2000', data-hashtags='doclets') Tweet
+			script.
+				!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+			a.github-button(href='https://github.com/lipp/doclets', data-icon='octicon-star', data-style='mega', data-count-href='/lipp/doclets/stargazers', data-count-api='/repos/lipp/doclets#stargazers_count', data-count-aria-label='# stargazers on GitHub', aria-label='Star lipp/doclets on GitHub', style='display: none;') Star
+			script#github-bjs(async='', defer='', src='https://buttons.github.io/buttons.js')
 				
 		.ui.list
 			.item
