@@ -78,7 +78,13 @@ describe('The doclet module', function () {
           }
         })
       },
-      Doclet.createFromGitHubEvent.bind(Doclet, event, 'moredata'),
+      function (callback) {
+        var prevDate = new Date(event.head_commit.timestamp)
+        prevDate.setYear(prevDate.getFullYear() + 1)
+        event.after = 'aksjdhkdsjhd'
+        event.head_commit.timestamp = prevDate // date must be increased
+        Doclet.createFromGitHubEvent(event, 'moredata', callback)
+      },
       Doclet.findById.bind(Doclet, 'lipp/acme-jsdoc-example/master')
     ], function (err, results) {
       if (err) {
@@ -89,6 +95,78 @@ describe('The doclet module', function () {
       assert.equal(doclet._repo, 'lipp/acme-jsdoc-example')
       assert.equal(doclet.repo, 'acme-jsdoc-example')
       assert.equal(doclet.data, 'moredata')
+      assert.equal(doclet.isPublic, false)
+      done()
+    })
+  })
+
+  it('.createFromGitHubEvent with push event twice with same HASH does not update db entry', function (done) {
+    var event = loadGitHubEvent('acme-push')
+
+    async.series([
+      Doclet.createFromGitHubEvent.bind(Doclet, event, 'nodata'),
+      function (callback) {
+        Doclet.findById('lipp/acme-jsdoc-example/master', function (err, doclet) {
+          if (err) {
+            callback(err)
+          } else {
+            assert.equal(doclet.isPublic, true)
+            // disable is Public
+            doclet.updateIsPublic({}, callback)
+          }
+        })
+      },
+      function (callback) {
+        var prevDate = new Date(event.head_commit.timestamp)
+        prevDate.setYear(prevDate.getFullYear() - 1)
+        event.after = 'aksjdhkdsjhd'
+        event.head_commit.timestamp = prevDate // date must be increased
+        Doclet.createFromGitHubEvent(event, 'moredata', callback)
+      },
+      Doclet.findById.bind(Doclet, 'lipp/acme-jsdoc-example/master')
+    ], function (err, results) {
+      if (err) {
+        done(err)
+      }
+      var doclet = results[3]
+      assert(doclet)
+      assert.equal(doclet._repo, 'lipp/acme-jsdoc-example')
+      assert.equal(doclet.repo, 'acme-jsdoc-example')
+      assert.equal(doclet.data, 'nodata')
+      assert.equal(doclet.isPublic, false)
+      done()
+    })
+  })
+
+  it('.createFromGitHubEvent with push event twice with changed HASH but older timestamp does not update db entry', function (done) {
+    var event = loadGitHubEvent('acme-push')
+
+    async.series([
+      Doclet.createFromGitHubEvent.bind(Doclet, event, 'nodata'),
+      function (callback) {
+        Doclet.findById('lipp/acme-jsdoc-example/master', function (err, doclet) {
+          if (err) {
+            callback(err)
+          } else {
+            assert.equal(doclet.isPublic, true)
+            // disable is Public
+            doclet.updateIsPublic({}, callback)
+          }
+        })
+      },
+      function (callback) {
+        Doclet.createFromGitHubEvent(event, 'moredata', callback)
+      },
+      Doclet.findById.bind(Doclet, 'lipp/acme-jsdoc-example/master')
+    ], function (err, results) {
+      if (err) {
+        done(err)
+      }
+      var doclet = results[3]
+      assert(doclet)
+      assert.equal(doclet._repo, 'lipp/acme-jsdoc-example')
+      assert.equal(doclet.repo, 'acme-jsdoc-example')
+      assert.equal(doclet.data, 'nodata')
       assert.equal(doclet.isPublic, false)
       done()
     })
