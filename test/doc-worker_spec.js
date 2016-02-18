@@ -10,6 +10,9 @@ var path = require('path')
 var docWorker = require('../lib/doc-worker')
 var repo = require('../lib/repo')
 var sinon = require('sinon')
+var User = require('../lib/models/user')
+var Repo = require('../lib/models/repo')
+var async = require('async')
 
 var loadGitHubEvent = function (eventDir) {
   var payload = fs.readFileSync(path.join(__dirname, '../fixtures/events', eventDir, 'payload.json'))
@@ -59,7 +62,7 @@ describe('The doc-worker module', function () {
           })
         }
       })
-    }, 3000)
+    }, 5000)
   })
 
   it('a failing repo.checkout is handled', function (done) {
@@ -142,5 +145,110 @@ describe('The doc-worker module', function () {
         done()
       })
     }, 100)
+  })
+
+  describe('with node-jet (get) events', function () {
+    var events
+
+    before(function () {
+      events = JSON.parse(fs.readFileSync(path.join(__dirname, '../fixtures/node-jet_getevents.json')))
+    })
+
+    it('getTags(events)', function () {
+      var tags = docWorker.getTags(events)
+      assert(Array.isArray(tags))
+      assert.equal(tags.length, 0)
+    })
+
+    it('getLastPushPerBranch(events) returns only latest master', function () {
+      var lppb = docWorker.getLastPushPerBranch(events)
+      assert(Array.isArray(lppb))
+      assert.equal(lppb.length, 1)
+      assert.equal(lppb[0].id, '3646551386')
+      assert.equal(lppb[0].payload.ref, 'refs/heads/master')
+    })
+  })
+
+  describe('with node-jet (get) events', function () {
+    var events
+
+    before(function () {
+      events = JSON.parse(fs.readFileSync(path.join(__dirname, '../fixtures/acme-jsdoc-example_getevents.json')))
+    })
+
+    it('getTags(events)', function () {
+      var tags = docWorker.getTags(events)
+      assert(Array.isArray(tags))
+      assert.equal(tags.length, 7)
+      assert.equal(tags[0].id, 3636958336)
+      assert.equal(tags[0].payload.ref, 'test-tag')
+      assert.equal(tags[6].id, 3453845284)
+      assert.equal(tags[6].payload.ref, 'v1.0.0')
+    })
+
+    it('getLastPushPerBranch(events) returns only latest master', function () {
+      var lppb = docWorker.getLastPushPerBranch(events)
+      assert(Array.isArray(lppb))
+      assert.equal(lppb.length, 1)
+      assert.equal(lppb[0].id, '3644279032')
+      assert.equal(lppb[0].payload.ref, 'refs/heads/master')
+    })
+  })
+
+  describe('catchup tests', function () {
+    var events
+
+    before(function () {
+      events = JSON.parse(fs.readFileSync(path.join(__dirname, '../fixtures/acme-jsdoc-example_getevents.json')))
+    })
+
+    beforeEach(function (done) {
+      var user = new User({
+        _id: 'lipp',
+        token: '12345'
+      })
+      var repo1 = new Repo({
+        _id: 'lipp/acme-jsdoc-example',
+        name: 'acme-jsdoc-example',
+        owner: 'lipp',
+        _owner: 'lipp',
+        webhook: {active: true}
+      })
+      var repo2 = new Repo({
+        _id: 'lipp/bar2',
+        name: 'bar2',
+        owner: 'lipp',
+        _owner: 'lipp',
+        webhook: false
+      })
+      async.series([
+        User.remove.bind(User, {}),
+        Repo.remove.bind(Repo, {}),
+        user.save.bind(user),
+        repo1.save.bind(repo1),
+        repo2.save.bind(repo2)
+      ], done)
+    })
+
+    it('catchUpRepoEvents with no events', function (done) {
+      sandbox.stub(repo, 'getRepoEvents').yields(null, [])
+      docWorker.catchUpRepoEvents(function () {
+        assert('should not be called')
+      }, done)
+    })
+
+    it('catchUpRepoEvents with events produces events able to create Doclets', function (done) {
+      sandbox.stub(repo, 'getRepoEvents').yields(null, events)
+      var count = 0
+      docWorker.catchUpRepoEvents(function (webhookEvent) {
+        Doclet.createFromGitHubEvent(webhookEvent, [], function (err) {
+          assert(!err)
+          ++count
+          if (count === 8) { // 7 tags and 1 branch
+            done()
+          }
+        })
+      })
+    })
   })
 })
