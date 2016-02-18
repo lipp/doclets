@@ -62,7 +62,7 @@ describe('The doc-worker module', function () {
           })
         }
       })
-    }, 3000)
+    }, 5000)
   })
 
   it('a failing repo.checkout is handled', function (done) {
