@@ -237,7 +237,7 @@ describe('The doc-worker module', function () {
       }, done)
     })
 
-    it('catchUpRepoEvents with events', function (done) {
+    it('catchUpRepoEvents with events produces events able to create Doclets', function (done) {
       sandbox.stub(repo, 'getRepoEvents').yields(null, events)
       var count = 0
       docWorker.catchUpRepoEvents(function (webhookEvent) {
