@@ -31,6 +31,84 @@ body {
 	margin: 5px;
 }
 
+:not(pre) > code {
+	font-weight: bold;
+}
+
+article.constant .title .label .icon{
+	position: relative;
+	left: 3px;
+	top: 2px;
+}
+
+article.module .title .label .icon{
+	position: relative;
+	left: 1px;
+	top: 1px;
+}
+
+article.module .title .label .icon::before{
+	font-size: 21px;
+}
+
+article.file .title .label .icon{
+	position: relative;
+	left: 4px;
+	top: 2px;
+}
+
+article.file .title .label .icon::before{
+	font-size: 19px;
+}
+
+article.member .title .label .icon{
+	position: relative;
+	left: 1px;
+	top: 2px;
+}
+
+article.member .title .label .icon::before{
+	font-size: 19px;
+}
+
+article.class .title .label .icon{
+	position: relative;
+	left: 2px;
+	top: 2px;
+}
+
+article.class .title .label .icon::before{
+	font-size: 23px;
+}
+
+article.class .title .label .icon{
+	position: relative;
+	top: 2px;
+}
+
+article.function .title .wrap {
+	position: relative;
+	left: -4px;
+	top: 1px;
+}
+
+article.function .title .label em {
+    position: relative;
+    right: -5px;
+    font-weight: 100;
+    font-size: 24px;
+	}
+
+article.function .title .label sub{
+	font-family: initial;
+	font-size: 14px;
+}
+
+.markdown {
+	  font-size: 17px !important;
+    line-height: 1.4285em;
+}
+
 .hero-header {
 	margin-bottom: 3em !important;
 }
@@ -229,10 +307,20 @@ body .ui.cards > .card > .content{
 	text-decoration: underline;
 }
 
+.hero .info {
+	margin-top: 120px;
+	color: gray;
+	font-size: 16px;
+}
+
 #api-nav .item.api {
 	padding-right: 0;
 	margin-left: 1.14285714em;
 	padding-left: 0;
+}
+
+#title h4 {
+	margin-top: 0;
 }
 
 nav .active-scroll {
@@ -240,6 +328,29 @@ nav .active-scroll {
 	border-right: 5px solid orange;
 }
 
+#title .statistics {
+	margin-top: 2em;
+}
+
+#title .statistic {
+	border-bottom: 3px solid white;
+}
+
+#title .statistic.classes {
+	border-color: #f2711c;
+}
+
+#title .statistic.modules {
+	border-color: #a333c8;
+}
+
+#title .statistic.functions {
+	border-color: #00b5ad;
+}
+
+#title .statistic.members {
+	border-color: #fbbd08;
+}
 
 
 .main .title {
@@ -247,7 +358,7 @@ nav .active-scroll {
 		align-items: center;
 }
 
-.main .title .label {
+.main .title .label{
 		padding: 10px;
     height: 24px;
     width: 24px;
