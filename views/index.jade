@@ -37,6 +37,9 @@ block content
 					.wrap
 						span Login with
 						| GitHub
+		.info 
+			span This service is in alpha phase. 
+			span Please report issues or feedback <a href="https://github.com/lipp/doclets/issues">here</a>.
 
 	.ui.vertical.segment
 		.ui.container
@@ -55,13 +58,13 @@ block content
 								.title 
 									i.icon.github
 									| Login with GitHub
-								.description Doclets.io needs some permissions
+								.description Doclets.io needs permissions to install a webhook
 						.step
 							.content
 								.title 
 									i.icon.plus
 									| Add Repository
-								.description The source must be JSDoc commented
+								.description The source must be <a href='http://usejsdoc.org'>JSDoc</a> commented
 						.step
 							.content
 								.title 
@@ -75,7 +78,7 @@ block content
 									i.icon.cloud.upload
 									| Push
 								.description Commit and push your changes
-						.step
+						//.step
 							.content
 								.title 
 									i.icon.check
