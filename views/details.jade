@@ -18,10 +18,18 @@ mixin see(seeArray)
 
 		
 mixin title(doclet, id)
-	- var symbols = {'class': 'cube', 'module': 'cubes'}
-	- var colors = {'class': 'orange', 'module': 'purple', 'function': 'teal', 'member': 'blue', 'constant': 'red'}
+	- var symbols = {'class': 'cube', 'module': 'small archive', 'member': 'cubes', 'file': 'small file', 'interface': 'file text', 'constant': 'lock'}
+	- var colors = {'class': 'orange', 'module': 'purple', 'function': 'teal', 'member': 'yellow', 'constant': 'red'}
 	h2.title
-		span.ui.label(class=colors[doclet.kind], style='background-color: #1B1C1D !important; border-width: 3px; ')= doclet.kind.substr(0,1)
+		span.ui.label(class=colors[doclet.kind] || 'orange', style='background-color: #1B1C1D !important; border-width: 3px;' )
+			if doclet.kind == 'function'
+				.wrap
+					em f
+					sub x
+			else if !symbols[doclet.kind]
+				em= doclet.kind.substr(0,1)
+			else
+				i.icon(class=symbols[doclet.kind])
 		//.ui.circular.label(class=colors[doclet.kind])
 		//i.icon(class=symbols[doclet.kind] || 'leaf', style='color: ' + colors[doclet.kind] + ';')
 		- var names = tools.splitName(doclet)
@@ -150,7 +158,7 @@ mixin members(doclet)
 	
 mixin doclet(doclet)
 	- var id = tools.idFromLongname(doclet.longname)
-	article.module(id=id)
+	article(id=id, class=doclet.kind)
 		+title(doclet, id)
 		+infolist(doclet)
 		+details(doclet)
