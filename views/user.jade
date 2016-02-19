@@ -74,15 +74,15 @@ block content
 												.item(data-value=repo._id)= repo.name
 								.four.wide.field
 									button#add.ui.labeled.icon.button.primary(type='submit', disabled=true) 
-										i.icon.plus
+										i.icon.plug
 										| Add
-						form.ui.large.from(action='/sync', method='post')
-							button.ui.labeled.icon.button(type='submit')
-								i.refresh.icon
-								| Sync
 	
 				.four.wide.column
 					include profile.jade
+					form.ui.large.form(action='/sync', method='post')
+						button.ui.fluid.labeled.icon.button(type='submit')
+							i.refresh.icon
+							| Re-Sync Repositories
 					.ui.two.statistics
 						.ui.statistic
 							.value= doclets.length
