@@ -8,7 +8,7 @@ var _ = require('underscore')
 
 var loadFixture = function (name) {
   var dir = path.join(__dirname, '../fixtures', name)
-  var doclets = gather.gatherDocletsAndMeta(dir)
+  var doclets = gather.gatherDocletsAndMeta(dir, true)
   var tree = structure.tree(doclets.doclets)
   return tree
 }

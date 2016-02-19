@@ -5,7 +5,7 @@ var path = require('path')
 
 var loadFixture = function (name) {
   var dir = path.join(__dirname, '../fixtures', name)
-  return gather.gatherDocletsAndMeta(dir)
+  return gather.gatherDocletsAndMeta(dir, true)
 }
 
 describe('The gather module', function () {

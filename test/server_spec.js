@@ -42,7 +42,7 @@ describe('The server module', function () {
     doclet._owner = userName
     doclet.tagOrHash = '1235'
     doclet.createdAt = new Date()
-    doclet.data = gather.gatherDocletsAndMeta(dir)
+    doclet.data = gather.gatherDocletsAndMeta(dir, true)
 
     var user = new User()
     user._id = userName
