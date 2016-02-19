@@ -52,10 +52,11 @@ mixin module(module)
 
 nav#api-nav.ui.left.inline.inverte.large.vertical.menu.visible
 	each article in doclet.data.articles
-		a.item(href=articlesPath + article.id)= article.title
+		a.item(href=articlesPath + article.id)
+			h3= article.title
 	.item.api
 		h2.header 
-			a(href='#') API
+			a(href=apiPath) API
 
 		- var tree = doclet.asTree()
 		- var globals = _.findWhere(tree, {longname: 'globals'})
