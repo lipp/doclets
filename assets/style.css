@@ -81,6 +81,16 @@ article.class .title .label .icon::before{
 	font-size: 23px;
 }
 
+article.event .title .label .icon{
+	position: relative;
+	left: 2px;
+	top: 2px;
+}
+
+article.event .title .label .icon::before{
+	font-size: 23px;
+}
+
 article.class .title .label .icon{
 	position: relative;
 	top: 2px;

@@ -6,7 +6,7 @@ mixin funcdecl(func, isCtor)
 		span.link
 			a(href=apiPath + '#' + id)
 		
-- var colors = {'class': 'orange', 'module': 'purple', 'function': 'teal', 'member': 'blue', 'constant': 'red'}
+- var colors = {'class': 'orange', 'module': 'purple', 'function': 'teal', 'member': 'yellow', 'constant': 'red'}
 
 mixin childlist(node, root)
 	each child in childs(node)
@@ -19,7 +19,7 @@ mixin childlist(node, root)
 					.title.active(id='nav-' + id)
 						i.dropdown.icon
 						a(href=apiPath + '#' + id)= child.name
-							span.kind.ui.circular.label(class=doclet.kind + ' ' + colors[doclet.kind])
+							span.kind.ui.circular.label(class=doclet.kind + ' ' + (colors[doclet.kind] || 'yellow'))
 				else
 					.title.active
 						i.dropdown.icon
@@ -30,7 +30,7 @@ mixin childlist(node, root)
 		else if doclet
 			.leaf(id='nav-' + id)
 				a(href=apiPath + '#' + id)= child.name
-					span.kind.ui.circular.label(class=doclet.kind + ' ' + colors[doclet.kind])
+					span.kind.ui.circular.label(class=doclet.kind + ' ' + (colors[doclet.kind] || 'yellow'))
 
 
 mixin module(module)

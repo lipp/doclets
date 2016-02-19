@@ -18,10 +18,10 @@ mixin see(seeArray)
 
 		
 mixin title(doclet, id)
-	- var symbols = {'class': 'cube', 'module': 'small archive', 'member': 'cubes', 'file': 'small file', 'interface': 'file text', 'constant': 'lock'}
+	- var symbols = {'class': 'cube', 'module': 'small archive', 'member': 'cubes', 'file': 'small file', 'interface': 'file text', 'constant': 'lock', 'event': 'announcement'}
 	- var colors = {'class': 'orange', 'module': 'purple', 'function': 'teal', 'member': 'yellow', 'constant': 'red'}
 	h2.title
-		span.ui.label(class=colors[doclet.kind] || 'orange', style='background-color: #1B1C1D !important; border-width: 3px;' )
+		span.ui.label(class=colors[doclet.kind] || 'yellow', style='background-color: #1B1C1D !important; border-width: 3px;' )
 			if doclet.kind == 'function'
 				.wrap
 					em f
