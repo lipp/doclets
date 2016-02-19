@@ -112,13 +112,27 @@ block content
 	#title
 		.background
 		h1.ui.inverted.header= doclet.repo
-		h2.version= doclet.version
 		h3 by
 			a(href='/' + doclet.owner)= ' ' + doclet.owner
 				if doclet._owner
 					img.ui.left.spaced.avatar.image(src=doclet._owner.image, style='border-radius: 0px;')
+		h2.version= doclet.version
 		h4
 			a(href=doclet.getRepoUrl()) all versions
+
+		.ui.inverted.statistics
+			.statistic.modules
+				.value= _.where(doclet.data.doclets, {kind: 'module'}).length
+				.label Modules
+			.statistic.classes
+				.value= _.where(doclet.data.doclets, {kind: 'class'}).length
+				.red.label Classes
+			.statistic.functions
+				.value= _.where(doclet.data.doclets, {kind: 'function'}).length
+				.label Functions
+			.statistic.members
+				.value= _.where(doclet.data.doclets, {kind: 'members'}).length
+				.label Members
 
 		//.ui.category.search
 			.ui.icon.input
