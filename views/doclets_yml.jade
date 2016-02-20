@@ -3,6 +3,8 @@ block content
 	.ui.vertical.segment
 		.ui.container
 			h1.ui.header .doclets.yml
+			.ui.message.info
+				p Documentation will be generated for <strong>all tags</strong> and <strong><em>selected</em> branches</strong> (defaults are 'master' and 'add-to-doclets'). To add branches to Doclets.io use the <code>branches</code> entry. 
 			p Doclets.io requires a small configuration file to create your repository's API-Doc.
 				| This file must be placed in the root directory of you repository similar to the popular .travis.yml for Travis-CI.
 
@@ -25,6 +27,16 @@ block content
 					p articles:
 					p &nbsp;&#09; &#09;- Overview: README.md 
 					p &nbsp;&#09; &#09;- Todo App: examples/todo/README.md
+
+			h3.header Example 3
+			p This example tells Doclets.io to parse all files within the <strong><code>lib</code></strong> for JSDoc comments. 
+				| It also adds the 'next' branch for automatic doc generation.
+			.ui.raised.segment
+				code
+					p dir: lib
+					p branches:
+					p &nbsp;&#09; &#09;- master 
+					p &nbsp;&#09; &#09;- next
 			
 			h3.header Explained
 			table.ui.celled.table
@@ -40,11 +52,14 @@ block content
 						td <code>files</code>
 						td Specifies an array of files to parse for JSDoc comments
 					tr
+						td <code>branches</code>
+						td Specifies an array of branch names for which doc generation will be enabled. Defaults to <code>['master', 'add-to-doclets']</code>
+					tr
 						td <code>packageJson</code>
 						td Specifies a package.json file path. Adds additional info to the repository.
 					tr
 						td <code>articles</code>
-						td A key/value array which allows to include Markdown files into the generated doclet.
+						td A key/value array which allows to include Markdown files into the generated doclet. The key is the article name as listed in the API-Doc and the value id the path to the Markdown file to include with your repo.
 				tfoot
 					tr 
 						th(colspan=2) Either <strong><code>lib</code></strong> or <strong><code>files</code></strong> must be defined!
