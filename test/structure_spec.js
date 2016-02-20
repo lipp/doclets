@@ -74,8 +74,8 @@ describe('The structure module', function () {
   it('createMarkdownRenderer', function () {
     var renderer = structure.createMarkdownRenderer('http://github.com/lipp/node-jet', 'master')
     var html = renderer('[about](/about.html)')
-    assert(html.indexOf('<a href="http://github.com/lipp/node-jet/blob/master//about.html">about</a>') > -1)
+    assert(html.indexOf('<a href="http://github.com/lipp/node-jet/blob/master/about.html">about</a>') > -1)
     html = renderer('![Alt text](/path/to/img.jpg)')
-    assert(html.indexOf('<img src="http://github.com/lipp/node-jet/raw/master//path/to/img.jpg" alt="Alt text">') > -1)
+    assert(html.indexOf('<img src="http://github.com/lipp/node-jet/raw/master/path/to/img.jpg" alt="Alt text">') > -1)
   })
 })
