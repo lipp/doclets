@@ -31,6 +31,21 @@ body {
 	margin: 5px;
 }
 
+#ads p, #ads li {
+	font-size: 1.2em;
+	margin-left: 3em;
+	margin-right: 3em;
+}
+
+#ads .punch {
+	margin-top: -20px;
+	font-style: italic;
+	margin-bottom: 40px;
+	display: block;
+	font-size: 1.6em;
+	font-weight: bold;
+}
+
 :not(pre) > code {
 	font-weight: bold;
 }
@@ -114,6 +129,10 @@ article.function .title .label sub{
 	font-size: 14px;
 }
 
+.repo-cards > .card {
+	margin-top: 30px !important;
+}
+
 .markdown {
 	  font-size: 17px !important;
     line-height: 1.4285em;
@@ -127,7 +146,7 @@ article.function .title .label sub{
 	margin-top: 35px;
 }
 
-.hero-header span {
+.hero-header span, .underline {
 	border-bottom: 3px solid orange !important;
 }
 
@@ -305,6 +324,26 @@ body .ui.cards > .card > .content{
 
 */
 
+.focus .item {
+	margin-bottom: 20px;
+}
+
+.focus .list {
+	margin-top: -30px;
+}
+
+.dont {
+	display: block;
+	font-size: 1.2em;
+	line-height: 1.7em;
+	font-weight: bold;
+
+}
+
+#ads .else {
+	font-size: 1.1em;
+}
+
 .accordion .title.active, .accordion .content.active {
 }
 
@@ -321,6 +360,7 @@ body .ui.cards > .card > .content{
 	margin-top: 120px;
 	color: gray;
 	font-size: 16px;
+	font-style: italic;
 }
 
 #api-nav .item.api {
