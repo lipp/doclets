@@ -38,12 +38,29 @@ block content
 								p You are close to have your first Doclet.
 								p Just create a <a>.doclets.yml</a> file and push your changes to
 									| your respective GitHub repository. Doclets.io will automatically generate the API documentation for you.
+
+					if isOwnProfile
+						form.ui.form(method='post', action='/account/addrepo')
+							.fields
+								.six.wide.field
+									.ui.fluid.dropdown.labeled.search.icon.button
+										i.icon.search
+										span.text Select Repository
+										input(type='hidden', name='repo')
+										.menu
+											each repo in _.sortBy(disabledRepos, function(repo) {return repo.name.toLowerCase()})
+												.item(data-value=repo._id)= repo.name
+								.four.wide.field
+									button#add.ui.labeled.icon.button.primary(type='submit', disabled=true) 
+										i.icon.plug
+										| Add
 	
-					.ui.one.stacked.cards
+					//.ui.one.stacked.cards
+					.repo-cards
 						each repo in _.sortBy(repos, function(repo) {return repo.name.toLowerCase()})
 							- var versions = docletsByRepository[repo.name]
 							if repo.isWebHookEnabled() || versions
-								.ui.card
+								.ui.fluid.card
 									.content
 										.header
 											a(href=username + '/' + repo.name)= repo.name
@@ -60,22 +77,6 @@ block content
 										else
 											em No Doclets available yet
 	
-					if isOwnProfile
-						.ui.dividing.header
-						form.ui.form(method='post', action='/account/addrepo')
-							.fields
-								.six.wide.field
-									.ui.fluid.dropdown.labeled.search.icon.button
-										i.icon.search
-										span.text Select Repository
-										input(type='hidden', name='repo')
-										.menu
-											each repo in _.sortBy(disabledRepos, function(repo) {return repo.name.toLowerCase()})
-												.item(data-value=repo._id)= repo.name
-								.four.wide.field
-									button#add.ui.labeled.icon.button.primary(type='submit', disabled=true) 
-										i.icon.plug
-										| Add
 	
 				.four.wide.column
 					include profile.jade
