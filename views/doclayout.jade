@@ -120,19 +120,27 @@ block content
 		h4
 			a(href=doclet.getRepoUrl()) all versions
 
-		.ui.inverted.statistics
-			.statistic.modules
-				.value= _.where(doclet.data.doclets, {kind: 'module'}).length
-				.label Modules
-			.statistic.classes
-				.value= _.where(doclet.data.doclets, {kind: 'class'}).length
-				.red.label Classes
-			.statistic.functions
-				.value= _.where(doclet.data.doclets, {kind: 'function'}).length
-				.label Functions
-			.statistic.members
-				.value= _.where(doclet.data.doclets, {kind: 'members'}).length
-				.label Members
+		if doclet.error
+			h2.ui.icon.inverted.header
+				i.icon.bug
+					.content Zonk!
+					.sub.header Sorry, something went wrong during creation of your doclet!
+						p= 'Error: ' + doclet.error
+
+		else
+			.ui.inverted.statistics
+				.statistic.modules
+					.value= _.where(doclet.data.doclets, {kind: 'module'}).length
+					.label Modules
+				.statistic.classes
+					.value= _.where(doclet.data.doclets, {kind: 'class'}).length
+					.red.label Classes
+				.statistic.functions
+					.value= _.where(doclet.data.doclets, {kind: 'function'}).length
+					.label Functions
+				.statistic.members
+					.value= _.where(doclet.data.doclets, {kind: 'members'}).length
+					.label Members
 
 		//.ui.category.search
 			.ui.icon.input
@@ -147,13 +155,14 @@ block content
 								.content
 									.title= result.name
 									.description= result.longname
-	#xxx.api
-		#nav-wrap
-			include nav.jade
-		.main
-			block api
+	if !doclet.error
+		#xxx.api
+			#nav-wrap
+				include nav.jade
+			.main
+				block api
 	
-	a.big.circular.icon.button#scroll-top(href='#title')
-		i.circular.icon.angle.up
+		a.big.circular.icon.button#scroll-top(href='#title')
+			i.circular.icon.angle.up
 
 
