@@ -41,35 +41,64 @@ block content
 			span Doclets.io is in alpha phase. 
 			span Please report issues or give feedback <a href="https://github.com/lipp/doclets/issues">here</a>.
 
-	#ads.ui.vertical.segment
-		.ui.equal.width.stackable.internally.celled.grid
-			.center.aligned.row
-				.column
-					h1.ui.header.hero-header
-						span.underline API-Doc is important
-					span.punch Now it's also easy!
-					p Doclets.io is the missing <strong>hosted and automated API-Doc generation service for Javascript</strong>. By 
-						| removing all the hurdles to setup API-Documentation it enables you to focus on actually writing Documentation!
-					p Doclets.io <strong>automatically creates API-Doc</strong> for <strong>every tag and <em>selected</em> branches</strong>, supporting <a href="http://usejsdoc.org">JSDoc</a> comments and additionally Markdown articles.
-				.column.focus
-					h1.ui.header.hero-header
-						span.underline Focus on content
-					span.punch Write documentation!
-					.ui.list
-						.item 
-							span.dont Don't spam your repository 
-							span.else with a truckload of HTML/CSS files for your API-Doc
-						.item 
-							span.dont Don't waste time 
-							span.else with build-systems to add API-Doc generation
-						.item 
-							span.dont Don't sweat 
-							span.else about release management of your API-Doc
+	#samples.ui.vertical.segment
+		.ui.container
+			#diagram
+				.ui.grid
+					.center.aligned.row
+						.column.sixteen.wide
+							span.ui.black.big.label
+								i.icon.code.text
+								strong JSDoc
+							i.icon.plus
+							span.ui.black.big.label
+								i.icon.file.text
+								strong Markdown
+							i.icon.plus
+							span.ui.black.big.label
+								i.icon.file.text.outline
+								strong .doclets.yml
+					.center.aligned.row
+						.column.sixteen.wide
+							#cloud
+								i.huge.angle.double.down.icon
+								//i.massive.icon.cloud
+									img.icon.logo(src='/logo.svg')
+			#screenshots
+				img.ui.big.circular2.bordered.image.img-api(src='doclets_screen_api.png')
+				img.ui.big.circular2.bordered.image.img-md(src='doclets_screen_md.png')
 
+
+	#ads.ui.vertical.segment
+		.ui.container
+			.ui.equal.width.stackable.internally.celled.grid
+				.center.aligned.row
+					.column
+						h1.ui.header.hero-header
+							span.underline API-Doc is important
+						span.punch Now it's also easy!
+						p Doclets.io is the missing <strong>hosted and automated API-Doc generation service for Javascript</strong>. By 
+							| removing all the hurdles to setup API-Documentation it enables you to focus on actually writing Documentation!
+						p Doclets.io <strong>automatically creates API-Doc</strong> for <strong>every tag and <em>selected</em> branches</strong>, supporting <a href="http://usejsdoc.org">JSDoc</a> comments and additionally Markdown articles.
+					.column.focus
+						h1.ui.header.hero-header
+							span.underline Focus on content
+						span.punch Write documentation!
+						.ui.list
+							.item 
+								span.dont Don't spam your repository 
+								span.else with a truckload of HTML/CSS files for your API-Doc
+							.item 
+								span.dont Don't waste time 
+								span.else with build-systems to add API-Doc generation
+							.item 
+								span.dont Don't sweat 
+								span.else about release management of your API-Doc
+	
 	.ui.vertical.segment
 		.ui.container
 			h1.ui.centered.header.hero-header 
-				span How it works
+				span Getting started
 			.ui.two.column.middle.aligned.stackable.grid
 				.ui.column
 					//.ui.ordered.relaxed.huge.list
