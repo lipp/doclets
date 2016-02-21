@@ -63,7 +63,7 @@ nav#api-nav.ui.left.inline.inverte.large.vertical.menu.visible
 		if tree.length > 1 && childs(globals).length > 0
 			each module in tree
 				+module(module)
-		else
+		else if globals && globals.childs
 			.module
 				+childlist(globals.childs)
 
