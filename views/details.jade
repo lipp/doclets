@@ -43,7 +43,11 @@ mixin title(doclet, id)
 				span.name
 					+funcdeclx(names.name, doclet, false)
 			else
-				span.name= names.name
+				if names.name == ''
+					span.name
+						em exports
+				else
+					span.name= names.name
 			
 			a(href="#" + id).permalink
 				i.tiny.icon.linkify
@@ -162,7 +166,7 @@ mixin doclet(doclet)
 		+title(doclet, id)
 		+infolist(doclet)
 		+details(doclet)
-		//if doclet.kind == 'event'
+		if debug
 			p= JSON.stringify(doclet)
 	
 mixin module(module)
