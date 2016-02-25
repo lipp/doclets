@@ -29,7 +29,7 @@ mixin childlist(node, root)
 					+childlist(child.node)
 		else if doclet
 			.leaf(id='nav-' + id)
-				a(href=apiPath + '#' + id)= child.name
+				a(href=apiPath + '#' + id)= child.name !== '0' ? child.name : 'exports'
 					span.kind.ui.circular.label(class=doclet.kind + ' ' + (colors[doclet.kind] || 'yellow'))
 
 

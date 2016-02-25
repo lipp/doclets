@@ -9,7 +9,11 @@ mixin optMarkdown(desc, className)
 		p(class=className)= desc
 
 mixin funcdeclx(name, func, isCtor)
-	span.funcname= name
+	if name == ''
+		span.funcname
+			em exports
+	else
+		span.funcname= name
 	ul.args
 		if func.params
 			each param in _.filter(func.params, function(param) {return param.name.indexOf('.') === -1;})
@@ -129,18 +133,27 @@ block content
 
 		else
 			.ui.inverted.statistics
-				.statistic.modules
-					.value= _.where(doclet.data.doclets, {kind: 'module'}).length
-					.label Modules
-				.statistic.classes
-					.value= _.where(doclet.data.doclets, {kind: 'class'}).length
-					.red.label Classes
-				.statistic.functions
-					.value= _.where(doclet.data.doclets, {kind: 'function'}).length
-					.label Functions
-				.statistic.members
-					.value= _.where(doclet.data.doclets, {kind: 'members'}).length
-					.label Members
+				- var all = doclet.asFlat()
+				- var modules = _.where(all, {kind: 'module'})
+				- var classes = _.where(all, {kind: 'class'})
+				- var functions = _.where(all, {kind: 'function'})
+				- var members = _.where(all, {kind: 'members'})
+				if modules.length > 0
+					.statistic.modules
+						.value= modules.length
+						.label Modules
+				if classes.length > 0
+					.statistic.classes
+						.value= classes.length
+						.red.label Classes
+				if functions.length > 0
+					.statistic.functions
+						.value= functions.length
+						.label Functions
+				if members.length > 0
+					.statistic.members
+						.value= members.length
+						.label Members
 
 		//.ui.category.search
 			.ui.icon.input
