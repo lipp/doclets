@@ -18,7 +18,7 @@ mixin funcdeclx(name, func, isCtor)
 		if func.params
 			each param in _.filter(func.params, function(param) {return param.name.indexOf('.') === -1;})
 				li(class=param.optional ? 'optional' : undefined)= param.name
-	if !isCtor && func.returns && func.returns[0]
+	if !isCtor && func.returns && func.returns[0] && func.returns[0].type
 		- var names = _.map(func.returns[0].type.names, tools.shortName);
 		ul.returns
 			each name in names
