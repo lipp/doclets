@@ -46,11 +46,11 @@ block content
 						th Description
 				tbody
 					tr
-						td <code>lib</code>
-						td Specifies a directory to parse for JSDoc comments
+						td <code>dir</code>
+						td Specifies a directory to parse for JSDoc comments. Usually this is "src" or "lib".
 					tr
 						td <code>files</code>
-						td Specifies an array of files to parse for JSDoc comments
+						td Specifies an array of files to parse for JSDoc comments. If your code is in a single file e.g. "index.js" this is also your choice.
 					tr
 						td <code>branches</code>
 						td Specifies an array of branch names for which doc generation will be enabled. Defaults to <code>['master', 'add-to-doclets']</code>
@@ -62,6 +62,6 @@ block content
 						td A key/value array which allows to include Markdown files into the generated doclet. The key is the article name as listed in the API-Doc and the value id the path to the Markdown file to include with your repo.
 				tfoot
 					tr 
-						th(colspan=2) Either <strong><code>lib</code></strong> or <strong><code>files</code></strong> must be defined!
+						th(colspan=2) Either <strong><code>dir</code></strong> or <strong><code>files</code></strong> must be defined!
 							| Other fields are optional.
 					
