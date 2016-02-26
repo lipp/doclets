@@ -1,21 +1,22 @@
-if owner
+if owner || user
+	- var profile = owner || user 
 	.ui.card
 		.image
-			img(src=owner.image)
+			img(src=profile.image)
 		.content
 			.header
-				a(href='/' + owner._id)= owner._id
+				a(href='/' + profile._id)= profile._id
 			.meta
-				span= owner.name
+				span= profile.name
 			.ui.middle.aligned.very.relaxed.divided.list
 				.item
 					i.github.icon
 					.content
-						a(href=owner.url) GitHub Profile
+						a(href=profile.url) GitHub Profile
 				.item
 					i.mail.icon
 					.content
-						a(href='mailto:' + owner.email)= owner.email
+						a(href='mailto:' + profile.email)= profile.email
 
 else
 	h2 No Profile information
