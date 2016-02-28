@@ -352,12 +352,22 @@ body .ui.cards > .card > .content{
 
 #screenshots > * {
 	position: absolute;
+	transition: all 0.3s ease-out;
+}
+
+#screenshots > *:hover {
+	transform: translateY(-15px);
+	box-shadow: 3px 6px 10px -2px #dadada;
 }
 
 #screenshots > .img-api {
 	top: 0;
-	width: 60%;
+	width: 50%;
 	left: 0;
+}
+
+#screenshots img {
+	width: 100% !important;
 }
 
 .hero-icon i.icon.ban:before {
@@ -404,11 +414,15 @@ body .ui.cards > .card > .content{
 }
 
 #quotes.ui.vertical.segment {
-	background-color: initial;
+	background-color: rgba(0,0,0,0.3);
+	border-top: 10px solid gray;
+	border-bottom: 10px solid gray;
 }
 
 #quotes cite {
 	color: #e0e0e0;
+	font-weight: 100;
+	font-size: 0.8em;
 }
 
 #quotes .author {
