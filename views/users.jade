@@ -1,0 +1,17 @@
+extends layout
+
+block title
+	title= ' Users - Doclets'
+	meta(name='description', content='' + users.length + ' registered users at Doclets.io')
+
+block content
+	.ui.vertical.segment
+		.ui.container
+			.ui.five.stackable.stackable.cards
+				each user in users
+					a.ui.card(href='/' + user._id)
+						.image
+							img(src=user.image)
+						.content
+							.header= user._id
+							.description= user.name

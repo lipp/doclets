@@ -403,6 +403,18 @@ body .ui.cards > .card > .content{
 
 }
 
+#quotes.ui.vertical.segment {
+	background-color: initial;
+}
+
+#quotes cite {
+	color: #e0e0e0;
+}
+
+#quotes .author {
+	color: grey;
+}
+
 #ads .else {
 	font-size: 1.15em;
 	line-height: 1.25em;
