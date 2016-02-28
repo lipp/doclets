@@ -117,7 +117,7 @@ article.function .title .wrap {
 	top: 1px;
 }
 
-article.function .title .label em {
+article.function .title .labelquestion{
     position: relative;
     right: -5px;
     font-weight: 100;
@@ -308,9 +308,14 @@ body > nav ~ *:not(footer) {
 	padding-top: 30px;
 }
 
+.api {
+	background-color: white;
+}
+
 body .ui.vertical.segment {
 	padding-top: 5em;
 	padding-bottom: 5em;
+	background-color: white;
 }
 /*
 body .ui.cards > .card {
@@ -355,6 +360,25 @@ body .ui.cards > .card > .content{
 	left: 0;
 }
 
+.hero-icon i.icon.ban:before {
+	color: #FB5959;
+  font-size: 1em;
+}
+
+.hero-icon i.icon.ban {
+	position: relative;
+}
+
+.hero-icon i.icon:not(.ban) {
+	position: absolute;
+    left: -33px;
+    top: 12px;
+}
+
+.hero-icon i.icon:not(.ban):before {
+	font-size: 29px;
+}
+
 
 #screenshots > .img-md {
 	top: 40%;
@@ -381,6 +405,7 @@ body .ui.cards > .card > .content{
 
 #ads .else {
 	font-size: 1.1em;
+	line-height: 1.2em;
 }
 
 .accordion .title.active, .accordion .content.active {

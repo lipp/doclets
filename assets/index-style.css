@@ -96,19 +96,22 @@ body header {
 	}
 
 	.hero .background, #title .background {
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		left: 0;
-		right: 0;
 		background-image: url('code.jpg');
 		background-repeat: no-repeat;
 		background-size: cover;
-		background-attachment : fixed;
     background-position   : top left;
-		-webkit-filter: saturate(50%) brightness(16%) blur(5px);
+		-webkit-filter: saturate(70%) brightness(19%) blur(5px);
+		filter: saturate(70%) brightness(19%) blur(5px);
 		transform: translateZ(0);
-		filter: saturate(50%) brightness(13%) blur(5px);
+    -webkit-transform: translateZ(0);
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    top: 102px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    pointer-events: none;
 	}
 
 	.hero > *:not(.background), #title > *:not(.background) {
