@@ -1,0 +1,24 @@
+extends layout
+
+block title
+	title= ' All - Doclets'
+	meta(name='description', content='' + doclets.length + ' doclets generated at Doclets.io')
+
+block content
+	.ui.vertical.segment
+		.ui.container
+			.ui.three.stacked.stackable.cards
+				each docletParams in doclets
+					- var doclet = docletParams.doclet
+					.card
+						.content
+							a.header(href=doclet.getDocletUrl())= doclet.repo
+								.meta
+									span= doclet.version
+	
+							.description= doclet.getDescription()
+								br
+								a(href=doclet.getRepoUrl()) all versions
+						.extra.content
+							span Published #{moment(doclet.createdAt).fromNow()} by&nbsp;
+								a(href=doclet.owner)= doclet.owner
