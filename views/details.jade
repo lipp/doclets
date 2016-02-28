@@ -118,6 +118,12 @@ mixin infolist(doclet)
 			.content
 				.description Kind
 				.header= doclet.kind
+		if doclet.since
+			.item
+				i.large.history.middle.aligned.icon
+				.content
+					.description Since
+					.header= doclet.since
 		if doclet.type
 			.item
 				i.large.diamond.middle.aligned.icon
