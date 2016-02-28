@@ -30,6 +30,9 @@ block content
 			.item
 				i.icon.check.circle
 				.content Tags and Branches
+			.item
+				i.icon.check.circle
+				.content Free for Open Source
 		if !user
 			.login
 				a.ui.huge.button.primary#get-started(href='/auth/github') 
@@ -62,12 +65,11 @@ block content
 						.column.sixteen.wide
 							#cloud
 								i.huge.angle.double.down.icon
-								//i.massive.icon.cloud
-									img.icon.logo(src='/logo.svg')
+
 			#screenshots
-				a.img-api(href='/lipp/acme-jsdoc-example/master')
+				a.img-api(href='/lipp/ScrollMagic/add-to-doclets')
 					img.ui.big.circular2.bordered.image(src='doclets_screen_api.png')
-				a.img-md(href='/lipp/acme-jsdoc-example/master')
+				a.img-md(href='/lipp/ScrollMagic/add-to-doclets/about')
 					img.ui.big.circular2.bordered.image(src='doclets_screen_md.png')
 
 
@@ -80,8 +82,8 @@ block content
 							span.underline API-Doc is important
 						span.punch Now it's also easy!
 						p Doclets.io is the missing <strong>hosted and automated API-Doc generation service for Javascript</strong>. By 
-							| removing all the hurdles to setup API-Documentation it enables you to focus on actually writing documentation!
-						p Doclets.io <strong>automatically creates API-Doc</strong> for <strong>every tag and <em>selected</em> branches</strong>, supporting <a href="http://usejsdoc.org">JSDoc</a> comments and additionally Markdown articles.
+							| simplifying API-Doc setup it enables you to actually <em>focus on writing documentation</em>!
+						p Doclets.io <strong>automatically creates API-Doc</strong> for <strong>every tag and <em>selected</em> branches</strong>, supporting <a href="http://usejsdoc.org">JSDoc</a> comments and <a href='https://daringfireball.net/projects/markdown/'>Markdown</a> articles.
 					.column.focus
 						.ui.list
 							.item
