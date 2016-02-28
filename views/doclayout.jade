@@ -16,6 +16,7 @@ mixin funcdeclx(name, func, isCtor)
 		span.funcname= name
 	ul.args
 		if func.params
+			- func.params.name = func.params.name || 'unnamed'
 			each param in _.filter(func.params, function(param) {return param.name.indexOf('.') === -1;})
 				li(class=param.optional ? 'optional' : undefined)= param.name
 	if !isCtor && func.returns && func.returns[0] && func.returns[0].type
