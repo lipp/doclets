@@ -1,7 +1,14 @@
-mixin examples(examplesArray)
+- var exampleIndex = 0
+mixin examples(examplesArray, live)
 	each example in examplesArray
-		pre.example
-			code= example
+		if live
+			- exampleIndex++
+			- id = 'example-' + exampleIndex
+			script(src='https://embed.tonicdev.com' data-element-id=id, defer=true)
+			div.live(id=id)= example
+		else
+			pre.example
+				code= example
 
 
 mixin see(seeArray)
@@ -106,7 +113,7 @@ mixin details(doclet)
 		//p= JSON.stringify(doclet.properties)
 	if doclet.examples
 		h4 Example code:
-		+examples(doclet.examples)
+		+examples(doclet.examples, hasLiveExamples(doclet))
 	if doclet.see
 		+see(doclet.see)
 	
