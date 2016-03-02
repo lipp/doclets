@@ -79,16 +79,18 @@ block content
 										.header
 											a(href=username + '/' + repo.name)= repo.name
 											if repo.isWebHookEnabled()
-												i.tiny.middle.aligned.green.check.icon
+												i.small.middle.aligned.green.check.icon.tool-tip(data-content='GitHub integration enabled')
 											else
-												i.tiny.middle.aligned.red.remove.icon
+												i.small.middle.aligned.red.remove.icon.tool-tip(data-content='GitHub integration disabled')
 										.description= repo.description
 									.extra.content
 										if versions
+											.ui.horizontal.label.tool-tip(data-content=versions.length + ' Doclets available')= versions.length
 											.ui.horizontal.bulleted.link.list
 												each version in versions
 													a.item(href=version.getDocletUrl())= version.version
 										else
+											.ui.horizontal.label 0
 											em No Doclets available yet
 	
 	
@@ -99,7 +101,7 @@ block content
 							button.ui.fluid.labeled.icon.button(type='submit')
 								i.refresh.icon
 								| Re-Sync Repositories
-					.ui.two.statistics
+					.ui.two.small.statistics
 						.ui.statistic
 							.value= doclets.length
 							.label Doclets
