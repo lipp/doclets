@@ -295,8 +295,18 @@ nav.ui.menu .item > img:not(.ui) {
 	width: 100px;
 }
 
+.live > iframe {
+	position: relative;
+}
+
 .recents .header .meta {
 	font-size: 14px !important;
+}
+
+.recents .image {
+	margin-left: 4px;
+	width: 18px;
+	border-radius: 0;
 }
 
 body > nav {
@@ -426,8 +436,8 @@ body .ui.cards > .card > .content{
 
 #quotes.ui.vertical.segment {
 	background-color: rgba(0,0,0,0.3);
-	border-top: 10px solid gray;
-	border-bottom: 10px solid gray;
+	border-top: 5px solid orange;
+	border-bottom: 5px solid orange;
 }
 
 #quotes cite {
