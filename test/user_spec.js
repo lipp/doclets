@@ -1,8 +1,25 @@
-/* global describe it before beforeEach after */
+/* global describe it before beforeEach after afterEach */
 var assert = require('assert')
 var User = require('../lib/models/user')
 var env = require('../lib/env')
 var mongoose = require('mongoose')
+var repoModule = require('../lib/repo')
+var sinon = require('sinon')
+
+var ghPassport = {
+  token: 'token',
+  refreshToken: 'token2',
+  profile: {
+    id: '123',
+    username: 'lipp',
+    displayName: 'Gerhard',
+    _json: {
+      email: 'foo@bla.com',
+      html_url: 'http://bla.com',
+      avatar_url: 'http://avatar.de'
+    }
+  }
+}
 
 describe('The user module', function () {
   before(function (done) {
@@ -18,20 +35,6 @@ describe('The user module', function () {
   })
 
   it('.createFromGitHubPassport creates db entry', function (done) {
-    var ghPassport = {
-      token: 'token',
-      refreshToken: 'token2',
-      profile: {
-        id: '123',
-        username: 'lipp',
-        displayName: 'Gerhard',
-        _json: {
-          email: 'foo@bla.com',
-          html_url: 'http://bla.com',
-          avatar_url: 'http://avatar.de'
-        }
-      }
-    }
     User.createFromGitHubPassport(ghPassport, function (err) {
       if (err) {
         done(err)
@@ -52,6 +55,73 @@ describe('The user module', function () {
           }
         })
       }
+    })
+  })
+
+  describe('.syncWithGitHub', function () {
+    var user
+    var sandbox
+
+    beforeEach(function (done) {
+      sandbox = sinon.sandbox.create()
+      User.remove({}, function () {
+        User.createFromGitHubPassport(ghPassport, function (err, newUser) {
+          user = newUser
+          done(err)
+        })
+      })
+    })
+
+    afterEach(function () {
+      sandbox.restore()
+    })
+
+    it('on success fills additional fields', function (done) {
+      var ghUser = {
+        email: 'asd',
+        name: 'horst',
+        company: 'apple',
+        blog: 'foo',
+        location: 'darmstadt',
+        bio: 'i am'
+      }
+
+      sandbox.stub(repoModule, 'getUser').yields(null, ghUser)
+      user.syncWithGitHub(function (err, syncedUser) {
+        assert(!err)
+        assert.equal(syncedUser.passportId, ghPassport.profile.id)
+        assert.equal(syncedUser._id, ghPassport.profile.username)
+        assert.equal(syncedUser.email, ghUser.email)
+        assert.equal(syncedUser.name, ghUser.name)
+        assert.equal(syncedUser.blog, ghUser.blog)
+        assert.equal(syncedUser.company, ghUser.company)
+        assert.equal(syncedUser.location, ghUser.location)
+        assert.equal(syncedUser.bio, ghUser.bio)
+        assert.equal(syncedUser.needsReauth, false)
+        done()
+      })
+    })
+
+    it('on auth fail leaves user and sets needsReauth=true', function (done) {
+      sandbox.stub(repoModule, 'getUser').yields({code: 401})
+      user.syncWithGitHub(function (err, syncedUser) {
+        assert(!err)
+        assert.equal(syncedUser.passportId, ghPassport.profile.id)
+        assert.equal(syncedUser.name, ghPassport.profile.displayName)
+        assert.equal(syncedUser._id, ghPassport.profile.username)
+        assert.equal(syncedUser.needsReauth, true)
+        done()
+      })
+    })
+
+    it('forwards other errors', function (done) {
+      sandbox.stub(repoModule, 'getUser').yields({code: 123})
+      user.syncWithGitHub(function (err, syncedUser) {
+        assert(err)
+        assert.equal(err.code, 123)
+        assert(!syncedUser)
+        done()
+      })
     })
   })
 })

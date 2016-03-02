@@ -99,8 +99,11 @@ describe('The routes module', function () {
   })
 
   it('.user(req, res) (own repo) res.render("user.jade")', function () {
+    var fakeUser = {
+      syncWithGitHub: sandbox.stub().yields(null, 555)
+    }
     sandbox.stub(Doclet, 'findByOwner').yields(null, [fakeDoclet])
-    sandbox.stub(User, 'findById').yields(null, 555)
+    sandbox.stub(User, 'findById').yields(null, fakeUser)
     sandbox.stub(Repo, 'findOrSyncByUser').yields(null, 123)
     var req = {
       user: {

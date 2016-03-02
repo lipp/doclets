@@ -413,6 +413,17 @@ body .ui.cards > .card > .content{
 
 }
 
+.profile-fullname {
+	font-weight: normal;
+	font-size: 14px;
+	color: rgba(0, 0, 0, 0.87);
+}
+
+.profile-fullname:before {
+	content: '/';
+	margin: 0 3px;
+}
+
 #quotes.ui.vertical.segment {
 	background-color: rgba(0,0,0,0.3);
 	border-top: 10px solid gray;

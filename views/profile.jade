@@ -5,18 +5,36 @@ if owner || user
 			img(src=profile.image)
 		.content
 			.header
-				a(href='/' + profile._id)= profile._id
-			.meta
-				span= profile.name
+				a(href='/' + profile._id)= profile._id 
+					span.profile-fullname= profile.name
+			if profile.createdAt
+				.meta
+					span= 'Joined ' + moment(profile.createdAt).format('MMMM Do YYYY')
+			if profile.bio
+				.description= profile.bio
 			.ui.middle.aligned.very.relaxed.divided.list
 				.item
 					i.github.icon
 					.content
 						a(href=profile.url) GitHub Profile
-				.item
-					i.mail.icon
-					.content
-						a(href='mailto:' + profile.email)= profile.email
+				if profile.email
+					.item
+						i.mail.icon
+						.content
+							a(href='mailto:' + profile.email)= profile.email
+				if profile.location
+					.item
+						i.marker.icon
+						.content= profile.location
+				if profile.company
+					.item
+						i.users.icon
+						.content= profile.company
+				if profile.blog
+					.item
+						i.world.icon
+						.content
+							a(href=profile.blog)= profile.blog
 
 else
 	h2 No Profile information
