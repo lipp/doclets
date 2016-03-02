@@ -24,28 +24,42 @@ block content
 			.ui.grid
 				.twelve.wide.column.overview
 					if isOwnProfile
-						if enabledRepos.length == 0
-							.ui.message.info
+						if isOwnProfile && owner.needsReauth
+							.ui.icon.message.error
+								i.icon.warning.circle
+								.content
+									.header Sorry, your GitHub authentication token seems invalid.
+									p This can have different reasons. Please re-authenticate next. <em>No</em> added repositories or Doclets will be lost.
+									form.ui.large.form(action='/reauth', method='post')
+										button.ui.negative.labeled.icon.button(type='submit')
+											i.refresh.icon
+											| Re-authenticate
+						if enabledRepos.length == 0 && !owner.needsReauth
+							.ui.icon.message.info
+								i.icon.check.circle
 								i.icon.close
-								.header Welcome #{user._id},
-								p great to have you here!
-								p You have no repositories added to Doclets yet.
-									| Add one of your GitHub repositories from the <a href="#add">list below</a> and press "add". 
-						if enabledRepos.length > 0 && doclets.length == 0
-							.ui.message.info
+								.content
+									.header Welcome #{user._id},
+									p great to have you here!
+									p You have no repositories added to Doclets yet.
+										| Add one of your GitHub repositories from the <a href="#add">list below</a> and press "add". 
+						if enabledRepos.length > 0 && doclets.length == 0 && !owner.needReauth
+							.ui.icon.message.info
+								i.icon.check.circle
 								i.icon.close
-								.header Almost done...
-								p You are close to have your first Doclet.
-								p Just create a <a>.doclets.yml</a> file and push your changes to
-									| your respective GitHub repository. Doclets.io will automatically generate the API documentation for you.
+								.content
+									.header Almost done...
+									p You are close to have your first Doclet.
+									p Just create a <a>.doclets.yml</a> file and push your changes to
+										| your respective GitHub repository. Doclets.io will automatically generate the API documentation for you.
 
-					if isOwnProfile
+					if isOwnProfile && !owner.needsReauth
 						form.ui.form(method='post', action='/account/addrepo')
 							.fields
 								.six.wide.field
 									.ui.fluid.dropdown.labeled.search.icon.button
 										i.icon.search
-										span.text Select Repository
+										span.text Select Repository (public only)
 										input(type='hidden', name='repo')
 										.menu
 											each repo in _.sortBy(disabledRepos, function(repo) {return repo.name.toLowerCase()})
@@ -80,10 +94,11 @@ block content
 	
 				.four.wide.column
 					include profile.jade
-					form.ui.large.form(action='/sync', method='post')
-						button.ui.fluid.labeled.icon.button(type='submit')
-							i.refresh.icon
-							| Re-Sync Repositories
+					if isOwnProfile && !owner.needsReauth
+						form.ui.large.form(action='/sync', method='post')
+							button.ui.fluid.labeled.icon.button(type='submit')
+								i.refresh.icon
+								| Re-Sync Repositories
 					.ui.two.statistics
 						.ui.statistic
 							.value= doclets.length
