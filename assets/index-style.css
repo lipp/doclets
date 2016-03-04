@@ -86,13 +86,14 @@ body header {
   align-items: center; }
   .hero {
 		position: relative;
-    padding-top: 200px; 
+    padding-top: 140px; 
 		padding-bottom: 30px;
 		background-color: #1b1c1d;
 		color: white;
 		}
 	.hero .header .sub.header {
 		color: orange !important;
+		font-size: 1.4rem !important;
 	}
 
 	.hero .background, #title .background {
@@ -119,6 +120,10 @@ body header {
 
 	.hero .ui.list, .hero p  {
 		color: #e0e0e0;
+	}
+
+	.hero p {
+		font-size: 1.2em;
 	}
 
 	.hero .header {

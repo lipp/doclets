@@ -284,6 +284,7 @@ nav.ui.menu .item > img:not(.ui) {
 
 .hero .ui.header > .icon + .content {
 	padding-left: 0;
+	font-size: 1.25em;
 }
 
 .icon.logo {
@@ -292,7 +293,7 @@ nav.ui.menu .item > img:not(.ui) {
 }
 
 .hero .ui.header > .icon.logo {
-	width: 100px;
+	width: 120px;
 }
 
 .live > iframe {
@@ -435,6 +436,13 @@ body .ui.cards > .card > .content{
 	margin: 0 3px;
 }
 
+.stats {
+	width: 250px;
+	opacity: 0.56;
+	margin-top: 120px;
+}
+
+
 #quotes.ui.vertical.segment {
 	/* background-color: rgba(255,255,255,0.8); */
 }
@@ -507,7 +515,7 @@ blockquote:before {
 }
 
 .hero .info {
-	margin-top: 120px;
+	margin-top: 5px;
 	color: gray;
 	font-size: 16px;
 	font-style: italic;
