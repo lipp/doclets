@@ -96,12 +96,10 @@ body header {
 	}
 
 	.hero .background, #title .background {
-		background-image: url('code.jpg');
+		background-image: url('code_filter.jpg');
 		background-repeat: no-repeat;
 		background-size: cover;
     background-position   : top left;
-		-webkit-filter: saturate(70%) brightness(15%) blur(4px);
-		filter: saturate(70%) brightness(15%) blur(4px);
 		transform: translateZ(0);
     -webkit-transform: translateZ(0);
     background-repeat: no-repeat;
