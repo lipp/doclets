@@ -3,7 +3,7 @@ extends layout.jade
 
 block title
 	title Doclets
-	meta(name='description', content='The easiest way to publish Javascript Docs. The new home for API-Docs')
+	meta(name='description', content='The easiest way to publish JSDoc Javascript documentation. The new home for API-Docs.')
 
 block content
 	.hero
@@ -15,9 +15,10 @@ block content
 
 		p The easiest way to publish Javascript Docs
 		.social
-			iframe#twitter-widget-0.twitter-share-button.twitter-share-button-rendered.twitter-tweet-button(scrolling='no', frameborder='0', allowtransparency='true', title='Twitter Tweet Button', src='https://platform.twitter.com/widgets/tweet_button.b212c8422d3b3079acc6183618b32f10.en.html#dnt=false&hashtags=doclets&id=twitter-widget-0&lang=en&original_referer=http%3A%2F%2Flocalhost%3A8080%2F&related=gelipp2000&size=l&text=%23JSDoc%20goes%20CI!%20Automated%20%23API%20%23documentation%20generation%20for%20%23javascript.&time=1456994094926&type=share&url=https%3A%2F%2Fwww.doclets.io%2F&via=doclets_io', style='position: static; visibility: visible; width: 76px; height: 28px;')
-			a.github-button(href='https://github.com/lipp/doclets', data-icon='octicon-star', data-style='mega', data-count-href='/lipp/doclets/stargazers', data-count-api='/repos/lipp/doclets#stargazers_count', data-count-aria-label='# stargazers on GitHub', aria-label='Star lipp/doclets on GitHub', style='display: none;') Star
-			script#github-bjs(async='', defer='', src='https://buttons.github.io/buttons.js')
+			a.twitter-share-button(href='https://twitter.com/share', data-text='No Excuses. The easiest way to publish #JSDoc #javascript #api #documentation!', data-via='doclets_io', data-size='large')
+			script#twitter-script
+					!function(d,s,id,sid){var js,fjs=d.getElementById(sid),p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';console.log('insert', js, fjs); fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs', 'twitter-script');
+			iframe(allowtransparency='true', name='github-star', scrolling='no', frameborder='0', style='border: none; height: 28px; width: 110px;', src='https://buttons.github.io/buttons.html#href%3Dhttps%3A%2F%2Fgithub.com%2Flipp%2Fdoclets%26text%3DStar%26data.count.api%3D%2Frepos%2Flipp%2Fdoclets%23stargazers_count%26data.count.href%3D%2Flipp%2Fdoclets%2Fstargazers%26data.count.aria.label%3D%23%20stargazers%20on%20GitHub%26data.style%3Dmega%26data.icon%3Docticon-star%26aria.label%3DStar%20lipp%2Fdoclets%20on%20GitHub')
 				
 		.ui.list
 			.item
