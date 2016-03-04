@@ -243,7 +243,18 @@ list-style-position: inside;
 	position: fixed;
 	bottom: 50px;
 	right: 50px;
+	margin: 0;
+	padding: 0;
 }
+
+#scroll-top > *{
+	transition: box-shadow 0.5s linear;
+}
+
+#scroll-top:hover > *{
+  box-shadow: 3px 2px 8px 1px #969696;
+}
+
 
 #api-nav:after {
 	content: '';
@@ -296,7 +307,7 @@ nav.ui.menu .item > img:not(.ui) {
 	width: 120px;
 }
 
-.live > iframe {
+.playground > iframe {
 	position: relative;
 }
 

@@ -1,6 +1,6 @@
 block title
 	title= doclet.repo + ' - ' + doclet.version
-	meta(name='description', content='API Documentation of "' + doclet.repo + '" ' + doclet.type + ' "' + doclet.version +'". Created by ' + doclet.owner + '.')
+	meta(name='description', content='API Documentation of ' + doclet.repo + ' ' + doclet.type + ' "' + doclet.version +'". Created by ' + doclet.owner + '.')
 
 mixin optMarkdown(desc, className)
 	if desc.indexOf('<') === 0
@@ -37,6 +37,11 @@ block scripts
 	script(src='//cdnjs.cloudflare.com/ajax/libs/jquery-smooth-scroll/1.7.1/jquery.smooth-scroll.min.js')
 	script(src='//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js')
 	script(src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js")
+	script(src='https://embed.tonicdev.com')
+	script(defer='').
+		$(function() {$('.playground').each(function() {
+		  Tonic.createNotebook({element: this, source: $(this).data('code')})
+		})})
 	script.
 	//script.
 		$(function() {
@@ -177,6 +182,6 @@ block content
 				block api
 	
 		a.big.circular.icon.button#scroll-top(href='#title')
-			i.circular.icon.angle.up
+			i.big.circular.icon.angle.up
 
 
