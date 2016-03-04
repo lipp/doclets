@@ -306,7 +306,7 @@ nav.ui.menu .item > img:not(.ui) {
 .recents .image {
 	margin-left: 4px;
 	width: 18px;
-	border-radius: 0;
+	border-radius: 2px;
 }
 
 body > nav {
@@ -338,6 +338,7 @@ body .ui.cards > .card > .content{
 }
 
 */
+
 
 #diagram {
 	margin-top: 2em;
@@ -435,15 +436,53 @@ body .ui.cards > .card > .content{
 }
 
 #quotes.ui.vertical.segment {
-	background-color: rgba(0,0,0,0.3);
-	border-top: 5px solid orange;
-	border-bottom: 5px solid orange;
+	/* background-color: rgba(255,255,255,0.8); */
 }
 
-#quotes cite {
-	color: #e0e0e0;
+#highlights h1 {
+	font-weight: 100 !important;
+}
+
+#highlights em {
+	font-weight: normal;
+}
+
+.bad {
+	font-weight: bold;
+	border-bottom: 3px solid red;
+}
+
+.good {
+	font-weight: bold;
+	border-bottom: 3px solid green;
+}
+
+#quotes .author a {
+	font-size: 1.2em;
+	color: orange;
+}
+
+#quotes .company a {
+	color: gray;
+}
+
+#quotes blockquote {
 	font-weight: 100;
 	font-size: 0.8em;
+	font-style: italic;
+}
+
+
+#quotes a blockquote {
+	color: rgba(0, 0, 0, 0.87);
+}
+
+blockquote:after {
+	content: '\201d'
+}
+
+blockquote:before {
+	content: '\201e'
 }
 
 #quotes .author {

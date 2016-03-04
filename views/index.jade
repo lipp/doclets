@@ -1,5 +1,6 @@
 extends layout.jade
 
+
 block title
 	title Doclets
 	meta(name='description', content='JSDoc goes CI. Automated API-Doc generation for Javascript')
@@ -14,9 +15,7 @@ block content
 
 		p Simple automated API-Doc generation for Javascript
 		.social
-			a.twitter-share-button(href='https://twitter.com/share', data-text='#JSDoc goes CI! Automated #API #documentation generation for #javascript.', data-via='doclets_io', data-size='large', data-related='gelipp2000', data-hashtags='doclets') Tweet
-			script.
-				!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+			iframe#twitter-widget-0.twitter-share-button.twitter-share-button-rendered.twitter-tweet-button(scrolling='no', frameborder='0', allowtransparency='true', title='Twitter Tweet Button', src='http://platform.twitter.com/widgets/tweet_button.b212c8422d3b3079acc6183618b32f10.en.html#dnt=false&hashtags=doclets&id=twitter-widget-0&lang=en&original_referer=http%3A%2F%2Flocalhost%3A8080%2F&related=gelipp2000&size=l&text=%23JSDoc%20goes%20CI!%20Automated%20%23API%20%23documentation%20generation%20for%20%23javascript.&time=1456994094926&type=share&url=https%3A%2F%2Fwww.doclets.io%2F&via=doclets_io', style='position: static; visibility: visible; width: 76px; height: 28px;')
 			a.github-button(href='https://github.com/lipp/doclets', data-icon='octicon-star', data-style='mega', data-count-href='/lipp/doclets/stargazers', data-count-api='/repos/lipp/doclets#stargazers_count', data-count-aria-label='# stargazers on GitHub', aria-label='Star lipp/doclets on GitHub', style='display: none;') Star
 			script#github-bjs(async='', defer='', src='https://buttons.github.io/buttons.js')
 				
@@ -43,6 +42,7 @@ block content
 		.info 
 			span Doclets.io is in alpha phase. 
 			span Please report issues or give feedback <a href="https://github.com/lipp/doclets/issues">here</a>.
+
 
 	#samples.ui.vertical.segment
 		.ui.container
@@ -72,7 +72,7 @@ block content
 				a.img-md(href='/lipp/ScrollMagic/add-to-doclets/about')
 					img.ui.big.circular2.bordered.image(src='doclets_screen_md.png')
 
-
+	
 	#ads.ui.vertical.segment
 		.ui.container
 			.ui.equal.width.stackable.internally.celled.grid
@@ -104,6 +104,10 @@ block content
 										i.big.middle.aligned.icon.student
 								span.dont Don't sweat 
 								span.else about release management of your API-Doc. <br> Tags and <em>selected</em> branches are auto-published.
+
+			
+		
+
 	
 	.ui.vertical.segment
 		.ui.container
@@ -171,6 +175,9 @@ block content
 									br
 									a(href=doclet.getRepoUrl()) all versions
 							.extra.content
-								span Published #{moment(doclet.createdAt).fromNow()} by&nbsp;
-									a(href=doclet.owner)= doclet.owner
+								span Published #{moment(doclet.createdAt).fromNow()} 
+									a.right.floated(href=doclet.owner) by&nbsp;
+										span= doclet.owner
+										if doclet._owner.image
+											img.ui.image(src=doclet._owner.image)
 	
