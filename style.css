@@ -488,8 +488,7 @@ body .ui.cards > .card > .content{
 #quotes blockquote {
 	font-weight: normal;
 	font-size: 0.8em;
-	line-height: 1.2em;
-	font-style: italic;
+	line-height: 1.1em;
 }
 
 
@@ -514,10 +513,6 @@ blockquote:before {
 	line-height: 1.25em;
 }
 
-#teaser em {
-	color: orange;
-}
-
 .accordion .title.active, .accordion .content.active {
 }
 
@@ -530,72 +525,30 @@ blockquote:before {
 	text-decoration: underline;
 }
 
-#try-playground {
-	color: rgba(255, 255, 255, 0.94);
-	font-size: 18px;
-	display: block;
-	text-align: center;
-}
-
 .hero .info {
 	margin-top: 15px;
-	color: rgba(255, 255, 255, 0.94);
-	font-size: 17px;
+	color: gray;
+	font-size: 16px;
 	font-style: italic;
+}
+
+#features {
+	background-color: rgba(249, 249, 249, 0.81);
 }
 
 
 #features h2.ui.header {
-    font-size: 1.3em;
+    font-size: 1.2em;
     margin-bottom: 0.3em;
 }
 
-#features p {
-	font-size: 1.1em;
-}
-
 #features .row + .row{
-	margin-top: 50px;
+	margin-top: 20px;
 }
 
-#teaser {
-	margin-top: 100px;
-	margin-bottom: 100px;
+#playground p {
+	font-size: 20px;
 }
-
-.back {
-		z-index: -1;
-		position: absolute;
-		top: 0;
-		transform: translateY(-10%);
-		left: 0%;
-		width: 50%;
-		padding: 20px;
-}
-
-#playground.segment {
-		box-shadow: 0px 2px 4px 0px rgba(34, 36, 38, 0.12), 0px -2px 20px 0px rgba(34, 36, 38, 0.58)
-}
-
-.source {
-		width: 50%;
-		transform: translateY(58%) translateX(70%);
-		transition: all 0.3s ease;
-}
-
-.source:hover {
-		transform: translateY(15%) translateX(70%);
-		transition: all 0.7s ease;
-}
-
-svg {
-	position: absolute;
-    top: -111px;
-    left: 18%;
-    fill: white;
-    transform: scaleX(-1) rotate(-60deg);
-}
-
 
 #api-nav .item.api {
 	padding-right: 0;

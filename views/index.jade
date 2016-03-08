@@ -10,44 +10,37 @@ block content
 		.background
 		h1.ui.icon.header
 			img.icon.logo(src='logo.svg')
-			.content Doclets
-				.ui.sub.header No excuses
+			.content(style='border-bottom: 3px solid orange') Doclets
+				//.ui.sub.header checked
 
-		p The easiest way to publish Javascript Docs
+		p(style='margin-top: 1.2em') API documentation should be more fun.
 		.social
 			a.twitter-share-button(href='https://twitter.com/share', data-text='No Excuses. The easiest way to publish #JSDoc #javascript #api #documentation!', data-via='doclets_io', data-size='large')
 			script#twitter-script
 				!function(d,s,id,sid){var js,fjs=d.getElementById(sid),p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';console.log('insert', js, fjs); fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs', 'twitter-script');
 			iframe(allowtransparency='true', name='github-star', scrolling='no', frameborder='0', style='border: none; height: 28px; width: 110px;', src='https://buttons.github.io/buttons.html#href%3Dhttps%3A%2F%2Fgithub.com%2Flipp%2Fdoclets%26text%3DStar%26data.count.api%3D%2Frepos%2Flipp%2Fdoclets%23stargazers_count%26data.count.href%3D%2Flipp%2Fdoclets%2Fstargazers%26data.count.aria.label%3D%23%20stargazers%20on%20GitHub%26data.style%3Dmega%26data.icon%3Docticon-star%26aria.label%3DStar%20lipp%2Fdoclets%20on%20GitHub')
-				
-		.ui.list
-			.item
-				i.icon.check.circle
-				.content Beautiful &amp; Clear
-			.item
-				i.icon.check.circle
-				.content GitHub Integration
-			.item
-				i.icon.check.circle
-				.content Tags and Branches
-			.item
-				i.icon.check.circle
-				.content Free for Open Source
-		if !user
-			.login
-				a.ui.huge.button.primary#get-started(href='/auth/github') 
-					i.github.icon
-					.wrap
-						span Login with
-						| GitHub
-		.stats
-			.ui.two.tiny.inverted.statistics
-				.ui.statistic
-					.value= docletsCount
-					.label Doclets
-				.ui.statistic
-					.value= usersCount
-					.label Users
+
+		#teaser.ui.container
+			.ui.equal.height.stackable.grid
+				.row
+					.column.six.wide.middle.aligned
+						p The <em>Continuous Integration</em> service, that turns boring <em>Javascript</em> comments into <em>beautiful</em> hosted API reference pages.
+						p More fun to write. <br>Much more fun to read.
+					.column.ten.wide
+						.wrap
+							.ui.raised.segment.source
+								img.ui.rounded.image(src='playground-code-2.png')
+						.ui.raised.segment#playground
+							svg(width='65px',	height='91px',	viewbox='0	0	65	91',	version='1.1',	xmlns='http://www.w3.org/2000/svg',	xmlns:xlink='http://www.w3.org/1999/xlink')
+									g#Current(stroke='none',	stroke-width='1',	fill='none',	fill-rule='evenodd')
+											g(transform='translate(-923.000000,	-190.000000)',	stroke-linecap='round',	stroke='white',	stroke-width='5')
+													g(id='CTA-Copy-+-We’re-on-a-mission-t-Copy-+-arrow-copy',	transform='translate(295.000000,	109.000000)')
+															g#arrow-copy(transform='translate(661.500000,	127.000000)	rotate(5.000000)	translate(-661.500000,	-127.000000)	translate(633.500000,	84.000000)')
+																	path#Path-9976(d='M26.3867187,0.0625	C69.2539062,7.56640625	67.4970703,74.3291016	5.59472656,77.4707031')
+																	path#Path-9977(d='M15.9194843,57.9747585	C14.7553017,67.8064006	1.5766365,79.1648387	1.5766365,79.1648387	C1.5766365,79.1648387	9.11783427,85.7647194	25.0799629,84.3735088',	stroke-linejoin='round',	transform='translate(13.328300,	71.270458)	rotate(7.000000)	translate(-13.328300,	-71.270458)	')
+							img#playground-gif.ui.fluid.image(src='playground2.gif')
+						a#try-playground(href='/lipp/numbers.js/add-to-doclets#dl-statistic-correlation') Try it!
+		
 		.info 
 			span Doclets.io is in alpha phase. 
 			span Please report issues or give feedback <a href="https://github.com/lipp/doclets/issues">here</a>.
@@ -81,22 +74,22 @@ block content
 				a.img-md(href='/lipp/ScrollMagic/add-to-doclets/about')
 					img.ui.big.circular2.bordered.image(src='doclets_screen_md.png')
 
-	//.ui.vertical.segment#highlights
-		h1.ui.center.aligned.header
-			span#with-doclets
-			span &nbsp; Doclets
-			span#what
-			span#thats-doc
-
-
-	//#quotes.ui.vertical.segment
+	#quotes.ui.vertical.segment
 		.ui.container
 			.ui.three.columns.equal.height.stackable.grid
 				.center.aligned.row
 					.column
 						h1.ui.center.aligned.header
+							a(href='https://gitter.im/lipp/doclets')
+								blockquote(cite='https://gitter.im/lipp/doclets') We are always struggling to keep our code documented
+						.author 
+							a(href='https://github.com/Cinezaster') Cinezaster
+						.company 
+							a(href='http://www.appsaloon.be') AppSaloon
+					.column
+						h1.ui.center.aligned.header
 							a(href='https://twitter.com/kentcdodds/status/703261574731988992')
-								blockquote(cite='https://twitter.com/kentcdodds/status/703261574731988992') Looks swell. Gotta try it ...
+								blockquote(cite='https://twitter.com/kentcdodds/status/703261574731988992') Looks swell. Gotta try ...
 						.author 
 							a(href='https://twitter.com/kentcdodds') Kent C. Dodds
 						.company 
@@ -104,67 +97,76 @@ block content
 					.column
 						h1.ui.center.aligned.header
 							a
-								blockquote(cite='https://gitter.im/lipp/doclets?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge') We are always struggling to keep our code documented
+								blockquote(cite='https://twitter.com/obartra/status/703976984297209857') Doclets makes it very easy to publish JSDoc commented projects 
 						.author 
-							a(href='https://github.com/Cinezaster') Cinezaster
+							a(href='https://twitter.com/obartra') Oscar Bartra
 						.company 
-							a(href='http://www.appsaloon.be') AppSaloon
-					.column
-						h1.ui.center.aligned.header
-							a
-								blockquote(cite='https://twitter.com/beriberikix/status/704558519433846784') Pretty neat JSDoc CI
-						.author 
-							a(href='https://twitter.com/beriberikix/') Jonathan Beri
-						.company 
-							a(href='http://www.google.com/about/company') Google Inc.
-	
-	#ads.ui.vertical.segment
+							a(href='http://www.paperg.com') PaperG
+
+
+
+	#features.ui.vertical.segment
 		.ui.container
-			.ui.equal.width.stackable.internally.celled.grid
-				.center.aligned.row
+			.ui.three.column.equal.height.stackable.grid
+				.row
 					.column
-						h1.ui.header.hero-header
-							span.underline API-Doc is important
-						span.punch Now it's also easy!
-						p Doclets.io is the missing <strong>hosted and automated API-Doc generation service for Javascript</strong>. By 
-							| simplifying API-Doc setup it enables you to actually <em>focus on writing documentation</em>!
-						p Doclets.io <strong>automatically creates API-Doc</strong> for <strong>every tag and <em>selected</em> branches</strong>, supporting <a href="http://usejsdoc.org">JSDoc</a> comments and <a href='https://daringfireball.net/projects/markdown/'>Markdown</a> articles.
-					.column.focus
-						.ui.list
-							.item
-								.hero-icon
-									i.huge.middle.aligned.icon.ban
-										i.big.middle.aligned.icon.trash
-								span.dont Don't spam your repository 
-								span.else with a truckload of HTML/CSS files for your API-Doc. <br> One simple configuration file is enough.
-							.item 
-								.hero-icon
-									i.huge.middle.aligned.icon.ban
-										i.big.middle.aligned.icon.question
-								span.dont Don't waste time 
-								span.else with build-systems to add API-Doc generation. <br> Just two clicks to add your repository.
-							.item 
-								.hero-icon
-									i.huge.middle.aligned.icon.ban
-										i.big.middle.aligned.icon.student
-								span.dont Don't sweat 
-								span.else about release management of your API-Doc. <br> Tags and <em>selected</em> branches are auto-published.
-
-			
-		
-
+						.item
+							.content 
+								h2.ui.header 
+									i.icon.dollar
+									| Safes Time & Money
+								p Reduce your setup time <strong>from hours to minutes</strong>. No server config, no build system setup!
+					.column
+						.item
+							.content
+								h2.ui.header
+									i.icon.file.text
+									| Standard Formats
+								p Create beautiful API reference docs just out of standard <a href='http://usejsdoc.org'>JSDoc</a> comments and <a href='https://daringfireball.net/projects/markdown/'>Markdown</a> formated articles. For Javascript and Node.js.
+					.column
+						.item
+							.content
+								h2.ui.header
+									i.icon.tags
+									| Versioning
+								p New release? No trouble, your docs are <strong>automatically updated</strong> for tags and <em>selected</em> branches. Continuous Integration for your docs!
+				.row
+					.column
+						.item
+							.content
+								h2.ui.header
+									i.icon.protect
+									| No Spam
+								p Keep your <strong>repository clean</strong> from documentation artifacts like CSS and HTML files. A single small configuration file is all you need.
+					.column
+						.item
+							.content
+								h2.ui.header
+									i.icon.lab
+									| More Fun
+								p Bring your examples to life! Create executable and editable code snippets with the <code>@playground</code> tag. Powered by awesome <a href="https://tonicdev.com">Tonic</a>!
+					.column
+						.item
+							.content
+								h2.ui.header
+									i.icon.world
+									| Free for Open Source
+								p Doclets will stay free for Open Source projects. <strong>Forever!</strong> 
+	
 	
 	.ui.vertical.segment
 		.ui.container
 			h1.ui.centered.header.hero-header 
 				span Getting started
+			if !user
+				.login
+					a.ui.huge.button.primary#get-started(href='/auth/github') 
+						i.github.icon
+						.wrap
+							span Login with
+							| GitHub
 			.ui.two.column.middle.aligned.stackable.grid
 				.ui.column
-					//.ui.ordered.relaxed.huge.list
-						.item Login with GitHub
-						.item Add a repository
-						.item Create a <em>.doclets.yml</em> file
-						.item Push
 					.ui.small.fluid.vertical.ordered.steps
 						.step
 							.content

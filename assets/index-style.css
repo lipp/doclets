@@ -87,7 +87,7 @@ body header {
   .hero {
 		position: relative;
     padding-top: 140px; 
-		padding-bottom: 30px;
+		padding-bottom: 20px;
 		background-color: #1b1c1d;
 		color: white;
 		}
@@ -97,7 +97,9 @@ body header {
 	}
 
 	.hero .background, #title .background {
-		background-image: url('code_filter.jpg');
+		background-image: url('hero-bg-small-2.jpg');
+		-webkit-filter: brightness(70%) blur(3px);
+		filter: brightness(70%) blur(3px);
 		background-repeat: no-repeat;
 		background-size: cover;
     background-position   : top left;
@@ -123,16 +125,19 @@ body header {
 	}
 
 	.hero p {
-		font-size: 1.2em;
+		font-size: 1.15em;
 	}
 
 	.hero .header {
 		color: white !important;
 	}
-		.hero #get-started {
+		 #get-started {
+			margin: 0 auto;
 			margin-top: 80px;
+			margin-bottom: 40px;
+			width: 180px;
 		}
-    .hero #get-started span {
+    #get-started span {
       display: block;
 			font-weight: 100;
       font-size: 14px; }
