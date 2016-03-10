@@ -86,7 +86,7 @@ body header {
   align-items: center; }
   .hero {
 		position: relative;
-    padding-top: 140px; 
+    padding-top: 100px; 
 		padding-bottom: 20px;
 		background-color: #1b1c1d;
 		color: white;
@@ -98,8 +98,6 @@ body header {
 
 	.hero .background, #title .background {
 		background-image: url('hero-bg-small-2.jpg');
-		-webkit-filter: brightness(70%) blur(3px);
-		filter: brightness(70%) blur(3px);
 		background-repeat: no-repeat;
 		background-size: cover;
     background-position   : top left;
