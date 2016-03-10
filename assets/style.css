@@ -476,6 +476,18 @@ body .ui.cards > .card > .content{
 	border-bottom: 3px solid green;
 }
 
+#quotes img {
+	border-radius: 100%;
+	width: 50px;
+	margin-bottom: -10px;
+	margin-right: 12px;
+}
+
+.qqwrap {
+	    display: inline-block;
+    text-align: left !important;
+}
+
 #quotes .author a {
 	font-size: 1.2em;
 	color: orange;
