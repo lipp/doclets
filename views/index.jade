@@ -227,6 +227,6 @@ block content
 								span Published #{moment(doclet.createdAt).fromNow()} 
 									a.right.floated(href=doclet.owner) by&nbsp;
 										span= doclet.owner
-										if doclet._owner.image
+										if doclet._owner && doclet._owner.image
 											img.ui.image(src=doclet._owner.image)
 	
