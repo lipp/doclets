@@ -1,4 +1,4 @@
-/* global describe it before beforeEach after*/
+/* global describe it before beforeEach after afterEach*/
 var assert = require('assert')
 var Doclet = require('../lib/models/doclet')
 var Repo = require('../lib/models/repo')
@@ -15,6 +15,8 @@ var loadGitHubEvent = function (eventDir) {
 }
 
 describe('The doclet module', function () {
+  var sandbox
+
   before(function () {
     mongoose.connect('mongodb://' + env.mongodb.host)
   })
@@ -25,6 +27,36 @@ describe('The doclet module', function () {
 
   beforeEach(function (done) {
     Doclet.remove({}, done)
+    sandbox = sinon.sandbox.create()
+  })
+
+  afterEach(function () {
+    sandbox.restore()
+  })
+
+  it('.findByFullnames returns all mathing repos', function (done) {
+    var findOne = sandbox.stub(Doclet, 'findOne')
+    findOne.withArgs({owner: 'a', repo: 'b'}).yields(null, 123)
+    findOne.withArgs({owner: 'e', repo: 'r'}).yields(null, null)
+    findOne.withArgs({owner: 'c', repo: 'd'}).yields(null, 333)
+    Doclet.findByFullnames(['a/b', 'c/d', 'e/r'], function (err, repos) {
+      assert(repos.indexOf(123) > -1)
+      assert(repos.indexOf(333) > -1)
+      assert.equal(repos.length, 2)
+      assert(!err)
+      done()
+    })
+  })
+
+  it('.findByFullnames propagates error', function (done) {
+    var findOne = sandbox.stub(Doclet, 'findOne')
+    findOne.withArgs({owner: 'a', repo: 'b'}).yields(null, 123)
+    findOne.withArgs({owner: 'e', repo: 'r'}).yields('arg')
+    Doclet.findByFullnames(['a/b', 'c/d', 'e/r'], function (err, repos) {
+      assert.equal(err, 'arg')
+      assert(!repos)
+      done()
+    })
   })
 
   it('.createFromGitHubEvent with push event creates db entry', function (done) {
@@ -189,7 +221,6 @@ describe('The doclet module', function () {
           private: false,
           description: '',
           fork: false,
-          permissions: {admin: true, push: true, pull: true},
           synced_at: new Date().getTime()
         })
         repo.save(done)
@@ -269,12 +300,12 @@ describe('The doclet module', function () {
 
     it('.hasUserAccess({_id: <owner>}) when NOT public is true', function () {
       doclet.isPublic = false
-      assert.equal(doclet.hasUserAccess({_id: 'lipp'}), true)
+      assert.equal(doclet.hasUserAccess({accessibleRepos: ['lipp/acme-jsdoc-example']}), true)
     })
 
     it('.hasUserAccess({_id: <other>}) when NOT public is false', function () {
       doclet.isPublic = false
-      assert.equal(doclet.hasUserAccess({_id: 'lipp2'}), false)
+      assert.equal(doclet.hasUserAccess({accessibleRepos: ['lipp2/acme-jsdoc-example']}), false)
     })
   })
 })
