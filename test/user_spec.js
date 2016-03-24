@@ -228,6 +228,33 @@ describe('The user module', function () {
       })
     })
 
+    it('.hasRequiredGitHubAccess missing scopes', function (done) {
+      sandbox.stub(repoModule, 'getAuthScopes').withArgs(user.auth).yields(null, ['repo'])
+      user.hasRequiredGitHubAccess(function (err, ok) {
+        assert(!err)
+        assert.equal(ok, false)
+        done()
+      })
+    })
+
+    it('.hasRequiredGitHubAccess complete scopes', function (done) {
+      sandbox.stub(repoModule, 'getAuthScopes').withArgs(user.auth).yields(null, ['repo', 'read:org', 'user:email', 'write:repo_hook'])
+      user.hasRequiredGitHubAccess(function (err, ok) {
+        assert(!err)
+        assert.equal(ok, true)
+        done()
+      })
+    })
+
+    it('.hasRequiredGitHubAccess propagates error', function (done) {
+      sandbox.stub(repoModule, 'getAuthScopes').withArgs(user.auth).yields('arg')
+      user.hasRequiredGitHubAccess(function (err, ok) {
+        assert.equal(err, 'arg')
+        assert(!ok)
+        done()
+      })
+    })
+
     it('.syncDetailsAndOrgs() on success fills additional fields', function (done) {
       var ghUser = {
         email: 'asd',
@@ -254,18 +281,6 @@ describe('The user module', function () {
       })
     })
 
-    it('.syncDetailsAndOrgs() on auth fail leaves user and sets needsReauth=true', function (done) {
-      sandbox.stub(repoModule, 'getUser').yields({code: 401})
-      user.syncDetailsAndOrgs(function (err, syncedUser) {
-        assert(!err)
-        assert.equal(syncedUser.passportId, ghPassport.profile.id)
-        assert.equal(syncedUser.name, ghPassport.profile.displayName)
-        assert.equal(syncedUser._id, ghPassport.profile.username)
-        assert.equal(syncedUser.needsReauth, true)
-        done()
-      })
-    })
-
     it('.syncDetailsAndOrgs() forwards other errors', function (done) {
       sandbox.stub(repoModule, 'getUser').yields({code: 123})
       user.syncDetailsAndOrgs(function (err, syncedUser) {
@@ -276,19 +291,49 @@ describe('The user module', function () {
       })
     })
 
+    it('syncWithGithub() with missing scopes sets user.needsReauth = true', function (done) {
+      sandbox.stub(user, 'hasRequiredGitHubAccess').yields(null, false)
+      user.syncWithGitHub(function (err, user) {
+        assert(!err)
+        assert.equal(user.needsReauth, true)
+        done()
+      })
+    })
+
+    it('syncWithGithub() with invalid token sets user.needsReauth = true', function (done) {
+      sandbox.stub(user, 'hasRequiredGitHubAccess').yields({code: 401})
+      user.syncWithGitHub(function (err, user) {
+        assert(!err)
+        assert.equal(user.needsReauth, true)
+        done()
+      })
+    })
+
+    it('syncWithGithub() with other errors propagates error', function (done) {
+      sandbox.stub(user, 'hasRequiredGitHubAccess').yields({code: 402})
+      user.syncWithGitHub(function (err, user) {
+        assert(!user)
+        assert.equal(err.code, 402)
+        done()
+      })
+    })
+
     it('syncWithGithub() when all set (user)', function (done) {
       user._accessibleRepos = [1, 2]
+      sandbox.stub(user, 'hasRequiredGitHubAccess').yields(null, true)
       sandbox.stub(user, 'syncDetailsAndOrgs').yields(null)
       user.syncWithGitHub(done)
     })
 
     it('syncWithGithub() with missing _assessibleRepos calls .syncAccessibleRepos', function (done) {
+      sandbox.stub(user, 'hasRequiredGitHubAccess').yields(null, true)
       sandbox.stub(user, 'syncDetailsAndOrgs').yields(null)
       sandbox.stub(user, 'syncAccessibleRepos').yields(null)
       user.syncWithGitHub(done)
     })
 
     it('syncWithGithub() with empty _assessibleRepos calls .syncAccessibleRepos', function (done) {
+      sandbox.stub(user, 'hasRequiredGitHubAccess').yields(null, true)
       user._accessibleRepos = []
       sandbox.stub(user, 'syncDetailsAndOrgs').yields(null)
       sandbox.stub(user, 'syncAccessibleRepos').yields(null)
@@ -296,6 +341,7 @@ describe('The user module', function () {
     })
 
     it('syncWithGithub() when all set (orga)', function (done) {
+      sandbox.stub(user, 'hasRequiredGitHubAccess').yields(null, true)
       user._accessibleRepos = [1, 2]
       user.type = 'Organization'
       sandbox.stub(user, 'syncDetailsAndOrgs').yields(null)
@@ -303,6 +349,7 @@ describe('The user module', function () {
     })
 
     it('syncWithGithub() when createdAt is defined, leaves as is', function (done) {
+      sandbox.stub(user, 'hasRequiredGitHubAccess').yields(null, true)
       var createdAt = user.createdAt
       user._accessibleRepos = [1, 2]
       sandbox.stub(user, 'syncDetailsAndOrgs').yields(null)
@@ -314,6 +361,7 @@ describe('The user module', function () {
     })
 
     it('syncWithGithub() when createdAt is NOT defined creates', function (done) {
+      sandbox.stub(user, 'hasRequiredGitHubAccess').yields(null, true)
       user._accessibleRepos = [1, 2]
       user.createdAt = false
       sandbox.stub(user, 'syncDetailsAndOrgs').yields(null)
@@ -325,6 +373,7 @@ describe('The user module', function () {
     })
 
     it('syncWithGithub() propagates error', function (done) {
+      sandbox.stub(user, 'hasRequiredGitHubAccess').yields(null, true)
       sandbox.stub(user, 'syncAccessibleRepos').yields('arg')
       user.syncWithGitHub(function (err, user) {
         assert.equal(err, 'arg')

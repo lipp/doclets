@@ -135,6 +135,32 @@ describe('The repo module', function () {
       })
     })
 
+    it('.getAuthScopes()', function (done) {
+      var header = {}
+      header['x-oauth-scopes'] = 'asd, foo'
+      sandbox.stub(repo.github(), 'authenticate').withArgs('noauth').returns()
+      sandbox.stub(repo.github().misc, 'rateLimit').withArgs({}).yields(null, {meta: header})
+      repo.getAuthScopes('noauth', function (err, scopes) {
+        assert(!err)
+        assert.equal(scopes.length, 2)
+        assert(scopes.indexOf('asd') > -1)
+        assert(scopes.indexOf('foo') > -1)
+        done()
+      })
+    })
+
+    it('.getAuthScopes() err', function (done) {
+      var header = {}
+      header['x-oauth-scopes'] = 'asd, foo'
+      sandbox.stub(repo.github(), 'authenticate').withArgs('noauth').returns()
+      sandbox.stub(repo.github().misc, 'rateLimit').withArgs({}).yields('arg')
+      repo.getAuthScopes('noauth', function (err, scopes) {
+        assert(!scopes)
+        assert.equal(err, 'arg')
+        done()
+      })
+    })
+
     it('.getHook()', function (done) {
       sandbox.stub(repo.github(), 'authenticate').returns()
       sandbox.stub(repo.github().repos, 'getHooks')
