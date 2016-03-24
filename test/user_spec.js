@@ -67,7 +67,7 @@ describe('The user module', function () {
       })
     })
 
-    it('.syncOrCreateOrgs() with new org', function (done) {
+    it('.syncOrCreateOrg() with new org', function (done) {
       var org = {
         login: 'foo',
         html_url: 'asd',
@@ -124,6 +124,40 @@ describe('The user module', function () {
             assert.equal(user.name, org.name)
             assert.equal(user.bio, org.description)
             assert.equal(user.image, org.avatar_url)
+            assert.equal(user.type, 'Organization')
+            assert.equal(firstCreated.toString(), user.createdAt.toString())
+            done()
+          })
+        })
+      })
+    })
+
+    it('.syncOrCreateOrgs() with existing org renaming it', function (done) {
+      var org = {
+        login: 'foo',
+        html_url: 'asd',
+        id: 1235,
+        name: 'Foo Bar',
+        description: 'This is a test',
+        email: '123',
+        avatar_url: 'http://asd.com',
+        location: 'here',
+        blog: 'yes'
+      }
+      User.syncOrCreateOrg(org, function (err, user) {
+        assert(!err)
+        org.login = 'newfoo'
+        sandbox.stub(Repo, 'changeOwner').withArgs('foo', 'newfoo').yields()
+        sandbox.stub(User, 'remove').withArgs({id: org.id}).yields()
+        var firstCreated = user.createdAt
+        User.syncOrCreateOrg(org, function (err, user) {
+          assert(!err)
+          console.log('done rename')
+          User.findOne({id: org.id}, function (err, user) {
+            assert(!err)
+            assert.equal(user._id, 'newfoo')
+            assert.equal(user.id, org.id)
+            assert.equal(user.name, org.name)
             assert.equal(user.type, 'Organization')
             assert.equal(firstCreated.toString(), user.createdAt.toString())
             done()
