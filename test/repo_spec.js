@@ -18,25 +18,25 @@ describe('The repo module', function () {
     fse.removeSync(gitDir)
   })
 
-  it('checkout("http://github.com/lipp/doclets", "master", "./here")', function () {
-    var dir = repo.checkout('http://github.com/lipp/doclets', 'master', gitDir)
+  it('checkout("http://github.com/lipp/acme-jsdoc-example", "master", "./here")', function () {
+    var dir = repo.checkout('http://github.com/lipp/acme-jsdoc-example', 'master', gitDir)
     assert.ok(dir)
     assert.doesNotThrow(function () {
       fs.readFileSync(path.join(dir, 'README.md'))
     })
   })
 
-  it('checkout("http://github.com/lipp/doclets", "master", "./here") twice', function () {
-    var dir = repo.checkout('http://github.com/lipp/doclets', 'master', gitDir)
+  it('checkout("http://github.com/lipp/acme-jsdoc-example", "master", "./here") twice', function () {
+    var dir = repo.checkout('http://github.com/lipp/acme-jsdoc-example', 'master', gitDir)
     assert.ok(dir)
     assert.doesNotThrow(function () {
       fs.readFileSync(path.join(dir, 'README.md'))
     })
   })
 
-  it('checkout("http://github.com/lipp/doclets", "foobla", "./here") throws', function () {
+  it('checkout("http://github.com/lipp/acme-jsdoc-example", "foobla", "./here") throws', function () {
     assert.throws(function () {
-      repo.checkout('http://github.com/lipp/doclets', 'foobla', gitDir)
+      repo.checkout('http://github.com/lipp/acme-jsdoc-example', 'foobla', gitDir)
     })
   })
 
