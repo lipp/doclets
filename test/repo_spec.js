@@ -6,6 +6,7 @@ var fs = require('fs')
 var fse = require('fs-extra')
 var path = require('path')
 var sinon = require('sinon')
+var _ = require('underscore')
 
 var gitDir = path.join(__dirname, 'here')
 
@@ -48,6 +49,90 @@ describe('The repo module', function () {
 
     afterEach(function () {
       sandbox.restore()
+    })
+
+    it('.getUser', function (done) {
+      sandbox.stub(repo.github(), 'authenticate').withArgs('auth').returns()
+      sandbox.stub(repo.github().user, 'get').withArgs({}).yields(null, 123)
+      sandbox.stub(repo.github().user, 'getOrgs').withArgs({}).yields(null, 333)
+      repo.getUser('auth', function (err, user, orgs) {
+        assert(!err)
+        assert.equal(user, 123)
+        assert.equal(orgs, 333)
+        done()
+      })
+    })
+
+    it('.getUser propagates error', function (done) {
+      sandbox.stub(repo.github(), 'authenticate').withArgs('auth').returns()
+      sandbox.stub(repo.github().user, 'get').withArgs({}).yields(null, 123)
+      sandbox.stub(repo.github().user, 'getOrgs').withArgs({}).yields('arg')
+      repo.getUser('auth', function (err, user, orgs) {
+        assert.equal(err, 'arg')
+        assert(!user)
+        assert(!orgs)
+        done()
+      })
+    })
+
+    it('.getOrg', function (done) {
+      sandbox.stub(repo.github(), 'authenticate').withArgs('auth').returns()
+      sandbox.stub(repo.github().orgs, 'get').withArgs({org: 'asd'}).yields(null, 123)
+      repo.getOrg('asd', 'auth', function (err, org) {
+        assert(!err)
+        assert.equal(org, 123)
+        done()
+      })
+    })
+
+    it('.getOrg propagates error', function (done) {
+      sandbox.stub(repo.github(), 'authenticate').withArgs('auth').returns()
+      sandbox.stub(repo.github().orgs, 'get').withArgs({org: 'asd'}).yields('arg')
+      repo.getOrg('asd', 'auth', function (err, org) {
+        assert(!org)
+        assert.equal(err, 'arg')
+        done()
+      })
+    })
+
+    it('.getRepoEvents', function (done) {
+      sandbox.stub(repo.github(), 'authenticate').withArgs('auth').returns()
+      sandbox.stub(repo.github().events, 'getFromRepo').withArgs({user: 'asd', repo: 'foo'}).yields(null, 333)
+      repo.getRepoEvents('asd', 'foo', 'auth', function (err, events) {
+        assert(!err)
+        assert.equal(events, 333)
+        done()
+      })
+    })
+
+    it('.hasUserAccess yes', function (done) {
+      sandbox.stub(repo.github(), 'authenticate').withArgs('auth').returns()
+      sandbox.stub(repo.github().repos, 'get').withArgs({user: 'asd', repo: 'foo'}).yields(null, {permissions: {admin: true}})
+      repo.hasUserAccess('asd', 'foo', 'auth', function (err, hasAccess) {
+        assert(!err)
+        assert.equal(hasAccess, true)
+        done()
+      })
+    })
+
+    it('.hasUserAccess no', function (done) {
+      sandbox.stub(repo.github(), 'authenticate').withArgs('auth').returns()
+      sandbox.stub(repo.github().repos, 'get').withArgs({user: 'asd', repo: 'foo'}).yields(null, {permissions: {admin: false}})
+      repo.hasUserAccess('asd', 'foo', 'auth', function (err, hasAccess) {
+        assert(!err)
+        assert.equal(hasAccess, false)
+        done()
+      })
+    })
+
+    it('.hasUserAccess err', function (done) {
+      sandbox.stub(repo.github(), 'authenticate').withArgs('auth').returns()
+      sandbox.stub(repo.github().repos, 'get').withArgs({user: 'asd', repo: 'foo'}).yields('arg')
+      repo.hasUserAccess('asd', 'foo', 'auth', function (err, hasAccess) {
+        assert(!hasAccess)
+        assert.equal(err, 'arg')
+        done()
+      })
     })
 
     it('.getHook()', function (done) {
@@ -190,14 +275,45 @@ describe('The repo module', function () {
     })
 
     it('.getUserRepos() ', function (done) {
-      sandbox.stub(repo.github(), 'authenticate').returns()
-      sandbox.stub(repo.github().repos, 'getFromUser')
-        .withArgs({user: 'lipp', type: 'owner', per_page: 100})
-        .yields(null, [1, 2])
+      sandbox.stub(repo.github(), 'authenticate').withArgs('auth').returns()
+      sandbox.stub(repo.github().user, 'getOrgs')
+        .withArgs({})
+        .yields(null, [{login: 'orga'}])
+
+      sandbox.stub(repo.github().repos, 'getFromOrg')
+        .withArgs({org: 'orga', per_page: 100})
+        .yields(null, [{
+          permissions: {
+            admin: true
+          },
+          full_name: 'asd'
+        }, {
+          permissions: {
+            admin: true
+          },
+          full_name: 'ppp'
+        }])
+
+      sandbox.stub(repo.github().repos, 'getAll')
+        .withArgs({per_page: 100})
+        .yields(null, [{
+          permissions: {
+            admin: true
+          },
+          full_name: 'ddd'
+        }, {
+          permissions: {
+            admin: true
+          },
+          full_name: 'asd'
+        }])
 
       repo.getUserRepos('lipp', {foo: 1}, function (err, repos) {
         assert(!err)
-        assert.deepEqual(repos, [1, 2])
+        assert.equal(repos.length, 3)
+        assert(_.findWhere(repos, {full_name: 'asd'}))
+        assert(_.findWhere(repos, {full_name: 'ppp'}))
+        assert(_.findWhere(repos, {full_name: 'ddd'}))
         done()
       })
     })
