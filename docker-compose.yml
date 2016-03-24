@@ -1,13 +1,10 @@
 redis:
   image: redis
   command: redis-server --appendonly yes
-  ports:
-    - 6379:6379
 
 mongodb:
   image: mongo
-  ports:
-    - 27017:27017
+
 
 doc-worker:
   dockerfile: ./doc-worker.docker
