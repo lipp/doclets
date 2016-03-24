@@ -1,0 +1,162 @@
+{
+  "ref": "refs/heads/add-to-doclets",
+  "before": "28480098d08c5e93897522564bf3bd553ddddbe4",
+  "after": "9e7ad5f3fe20edd5ea3cc2a03ca55403f1ef185f",
+  "created": false,
+  "deleted": false,
+  "forced": false,
+  "base_ref": null,
+  "compare": "https://github.com/lipp/numbers.js/compare/28480098d08c...9e7ad5f3fe20",
+  "commits": [
+    {
+      "id": "9e7ad5f3fe20edd5ea3cc2a03ca55403f1ef185f",
+      "distinct": true,
+      "message": "add statistics playground",
+      "timestamp": "2016-03-04T12:47:07+01:00",
+      "url": "https://github.com/lipp/numbers.js/commit/9e7ad5f3fe20edd5ea3cc2a03ca55403f1ef185f",
+      "author": {
+        "name": "Gerhard Preuss",
+        "email": "gelipp@gmail.com",
+        "username": "lipp"
+      },
+      "committer": {
+        "name": "Gerhard Preuss",
+        "email": "gelipp@gmail.com",
+        "username": "lipp"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "lib/numbers/statistic.js"
+      ]
+    }
+  ],
+  "head_commit": {
+    "id": "9e7ad5f3fe20edd5ea3cc2a03ca55403f1ef185f",
+    "distinct": true,
+    "message": "add statistics playground",
+    "timestamp": "2016-03-04T12:47:07+01:00",
+    "url": "https://github.com/lipp/numbers.js/commit/9e7ad5f3fe20edd5ea3cc2a03ca55403f1ef185f",
+    "author": {
+      "name": "Gerhard Preuss",
+      "email": "gelipp@gmail.com",
+      "username": "lipp"
+    },
+    "committer": {
+      "name": "Gerhard Preuss",
+      "email": "gelipp@gmail.com",
+      "username": "lipp"
+    },
+    "added": [
+
+    ],
+    "removed": [
+
+    ],
+    "modified": [
+      "lib/numbers/statistic.js"
+    ]
+  },
+  "repository": {
+    "id": 52517852,
+    "name": "numbers.js",
+    "full_name": "lipp/numbers.js",
+    "owner": {
+      "name": "lipp",
+      "email": "gelipp@gmail.com"
+    },
+    "private": false,
+    "html_url": "https://github.com/lipp/numbers.js",
+    "description": "Advanced Mathematics Library for Node.js and JavaScript",
+    "fork": true,
+    "url": "https://github.com/lipp/numbers.js",
+    "forks_url": "https://api.github.com/repos/lipp/numbers.js/forks",
+    "keys_url": "https://api.github.com/repos/lipp/numbers.js/keys{/key_id}",
+    "collaborators_url": "https://api.github.com/repos/lipp/numbers.js/collaborators{/collaborator}",
+    "teams_url": "https://api.github.com/repos/lipp/numbers.js/teams",
+    "hooks_url": "https://api.github.com/repos/lipp/numbers.js/hooks",
+    "issue_events_url": "https://api.github.com/repos/lipp/numbers.js/issues/events{/number}",
+    "events_url": "https://api.github.com/repos/lipp/numbers.js/events",
+    "assignees_url": "https://api.github.com/repos/lipp/numbers.js/assignees{/user}",
+    "branches_url": "https://api.github.com/repos/lipp/numbers.js/branches{/branch}",
+    "tags_url": "https://api.github.com/repos/lipp/numbers.js/tags",
+    "blobs_url": "https://api.github.com/repos/lipp/numbers.js/git/blobs{/sha}",
+    "git_tags_url": "https://api.github.com/repos/lipp/numbers.js/git/tags{/sha}",
+    "git_refs_url": "https://api.github.com/repos/lipp/numbers.js/git/refs{/sha}",
+    "trees_url": "https://api.github.com/repos/lipp/numbers.js/git/trees{/sha}",
+    "statuses_url": "https://api.github.com/repos/lipp/numbers.js/statuses/{sha}",
+    "languages_url": "https://api.github.com/repos/lipp/numbers.js/languages",
+    "stargazers_url": "https://api.github.com/repos/lipp/numbers.js/stargazers",
+    "contributors_url": "https://api.github.com/repos/lipp/numbers.js/contributors",
+    "subscribers_url": "https://api.github.com/repos/lipp/numbers.js/subscribers",
+    "subscription_url": "https://api.github.com/repos/lipp/numbers.js/subscription",
+    "commits_url": "https://api.github.com/repos/lipp/numbers.js/commits{/sha}",
+    "git_commits_url": "https://api.github.com/repos/lipp/numbers.js/git/commits{/sha}",
+    "comments_url": "https://api.github.com/repos/lipp/numbers.js/comments{/number}",
+    "issue_comment_url": "https://api.github.com/repos/lipp/numbers.js/issues/comments{/number}",
+    "contents_url": "https://api.github.com/repos/lipp/numbers.js/contents/{+path}",
+    "compare_url": "https://api.github.com/repos/lipp/numbers.js/compare/{base}...{head}",
+    "merges_url": "https://api.github.com/repos/lipp/numbers.js/merges",
+    "archive_url": "https://api.github.com/repos/lipp/numbers.js/{archive_format}{/ref}",
+    "downloads_url": "https://api.github.com/repos/lipp/numbers.js/downloads",
+    "issues_url": "https://api.github.com/repos/lipp/numbers.js/issues{/number}",
+    "pulls_url": "https://api.github.com/repos/lipp/numbers.js/pulls{/number}",
+    "milestones_url": "https://api.github.com/repos/lipp/numbers.js/milestones{/number}",
+    "notifications_url": "https://api.github.com/repos/lipp/numbers.js/notifications{?since,all,participating}",
+    "labels_url": "https://api.github.com/repos/lipp/numbers.js/labels{/name}",
+    "releases_url": "https://api.github.com/repos/lipp/numbers.js/releases{/id}",
+    "deployments_url": "https://api.github.com/repos/lipp/numbers.js/deployments",
+    "created_at": 1456397735,
+    "updated_at": "2016-02-25T10:55:36Z",
+    "pushed_at": 1457092048,
+    "git_url": "git://github.com/lipp/numbers.js.git",
+    "ssh_url": "git@github.com:lipp/numbers.js.git",
+    "clone_url": "https://github.com/lipp/numbers.js.git",
+    "svn_url": "https://github.com/lipp/numbers.js",
+    "homepage": "",
+    "size": 779,
+    "stargazers_count": 0,
+    "watchers_count": 0,
+    "language": "JavaScript",
+    "has_issues": false,
+    "has_downloads": true,
+    "has_wiki": true,
+    "has_pages": false,
+    "forks_count": 0,
+    "mirror_url": null,
+    "open_issues_count": 0,
+    "forks": 0,
+    "open_issues": 0,
+    "watchers": 0,
+    "default_branch": "master",
+    "stargazers": 0,
+    "master_branch": "master"
+  },
+  "pusher": {
+    "name": "lipp",
+    "email": "gelipp@gmail.com"
+  },
+  "sender": {
+    "login": "lipp",
+    "id": 445883,
+    "avatar_url": "https://avatars.githubusercontent.com/u/445883?v=3",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/lipp",
+    "html_url": "https://github.com/lipp",
+    "followers_url": "https://api.github.com/users/lipp/followers",
+    "following_url": "https://api.github.com/users/lipp/following{/other_user}",
+    "gists_url": "https://api.github.com/users/lipp/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/lipp/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/lipp/subscriptions",
+    "organizations_url": "https://api.github.com/users/lipp/orgs",
+    "repos_url": "https://api.github.com/users/lipp/repos",
+    "events_url": "https://api.github.com/users/lipp/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/lipp/received_events",
+    "type": "User",
+    "site_admin": false
+  }
+}

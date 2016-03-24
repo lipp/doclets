@@ -2,9 +2,12 @@ extends layout.jade
 block content
 	.ui.vertical.segment
 		.ui.container
-			h1.ui.header .doclets.yml
-			.ui.message.info
-				p Documentation will be generated for <strong>all tags</strong> and <strong><em>selected</em> branches</strong> (defaults are 'master' and 'add-to-doclets'). To add branches to Doclets.io use the <code>branches</code> entry. 
+			h1.ui.header The <code>.doclets.yml</code> configuration file
+			.ui.icon.message
+				i.icon.idea
+				.content
+					.header CI with Tags and Branches
+					p Documentation will be generated for <strong>all tags</strong> and <strong><em>selected</em> branches</strong> (defaults are 'master' and 'add-to-doclets'). To add branches to Doclets.io use the <code>branches</code> entry. 
 			p Doclets.io requires a small configuration file to create your repository's API-Doc.
 				| This file must be placed in the root directory of you repository similar to the popular .travis.yml for Travis-CI.
 

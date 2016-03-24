@@ -14,6 +14,7 @@ var mongoose = require('mongoose')
 var userName = 'bart'
 var repoName = 'test'
 var version = 'v1.0.1'
+var versionFail = 'v1.0.XXX'
 
 var clearDb = function (done) {
   mongoose.connection.once('open', function () {
@@ -44,6 +45,18 @@ describe('The server module', function () {
     doclet.createdAt = new Date()
     doclet.data = gather.gatherDocletsAndMeta(dir, true)
 
+    var doclet2 = new Doclet()
+    doclet2._id = [userName, repoName, versionFail].join('/')
+    doclet2.version = versionFail
+    doclet2.type = 'tag'
+    doclet2.repo = repoName
+    doclet2._repo = repoId
+    doclet2.owner = userName
+    doclet2._owner = userName
+    doclet2.tagOrHash = '1235'
+    doclet2.createdAt = new Date()
+    doclet2.error = 'foo'
+
     var user = new User()
     user._id = userName
     user.passportId = '12345'
@@ -66,6 +79,7 @@ describe('The server module', function () {
       server.init.bind(null, 4444),
       clearDb,
       doclet.save.bind(doclet),
+      doclet2.save.bind(doclet),
       user.save.bind(user),
       repo.save.bind(repo)
     ], done)
@@ -138,6 +152,33 @@ describe('The server module', function () {
   it('GET /bart/test/v1.0.1/about', function (done) {
     request('http://localhost:4444/bart/test/v1.0.1/about', function (err, res, body) {
       assert.equal(res.statusCode, 200)
+      done(err)
+    })
+  })
+
+  it('GET /bart/test/v1.0.1.svg returns ready-badge', function (done) {
+    request('http://localhost:4444/bart/test/v1.0.1.svg', function (err, res, body) {
+      assert.equal(res.statusCode, 200)
+      assert.equal(res.headers['content-type'], 'image/svg+xml;charset=utf-8')
+      assert(res.body.match(/ready/))
+      done(err)
+    })
+  })
+
+  it('GET /bart/test/' + versionFail + '.svg returns fail-badge', function (done) {
+    request('http://localhost:4444/bart/test/' + versionFail + '.svg', function (err, res, body) {
+      assert.equal(res.statusCode, 200)
+      assert.equal(res.headers['content-type'], 'image/svg+xml;charset=utf-8')
+      assert(res.body.match(/failed/))
+      done(err)
+    })
+  })
+
+  it('GET /bart/test/notthere.svg returns fail-badge', function (done) {
+    request('http://localhost:4444/bart/test/notthere.svg', function (err, res, body) {
+      assert.equal(res.statusCode, 200)
+      assert.equal(res.headers['content-type'], 'image/svg+xml;charset=utf-8')
+      assert(res.body.match(/error/))
       done(err)
     })
   })

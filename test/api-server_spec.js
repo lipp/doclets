@@ -66,4 +66,19 @@ describe('The api-server module', function () {
       }, 100)
     })
   })
+
+  it('HTTP POST Create Event to /github/callback created inbox entry', function (done) {
+    replayGitHubEvent('numbers-push', function (err, res) {
+      assert(!err)
+      assert.equal(res.statusCode, 200)
+      setTimeout(function () {
+        inbox.count()
+          .then(function (count) {
+            assert.equal(count, 1)
+            done()
+          })
+          .catch(done)
+      }, 100)
+    })
+  })
 })

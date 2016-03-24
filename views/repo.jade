@@ -34,49 +34,36 @@ block content
 		.ui.container
 			.ui.grid
 				- var enabled = repo.isWebHookEnabled()
-				- var isOwnRepo = user && user._id === username
+				- var isOwnRepo = user && user.accessibleRepos.indexOf(repo._id) > -1
+				- var isOrgMember = user && _.findWhere(user.orgs, {name: username})
 				.twelve.wide.column
 					if error
-						.ui.error.message
+						.ui.icon.error.message
+							i.icon.warning.circle
 							i.close.icon
-							.header Changes not applied.
-							p= error
+							.content
+								.header Sorry, could not apply changes
+								p= JSON.stringify(error)
 					if result
-						.ui.success.message
+						.ui.positive.icon.message
+							i.icon.check.circle
 							i.close.icon
-							.header Changes applied
+							.content
+								.header Changes applied
 								
-					if !error && !result && versions.length == 0 && enabled && isOwnRepo
-						.ui.message.info
+					if !error && !result && versions.length == 0 && enabled && (isOwnRepo || isOrgMember)
+						.ui.positive.icon.message
+							i.icon.check.circle
 							i.icon.close
-							.header Great,
-							p Your repository is enabled.
-							p To create the first Doclet for this repository, just create a <a href='/doclets.yml'>.doclets.yml</a> file and push your changes to GitHub.
+							.content
+								.header Great,
+								p Your repository is enabled.
+								p To create the first Doclet for this repository, just create a <a href='/doclets.yml'>.doclets.yml</a> file and push your changes to GitHub.
 					- var first = versions[0]
 					- var packageJson = first && first.data.packageJson || {}
 					- var description = first && first.getDescription() || repo.description
-					//.ui.very.padded.raised.segment
-						h1.ui.header
-							.content= repo.name
-								.sub.header by&nbsp;
-									a.user(href='./')= username
-		
-						if packageJson.keywords
-							.tags
-								i.icon.tags
-								.ui.large.horizontal.bulleted.list
-									each tag in packageJson.keywords
-										.item= tag
-						if description
-							p.big.description= description
-						else
-							p.big.description
-								em No description available
-						a(href=repo.url, target='_blank')
-							i.github.icon
-							| View on GitHub
 	
-					form.ui.form#repos(action='/account/' + repo.name, method='post', name='settings', class=enabled ? 'success' : 'warning')
+					form.ui.form#repos(action='/account/changerepo?repo=' + repo._id, method='post', name='settings', class=enabled ? 'success' : 'warning')
 						.ui.fluid.card.repo-info
 							.content
 								.header= repo.name

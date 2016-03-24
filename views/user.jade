@@ -17,19 +17,24 @@ block scripts
 block content
 	- var docletsByRepository = _.groupBy(doclets, function(doclet) {return doclet.repo})
 	- var enabledRepos = _.filter(repos, function(repo) {return repo.isWebHookEnabled()})
-	- var disabledRepos = _.filter(repos, function(repo) {return !repo.isWebHookEnabled()})
+	- var disabledRepos = owner && _.filter(owner._accessibleRepos, function(repo) {return !repo.isWebHookEnabled()})
 	- var isOwnProfile = user && user._id === username
+	- var isOrgMember = user && _.findWhere(user.orgs, {name: username})
 	.ui.vertical.segment
 		.ui.container
 			.ui.grid
 				.twelve.wide.column.overview
 					if isOwnProfile
-						if isOwnProfile && owner.needsReauth
+						if owner.needsReauth
 							.ui.icon.message.error
 								i.icon.warning.circle
 								.content
-									.header Sorry, your GitHub authentication token seems invalid.
-									p This can have different reasons. Please re-authenticate next. <em>No</em> added repositories or Doclets will be lost.
+									if owner.needsReauth == 'more-rights'
+										.header Sorry, Doclets needs more permissions.
+										p Doclets needs permissions to create webhooks, read organization membership and read private repositories (Private Repo Support coming soon). However, Doclets will <strong>never</strong> make changes to any repository content.
+									else
+										.header Sorry, your GitHub authentication token seems invalid.
+										p This can have different reasons. Please re-authenticate next. <em>No</em> added repositories or Doclets will be lost.
 									form.ui.large.form(action='/reauth', method='post')
 										button.ui.negative.labeled.icon.button(type='submit')
 											i.refresh.icon
@@ -53,19 +58,19 @@ block content
 									p Just create a <a>.doclets.yml</a> file and push your changes to
 										| your respective GitHub repository. Doclets.io will automatically generate the API documentation for you.
 
-					if isOwnProfile && !owner.needsReauth
+					if (isOwnProfile && !owner.needsReauth) || (isOrgMember && !user.needsReauth) 
 						form.ui.form(method='post', action='/account/addrepo')
 							.fields
-								.six.wide.field
+								.twelve.wide.field
 									.ui.fluid.dropdown.labeled.search.icon.button
 										i.icon.search
 										span.text Select Repository (public only)
 										input(type='hidden', name='repo')
 										.menu
 											each repo in _.sortBy(disabledRepos, function(repo) {return repo.name.toLowerCase()})
-												.item(data-value=repo._id)= repo.name
+												.item(data-value=repo._id)= repo.name + ' / ' + repo.owner
 								.four.wide.field
-									button#add.ui.labeled.icon.button.primary(type='submit', disabled=true) 
+									button#add.ui.labeled.icon.fluid.button.primary(type='submit', disabled=true) 
 										i.icon.plug
 										| Add
 	
@@ -77,7 +82,9 @@ block content
 								.ui.fluid.card
 									.content
 										.header
-											a(href=username + '/' + repo.name)= repo.name
+											a(href=repo.owner + '/' + repo.name)
+												span= repo.name
+												span.owner= ' / ' + repo.owner
 											if repo.isWebHookEnabled()
 												i.small.middle.aligned.green.check.icon.tool-tip(data-content='GitHub integration enabled')
 											else
@@ -90,23 +97,24 @@ block content
 												each version in versions
 													a.item(href=version.getDocletUrl())= version.version
 										else
-											.ui.horizontal.label 0
+											.ui.horizontal.label.tool-tip(data-content='No Doclets available yet') 0
 											em No Doclets available yet
 	
 	
 				.four.wide.column
 					include profile.jade
+					.ui.segment
+						.ui.two.small.statistics
+							.ui.statistic
+								.value= doclets.length
+								.label Doclets
+							.ui.statistic
+								.value= enabledRepos.length
+								.label Repos
 					if isOwnProfile && !owner.needsReauth
 						form.ui.large.form(action='/sync', method='post')
 							button.ui.fluid.labeled.icon.button(type='submit')
 								i.refresh.icon
 								| Re-Sync Repositories
-					.ui.two.small.statistics
-						.ui.statistic
-							.value= doclets.length
-							.label Doclets
-						.ui.statistic
-							.value= enabledRepos.length
-							.label Repositories
 			
 	
