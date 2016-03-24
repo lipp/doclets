@@ -325,11 +325,11 @@ describe('The user module', function () {
       })
     })
 
-    it('syncWithGithub() with missing scopes sets user.needsReauth = true', function (done) {
+    it('syncWithGithub() with missing scopes sets user.needsReauth = "more-rights"', function (done) {
       sandbox.stub(user, 'hasRequiredGitHubAccess').yields(null, false)
       user.syncWithGitHub(function (err, user) {
         assert(!err)
-        assert.equal(user.needsReauth, true)
+        assert.equal(user.needsReauth, 'more-rights')
         done()
       })
     })
