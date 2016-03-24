@@ -35,6 +35,13 @@ if owner || user
 						i.world.icon
 						.content
 							a(href=profile.blog)= profile.blog
+		if profile.orgs && profile.orgs.length > 0
+			.extra.content
+				.ui.horizontal.list
+					each org in profile.orgs
+						a.item.tool-tip(href='/' + org.name, data-title='Organization', data-content=org.name)
+							img.ui.mini.image(src=org.image)
+
 
 else
 	h2 No Profile information
