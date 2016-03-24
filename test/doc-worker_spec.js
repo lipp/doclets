@@ -22,19 +22,28 @@ var loadGitHubEvent = function (eventDir) {
 var tmpPath = path.join(__dirname, 'git-temp')
 
 describe('The doc-worker module', function () {
-  this.timeout(10000)
+  this.timeout(20000)
   this.slow(8000)
   var inbox
+  var failed
   var sandbox
+  var getRepoEvents
 
   before(function (done) {
-    docWorker.init(tmpPath)
+    getRepoEvents = sinon.stub(repo, 'getRepoEvents')
+    getRepoEvents.yields(null, [])
     inbox = new Bull('inbox', env.redis.port, env.redis.host)
-    inbox.on('ready', done)
+    failed = new Bull('failed', env.redis.port, env.redis.host)
+    inbox.clean(1).then(function () {
+      failed.clean(1).then(function () {
+        docWorker.init(tmpPath, done)
+      })
+    })
   })
 
   after(function (done) {
     fse.removeSync(tmpPath)
+    getRepoEvents.restore()
     mongoose.connection.close(done)
   })
 
@@ -67,19 +76,16 @@ describe('The doc-worker module', function () {
 
   it('a failing repo.checkout is handled', function (done) {
     var event = loadGitHubEvent('acme-push')
-    var failed = new Bull('failed', env.redis.port, env.redis.host)
-    failed.on('ready', function () {
-      inbox.add(event)
-      failed.process(function (job, jobDone) {
-        assert.equal(job.data.ref, event.ref)
-        jobDone()
-        inbox.count().then(function (count) {
-          assert.equal(count, 0)
-          done()
-        })
-        failed.close()
+    failed.process(function (job, jobDone) {
+      assert.equal(job.data.ref, event.ref)
+      jobDone()
+      inbox.count().then(function (count) {
+        assert.equal(count, 0)
+        done()
       })
+      failed.close()
     })
+    inbox.add(event)
     sandbox.stub(repo, 'checkout').throws('some error')
   })
 
@@ -116,7 +122,7 @@ describe('The doc-worker module', function () {
           })
         }
       })
-    }, 3000)
+    }, 5000)
   })
 
   it('pushing a trash event to the inbox will not create a doclet', function (done) {
@@ -202,10 +208,17 @@ describe('The doc-worker module', function () {
       events = JSON.parse(fs.readFileSync(path.join(__dirname, '../fixtures/acme-jsdoc-example_getevents.json')))
     })
 
+    afterEach(function (done) {
+      async.series([
+        User.remove.bind(User, {}),
+        Repo.remove.bind(Repo, {})
+      ], done)
+    })
+
     beforeEach(function (done) {
       var user = new User({
         _id: 'lipp',
-        token: '12345'
+        token: 12345
       })
       var repo1 = new Repo({
         _id: 'lipp/acme-jsdoc-example',
@@ -231,14 +244,14 @@ describe('The doc-worker module', function () {
     })
 
     it('catchUpRepoEvents with no events', function (done) {
-      sandbox.stub(repo, 'getRepoEvents').yields(null, [])
+      getRepoEvents.yields(null, [])
       docWorker.catchUpRepoEvents(function () {
         assert('should not be called')
       }, done)
     })
 
     it('catchUpRepoEvents with events produces events able to create Doclets', function (done) {
-      sandbox.stub(repo, 'getRepoEvents').yields(null, events)
+      getRepoEvents.yields(null, events)
       var count = 0
       docWorker.catchUpRepoEvents(function (webhookEvent) {
         Doclet.createFromGitHubEvent(webhookEvent, [], function (err) {

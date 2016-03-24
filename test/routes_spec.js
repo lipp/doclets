@@ -439,7 +439,9 @@ describe('The routes module', function () {
         user: {
           auth: 'noauth',
           token: 123,
-          refreshToken: 333
+          refreshToken: 333,
+          _id: 'lipp',
+          image: 'smile'
         },
         flash: sinon.spy()
       }
@@ -490,6 +492,8 @@ describe('The routes module', function () {
       routes.addRepo(req, res)
       assert.equal(fakeUser.token, req.user.token)
       assert.equal(fakeUser.refreshToken, req.user.refreshToken)
+      assert.equal(fakeUser.tokenProvider.id, req.user._id)
+      assert.equal(fakeUser.tokenProvider.image, req.user.image)
       assert(fakeUser.save.calledOnce)
       assert(res.redirect.calledWith('/foo/bar'))
     })
@@ -564,6 +568,16 @@ describe('The routes module', function () {
     routes.deserializeUser(123, function (err, user) {
       assert(!err)
       assert.equal(user, 'user')
+      done()
+    })
+  })
+
+  it('.createPassportUser() yields a user object', function (done) {
+    routes.createPassportUser('asd', 'foo', 123, function (err, user) {
+      assert(!err)
+      assert.equal(user.token, 'asd')
+      assert.equal(user.refreshToken, 'foo')
+      assert.equal(user.profile, 123)
       done()
     })
   })
