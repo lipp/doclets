@@ -75,6 +75,49 @@ describe('The repo model module', function () {
       })
     })
 
+    it('.sync() calls repoModule.getUserRepos and calls Repo.syncOrCreate for each repo', function (done) {
+      var fakeGhRepos = [
+        {full_name: 'foo/bar'},
+        {full_name: 'asd/pop'}
+      ]
+      var syncOrCreate = sandbox.stub(Repo, 'syncOrCreate')
+      syncOrCreate.withArgs(fakeGhRepos[0], 'noauth').yields()
+      syncOrCreate.withArgs(fakeGhRepos[1], 'noauth').yields()
+      sandbox.stub(repoModule, 'getUserRepos').withArgs('lipp', 'noauth').yields(null, fakeGhRepos)
+      Repo.sync('lipp', 'noauth', function (err, repos) {
+        assert(!err)
+        assert.equal(repos.length, 2)
+        assert(repos.indexOf('foo/bar') > -1)
+        assert(repos.indexOf('asd/pop') > -1)
+        done()
+      })
+    })
+
+    it('.sync() propagates repo.syncOrCreate error', function (done) {
+      var fakeGhRepos = [
+        {full_name: 'foo/bar'},
+        {full_name: 'asd/pop'}
+      ]
+      var syncOrCreate = sandbox.stub(Repo, 'syncOrCreate')
+      syncOrCreate.withArgs(fakeGhRepos[0], 'noauth').yields()
+      syncOrCreate.withArgs(fakeGhRepos[1], 'noauth').yields('arg')
+      sandbox.stub(repoModule, 'getUserRepos').withArgs('lipp', 'noauth').yields(null, fakeGhRepos)
+      Repo.sync('lipp', 'noauth', function (err, repos) {
+        assert.equal(err, 'arg')
+        assert(!repos)
+        done()
+      })
+    })
+
+    it('.sync() propagates repoModule.getUserRepos error', function (done) {
+      sandbox.stub(repoModule, 'getUserRepos').withArgs('lipp', 'noauth').yields('arg')
+      Repo.sync('lipp', 'noauth', function (err, repos) {
+        assert.equal(err, 'arg')
+        assert(!repos)
+        done()
+      })
+    })
+
     it('.syncOrCreate once creates repo', function (done) {
       sandbox.stub(Repo, 'createFromGitHub').withArgs(repoData[0], 'noauth').yields(null, 123)
       Repo.syncOrCreate(repoData[0], 'noauth', function (err, repo) {
@@ -95,6 +138,14 @@ describe('The repo model module', function () {
           assert.equal(repo.stars, repoData[0].stargazers_count)
           done()
         })
+      })
+    })
+
+    it('.changeOwnner propagates db error', function (done) {
+      sandbox.stub(Repo, 'find').withArgs({owner: 'horst'}).yields('arg')
+      Repo.changeOwner('horst', 'lipp', function (err) {
+        assert.equal(err, 'arg')
+        done()
       })
     })
 
