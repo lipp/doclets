@@ -58,7 +58,7 @@ describe('The user module', function () {
     })
   })
 
-  describe('.syncWithGitHub', function () {
+  describe('with a user db entry', function () {
     var user
     var sandbox
 
@@ -76,7 +76,19 @@ describe('The user module', function () {
       sandbox.restore()
     })
 
-    it('on success fills additional fields', function (done) {
+    it('.updateFromGitHubPassport() updates tokens', function (done) {
+      user.updateFromGitHubPassport({token: 'asd', refreshToken: '444'}, function (err) {
+        assert(!err)
+        User.findById(ghPassport.profile.username, function (err, user) {
+          assert(!err)
+          assert.equal(user.token, 'asd')
+          assert.equal(user.refreshToken, '444')
+          done()
+        })
+      })
+    })
+
+    it('.syncWithGitHub() on success fills additional fields', function (done) {
       var ghUser = {
         email: 'asd',
         name: 'horst',
@@ -102,7 +114,7 @@ describe('The user module', function () {
       })
     })
 
-    it('on auth fail leaves user and sets needsReauth=true', function (done) {
+    it('.syncWithGitHub() on auth fail leaves user and sets needsReauth=true', function (done) {
       sandbox.stub(repoModule, 'getUser').yields({code: 401})
       user.syncWithGitHub(function (err, syncedUser) {
         assert(!err)
@@ -114,7 +126,7 @@ describe('The user module', function () {
       })
     })
 
-    it('forwards other errors', function (done) {
+    it('.syncWithGitHub() forwards other errors', function (done) {
       sandbox.stub(repoModule, 'getUser').yields({code: 123})
       user.syncWithGitHub(function (err, syncedUser) {
         assert(err)
