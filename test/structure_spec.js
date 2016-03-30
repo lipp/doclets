@@ -1,6 +1,9 @@
-/* global describe it */
+/* global describe it beforeEach */
 var assert = require('assert')
 var structure = require('../lib/structure')
+var gather = require('../lib/gather')
+var path = require('path')
+var _ = require('underscore')
 
 describe('The structure module', function () {
   it('.isRelativeLink("http://bla.com") === false', function () {
@@ -69,11 +72,6 @@ describe('The structure module', function () {
         value: 'protected'
       }]
     }), false)
-    assert.equal(structure.isPublic({
-      tags: [{
-        title: 'ignore'
-      }]
-    }), false)
   })
 
   it('createMarkdownRenderer', function () {
@@ -82,5 +80,25 @@ describe('The structure module', function () {
     assert(html.indexOf('<a href="http://github.com/lipp/node-jet/blob/master/about.html">about</a>') > -1)
     html = renderer('![Alt text](/path/to/img.jpg)')
     assert(html.indexOf('<img src="http://github.com/lipp/node-jet/raw/master/path/to/img.jpg" alt="Alt text">') > -1)
+  })
+
+  describe('the ignore fixture doclets', function () {
+    var doclets
+    beforeEach(function () {
+      var dir = path.join(__dirname, '../fixtures/ignore')
+      var data = gather.gatherDocletsAndMeta(dir, true)
+      doclets = data.doclets
+    })
+
+    it('should have length 7 ', function () {
+      assert.equal(doclets.length, 7)
+    })
+
+    it('rejecting all isIgnored gives 1 doclet ', function () {
+      var notIgnored = _.reject(doclets, structure.isIgnored(doclets))
+      assert.equal(notIgnored.length, 2)
+      assert(_.findWhere(notIgnored, {longname: 'Bar'}))
+      assert(_.findWhere(notIgnored, {longname: 'Bar#setY'}))
+    })
   })
 })
