@@ -170,9 +170,9 @@ describe('The repo model module', function () {
       ], function (err) {
         assert(!err, err)
         Repo.changeOwner('asd', 'proto', function (err) {
-          assert(!err)
+          assert(!err, err)
           Repo.find({}, function (err, repos) {
-            assert(!err)
+            assert(!err, err)
             assert.equal(repos.length, 3)
             var newRepo1 = _.findWhere(repos, {_id: 'proto/foo'})
             assert(newRepo1)
