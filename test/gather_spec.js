@@ -55,6 +55,21 @@ describe('The gather module', function () {
     })
   })
 
+  describe('glob fixture', function () {
+    var data
+    before(function () {
+      data = loadFixture('glob')
+    })
+
+    it('loads all specified files', function () {
+      assert.equal(data.doclets.length, 4)
+      assert.equal(data.doclets[0].meta.filename, 'index.js')
+      assert.equal(data.doclets[1].meta.filename, 'lib/a.js')
+      assert.equal(data.doclets[2].meta.filename, 'lib/b.js')
+      assert.equal(data.doclets[3].meta.filename, 'vendor/d.js')
+    })
+  })
+
   var failing = [
     {dir: 'missing_dir', message: ''},
     {dir: 'no_doclets_yml', message: ''},
