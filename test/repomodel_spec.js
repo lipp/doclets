@@ -168,7 +168,7 @@ describe('The repo model module', function () {
         repo2.save.bind(repo2),
         repo3.save.bind(repo3)
       ], function (err) {
-        assert(!err)
+        assert(!err, err)
         Repo.changeOwner('asd', 'proto', function (err) {
           assert(!err)
           Repo.find({}, function (err, repos) {
