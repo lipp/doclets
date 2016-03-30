@@ -69,6 +69,11 @@ describe('The structure module', function () {
         value: 'protected'
       }]
     }), false)
+    assert.equal(structure.isPublic({
+      tags: [{
+        title: 'ignore'
+      }]
+    }), false)
   })
 
   it('createMarkdownRenderer', function () {
