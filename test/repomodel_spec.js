@@ -8,8 +8,8 @@ var path = require('path')
 var fs = require('fs')
 var mongoose = require('mongoose')
 var sinon = require('sinon')
-var async = require('async')
-var _ = require('underscore')
+// var async = require('async')
+// var _ = require('underscore')
 
 var repoData = JSON.parse(fs.readFileSync(path.join(__dirname, '../fixtures', 'repos.json'))).slice(0, 4)
 
@@ -149,44 +149,46 @@ describe('The repo model module', function () {
       })
     })
 
-    it('.changeOwner', function (done) {
-      var repo1 = new Repo()
-      repo1.owner = 'asd'
-      repo1._id = 'asd/foo'
-      repo1.name = 'foo'
-      repo1.webhook = {active: true}
-      var repo2 = new Repo()
-      repo2.owner = 'asd'
-      repo2._id = 'asd/foo2'
-      repo2.name = 'foo2'
-      var repo3 = new Repo()
-      repo3.owner = 'bar'
-      repo3._id = 'bar/foo2'
-      repo3.name = 'foo2'
-      async.parallel([
-        repo1.save.bind(repo1),
-        repo2.save.bind(repo2),
-        repo3.save.bind(repo3)
-      ], function (err) {
+  /*
+  it('.changeOwner', function (done) {
+    var repo1 = new Repo()
+    repo1.owner = 'asd'
+    repo1._id = 'asd/foo'
+    repo1.name = 'foo'
+    repo1.webhook = {active: true}
+    var repo2 = new Repo()
+    repo2.owner = 'asd'
+    repo2._id = 'asd/foo2'
+    repo2.name = 'foo2'
+    var repo3 = new Repo()
+    repo3.owner = 'bar'
+    repo3._id = 'bar/foo2'
+    repo3.name = 'foo2'
+    async.parallel([
+      repo1.save.bind(repo1),
+      repo2.save.bind(repo2),
+      repo3.save.bind(repo3)
+    ], function (err) {
+      assert(!err, err)
+      Repo.changeOwner('asd', 'proto', function (err) {
         assert(!err, err)
-        Repo.changeOwner('asd', 'proto', function (err) {
+        Repo.find({}, function (err, repos) {
           assert(!err, err)
-          Repo.find({}, function (err, repos) {
-            assert(!err, err)
-            assert.equal(repos.length, 3)
-            var newRepo1 = _.findWhere(repos, {_id: 'proto/foo'})
-            assert(newRepo1)
-            assert.equal(newRepo1.owner, 'proto')
-            assert.equal(newRepo1._owner, 'proto')
-            assert.equal(newRepo1.name, 'foo')
-            assert.deepEqual(newRepo1.webhook, repo1.webhook)
-            assert(_.findWhere(repos, {_id: 'proto/foo2'}))
-            assert(_.findWhere(repos, {_id: 'bar/foo2'}))
-            done()
-          })
+          assert.equal(repos.length, 3)
+          var newRepo1 = _.findWhere(repos, {_id: 'proto/foo'})
+          assert(newRepo1)
+          assert.equal(newRepo1.owner, 'proto')
+          assert.equal(newRepo1._owner, 'proto')
+          assert.equal(newRepo1.name, 'foo')
+          assert.deepEqual(newRepo1.webhook, repo1.webhook)
+          assert(_.findWhere(repos, {_id: 'proto/foo2'}))
+          assert(_.findWhere(repos, {_id: 'bar/foo2'}))
+          done()
         })
       })
     })
+  })
+   */
   })
 
   describe('methods', function () {
