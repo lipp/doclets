@@ -58,54 +58,5 @@ describe('The view-params module', function () {
       })
       assert.equal(tools.isBuiltInType('asd'), false)
     })
-
-    it('linkFromSee("{@link http://google.com}") is correct', function () {
-      var see = '{@link http://google.com}'
-      var link = tools.linkFromSee(see)
-      assert.equal(link.url, 'http://google.com')
-      assert.equal(link.name, 'http://google.com')
-    })
-
-    it('linkFromSee("{@link http://bluebirdjs.com/docs/api-reference.html|Bluebird API}") is correct', function () {
-      var see = '{@link http://bluebirdjs.com/docs/api-reference.html|Bluebird API}'
-      var link = tools.linkFromSee(see)
-      assert.equal(link.url, 'http://bluebirdjs.com/docs/api-reference.html')
-      assert.equal(link.name, 'Bluebird API')
-    })
-
-    it('linkFromSee("{@link http://bluebirdjs.com/docs/api-reference.html Bluebird API}") is correct', function () {
-      var see = '{@link http://bluebirdjs.com/docs/api-reference.html Bluebird API}'
-      var link = tools.linkFromSee(see)
-      assert.equal(link.url, 'http://bluebirdjs.com/docs/api-reference.html')
-      assert.equal(link.name, 'Bluebird API')
-    })
-
-    it('linkFromSee("{@link FooBar FooBarClass}") is correct', function () {
-      var see = '{@link FooBar FooBarClass}'
-      var link = tools.linkFromSee(see)
-      assert.equal(link.url, '#FooBar')
-      assert.equal(link.name, 'FooBarClass')
-    })
-
-    it('linkFromSee("{@link FooBar}") is correct', function () {
-      var see = '{@link FooBar}'
-      var link = tools.linkFromSee(see)
-      assert.equal(link.url, '#FooBar')
-      assert.equal(link.name, 'FooBar')
-    })
-
-    it('linkFromSee("[Bla bla]{@link FooBar}") is correct', function () {
-      var see = '[Bla bla]{@link FooBar}'
-      var link = tools.linkFromSee(see)
-      assert.equal(link.url, '#FooBar')
-      assert.equal(link.name, 'Bla bla')
-    })
-
-    it('linkFromSee("[Bla bla]{@link http://google.com}") is correct', function () {
-      var see = '[Bla bla]{@link http://google.com}'
-      var link = tools.linkFromSee(see)
-      assert.equal(link.url, 'http://google.com')
-      assert.equal(link.name, 'Bla bla')
-    })
   })
 })
