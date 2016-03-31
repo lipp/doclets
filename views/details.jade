@@ -12,16 +12,10 @@ mixin playgrounds(playgroundsArray)
 
 
 mixin see(seeArray)
-	h4 Links:
+	h4 See:
 	ul.links
 		each see in seeArray
-			- var link = tools.linkFromSee(see);
-			if link.url
-				li
-					a(href=link.url)= link.name || link.url
-			else
-				li= link.name
-
+			li!= see
 
 		
 mixin title(doclet, id)
@@ -95,8 +89,11 @@ mixin details(doclet)
 		p
 			em No description available.
 	if doclet.defaultvalue !== undefined
-		p Default:
-			span= doclet.defaultvalue
+		h4 Default:
+		pre
+			- var isString = doclet.type && doclet.type.names && doclet.type.names[0].match(/^string/i)
+			- var prefix = isString && "'" || ''
+			code= prefix + doclet.defaultvalue + prefix
 	if doclet.params && doclet.params.length > 0
 		h4 Arguments:
 		+paramsList(doclet.params, 'argumentlist')

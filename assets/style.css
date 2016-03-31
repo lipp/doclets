@@ -24,6 +24,7 @@ body {
     margin-left: 300px;
     right: 0;
 	overflow-y: scroll; /* has to be scroll, not auto */
+	overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
 }
 

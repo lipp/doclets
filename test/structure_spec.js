@@ -6,6 +6,59 @@ var path = require('path')
 var _ = require('underscore')
 
 describe('The structure module', function () {
+  it('normalizeSeeTag("foo")', function () {
+    assert.equal(structure.normalizeSeeTag('foo'), '{@link foo}')
+  })
+
+  it('normalizeSeeTag("{@link bla}")', function () {
+    assert.equal(structure.normalizeSeeTag('{@link bla}'), '{@link bla}')
+  })
+
+  it('.createLink("https://bla.com")', function () {
+    assert.equal(structure.createLink('https://bla.com'), '<a href="https://bla.com">bla.com</a>')
+  })
+
+  it('.createLink("https://bla.com/asd")', function () {
+    assert.equal(structure.createLink('https://bla.com/asd'), '<a href="https://bla.com/asd">bla.com/asd</a>')
+  })
+
+  it('.createLink("https://bla.com", "BLA")', function () {
+    assert.equal(structure.createLink('https://bla.com', 'BLA'), '<a href="https://bla.com">BLA</a>')
+  })
+
+  it('.createLink("foo#bar")', function () {
+    assert.equal(structure.createLink('foo#bar'), '<a href="#dl-foo-bar">foo#bar</a>')
+  })
+
+  it('.createLink("foo#bar", "FOO")', function () {
+    assert.equal(structure.createLink('foo#bar', 'FOO'), '<a href="#dl-foo-bar">FOO</a>')
+  })
+
+  it('replaceInlineLinks("bla [foo]{@link https://google.com} pp"', function () {
+    var str = structure.replaceInlineLink('bla [foo]{@link https://google.com} pp')
+    assert.equal(str, 'bla <a href="https://google.com">foo</a> pp')
+  })
+
+  it('replaceInlineLinks("bla [foo]{@link https://google.com} pp [bar]{@link https://bar.com} asd"', function () {
+    var str = structure.replaceInlineLink('bla [foo]{@link https://google.com} pp [bar]{@link https://bar.com} asd')
+    assert.equal(str, 'bla <a href="https://google.com">foo</a> pp <a href="https://bar.com">bar</a> asd')
+  })
+
+  it('replaceInlineLinks("bla {@link https://google.com Visit Google} pp"', function () {
+    var str = structure.replaceInlineLink('bla {@link https://google.com Visit Google} pp')
+    assert.equal(str, 'bla <a href="https://google.com">Visit Google</a> pp')
+  })
+
+  it('replaceInlineLinks("bla {@link https://google.com Visit Google} pp {@link https://google.com Visit Google2} "', function () {
+    var str = structure.replaceInlineLink('bla {@link https://google.com Visit Google} pp {@link https://google.com Visit Google2}')
+    assert.equal(str, 'bla <a href="https://google.com">Visit Google</a> pp <a href="https://google.com">Visit Google2</a>')
+  })
+
+  it('replaceInlineLinks("bla {@link https://google.com} pp"', function () {
+    var str = structure.replaceInlineLink('bla {@link https://google.com} pp')
+    assert.equal(str, 'bla <a href="https://google.com">google.com</a> pp')
+  })
+
   it('.isRelativeLink("http://bla.com") === false', function () {
     assert.equal(structure.isRelativeLink('http://bla.com'), false)
   })
