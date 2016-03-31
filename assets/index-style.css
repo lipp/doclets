@@ -96,7 +96,7 @@ body header {
 		font-size: 1.4rem !important;
 	}
 
-	.hero .background, #title .background {
+	.hero .background  {
 		background-image: url('hero-bg-small-2.jpg');
 		background-repeat: no-repeat;
 		background-size: cover;
