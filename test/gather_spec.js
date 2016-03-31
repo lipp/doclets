@@ -9,6 +9,33 @@ var loadFixture = function (name) {
 }
 
 describe('The gather module', function () {
+  this.timeout(5000)
+
+  it('getFiles with invalid dir', function () {
+    var files = gather.getFiles({dir: 'test/../../'}, './')
+    assert.equal(files.length, 0)
+  })
+
+  it('getFiles with valid dir', function () {
+    var files = gather.getFiles({dir: 'test'}, './')
+    assert(files.length > 0)
+  })
+
+  it('getFiles with invalid files', function () {
+    var files = gather.getFiles({files: ['test/../../*.js']}, './')
+    assert.equal(files.length, 0)
+  })
+
+  it('getFiles with valid files', function () {
+    var files = gather.getFiles({files: ['test/*.js']}, './')
+    assert(files.length > 0)
+  })
+
+  it('getFiles with valid and invalid files', function () {
+    var files = gather.getFiles({files: ['test/gather_spec.js', 'test/../../*.js']}, './')
+    assert.equal(files.length, 1)
+  })
+
   describe('minimal_1 fixture', function () {
     var data
     before(function () {
