@@ -1,0 +1,5 @@
+files:
+  - index.js
+  - lib/*.js
+  - vendor/*.js
+type: jsdoc
