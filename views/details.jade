@@ -62,16 +62,17 @@ mixin typeList(type)
 	
 
 mixin paramDetails(param, name)
-	h4.paramname= name
-		if param.type
-			+typeList(param.type)
-		if param.optional
-			span.optional optional
-		if param.defaultvalue !== undefined
-			span.default , default: 
-			span.defaultvalue= param.defaultvalue
-	if param.description
-		+optMarkdown(param.description, 'description')
+	if param
+		h4.paramname= name
+			if param.type
+				+typeList(param.type)
+			if param.optional
+				span.optional optional
+			if param.defaultvalue !== undefined
+				span.default , default: 
+				span.defaultvalue= param.defaultvalue
+		if param.description
+			+optMarkdown(param.description, 'description')
 
 mixin nestedParamsList(paramNode)
 	- var childParams = childs(paramNode)
