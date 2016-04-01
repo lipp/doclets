@@ -6,6 +6,19 @@ var path = require('path')
 var _ = require('underscore')
 
 describe('The structure module', function () {
+  it('removeInvalidContent removes null content of params, properties and returns', function () {
+    var doclet = {}
+    var fields = ['params', 'properties', 'returns']
+    fields.forEach(function (field) {
+      doclet[field] = [1, null, 2]
+      structure.removeInvalidContent(doclet)
+      assert.deepEqual(doclet[field], [1, 2])
+      doclet[field] = [null]
+      structure.removeInvalidContent(doclet)
+      assert(!doclet[field])
+    })
+  })
+
   describe('unflattenParams', function () {
     var doclet = {}
     var nestedParams
