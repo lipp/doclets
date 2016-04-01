@@ -29,7 +29,7 @@ describe('The structure module', function () {
         }
       ]
       structure.unflattenParams(doclet)
-      nestedParams = doclet.params
+      nestedParams = doclet.nestedParams
     })
 
     it('returns array (on first level)', function () {
