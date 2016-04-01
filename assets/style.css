@@ -28,6 +28,10 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
+ul.nested {
+	padding-left: 1.3em;
+}
+
 .social > iframe {
 	margin: 5px;
 }
