@@ -61,9 +61,9 @@ mixin typeList(type)
 					a(href='#' + tools.idFromLongname(t))= t
 	
 
-mixin paramDetails(param)
+mixin paramDetails(param, name)
 	if param
-		h4.paramname= param.name
+		h4.paramname= name
 			if param.type
 				+typeList(param.type)
 			if param.optional
@@ -74,11 +74,27 @@ mixin paramDetails(param)
 		if param.description
 			+optMarkdown(param.description, 'description')
 
+mixin nestedParamsList(paramNode)
+	- var childParams = childs(paramNode)
+	if childParams.length > 0
+		ul.nested
+			each childParam in childParams
+				li
+					+paramDetails(childParam.node.__content, childParam.name)
+					+nestedParamsList(childParam.node)
+
 mixin paramsList(params, className)
 	ol.params(class=className)
 		each param in params
 			li
-				+paramDetails(param)
+				+paramDetails(param.__content, param.__name)
+				+nestedParamsList(param)
+
+mixin flatParamsList(params, className)
+	ol.params(class=className)
+		each param in params
+			li
+				+paramDetails(param, param.name)
 
 mixin details(doclet)
 	if doclet.description
@@ -96,13 +112,13 @@ mixin details(doclet)
 			code= prefix + doclet.defaultvalue + prefix
 	if doclet.params && doclet.params.length > 0
 		h4 Arguments:
-		+paramsList(doclet.params, 'argumentlist')
+		+paramsList(doclet.nestedParams, 'argumentlist')
 	if doclet.returns && doclet.returns.length > 0
 		h4 Returns:
-		+paramsList(doclet.returns)
+		+flatParamsList(doclet.returns)
 	if doclet.properties
 		h4 Properties:
-		+paramsList(doclet.properties)
+		+flatParamsList(doclet.properties)
 	if !doclet.properties
 		+members(doclet)
 	if doclet.examples

@@ -6,6 +6,56 @@ var path = require('path')
 var _ = require('underscore')
 
 describe('The structure module', function () {
+  describe('unflattenParams', function () {
+    var doclet = {}
+    var nestedParams
+    beforeEach(function () {
+      doclet.params = [
+        {
+          name: 'first',
+          description: 'first param'
+        },
+        {
+          name: 'second',
+          description: 'second param'
+        },
+        {
+          name: 'second.sub',
+          description: 'sub param'
+        },
+        {
+          name: 'second.sub.x',
+          description: 'sub x param'
+        }
+      ]
+      structure.unflattenParams(doclet)
+      nestedParams = doclet.params
+    })
+
+    it('returns array (on first level)', function () {
+      assert.equal(nestedParams.length, 2)
+      assert.equal(nestedParams[0].__name, 'first')
+      assert.equal(nestedParams[0].__content.description, 'first param')
+      assert.equal(nestedParams[1].__name, 'second')
+      assert.equal(nestedParams[1].__content.description, 'second param')
+    })
+
+    it('structure.childs(result[1]) gives childs', function () {
+      var childs = structure.childs(nestedParams[1])
+      assert.equal(childs.length, 1)
+      assert.equal(childs[0].name, 'sub')
+      assert.equal(childs[0].node.__name, 'second.sub')
+    })
+
+    it('structure.childs(child[0].node) gives childs of child', function () {
+      var childs = structure.childs(nestedParams[1])
+      var subChilds = structure.childs(childs[0].node)
+      assert.equal(subChilds.length, 1)
+      assert.equal(subChilds[0].name, 'x')
+      assert.equal(subChilds[0].node.__name, 'second.sub.x')
+    })
+  })
+
   it('normalizeSeeTag("foo")', function () {
     assert.equal(structure.normalizeSeeTag('foo'), '{@link foo}')
   })
