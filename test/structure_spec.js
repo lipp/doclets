@@ -39,6 +39,14 @@ describe('The structure module', function () {
         {
           name: 'second.sub.x',
           description: 'sub x param'
+        },
+        {
+          name: 'second.sub.y',
+          description: 'sub y param'
+        },
+        {
+          name: 'second.sub.y[].asd',
+          description: 'sub y sub array param'
         }
       ]
       structure.unflattenParams(doclet)
@@ -63,9 +71,20 @@ describe('The structure module', function () {
     it('structure.childs(child[0].node) gives childs of child', function () {
       var childs = structure.childs(nestedParams[1])
       var subChilds = structure.childs(childs[0].node)
-      assert.equal(subChilds.length, 1)
+      assert.equal(subChilds.length, 2)
       assert.equal(subChilds[0].name, 'x')
       assert.equal(subChilds[0].node.__name, 'second.sub.x')
+      assert.equal(subChilds[1].name, 'y')
+      assert.equal(subChilds[1].node.__name, 'second.sub.y')
+    })
+
+    it('structure.childs(arrayNode) gives child', function () {
+      var childs = structure.childs(nestedParams[1])
+      var subChilds = structure.childs(childs[0].node)
+      var arrayChilds = structure.childs(subChilds[1].node)
+      assert.equal(arrayChilds.length, 1)
+      assert.equal(arrayChilds[0].name, 'asd')
+      assert.equal(arrayChilds[0].node.__name, 'second.sub.y.asd')
     })
   })
 
