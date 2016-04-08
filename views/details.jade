@@ -170,6 +170,12 @@ mixin infolist(doclet)
 				.content
 					.description Scope
 					.header= doclet.scope
+		if doclet.deprecated
+			.item
+				i.large.ban.middle.aligned.icon
+				.content
+					.description Deprecated
+					.header= doclet.deprecated === true ? 'yes' : doclet.deprecated
 		.item
 			i.large.code.middle.aligned.icon
 			.content
