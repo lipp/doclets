@@ -255,4 +255,56 @@ describe('The structure module', function () {
       assert(_.findWhere(notIgnored, {longname: 'Bar#setY'}))
     })
   })
+
+  describe('the closure syntax fixture doclets', function () {
+    var doclet
+    beforeEach(function () {
+      var dir = path.join(__dirname, '../fixtures/closure-syntax')
+      var data = gather.gatherDocletsAndMeta(dir, true)
+      structure.addTypeLinks(data.doclets[0])
+      structure.unflattenParams(data.doclets[0])
+      doclet = data.doclets[0]
+    })
+
+    it('doclet.params[0].type.typeNames is correct', function () {
+      var typeNames = doclet.nestedParams[0].__content.type.typeNames
+      assert.equal(typeNames.length, 1)
+      assert.equal(typeNames[0].length, 4)
+      assert.equal(typeNames[0][0].name, 'Array')
+      assert.equal(typeNames[0][1].delimiter, '<')
+      assert.equal(typeNames[0][2].name, 'Point')
+      assert.equal(typeNames[0][3].delimiter, '>')
+    })
+
+    it('doclet.params[1].type.typeNames is correct', function () {
+      var typeNames = doclet.nestedParams[1].__content.type.typeNames
+      assert.equal(typeNames.length, 1)
+      assert.equal(typeNames[0].length, 1)
+      assert.equal(typeNames[0][0].name, 'Object')
+    })
+
+    it('doclet.params[2].type.typeNames is correct', function () {
+      var typeNames = doclet.nestedParams[2].__content.type.typeNames
+      assert.equal(typeNames.length, 1)
+      assert.equal(typeNames[0].length, 1)
+      assert.equal(typeNames[0][0].name, 'module:foo/bar~Bla.bla')
+    })
+
+    it('doclet.params[3].type.typeNames is correct', function () {
+      var typeNames = doclet.nestedParams[3].__content.type.typeNames
+      assert.equal(typeNames.length, 2)
+      assert.equal(typeNames[0].length, 6)
+      assert.equal(typeNames[0][0].name, 'Object')
+      assert.equal(typeNames[0][1].delimiter, '<')
+      assert.equal(typeNames[0][2].name, 'string')
+      assert.equal(typeNames[0][3].delimiter, ', ')
+      assert.equal(typeNames[0][4].name, 'number')
+      assert.equal(typeNames[0][5].delimiter, '>')
+      assert.equal(typeNames[1].length, 4)
+      assert.equal(typeNames[1][0].name, 'Array')
+      assert.equal(typeNames[1][1].delimiter, '<')
+      assert.equal(typeNames[1][2].name, 'number')
+      assert.equal(typeNames[1][3].delimiter, '>')
+    })
+  })
 })

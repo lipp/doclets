@@ -40,23 +40,5 @@ describe('The view-params module', function () {
     it('.shortName("Bla") === "Bla"', function () {
       assert.equal(tools.shortName('Bla'), 'Bla')
     })
-
-    it('isBuiltInType(...) works', function () {
-      var builtInTypes = [
-        'string',
-        'number',
-        'bool',
-        'boolean',
-        'array',
-        'object',
-        'undefined',
-        'null',
-        'function'
-      ]
-      builtInTypes.forEach(function (typeName) {
-        assert.equal(tools.isBuiltInType(typeName), true)
-      })
-      assert.equal(tools.isBuiltInType('asd'), false)
-    })
   })
 })
