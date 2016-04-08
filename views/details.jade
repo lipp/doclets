@@ -147,13 +147,13 @@ mixin infolist(doclet)
 				.content
 					.description Since
 					.header= doclet.since
-		if doclet.typeNames
+		if doclet.type && doclet.type.typeNames
 			.item
 				i.large.diamond.middle.aligned.icon
 				.content
 					.description Type
 					.header
-						+typeList(doclet.typeNames)
+						+typeList(doclet.type.typeNames)
 		if doclet.implements
 			.item
 				i.large.spy.middle.aligned.icon
