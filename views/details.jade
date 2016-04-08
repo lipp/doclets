@@ -52,13 +52,15 @@ mixin title(doclet, id)
 				i.tiny.icon.linkify
 
 mixin typeList(type)
-	ul.types
-		each t in type.names
-			li.typename
-				if tools.isBuiltInType(t)
-					span= t
-				else
-					a(href='#' + tools.idFromLongname(t))= t
+	if type.typeNames
+		ul.types
+			each t in type.typeNames
+				li.typename
+					each part in t
+						if part.delimiter
+							span= part.delimiter
+						else
+							a(href=part.url)= part.name
 	
 
 mixin paramDetails(param, name)

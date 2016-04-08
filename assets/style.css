@@ -960,6 +960,7 @@ i.dropdown.icon {
 
 .argumentlist .paramname .types {
 	margin-left: 6px;
+	font-weight: normal;
 }
 
 .main h4 {
