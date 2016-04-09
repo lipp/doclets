@@ -61,7 +61,7 @@
     "csslint": "^0.10.0",
     "istanbul": "^0.4.1",
     "mocha": "^2.3.4",
-    "request": "^2.68.0",
+    "request": "^2.70.0",
     "sinon": "^1.17.2",
     "standard": "^5.4.1",
     "taffydb": "^2.7.2"
