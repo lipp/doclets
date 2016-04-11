@@ -911,6 +911,14 @@ i.dropdown.icon {
     content: '{';
 }
 
+.types.nullable:before {
+    content: '{?';
+}
+
+.types.non-nullable:before {
+    content: '{!';
+}
+
 .types:after {
     content: '}';
 }

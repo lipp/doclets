@@ -51,9 +51,13 @@ mixin title(doclet, id)
 			a(href="#" + id).permalink
 				i.tiny.icon.linkify
 
-mixin typeList(type)
+mixin typeList(param)
+	- var type = param.type
+	- var nullableClass = ''
+	if param.nullable !== undefined
+		- nullableClass = param.nullable ? 'nullable' : 'non-nullable'
 	if type.typeNames
-		ul.types
+		ul.types(class=nullableClass)
 			each t in type.typeNames
 				li.typename
 					each part in t
@@ -67,7 +71,7 @@ mixin paramDetails(param, name)
 	if param
 		h4.paramname= name
 			if param.type
-				+typeList(param.type)
+				+typeList(param)
 			if param.optional
 				span.optional optional
 			if param.defaultvalue !== undefined
@@ -153,7 +157,7 @@ mixin infolist(doclet)
 				.content
 					.description Type
 					.header
-						+typeList(doclet.type)
+						+typeList(doclet)
 		if doclet.implements
 			.item
 				i.large.spy.middle.aligned.icon
