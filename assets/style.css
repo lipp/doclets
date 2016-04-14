@@ -365,12 +365,59 @@ body .ui.cards > .card > .content{
 	margin-top: 30px;
 }
 
+#features h2.ui.header {
+    font-size: 1.3em;
+    margin-bottom: 0.3em;
+}
+
+#features p {
+	font-size: 1.1em;
+}
+
+#features .row + .row{
+	margin-top: 50px;
+}
+
+.repo-cards .owner {
+	font-weight: normal;
+}
+
 #screenshots {
 	position: relative;
 
 	margin-top: 80px;
 	height: 180px;
 	width: 100%;
+}
+
+#screenshots > .img-api {
+	top: 0;
+	width: 50%;
+	left: 0;
+}
+
+@media (max-width: 500px) {
+	#screenshots .img-md{
+		display: none;
+	}
+	#screenshots > .img-api {
+		width: 100%;
+	}
+	#diagram .big.label {
+		margin-bottom: 10px;
+	}
+	#screenshots {
+		margin-top: 40px;
+	}
+	#cloud {
+		margin-top: 0;
+	}
+}
+
+@media (max-width: 768px) {
+	#features .row + .row{
+		margin-top: 0px;
+	}
 }
 
 #samples {
@@ -388,11 +435,6 @@ body .ui.cards > .card > .content{
 	box-shadow: 3px 6px 10px -2px #dadada;
 }
 
-#screenshots > .img-api {
-	top: 0;
-	width: 50%;
-	left: 0;
-}
 
 #screenshots img {
 	width: 100% !important;
@@ -522,6 +564,10 @@ blockquote:before {
 	content: '\201e'
 }
 
+.hero {
+	text-align: center;
+}
+
 #quotes .author {
 	color: grey;
 }
@@ -538,6 +584,14 @@ blockquote:before {
 .accordion .title.active, .accordion .content.active {
 }
 
+#features .icon {
+	color: orange;
+}
+
+#diagram .big.label {
+	background-color: orange !important;
+}
+
 .leaf a {
 /*		color: #7D7D7D !important; */
 }
@@ -549,7 +603,7 @@ blockquote:before {
 
 #try-playground {
 	color: rgba(255, 255, 255, 0.94);
-	font-size: 18px;
+	font-size: 17px;
 	display: block;
 	text-align: center;
 }
@@ -562,22 +616,6 @@ blockquote:before {
 }
 
 
-#features h2.ui.header {
-    font-size: 1.3em;
-    margin-bottom: 0.3em;
-}
-
-#features p {
-	font-size: 1.1em;
-}
-
-#features .row + .row{
-	margin-top: 50px;
-}
-
-.repo-cards .owner {
-	font-weight: normal;
-}
 
 #teaser {
 	margin-top: 80px;
@@ -599,13 +637,16 @@ blockquote:before {
 
 .hero .source {
 		width: 50%;
-		transform: translateY(58%) translateX(70%) translateZ(0);
+		transform: translateY(58%) translateX(75%) translateZ(0);
 		transition: all 0.3s ease;
 }
 
 .hero .source:hover {
-		transform: translateY(15%) translateX(70%) scale(1.15, 1.15);
-		transition: all 0.6s ease;
+		transform: translateY(20%) translateX(75%) scale(1.12, 1.12);
+		transition: all 0.3s ease;
+}
+.reminder {
+    background-color: #D6D6D6 !important;	
 }
 
 svg {

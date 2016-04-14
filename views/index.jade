@@ -1,5 +1,9 @@
 extends layout.jade
 
+block metas
+	meta(name="viewport", content="width=device-width, initial-scale=1.0")
+	
+
 
 block title
 	title Doclets
@@ -7,38 +11,36 @@ block title
 
 block content
 	.hero
-		.background
 		h1.ui.icon.header
 			img.icon.logo(src='logo.svg')
 			.content(style='border-bottom: 3px solid orange') Doclets
-				//.ui.sub.header checked
 
-		p(style='margin-top: 1.2em') API documentation should be more fun.
+		p(style='margin-top: 1.2em') Beautiful and easy Javascript API-Docs
+		if !user
+			.login
+				a.ui.huge.button.primary#get-started(href='/auth/github') 
+					i.github.icon
+					.wrap
+						span Login with
+						| GitHub
+
+		#teaser.ui.container(style='margin-top: 5%;')
+			.ui.equal.height.stackable.grid
+				.row
+					.column.three.wide
+					.column.ten.wide
+						//.wrap
+							.ui.raised.segment.source
+								img.ui.rounded.image(src='playground-code-2.png')
+						.ui.raised.segment#playground
+							img#playground-gif.ui.fluid.image(src='playground2.gif')
+						a#try-playground(href='/lipp/acme-jsdoc-example/master#dl-greet') View this example!
+					.column.three.wide
 		.social
 			a.twitter-share-button(href='https://twitter.com/share', data-text='No Excuses. The easiest way to publish #JSDoc #javascript #api #documentation!', data-via='doclets_io', data-size='large')
 			script#twitter-script !function(d,s,id,sid){var js,fjs=d.getElementById(sid),p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';console.log('insert', js, fjs); fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs', 'twitter-script');
 			iframe(allowtransparency='true', name='github-star', scrolling='no', frameborder='0', style='border: none; height: 28px; width: 110px;', src='https://buttons.github.io/buttons.html#href%3Dhttps%3A%2F%2Fgithub.com%2Flipp%2Fdoclets%26text%3DStar%26data.count.api%3D%2Frepos%2Flipp%2Fdoclets%23stargazers_count%26data.count.href%3D%2Flipp%2Fdoclets%2Fstargazers%26data.count.aria.label%3D%23%20stargazers%20on%20GitHub%26data.style%3Dmega%26data.icon%3Docticon-star%26aria.label%3DStar%20lipp%2Fdoclets%20on%20GitHub')
 
-		#teaser.ui.container
-			.ui.equal.height.stackable.grid
-				.row
-					.column.six.wide.middle.aligned
-						p The <em>Continuous Integration</em> service for Javascript and Node.js that turns boring <em>comments</em> into <em>beautiful</em> hosted API reference pages.
-						p <em>Motivating</em> to write. <em>Fun</em> to read.
-					.column.ten.wide
-						.wrap
-							.ui.raised.segment.source
-								img.ui.rounded.image(src='playground-code-2.png')
-						.ui.raised.segment#playground
-							svg(width='65px',	height='91px',	viewbox='0	0	65	91',	version='1.1',	xmlns='http://www.w3.org/2000/svg',	xmlns:xlink='http://www.w3.org/1999/xlink')
-									g#Current(stroke='none',	stroke-width='1',	fill='none',	fill-rule='evenodd')
-											g(transform='translate(-923.000000,	-190.000000)',	stroke-linecap='round',	stroke='white',	stroke-width='5')
-													g(id='CTA-Copy-+-We’re-on-a-mission-t-Copy-+-arrow-copy',	transform='translate(295.000000,	109.000000)')
-															g#arrow-copy(transform='translate(661.500000,	127.000000)	rotate(5.000000)	translate(-661.500000,	-127.000000)	translate(633.500000,	84.000000)')
-																	path#Path-9976(d='M26.3867187,0.0625	C69.2539062,7.56640625	67.4970703,74.3291016	5.59472656,77.4707031')
-																	path#Path-9977(d='M15.9194843,57.9747585	C14.7553017,67.8064006	1.5766365,79.1648387	1.5766365,79.1648387	C1.5766365,79.1648387	9.11783427,85.7647194	25.0799629,84.3735088',	stroke-linejoin='round',	transform='translate(13.328300,	71.270458)	rotate(7.000000)	translate(-13.328300,	-71.270458)	')
-							img#playground-gif.ui.fluid.image(src='playground2.gif')
-						a#try-playground(href='/lipp/numbers.js/add-to-doclets#dl-statistic-correlation') Try it!
 		
 		.info 
 			span Doclets.io is in alpha phase. 
@@ -47,6 +49,7 @@ block content
 
 	#samples.ui.vertical.segment
 		.ui.container
+			h2.ui.center.aligned.header(style='margin-bottom: 50px;') Keep your Docs in sync <br> On every push, on every tag
 			#diagram
 				.ui.grid
 					.center.aligned.row
@@ -169,8 +172,9 @@ block content
 						.step
 							.content
 								.title 
-									i.icon.github
-									| Login with GitHub
+									i.icon.sign.in
+									a(href='/auth/github') Login
+									| &nbsp; with GitHub
 								.description Doclets.io needs permissions to install a webhook
 						.step
 							.content
@@ -196,35 +200,14 @@ block content
 				.ui.column
 					.ui.embed(data-url='https://youtube.com/embed/V87knrNqT0k')
 
-			if !user
-				.login
-					a.ui.huge.button.primary#get-started(href='/auth/github') 
-						i.github.icon
-						.wrap
-							span Login with
-							| GitHub
+	if !user
+		.ui.vertical.segment.reminder
+			.login
+				a.ui.huge.button.primary#get-started(href='/auth/github') 
+					i.github.icon
+					.wrap
+						span Login with
+						| GitHub
+			h3.ui.center.aligned.header Publish your first API documentation in 3 Minutes
 
-	.ui.vertical.segment
-		.ui.container
-			.recents
-				h1.ui.centered.header.hero-header 
-					span Newest Doclets
-				.ui.three.stacked.stackable.cards
-					each docletParams in doclets
-						- var doclet = docletParams.doclet
-						.card
-							.content
-								a.header(href=doclet.getDocletUrl())= doclet.repo
-									.meta
-										span= doclet.version
-		
-								.description= doclet.getDescription()
-									br
-									a(href=doclet.getRepoUrl()) all versions
-							.extra.content
-								span Published #{moment(doclet.createdAt).fromNow()} 
-									a.right.floated(href=doclet.owner) by&nbsp;
-										span= doclet.owner
-										if doclet._owner && doclet._owner.image
-											img.ui.image(src=doclet._owner.image)
 	
