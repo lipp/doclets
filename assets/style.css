@@ -152,7 +152,7 @@ article.function .title .label sub{
 }
 
 .hero-header span, .underline {
-	border-bottom: 3px solid orange !important;
+	border-bottom: 4px solid orange !important;
 }
 
 div.tags {
@@ -645,8 +645,13 @@ blockquote:before {
 		transform: translateY(20%) translateX(75%) scale(1.12, 1.12);
 		transition: all 0.3s ease;
 }
-.reminder {
+.ui.vertical.segment.reminder {
     background-color: #D6D6D6 !important;	
+background-image: -o-linear-gradient(bottom, #224348  0%, #080E15 100%);
+background-image: -moz-linear-gradient(bottom, #224348  0%, #080E15 100%);
+background-image: -webkit-linear-gradient(bottom, #224348  0%, #080E15 100%);
+background-image: -ms-linear-gradient(bottom, #224348  0%, #080E15 100%);
+background-image: linear-gradient(to bottom, #224348  0%, #080E15 100%);
 }
 
 svg {

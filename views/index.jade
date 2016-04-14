@@ -15,7 +15,7 @@ block content
 			img.icon.logo(src='logo.svg')
 			.content(style='border-bottom: 3px solid orange') Doclets
 
-		p(style='margin-top: 1.2em') Beautiful and easy Javascript API-Docs
+		p(style='margin-top: 1.2em') Beautiful and simple Javascript API-Docs
 		if !user
 			.login
 				a.ui.huge.button.primary#get-started(href='/auth/github') 
@@ -49,7 +49,7 @@ block content
 
 	#samples.ui.vertical.segment
 		.ui.container
-			h2.ui.center.aligned.header(style='margin-bottom: 50px;') Keep your Docs in sync <br> On every push, on every tag
+			h2.ui.center.aligned.header(style='margin-bottom: 50px;') Keep your docs in sync <br> On every change, for every release
 			#diagram
 				.ui.grid
 					.center.aligned.row
@@ -208,6 +208,6 @@ block content
 					.wrap
 						span Login with
 						| GitHub
-			h3.ui.center.aligned.header Publish your first API documentation in 3 Minutes
+			h3.ui.center.aligned.inverted.header Publish your first API documentation in 3 Minutes
 
 	
