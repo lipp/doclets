@@ -24,7 +24,7 @@ block content
 		.ui.container
 			.ui.grid
 				.twelve.wide.column.overview
-					if isOwnProfile
+					if isOwnProfile || isOrgMember
 						if owner.needsReauth
 							.ui.icon.message.error
 								i.icon.warning.circle
@@ -57,6 +57,10 @@ block content
 									p You are close to have your first Doclet.
 									p Just create a <a>.doclets.yml</a> file and push your changes to
 										| your respective GitHub repository. Doclets.io will automatically generate the API documentation for you.
+					else if enabledRepos.length === 0
+						.ui.center.aligned.segment
+							h2 No enabled Repositories
+							p #{username} has no enabled repositories yet. 
 
 					if (isOwnProfile && !owner.needsReauth) || (isOrgMember && !user.needsReauth) 
 						form.ui.form(method='post', action='/account/addrepo')
