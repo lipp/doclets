@@ -29,7 +29,7 @@
     "express-session": "^1.12.1",
     "express-slash": "^2.0.1",
     "flat": "^2.0.0",
-    "fs-extra": "^0.26.2",
+    "fs-extra": "^0.28.0",
     "git-repo-name": "^0.5.1",
     "github": "^0.2.4",
     "github-webhook-handler": "^0.5.0",
