@@ -163,7 +163,9 @@ mixin infolist(doclet)
 				i.large.spy.middle.aligned.icon
 				.content
 					.description Implements
-					.header= doclet.implements
+					.header
+						each impl in doclet.implements
+							a(href=impl.url)= impl.name
 		if doclet.inherits
 			.item
 				i.large.sitemap.middle.aligned.icon

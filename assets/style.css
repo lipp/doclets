@@ -641,6 +641,10 @@ blockquote:before {
 		transition: all 0.3s ease;
 }
 
+article .infolist a {
+	font-weight: normal !important;
+}
+
 .hero .source:hover {
 		transform: translateY(20%) translateX(75%) scale(1.12, 1.12);
 		transition: all 0.3s ease;

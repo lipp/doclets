@@ -1,4 +1,4 @@
-/* global describe it beforeEach */
+/* global describe it beforeEach before */
 var assert = require('assert')
 var structure = require('../lib/structure')
 var gather = require('../lib/gather')
@@ -135,6 +135,11 @@ describe('The structure module', function () {
     assert.equal(str, "bla <a href='https://google.com'>foo</a> pp")
   })
 
+  it('replaceInlineLinks("bla {@link module:heavy~Tool | Tool} pp"', function () {
+    var str = structure.replaceInlineLink('bla {@link module:heavy~Tool | Tool} pp')
+    assert.equal(str, "bla <a href='#dl-module-heavy-Tool'>Tool</a> pp")
+  })
+
   it('replaceInlineLinks("bla [foo]{@link https://google.com} pp [bar]{@link https://bar.com} asd"', function () {
     var str = structure.replaceInlineLink('bla [foo]{@link https://google.com} pp [bar]{@link https://bar.com} asd')
     assert.equal(str, "bla <a href='https://google.com'>foo</a> pp <a href='https://bar.com'>bar</a> asd")
@@ -258,10 +263,16 @@ describe('The structure module', function () {
 
   describe('the closure syntax fixture doclets', function () {
     var foo
-    beforeEach(function () {
+    before(function () {
       var dir = path.join(__dirname, '../fixtures/closure-syntax')
       var data = gather.gatherDocletsAndMeta(dir, true)
-      structure.addTypeLinks(data.doclets[0])
+      var docletsByLongname = {}
+      docletsByLongname['module:foo/bar~Bla.bla'] = true
+      var docletsByName = {}
+      docletsByName.Point = {
+        longname: 'Super.Point'
+      }
+      structure.addTypeLinks(docletsByLongname, docletsByName, data.doclets[0])
       structure.unflattenParams(data.doclets[0])
       foo = data.doclets[0]
     })
@@ -273,6 +284,7 @@ describe('The structure module', function () {
       assert.equal(typeNames[0][0].name, 'Array')
       assert.equal(typeNames[0][1].delimiter, '<')
       assert.equal(typeNames[0][2].name, 'Point')
+      assert.equal(typeNames[0][2].url, '#dl-Super-Point')
       assert.equal(typeNames[0][3].delimiter, '>')
     })
 
@@ -287,7 +299,8 @@ describe('The structure module', function () {
       var typeNames = foo.nestedParams[2].__content.type.typeNames
       assert.equal(typeNames.length, 1)
       assert.equal(typeNames[0].length, 1)
-      assert.equal(typeNames[0][0].name, 'module:foo/bar~Bla.bla')
+      assert.equal(typeNames[0][0].name, 'foo/bar~Bla.bla')
+      assert.equal(typeNames[0][0].url, '#dl-module-foo/bar-Bla-bla')
     })
 
     it('foo.params[3].type.typeNames is correct', function () {
