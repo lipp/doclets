@@ -35,10 +35,10 @@ describe('The doclet module', function () {
   })
 
   it('.findByFullnames returns all mathing repos', function (done) {
-    var findOne = sandbox.stub(Doclet, 'findOne')
-    findOne.withArgs({owner: 'a', repo: 'b'}).yields(null, 123)
-    findOne.withArgs({owner: 'e', repo: 'r'}).yields(null, null)
-    findOne.withArgs({owner: 'c', repo: 'd'}).yields(null, 333)
+    var find = sandbox.stub(Doclet, 'find')
+    find.withArgs({owner: 'a', repo: 'b'}).yields(null, [123])
+    find.withArgs({owner: 'e', repo: 'r'}).yields(null, [])
+    find.withArgs({owner: 'c', repo: 'd'}).yields(null, [333])
     Doclet.findByFullnames(['a/b', 'c/d', 'e/r'], function (err, repos) {
       assert(repos.indexOf(123) > -1)
       assert(repos.indexOf(333) > -1)
@@ -49,9 +49,9 @@ describe('The doclet module', function () {
   })
 
   it('.findByFullnames propagates error', function (done) {
-    var findOne = sandbox.stub(Doclet, 'findOne')
-    findOne.withArgs({owner: 'a', repo: 'b'}).yields(null, 123)
-    findOne.withArgs({owner: 'e', repo: 'r'}).yields('arg')
+    var find = sandbox.stub(Doclet, 'find')
+    find.withArgs({owner: 'a', repo: 'b'}).yields(null, [123])
+    find.withArgs({owner: 'e', repo: 'r'}).yields('arg')
     Doclet.findByFullnames(['a/b', 'c/d', 'e/r'], function (err, repos) {
       assert.equal(err, 'arg')
       assert(!repos)
