@@ -118,8 +118,14 @@ block content
 				if doclet._owner
 					img.ui.left.spaced.avatar.image(src=doclet._owner.image, style='border-radius: 0px;')
 		h2.version= doclet.version
+			a.hash(href=doclet.getGitHubRepoUrl())
+				i.icon.github
+				if doclet.type == 'branch'
+					span= doclet.tagOrHash.substr(0,7)
+				else
+					span= 'release'
 		h4
-			a(href=doclet.getRepoUrl()) all versions
+			a(href=doclet.getRepoUrl()) other versions
 
 		if doclet.error
 			h2.ui.icon.inverted.header
