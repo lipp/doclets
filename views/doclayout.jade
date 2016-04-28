@@ -124,6 +124,7 @@ block content
 					span= doclet.tagOrHash.substr(0,7)
 				else
 					span= 'release'
+				span &nbsp; created #{moment(doclet.createdAt).fromNow()}
 		h4
 			a(href=doclet.getRepoUrl()) other versions
 

@@ -1059,9 +1059,12 @@ i.dropdown.icon {
 	overflow: hidden;
 }
 
+#title .version {
+	text-align: center;
+}
+
 #title .hash {
 	display: block;
-	text-align: center;
 	font-size: 0.7em;	
 	    color: #B3B3B3;
     font-weight: normal;
