@@ -22,13 +22,16 @@ mixin funcdeclx(name, func, isCtor)
 
 extends layout
 
+block styles 
+	link(rel="stylesheet", href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/styles/default.min.css")
+
 
 block scripts
 	script(src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/highlight.min.js")
 	script(src='//cdnjs.cloudflare.com/ajax/libs/jquery-smooth-scroll/1.7.1/jquery.smooth-scroll.min.js')
 	script(src='//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js')
-	script(src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js")
-	script(src='https://embed.tonicdev.com')
+	//script(src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js")
+	script(defer='', src='https://embed.tonicdev.com')
 	script(defer='').
 		$(function() {$('.playground').each(function() {
 		  Tonic.createNotebook({element: this, source: $(this).data('code')})
