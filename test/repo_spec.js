@@ -12,7 +12,7 @@ var gitDir = path.join(__dirname, 'here')
 
 describe('The repo module', function () {
   it('execThrow returns stdout', function () {
-    assert.equal(repo.execThrow('ls ' + __filename), __filename)
+    assert.equal(repo.execThrow('ls ' + __filename), __filename) // eslint-disable-line
   })
 
   it('execThrow respects options.cwd ', function () {
