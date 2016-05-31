@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Hosted automated jsdoc documentation.",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lipp/doclets.git"
+  },
   "scripts": {
     "test": "standard && istanbul cover _mocha -- --recursive test",
     "test_nocover": "mocha  test"
