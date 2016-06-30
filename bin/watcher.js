@@ -31,18 +31,21 @@ if (dbEntry.error) {
   return;
 }
 
+var template = jade.compileFile('./views/api.jade');
+
 app.get('/', function (req, res) {
-  res.send(jade.renderFile('./views/api.jade', _.extend({
-    doclet: new Doclet({
-      data: {
-        hot: true,
-        doclets: gather.createDoclets(dbEntry.config, repoPath),
-        articles: dbEntry.articles
-      }
-    }),
-    moment: require('moment'),
-    _: _
-  }, dbEntry, structure, viewParams)));
+  doclet = new Doclet({
+    data: {
+      hot: true,
+      doclets: gather.createDoclets(dbEntry.config, repoPath),
+      articles: dbEntry.articles
+    }
+  });
+
+
+  res.send(template(_.extend({
+    moment: require('moment')
+  }, viewParams.getApiParams(doclet), dbEntry, structure, viewParams)));
 });
 
 app.use(express.static('assets'));
