@@ -82,6 +82,18 @@ body header {
   min-height: 40vh;
   display: flex;
 	overflow: hidden;
+	background-image: -webkit-gradient(
+	linear,
+	left top,
+	left bottom,
+	color-stop(0, #3C7780),
+	color-stop(1, #233C57)
+);
+background-image: -o-linear-gradient(bottom, #3C7780 0%, #080E15 100%);
+background-image: -moz-linear-gradient(bottom, #3C7780 0%, #080E15 100%);
+background-image: -webkit-linear-gradient(bottom, #3C7780 0%, #080E15 100%);
+background-image: -ms-linear-gradient(bottom, #3C7780 0%, #080E15 100%);
+background-image: linear-gradient(to bottom, #3C7780 0%, #080E15 100%);
   flex-direction: column;
   align-items: center; }
   .hero {
@@ -95,6 +107,7 @@ body header {
 		color: orange !important;
 		font-size: 1.4rem !important;
 	}
+
 
 	.hero .background  {
 		background-image: url('hero-bg-small-2.jpg');
@@ -113,17 +126,13 @@ body header {
     pointer-events: none;
 	}
 
-	.hero > *:not(.background), #title > *:not(.background) {
-		z-index: 1;
-	}
-
 
 	.hero .ui.list, .hero p  {
 		color: #e0e0e0;
 	}
 
 	.hero p {
-		font-size: 1.15em;
+		font-size: 1.10em;
 	}
 
 	.hero .header {
@@ -131,7 +140,6 @@ body header {
 	}
 		 #get-started {
 			margin: 0 auto;
-			margin-top: 80px;
 			margin-bottom: 40px;
 			width: 180px;
 		}

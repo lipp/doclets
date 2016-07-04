@@ -215,6 +215,7 @@ describe('The routes module', function () {
     it('calls user.syncWithGitHub for org account', function (done) {
       fakeUser.syncWithGitHub = sandbox.stub().yields(null, 554)
       fakeUser.type = 'Organization'
+      fakeUser.token = '123'
       var req = {
         user: {
           _id: 'lipp'

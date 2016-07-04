@@ -22,13 +22,16 @@ mixin funcdeclx(name, func, isCtor)
 
 extends layout
 
+block styles
+	link(rel="stylesheet", href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/styles/default.min.css")
+
 
 block scripts
 	script(src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/highlight.min.js")
 	script(src='//cdnjs.cloudflare.com/ajax/libs/jquery-smooth-scroll/1.7.1/jquery.smooth-scroll.min.js')
 	script(src='//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js')
-	script(src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js")
-	script(src='https://embed.tonicdev.com')
+	//script(src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js")
+	script(defer='', src='https://embed.tonicdev.com')
 	script(defer='').
 		$(function() {$('.playground').each(function() {
 		  Tonic.createNotebook({element: this, source: $(this).data('code')})
@@ -106,8 +109,13 @@ block scripts
 			//window.location = window.location.href;
 			console.log(window.location.href);
 		};
-
-
+	if doclet.data.hot
+		script(src = "/socket.io/socket.io.js")
+		script.
+			var socket = io.connect("#{doclet.data.hot}");
+			socket.on('change', function () {
+				window.location.reload()
+			});
 
 block content
 	#title
@@ -118,8 +126,15 @@ block content
 				if doclet._owner
 					img.ui.left.spaced.avatar.image(src=doclet._owner.image, style='border-radius: 0px;')
 		h2.version= doclet.version
+			a.hash(href=doclet.getGitHubRepoUrl())
+				i.icon.github
+				if doclet.type == 'branch'
+					span= doclet.tagOrHash.substr(0,7)
+				else
+					span= 'release'
+				span &nbsp; created #{moment(doclet.createdAt).format('MMMM do YYYY')}
 		h4
-			a(href=doclet.getRepoUrl()) all versions
+			a(href=doclet.getRepoUrl()) other versions
 
 		if doclet.error
 			h2.ui.icon.inverted.header
@@ -171,7 +186,7 @@ block content
 				include nav.jade
 			.main
 				block api
-	
+
 		a.big.circular.icon.button#scroll-top(href='#title')
 			i.big.circular.icon.angle.up
 

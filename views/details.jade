@@ -92,9 +92,10 @@ mixin nestedParamsList(paramNode)
 mixin paramsList(params, className)
 	ol.params(class=className)
 		each param in params
-			li
-				+paramDetails(param.__content, param.__name)
-				+nestedParamsList(param)
+			if param
+				li
+					+paramDetails(param.__content, param.__name)
+					+nestedParamsList(param)
 
 mixin flatParamsList(params, className)
 	ol.params(class=className)
@@ -163,7 +164,9 @@ mixin infolist(doclet)
 				i.large.spy.middle.aligned.icon
 				.content
 					.description Implements
-					.header= doclet.implements
+					.header
+						each impl in doclet.implements
+							a(href=impl.url)= impl.name
 		if doclet.inherits
 			.item
 				i.large.sitemap.middle.aligned.icon

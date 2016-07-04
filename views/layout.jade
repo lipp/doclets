@@ -31,12 +31,13 @@ html(lang='en')
 		meta(name='twitter:title', content='Doclets.io: JSDoc goes CI')
 		meta(name='twitter:description', content='Simple automated and hosted API-Docs for Javascript / JSDoc with GitHub integration.')
 		meta(name='twitter:image', content='https://doclets.io/card.png')
+
+		block metas
 		
 		link(rel='canonical', href='https://www.doclets.io/')
 		link(href='//fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext', rel='stylesheet', type='text/css')
 		link(rel='stylesheet', href='/index-style.css')
 		link(rel='stylesheet', href='/style.css')
-		link(rel="stylesheet", href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/styles/default.min.css")
 		link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.min.css')
 		script(src='//cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js')
 		script(src='//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.min.js')
@@ -82,19 +83,20 @@ html(lang='en')
 					else if doclet
 							a.item(href=doclet.getRepoUrl())= doclet.repo
 							a.item.active(href=doclet.getDocletUrl())= doclet.version
-				.right.menu
-					if user
-						a.item(href='/logout')
-							i.icon.sign.out 
-							span logout
-						a.item(href='/' + user._id, class= path === ('/' + user._id) ? 'active' : undefined)
-							| Account
-							span.wrap
-								img.ui.avatar.image(src=user.image)
-					else
-						a.item(href='/auth/github')
-							i.icon.sign.in
-							| login
+				if !cachable
+					.right.menu
+						if user
+							a.item(href='/logout')
+								i.icon.sign.out 
+								span logout
+							a.item(href='/' + user._id, class= path === ('/' + user._id) ? 'active' : undefined)
+								| Account
+								span.wrap
+									img.ui.avatar.image(src=user.image)
+						else
+							a.item(href='/auth/github')
+								i.icon.sign.in
+								| login
 		
 		block content
 
