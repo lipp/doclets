@@ -22,7 +22,7 @@ mixin funcdeclx(name, func, isCtor)
 
 extends layout
 
-block styles 
+block styles
 	link(rel="stylesheet", href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/styles/default.min.css")
 
 
@@ -109,8 +109,13 @@ block scripts
 			//window.location = window.location.href;
 			console.log(window.location.href);
 		};
-
-
+	if doclet.data.hot
+		script(src = "/socket.io/socket.io.js")
+		script.
+			var socket = io.connect("#{doclet.data.hot}");
+			socket.on('change', function () {
+				window.location.reload()
+			});
 
 block content
 	#title
@@ -181,7 +186,7 @@ block content
 				include nav.jade
 			.main
 				block api
-	
+
 		a.big.circular.icon.button#scroll-top(href='#title')
 			i.big.circular.icon.angle.up
 
