@@ -31,7 +31,7 @@ describe('The api-server module', function () {
   })
 
   beforeEach(function (done) {
-    var cleaners = ['completed', 'waiting', 'delayed', 'failed'].map(function (type) {
+    var cleaners = ['completed', 'wait', 'delayed', 'failed'].map(function (type) {
       return async.asyncify(inbox.clean.bind(inbox, 0, type))
     })
     async.series(cleaners, done)
