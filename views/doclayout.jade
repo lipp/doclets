@@ -151,6 +151,7 @@ block scripts
 			});
 
 block content
+	-doclet.error = "rror: ENOENT: no such file or directory, open 'git-root/_BlackDice/b3-chief/.doclets.yml'"
 	#title
 		.background
 		h1.ui.inverted.header= doclet.repo
@@ -169,14 +170,8 @@ block content
 		h4
 			a(href=doclet.getRepoUrl()) other versions
 
-		if doclet.error
-			h2.ui.icon.inverted.header
-				i.icon.bug
-					.content Zonk!
-					.sub.header Sorry, something went wrong during creation of your doclet!
-						p= 'Error: ' + doclet.error
 
-		else
+		if !doclet.error
 			.ui.inverted.statistics
 				- var all = doclet.asFlat()
 				- var modules = _.where(all, {kind: 'module'})
@@ -213,6 +208,28 @@ block content
 								.content
 									.title= result.name
 									.description= result.longname
+									
+	if doclet.error
+		.ui.container
+			.ui.big.icon.message
+				i.icon.warning
+				.content
+					if doclet.error.match(/.*ENOENT.*doclets.yml/)
+						.header No .doclets.yml config
+						p You have no <em>.doclets.yml</em> configuration file in place. 
+						p This is a very simple configuration file which needs to be put in your repository root directory.
+					else
+						.header Sorry, something went wrong during creation of your doclet!
+						p This is the error message:
+						p= doclet.error
+
+					p If you need help:
+					ul.list 
+						li Check the <a href='/doclets.yml'>documentation with examples</a>
+						li Create an <a href="https://github.com/lipp/doclets/issues">issue</a> 
+						li Join the <a href="https://gitter.im/lipp/doclets">Gitter chat</a>.
+					
+
 	if !doclet.error
 		#xxx.api
 			#nav-wrap
