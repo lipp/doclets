@@ -193,11 +193,19 @@ mixin infolist(doclet)
 
 
 mixin members(doclet)
-	- var members = _.chain(flat).where({memberof: doclet.longname}).sortBy('longname').value()
-	if members.length > 0
-		h4 Members:
+	- var staticMembers = _.chain(flat).where({memberof: doclet.longname, scope: 'static'}).sortBy('longname').value()
+	if staticMembers.length > 0
+		h4 Static Members:
 		ul.members
-			each member in members
+			each member in staticMembers
+				- var id = tools.idFromLongname(member.longname)
+				li
+					a(href='#' + id)= member.name
+	- var instanceMembers = _.chain(flat).where({memberof: doclet.longname, scope: 'instance'}).sortBy('longname').value()
+	if instanceMembers.length > 0
+		h4 Instance Members:
+		ul.members
+			each member in instanceMembers
 				- var id = tools.idFromLongname(member.longname)
 				li
 					a(href='#' + id)= member.name
