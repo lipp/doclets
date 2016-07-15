@@ -33,9 +33,42 @@ block scripts
 	//script(src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js")
 	script(defer='', src='https://embed.tonicdev.com')
 	script(defer='').
-		$(function() {$('.playground').each(function() {
-		  Tonic.createNotebook({element: this, source: $(this).data('code')})
-		})})
+		$(function() {
+			var samples = document.querySelectorAll(".playground");
+			var index = 0;
+			var count = samples.length;
+			
+			function load(aSample, index)
+			{
+			    var source = Tonic.sourceFromElement(aSample);
+			
+			    aSample.innerHTML = "";
+					console.log('loading playground', index)	
+			    Tonic.createNotebook(
+			    {
+			        // the parent element for the new notebook
+			        element: aSample,
+			
+			        // specify the source of the notebook
+			        source: $(aSample).data('code')
+			    });
+			}
+			
+			function loadAll(samples, index)
+			{
+			    while (index < count && samples[index].tagName !== "DIV")
+			        ++index;
+			
+			    if (!(index < count))
+			        return;
+			
+			    load(samples[index], index);
+			
+			    setTimeout(loadAll, 1000, samples, index + 1);
+			}
+			
+			loadAll(samples, 0);
+		})
 	script.
 	//script.
 		$(function() {
