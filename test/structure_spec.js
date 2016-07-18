@@ -270,7 +270,7 @@ describe('The structure module', function () {
     })
 
     it('should have length 3 ', function () {
-      assert.equal(doclets.length, 3)
+      assert.equal(doclets.length, 5)
       assert.equal(_.where(doclets, {kind: 'class'}).length, 1)
     })
 
