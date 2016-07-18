@@ -261,6 +261,26 @@ describe('The structure module', function () {
     })
   })
 
+  describe('the autoctor fixture doclets', function () {
+    var doclets
+    beforeEach(function () {
+      var dir = path.join(__dirname, '../fixtures/autoctor')
+      var data = gather.gatherDocletsAndMeta(dir, true)
+      doclets = data.doclets
+    })
+
+    it('should have length 3 ', function () {
+      assert.equal(doclets.length, 5)
+      assert.equal(_.where(doclets, {kind: 'class'}).length, 1)
+    })
+
+    it('autoGuessCtor should add 1 ctor  ', function () {
+      doclets.forEach(structure.autoGuessCtor(doclets))
+      assert.equal(_.where(doclets, {kind: 'class'}).length, 2)
+      assert(_.findWhere(doclets, {kind: 'class', longname: 'ImplicitCtor'}))
+    })
+  })
+
   describe('the closure syntax fixture doclets', function () {
     var foo
     before(function () {
