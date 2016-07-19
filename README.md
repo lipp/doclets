@@ -14,6 +14,8 @@
 ## Run webserver locally
 
     $ DEV=1 node bin/server.js
+    
+To view a doc page, you have to know the repo name (as in `fixtures/events/*/payload.js). e.g. (numbers.js) (http://localhost:8080/lipp/numbers.js)
 
 # Unit test setup
 
