@@ -7,13 +7,22 @@
 
     $ docker-compose -f docker-compose-dev.yml up
 
+## Populate local DB
+
+    $ DEV=1 node bin/replay-events.js
+
+## Run webserver locally
+
+    $ DEV=1 node bin/server.js
+
+# Unit test setup
+
+    $ docker-compose -f docker-compose-test.yml up
+    
 ## Run tests locally
 
     $ TEST=1 npm test
   
-## Run webserver locally
-
-    $ DEV=1 node bin/server.js
     
 Adding users/repos does not work with the local server :(
 This is due to GitHub WebHook configuration and GitHub OAuth wich require fix urls.
