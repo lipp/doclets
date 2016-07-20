@@ -1,0 +1,4136 @@
+{
+  "ref": "refs/heads/master",
+  "before": "216571a2d4688c94d96e7956342cae3867dcc85f",
+  "after": "104901991d5edf9cfc55a68a85df006ad1e1ccb1",
+  "created": false,
+  "deleted": false,
+  "forced": false,
+  "base_ref": null,
+  "compare": "https://github.com/lipp/strman/compare/216571a2d468...104901991d5e",
+  "commits": [
+    {
+      "id": "061c96014c8692d46c5c2dd825395ee9afa2b677",
+      "tree_id": "89e92e5eba6b0cd0f758a9553471d2a52c99d823",
+      "distinct": false,
+      "message": "add doclets.io config (jsdoc pages)",
+      "timestamp": "2016-04-29T13:18:08+02:00",
+      "url": "https://github.com/lipp/strman/commit/061c96014c8692d46c5c2dd825395ee9afa2b677",
+      "author": {
+        "name": "Gerhard Preuss",
+        "email": "gelipp@gmail.com",
+        "username": "lipp"
+      },
+      "committer": {
+        "name": "Gerhard Preuss",
+        "email": "gelipp@gmail.com",
+        "username": "lipp"
+      },
+      "added": [
+        ".doclets.yml"
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+
+      ]
+    },
+    {
+      "id": "b65d73a92b066ac5c014c5db45bb03e4df981d22",
+      "tree_id": "c3c515ef0b16c15491a8c25137542c45f5607343",
+      "distinct": false,
+      "message": "fix jsdoc comments",
+      "timestamp": "2016-04-29T13:30:40+02:00",
+      "url": "https://github.com/lipp/strman/commit/b65d73a92b066ac5c014c5db45bb03e4df981d22",
+      "author": {
+        "name": "Gerhard Preuss",
+        "email": "gelipp@gmail.com",
+        "username": "lipp"
+      },
+      "committer": {
+        "name": "Gerhard Preuss",
+        "email": "gelipp@gmail.com",
+        "username": "lipp"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/slugify.js",
+        "src/string.cases.js",
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "a42d8676976cfb596112ca378161604bf92f208f",
+      "tree_id": "a3117a6af460ca63b12b3dd1e82e4e60f1fc16fa",
+      "distinct": false,
+      "message": "improve jsdoc with live example",
+      "timestamp": "2016-04-29T13:58:53+02:00",
+      "url": "https://github.com/lipp/strman/commit/a42d8676976cfb596112ca378161604bf92f208f",
+      "author": {
+        "name": "Gerhard Preuss",
+        "email": "gelipp@gmail.com",
+        "username": "lipp"
+      },
+      "committer": {
+        "name": "Gerhard Preuss",
+        "email": "gelipp@gmail.com",
+        "username": "lipp"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/slugify.js"
+      ]
+    },
+    {
+      "id": "d754a39e6399834434530e62476eed4285f385d0",
+      "tree_id": "ced5c13ec388ebade348b8d42b22c460704f4bbc",
+      "distinct": false,
+      "message": "Format accept simple objects.",
+      "timestamp": "2016-04-29T21:57:31-03:00",
+      "url": "https://github.com/lipp/strman/commit/d754a39e6399834434530e62476eed4285f385d0",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "dist/strman.js",
+        "src/string.utils.js",
+        "test/utils.test.js",
+        "transpiler/string.utils.js"
+      ]
+    },
+    {
+      "id": "05dd92693ccb9915b89ae08a246811736ef88553",
+      "tree_id": "7933831905eca7f6e53407d035886c9b23f279f1",
+      "distinct": false,
+      "message": "Add compare function",
+      "timestamp": "2016-04-30T14:02:50-03:00",
+      "url": "https://github.com/lipp/strman/commit/05dd92693ccb9915b89ae08a246811736ef88553",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js",
+        "test/utils.test.js"
+      ]
+    },
+    {
+      "id": "dda2c6a73b97277c566e0c7b5a405c901fd777cf",
+      "tree_id": "0431461f98bd6de4b3c133fb7414a119c8f27ca9",
+      "distinct": false,
+      "message": "Add equal function",
+      "timestamp": "2016-04-30T15:39:54-03:00",
+      "url": "https://github.com/lipp/strman/commit/dda2c6a73b97277c566e0c7b5a405c901fd777cf",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js",
+        "test/utils.test.js"
+      ]
+    },
+    {
+      "id": "a8297f1f2dcbcadeef6fabcaa52b0f2c1857b2dd",
+      "tree_id": "8b6365372e91ae94bc0aef45935cf8ddf8d69879",
+      "distinct": false,
+      "message": "Add inequal function",
+      "timestamp": "2016-04-30T15:43:06-03:00",
+      "url": "https://github.com/lipp/strman/commit/a8297f1f2dcbcadeef6fabcaa52b0f2c1857b2dd",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js",
+        "test/utils.test.js"
+      ]
+    },
+    {
+      "id": "89a2d8120896ae6a5154ad5b7e0fb59f7a63cb14",
+      "tree_id": "7d97ce2a6693327c6736b0a2d1d11482c0ea4479",
+      "distinct": false,
+      "message": "Add hexEncode function",
+      "timestamp": "2016-04-30T16:22:37-03:00",
+      "url": "https://github.com/lipp/strman/commit/89a2d8120896ae6a5154ad5b7e0fb59f7a63cb14",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js",
+        "test/utils.test.js"
+      ]
+    },
+    {
+      "id": "1644ac50a74f7e0456b3a4d9f7adfb41d3c13e18",
+      "tree_id": "ec0933ca5b03807a4250ad12f3b6deb112300cb0",
+      "distinct": false,
+      "message": "Add hexDecode function",
+      "timestamp": "2016-04-30T16:22:52-03:00",
+      "url": "https://github.com/lipp/strman/commit/1644ac50a74f7e0456b3a4d9f7adfb41d3c13e18",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js",
+        "test/utils.test.js"
+      ]
+    },
+    {
+      "id": "3331ce6b953c06df74563a36a460f464a2bd4787",
+      "tree_id": "0b6aea3ee494f24bdad27c2033d6087199ddd311",
+      "distinct": false,
+      "message": "Add binEncode function",
+      "timestamp": "2016-04-30T16:33:11-03:00",
+      "url": "https://github.com/lipp/strman/commit/3331ce6b953c06df74563a36a460f464a2bd4787",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js",
+        "test/utils.test.js"
+      ]
+    },
+    {
+      "id": "57d9865380dda59f5edb746f5c2c4e6bbc92c517",
+      "tree_id": "367f4429c047d54cf9e75b28e2f0313229a0a3dc",
+      "distinct": false,
+      "message": "Add binDecode function",
+      "timestamp": "2016-04-30T17:01:28-03:00",
+      "url": "https://github.com/lipp/strman/commit/57d9865380dda59f5edb746f5c2c4e6bbc92c517",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js",
+        "test/utils.test.js"
+      ]
+    },
+    {
+      "id": "18399cbb791506fe1f451291cd3fa503fcee2b46",
+      "tree_id": "0774167fb3b6affe5382b77adaada131df0af010",
+      "distinct": false,
+      "message": "Add decEncode function",
+      "timestamp": "2016-04-30T17:06:55-03:00",
+      "url": "https://github.com/lipp/strman/commit/18399cbb791506fe1f451291cd3fa503fcee2b46",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js",
+        "test/utils.test.js"
+      ]
+    },
+    {
+      "id": "d937e8d5d9ce3287ee591003944fd6165a64fcaf",
+      "tree_id": "dbf8dd40671631246b2be5504f57f1b9a20def96",
+      "distinct": false,
+      "message": "Add decDecode function",
+      "timestamp": "2016-04-30T17:08:56-03:00",
+      "url": "https://github.com/lipp/strman/commit/d937e8d5d9ce3287ee591003944fd6165a64fcaf",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js",
+        "test/utils.test.js"
+      ]
+    },
+    {
+      "id": "bc9474c04bf02c680ea423a101eae4b687ef8d03",
+      "tree_id": "f164b194ebf6cd47c9650c51d138e1a78c8e363d",
+      "distinct": false,
+      "message": "Add urlEncode and urlDecode functions.",
+      "timestamp": "2016-05-01T10:25:32-03:00",
+      "url": "https://github.com/lipp/strman/commit/bc9474c04bf02c680ea423a101eae4b687ef8d03",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "81bc11efb3ff45ee72a9ed576ec98c54726c340f",
+      "tree_id": "5ee74d8c046e76c546afeab9d20c8d1eed831fd3",
+      "distinct": false,
+      "message": "Add base64Encode and base64Decode functions.",
+      "timestamp": "2016-05-01T10:37:13-03:00",
+      "url": "https://github.com/lipp/strman/commit/81bc11efb3ff45ee72a9ed576ec98c54726c340f",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js",
+        "test/utils.test.js"
+      ]
+    },
+    {
+      "id": "f998ac1b8627c8276e7ec334bb3e79134510b47a",
+      "tree_id": "84751ad5b9d33efe26fbababf700af4ab30d050d",
+      "distinct": false,
+      "message": "Add htmlEncode and htmlDecode functions.",
+      "timestamp": "2016-05-01T12:19:02-03:00",
+      "url": "https://github.com/lipp/strman/commit/f998ac1b8627c8276e7ec334bb3e79134510b47a",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "dist/strman.js",
+        "src/string.utils.js",
+        "test/utils.test.js",
+        "transpiler/string.utils.js"
+      ]
+    },
+    {
+      "id": "7498150c0907dfb178f7cdd7cbe68eb1643b299b",
+      "tree_id": "c240371df0b854d22f3894fa066c6e97a9acdafc",
+      "distinct": false,
+      "message": "Add entities table",
+      "timestamp": "2016-05-01T12:23:08-03:00",
+      "url": "https://github.com/lipp/strman/commit/7498150c0907dfb178f7cdd7cbe68eb1643b299b",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+        "src/lib/entities.js",
+        "transpiler/lib/entities.js"
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+
+      ]
+    },
+    {
+      "id": "2282ddf1ef6b4f150fb1f37ccb973a7ce257ade5",
+      "tree_id": "13a2d550e1a759ad607765a253fc1ffee4541056",
+      "distinct": false,
+      "message": "Merge pull request #27 from dleitee/v1.2.0-dev\n\nV1.2.0 dev",
+      "timestamp": "2016-05-01T12:25:16-03:00",
+      "url": "https://github.com/lipp/strman/commit/2282ddf1ef6b4f150fb1f37ccb973a7ce257ade5",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+        "src/lib/entities.js",
+        "transpiler/lib/entities.js"
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "dist/strman.js",
+        "src/string.utils.js",
+        "test/utils.test.js",
+        "transpiler/string.utils.js"
+      ]
+    },
+    {
+      "id": "5d009ce6fa153ccf20542ac31885b29e7a74ca5b",
+      "tree_id": "078a66ec591fcf77349705aae9fd4fed63e51230",
+      "distinct": false,
+      "message": "added optional parameter to surround",
+      "timestamp": "2016-05-01T19:16:44-03:00",
+      "url": "https://github.com/lipp/strman/commit/5d009ce6fa153ccf20542ac31885b29e7a74ca5b",
+      "author": {
+        "name": "Janaina Cecin",
+        "email": "Jana@MacBook-Pro-de-Janaina.local"
+      },
+      "committer": {
+        "name": "Janaina Cecin",
+        "email": "Jana@MacBook-Pro-de-Janaina.local"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js",
+        "test/utils.test.js"
+      ]
+    },
+    {
+      "id": "d53e6aed885a675291e753c5c4912eed4a36be7b",
+      "tree_id": "078a66ec591fcf77349705aae9fd4fed63e51230",
+      "distinct": false,
+      "message": "Merge pull request #28 from lbebber/master\n\nOptional parameter to surround",
+      "timestamp": "2016-05-02T08:57:52-03:00",
+      "url": "https://github.com/lipp/strman/commit/d53e6aed885a675291e753c5c4912eed4a36be7b",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js",
+        "test/utils.test.js"
+      ]
+    },
+    {
+      "id": "d55fdbeb03cab8cc03b20c61b284928e908c4cc9",
+      "tree_id": "87e2017207e615a4b4def876ec7207fe9d01e80a",
+      "distinct": false,
+      "message": "Merge pull request #25 from lipp/add-to-doclets\n\nAdd to doclets",
+      "timestamp": "2016-05-02T10:37:49-03:00",
+      "url": "https://github.com/lipp/strman/commit/d55fdbeb03cab8cc03b20c61b284928e908c4cc9",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+        ".doclets.yml"
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/slugify.js",
+        "src/string.cases.js",
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "39c7ff5429a6d0eac063e4680132afa04911ab44",
+      "tree_id": "39836fe1f5aa97db56fdc1afcb4db41927976c79",
+      "distinct": false,
+      "message": "Fixed bug of safeTruncate",
+      "timestamp": "2016-05-02T22:30:34-03:00",
+      "url": "https://github.com/lipp/strman/commit/39c7ff5429a6d0eac063e4680132afa04911ab44",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js",
+        "test/utils.test.js"
+      ]
+    },
+    {
+      "id": "e56fa4f78593a88dc21586444e2ed96c332ee098",
+      "tree_id": "c54ddd7be803acdbeae4d210ba076274b8887453",
+      "distinct": false,
+      "message": "Merge pull request #30 from dleitee/v1.2.0-dev\n\nFixed bug of safeTruncate",
+      "timestamp": "2016-05-02T22:33:05-03:00",
+      "url": "https://github.com/lipp/strman/commit/e56fa4f78593a88dc21586444e2ed96c332ee098",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js",
+        "test/utils.test.js"
+      ]
+    },
+    {
+      "id": "1ea93cf7538681a5424fa3f0608f0ec515568c99",
+      "tree_id": "4dfa736f45d26e1adc902a48a5107b317f1b3313",
+      "distinct": false,
+      "message": "Update string.utils.js",
+      "timestamp": "2016-05-02T22:33:48-03:00",
+      "url": "https://github.com/lipp/strman/commit/1ea93cf7538681a5424fa3f0608f0ec515568c99",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "dcafdc5a1dd325c06dc7543fe5264cdd3cb07f06",
+      "tree_id": "9baaf924d6b512513338461a518a2a3727972aa7",
+      "distinct": false,
+      "message": "Update string.utils.js",
+      "timestamp": "2016-05-02T22:47:27-03:00",
+      "url": "https://github.com/lipp/strman/commit/dcafdc5a1dd325c06dc7543fe5264cdd3cb07f06",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "77042e96882cc25d1ceff56395c614401974c417",
+      "tree_id": "1539686922e05b7a2aac1937c7f09a563236ea21",
+      "distinct": false,
+      "message": "Update string.utils.js",
+      "timestamp": "2016-05-02T23:01:07-03:00",
+      "url": "https://github.com/lipp/strman/commit/77042e96882cc25d1ceff56395c614401974c417",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "46c76cb71963cf8e19c1844b85a39490b7e5bccd",
+      "tree_id": "bb5e79cd76230b8853bffb3e5bdaf3161f745323",
+      "distinct": false,
+      "message": "Update string.utils.js",
+      "timestamp": "2016-05-02T23:06:24-03:00",
+      "url": "https://github.com/lipp/strman/commit/46c76cb71963cf8e19c1844b85a39490b7e5bccd",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "bc087c9988c1dc20930dcda94ac32a0edb18e09c",
+      "tree_id": "604273596eda4de40a2e9e20b577f7f5db2508c4",
+      "distinct": false,
+      "message": "Merge pull request #32 from dleitee/docs\n\nDocs",
+      "timestamp": "2016-05-03T21:34:07-03:00",
+      "url": "https://github.com/lipp/strman/commit/bc087c9988c1dc20930dcda94ac32a0edb18e09c",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "2d6fede5ad2a8ce685a51ebc6ccbca2e8d1d3dfa",
+      "tree_id": "cb5bab0839295e3da3dce6dd517427694c57fc8f",
+      "distinct": false,
+      "message": "Fix conflits on merge.",
+      "timestamp": "2016-05-03T21:41:55-03:00",
+      "url": "https://github.com/lipp/strman/commit/2d6fede5ad2a8ce685a51ebc6ccbca2e8d1d3dfa",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+        ".doclets.yml"
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "README.md",
+        "src/slugify.js",
+        "src/string.cases.js",
+        "src/string.utils.js",
+        "test/utils.test.js"
+      ]
+    },
+    {
+      "id": "d2efd9abe138149b2a8c0d3672592649d19bbb07",
+      "tree_id": "cb5bab0839295e3da3dce6dd517427694c57fc8f",
+      "distinct": false,
+      "message": "Merge pull request #33 from dleitee/v1.2.0-dev\n\nV1.2.0 dev",
+      "timestamp": "2016-05-03T21:42:19-03:00",
+      "url": "https://github.com/lipp/strman/commit/d2efd9abe138149b2a8c0d3672592649d19bbb07",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "dbc33c9ee44c69c57bca6845fdff118e4ac56f2a",
+      "tree_id": "22ee992b89f0b60ac9fd3c26912c19450869c751",
+      "distinct": false,
+      "message": "Add docs for hexEncode ande hexDecode.",
+      "timestamp": "2016-05-03T22:10:52-03:00",
+      "url": "https://github.com/lipp/strman/commit/dbc33c9ee44c69c57bca6845fdff118e4ac56f2a",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "254c04047b6d44702a204f0769bd671e2a3e7279",
+      "tree_id": "22ee992b89f0b60ac9fd3c26912c19450869c751",
+      "distinct": false,
+      "message": "Merge pull request #34 from dleitee/v1.2.0-dev\n\nAdd docs for hexEncode ande hexDecode.",
+      "timestamp": "2016-05-03T22:11:41-03:00",
+      "url": "https://github.com/lipp/strman/commit/254c04047b6d44702a204f0769bd671e2a3e7279",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "6c5b1da4d662f750e60165ad2c495d2702d65f67",
+      "tree_id": "7b04f64f04b3973e96c228865487e10214ed2f19",
+      "distinct": false,
+      "message": "Run gulpfile.",
+      "timestamp": "2016-05-03T22:24:17-03:00",
+      "url": "https://github.com/lipp/strman/commit/6c5b1da4d662f750e60165ad2c495d2702d65f67",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "dist/strman.js",
+        "index.js",
+        "transpiler/slugify.js",
+        "transpiler/string.cases.js",
+        "transpiler/string.utils.js"
+      ]
+    },
+    {
+      "id": "ef5528b08a6d57cc299d2d6bbc9c977373443dec",
+      "tree_id": "7b04f64f04b3973e96c228865487e10214ed2f19",
+      "distinct": false,
+      "message": "Merge pull request #35 from dleitee/v1.2.0-dev\n\nRun gulpfile.",
+      "timestamp": "2016-05-03T22:26:39-03:00",
+      "url": "https://github.com/lipp/strman/commit/ef5528b08a6d57cc299d2d6bbc9c977373443dec",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "dist/strman.js",
+        "index.js",
+        "transpiler/slugify.js",
+        "transpiler/string.cases.js",
+        "transpiler/string.utils.js"
+      ]
+    },
+    {
+      "id": "6d079a0e73186aed7a039531c36d560dc9fcc387",
+      "tree_id": "34ab72eca0dc199d58cad192b47cc1b828525afa",
+      "distinct": false,
+      "message": "improve jsdoc for a-e",
+      "timestamp": "2016-05-04T09:16:00+02:00",
+      "url": "https://github.com/lipp/strman/commit/6d079a0e73186aed7a039531c36d560dc9fcc387",
+      "author": {
+        "name": "Gerhard Preuss",
+        "email": "gelipp@gmail.com",
+        "username": "lipp"
+      },
+      "committer": {
+        "name": "Gerhard Preuss",
+        "email": "gelipp@gmail.com",
+        "username": "lipp"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "8258f8f3b8643c4cd46862336a4821dfc96768f7",
+      "tree_id": "ecd0ef06e4875770e5f7c74e6fa82cabcf9d8b61",
+      "distinct": false,
+      "message": "mark _shuffle as private",
+      "timestamp": "2016-05-04T09:47:49+02:00",
+      "url": "https://github.com/lipp/strman/commit/8258f8f3b8643c4cd46862336a4821dfc96768f7",
+      "author": {
+        "name": "Gerhard Preuss",
+        "email": "gelipp@gmail.com",
+        "username": "lipp"
+      },
+      "committer": {
+        "name": "Gerhard Preuss",
+        "email": "gelipp@gmail.com",
+        "username": "lipp"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "acd84706afee7c102fc39fba2709b36a8cf04f78",
+      "tree_id": "ecd0ef06e4875770e5f7c74e6fa82cabcf9d8b61",
+      "distinct": true,
+      "message": "Merge pull request #36 from lipp/improve-jsdoc-a-to-e\n\nImprove jsdoc a to e",
+      "timestamp": "2016-05-04T08:44:12-03:00",
+      "url": "https://github.com/lipp/strman/commit/acd84706afee7c102fc39fba2709b36a8cf04f78",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "5f50baf7facba8dd46cf8ab4678e8cb49861ed75",
+      "tree_id": "8af3e74a51d10c348406606809a5c64a862c300c",
+      "distinct": true,
+      "message": "Update utils.test.js",
+      "timestamp": "2016-05-04T18:47:10+05:30",
+      "url": "https://github.com/lipp/strman/commit/5f50baf7facba8dd46cf8ab4678e8cb49861ed75",
+      "author": {
+        "name": "Shekhar Gulati",
+        "email": "shekhargulati84@gmail.com",
+        "username": "shekhargulati"
+      },
+      "committer": {
+        "name": "Shekhar Gulati",
+        "email": "shekhargulati84@gmail.com",
+        "username": "shekhargulati"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "test/utils.test.js"
+      ]
+    },
+    {
+      "id": "1f7641779a3b2dfa758b3c83296ada07cad7edb9",
+      "tree_id": "8af3e74a51d10c348406606809a5c64a862c300c",
+      "distinct": true,
+      "message": "Merge pull request #37 from shekhargulati/master\n\nFixed chars test description",
+      "timestamp": "2016-05-04T10:52:31-03:00",
+      "url": "https://github.com/lipp/strman/commit/1f7641779a3b2dfa758b3c83296ada07cad7edb9",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "test/utils.test.js"
+      ]
+    },
+    {
+      "id": "fbb64f24b9bd1b2353e9af0ab17d41fe1de6f57c",
+      "tree_id": "c8034a85101db40339feb3d612116a35cc6045e6",
+      "distinct": true,
+      "message": "Update string.utils.js",
+      "timestamp": "2016-05-04T14:00:45-03:00",
+      "url": "https://github.com/lipp/strman/commit/fbb64f24b9bd1b2353e9af0ab17d41fe1de6f57c",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "b984a105b1a1a22b1ae4c9c64a4b54ad80a4881b",
+      "tree_id": "8e5b53c37a0ea626bdf0d3dee5ac86808989a91d",
+      "distinct": true,
+      "message": "Fix #38",
+      "timestamp": "2016-05-05T09:15:54-03:00",
+      "url": "https://github.com/lipp/strman/commit/b984a105b1a1a22b1ae4c9c64a4b54ad80a4881b",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "6e243f0f7b50e8fd86d2031fc02f9390f22f591f",
+      "tree_id": "347e24cd437ad1dd3397c59ee9d4d0beac8475ff",
+      "distinct": true,
+      "message": "Create CONTRIBUTING.md",
+      "timestamp": "2016-05-05T22:46:35-03:00",
+      "url": "https://github.com/lipp/strman/commit/6e243f0f7b50e8fd86d2031fc02f9390f22f591f",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+        "CONTRIBUTING.md"
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+
+      ]
+    },
+    {
+      "id": "56666f566ff71b4d841d310cb669afc9ae25b018",
+      "tree_id": "fbe1637a1e2e75f98333b1a5ae8756815db56fb2",
+      "distinct": true,
+      "message": "Update README.md",
+      "timestamp": "2016-05-05T22:49:03-03:00",
+      "url": "https://github.com/lipp/strman/commit/56666f566ff71b4d841d310cb669afc9ae25b018",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "README.md"
+      ]
+    },
+    {
+      "id": "8b77b3cd6b8009b5ad041d4615ad35a84b5e327a",
+      "tree_id": "04bd70af155a1fbe26cb841f5dbc469d62c30657",
+      "distinct": true,
+      "message": "Update package.json",
+      "timestamp": "2016-05-06T20:27:28-03:00",
+      "url": "https://github.com/lipp/strman/commit/8b77b3cd6b8009b5ad041d4615ad35a84b5e327a",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "package.json"
+      ]
+    },
+    {
+      "id": "81ae1d78c9ab3ec864fe372dadf68932162df0be",
+      "tree_id": "83337b51fc2c48c4cb7a6c2d6e5efe661c8997e0",
+      "distinct": true,
+      "message": "Add docs to isString.",
+      "timestamp": "2016-05-07T09:17:21-03:00",
+      "url": "https://github.com/lipp/strman/commit/81ae1d78c9ab3ec864fe372dadf68932162df0be",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "e266fd67b559b727de49f1d8ace48a61b64e57f8",
+      "tree_id": "e8a99894d28260e08dc3b4d40d3615cf6a4603c6",
+      "distinct": true,
+      "message": "Add docs to trim.",
+      "timestamp": "2016-05-07T09:19:28-03:00",
+      "url": "https://github.com/lipp/strman/commit/e266fd67b559b727de49f1d8ace48a61b64e57f8",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "c62173294109c7aecaf81a9a0bcd40aa7cff86bf",
+      "tree_id": "35943827bf10b2ea9b9f96f9306586585fe90375",
+      "distinct": true,
+      "message": "Add docs to leftTrim.",
+      "timestamp": "2016-05-07T09:21:50-03:00",
+      "url": "https://github.com/lipp/strman/commit/c62173294109c7aecaf81a9a0bcd40aa7cff86bf",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "103486cb151772157067709d31be2edefdd6b1b6",
+      "tree_id": "2a1571f8c74c883b4ce595be85282a5fcc10a7b5",
+      "distinct": true,
+      "message": "Add docs to rightTrim.",
+      "timestamp": "2016-05-07T09:22:32-03:00",
+      "url": "https://github.com/lipp/strman/commit/103486cb151772157067709d31be2edefdd6b1b6",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "7b1593eab262774bf3054f0526f1bc0fad3a46d1",
+      "tree_id": "60ae69c3ccb2dbe48683e53fa226580776efb521",
+      "distinct": true,
+      "message": "Add docs to removeSpaces.",
+      "timestamp": "2016-05-07T09:24:32-03:00",
+      "url": "https://github.com/lipp/strman/commit/7b1593eab262774bf3054f0526f1bc0fad3a46d1",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "f3f1ee8510520d08317eb9c910046ed7d1ece98f",
+      "tree_id": "f63c32fab072bd26cba9d637da671b7d60000f6a",
+      "distinct": true,
+      "message": "Add docs to replace.",
+      "timestamp": "2016-05-07T09:30:17-03:00",
+      "url": "https://github.com/lipp/strman/commit/f3f1ee8510520d08317eb9c910046ed7d1ece98f",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "72ba87f50489dbb5ec543138c436e759e7e255ac",
+      "tree_id": "e11502434c808088e3ca574f07c3c41ded1dc6f9",
+      "distinct": true,
+      "message": "Fix docs to trim, leftTrim and rightTrim.",
+      "timestamp": "2016-05-07T09:32:51-03:00",
+      "url": "https://github.com/lipp/strman/commit/72ba87f50489dbb5ec543138c436e759e7e255ac",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "2c5e228da773860f1cb24fff129ce622f26637d7",
+      "tree_id": "194778c8abc764c2357dee85b08613517bcce445",
+      "distinct": true,
+      "message": "Add docs to transliterate.",
+      "timestamp": "2016-05-07T09:34:42-03:00",
+      "url": "https://github.com/lipp/strman/commit/2c5e228da773860f1cb24fff129ce622f26637d7",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "dd8da13eb4140e89590610376cf4aed7b1fa9a2a",
+      "tree_id": "6eb8a46efa4a73a46c0052af412bf4bc7ff7e1ff",
+      "distinct": true,
+      "message": "Add docs to removeNonWords.",
+      "timestamp": "2016-05-07T09:37:36-03:00",
+      "url": "https://github.com/lipp/strman/commit/dd8da13eb4140e89590610376cf4aed7b1fa9a2a",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "34612d894ac5c11b4ca5b7cb6e34233d00a46276",
+      "tree_id": "714e77b0fe8bbad12f6496e3d11d1054dbc28018",
+      "distinct": true,
+      "message": "Add docs to startsWith.",
+      "timestamp": "2016-05-07T09:43:26-03:00",
+      "url": "https://github.com/lipp/strman/commit/34612d894ac5c11b4ca5b7cb6e34233d00a46276",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "7cdfb1638fd5ba826700a1dd80ac344d0d6c7ff4",
+      "tree_id": "50fa324abad081ecc8b266f8e0da894917f8cb8f",
+      "distinct": true,
+      "message": "Add docs to first.",
+      "timestamp": "2016-05-07T09:48:14-03:00",
+      "url": "https://github.com/lipp/strman/commit/7cdfb1638fd5ba826700a1dd80ac344d0d6c7ff4",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "ac458f5e2e8a24245244e732e02a957bdd0c2b5e",
+      "tree_id": "dab15503e102d7aabc15b0169e0dd2a0dbf6804d",
+      "distinct": true,
+      "message": "Add docs to last.",
+      "timestamp": "2016-05-07T09:48:48-03:00",
+      "url": "https://github.com/lipp/strman/commit/ac458f5e2e8a24245244e732e02a957bdd0c2b5e",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "f7a4f0d414ce0919ea471d10451c3ed11cb0238c",
+      "tree_id": "03d6ddfa772cde96c4a1c96e83d43f5e46a2d0ff",
+      "distinct": true,
+      "message": "Add docs to indexOf.",
+      "timestamp": "2016-05-07T09:55:09-03:00",
+      "url": "https://github.com/lipp/strman/commit/f7a4f0d414ce0919ea471d10451c3ed11cb0238c",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "5b85283feb7b1fe7c18ba5605616ea57b07bfd4d",
+      "tree_id": "d1cc183a8fd697930da4875129d44406a17b2183",
+      "distinct": true,
+      "message": "Add docs to lastIndexOf.",
+      "timestamp": "2016-05-07T09:56:20-03:00",
+      "url": "https://github.com/lipp/strman/commit/5b85283feb7b1fe7c18ba5605616ea57b07bfd4d",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "e534a01beddd3167347531bb1015170d06d626b1",
+      "tree_id": "9460019bf63c2f84deb53470222d2cb180992cbe",
+      "distinct": true,
+      "message": "Fix docs.",
+      "timestamp": "2016-05-07T10:00:00-03:00",
+      "url": "https://github.com/lipp/strman/commit/e534a01beddd3167347531bb1015170d06d626b1",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "063797a831bb4901c5df4925607f25206a41ced6",
+      "tree_id": "cadcf28ffba5a26fcfdae0fc36fb50a52ec76d1c",
+      "distinct": true,
+      "message": "Add docs to insert.",
+      "timestamp": "2016-05-07T10:04:55-03:00",
+      "url": "https://github.com/lipp/strman/commit/063797a831bb4901c5df4925607f25206a41ced6",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "42a69532837f9028f80e11c1a6bb929ad09fc8ed",
+      "tree_id": "66be44d4d4541e79f8fb98c044e6350da4a00433",
+      "distinct": true,
+      "message": "Add docs to length.",
+      "timestamp": "2016-05-07T10:08:52-03:00",
+      "url": "https://github.com/lipp/strman/commit/42a69532837f9028f80e11c1a6bb929ad09fc8ed",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "7f9bf79762d2e24fcae54e9dde0a7f056273eb2c",
+      "tree_id": "16c2ee6488d8efef377bd6c7ef6271165f345d53",
+      "distinct": true,
+      "message": "Add docs to leftPad.",
+      "timestamp": "2016-05-07T10:13:02-03:00",
+      "url": "https://github.com/lipp/strman/commit/7f9bf79762d2e24fcae54e9dde0a7f056273eb2c",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "7a6d01551e87dbc423210aef60c361b832da7d8a",
+      "tree_id": "335a1267a6b90178c2d974f1fe1f1c937030b6e6",
+      "distinct": true,
+      "message": "Add docs to rightPad.",
+      "timestamp": "2016-05-07T10:14:58-03:00",
+      "url": "https://github.com/lipp/strman/commit/7a6d01551e87dbc423210aef60c361b832da7d8a",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "bfae651233051efcabc9faa1acc945541effa756",
+      "tree_id": "262000fee9dca84d343d1ecc598606c36074230d",
+      "distinct": true,
+      "message": "Fix docs to The String.",
+      "timestamp": "2016-05-07T10:21:17-03:00",
+      "url": "https://github.com/lipp/strman/commit/bfae651233051efcabc9faa1acc945541effa756",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "d0f2a043e6ccc923f891ad97bae715b69dbdc2d8",
+      "tree_id": "4e772b65ad6987ecca806caf1bcd56a34470f367",
+      "distinct": true,
+      "message": "Add docs to substr.",
+      "timestamp": "2016-05-07T10:32:20-03:00",
+      "url": "https://github.com/lipp/strman/commit/d0f2a043e6ccc923f891ad97bae715b69dbdc2d8",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "0e422a2a9f27f41613391fadf6960db07418772b",
+      "tree_id": "0f4380230e3f3090026f1d40edb1d4fcf50a00a7",
+      "distinct": true,
+      "message": "Fix method surround.",
+      "timestamp": "2016-05-07T10:33:52-03:00",
+      "url": "https://github.com/lipp/strman/commit/0e422a2a9f27f41613391fadf6960db07418772b",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "3c939042b9f5e1bd27d34d8f37bb2650cf0318b0",
+      "tree_id": "bb90c83a4b6b9991ce0dca113da8dacba4211839",
+      "distinct": true,
+      "message": "Remove removeNonChars test.",
+      "timestamp": "2016-05-07T10:34:52-03:00",
+      "url": "https://github.com/lipp/strman/commit/3c939042b9f5e1bd27d34d8f37bb2650cf0318b0",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "test/utils.test.js"
+      ]
+    },
+    {
+      "id": "061d31318927ba388021f6cb443f8c6eb27bba0d",
+      "tree_id": "26818b4816ae6606cc3dfe59dcd74007a6d351fe",
+      "distinct": true,
+      "message": "Fix conflits.",
+      "timestamp": "2016-05-08T20:21:41-03:00",
+      "url": "https://github.com/lipp/strman/commit/061d31318927ba388021f6cb443f8c6eb27bba0d",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+        "CONTRIBUTING.md"
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "README.md",
+        "dist/strman.js",
+        "index.js",
+        "package.json",
+        "src/string.utils.js",
+        "test/utils.test.js",
+        "transpiler/slugify.js",
+        "transpiler/string.cases.js",
+        "transpiler/string.utils.js"
+      ]
+    },
+    {
+      "id": "4df518b874a5f068e58c062b3aa805c9696cfbce",
+      "tree_id": "26818b4816ae6606cc3dfe59dcd74007a6d351fe",
+      "distinct": true,
+      "message": "Merge branch 'docs'",
+      "timestamp": "2016-05-08T20:22:32-03:00",
+      "url": "https://github.com/lipp/strman/commit/4df518b874a5f068e58c062b3aa805c9696cfbce",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js",
+        "test/utils.test.js"
+      ]
+    },
+    {
+      "id": "f651c51c6d10ee3a6216bc7781a424f2859e3658",
+      "tree_id": "74946488a681826cf34a784ad996b7c2d39d46d4",
+      "distinct": true,
+      "message": "Update string.utils.js",
+      "timestamp": "2016-05-10T21:41:13-03:00",
+      "url": "https://github.com/lipp/strman/commit/f651c51c6d10ee3a6216bc7781a424f2859e3658",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "af77658c019b6d4002289b1a139d04f6856273a1",
+      "tree_id": "c72dfca90526372bfe983b1420b737e9ec9ebd86",
+      "distinct": true,
+      "message": "Update slugify.js",
+      "timestamp": "2016-05-10T21:42:04-03:00",
+      "url": "https://github.com/lipp/strman/commit/af77658c019b6d4002289b1a139d04f6856273a1",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/slugify.js"
+      ]
+    },
+    {
+      "id": "ce52907a50266df2b0e4bfc8b6355bcc27a41712",
+      "tree_id": "f7c428e13e8e303026f4438d4712a7573c8f7879",
+      "distinct": true,
+      "message": "Update string.cases.js",
+      "timestamp": "2016-05-10T21:48:16-03:00",
+      "url": "https://github.com/lipp/strman/commit/ce52907a50266df2b0e4bfc8b6355bcc27a41712",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.cases.js"
+      ]
+    },
+    {
+      "id": "1afb4be74459d5b77ac27c4cfd681ec21956345a",
+      "tree_id": "b119c9cca28e0a0dc7647c341fe3cf8d094862be",
+      "distinct": true,
+      "message": "Update README.md",
+      "timestamp": "2016-05-10T21:51:30-03:00",
+      "url": "https://github.com/lipp/strman/commit/1afb4be74459d5b77ac27c4cfd681ec21956345a",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "README.md"
+      ]
+    },
+    {
+      "id": "0d5fbec8000b96f9422f40eb237f269e10b435e9",
+      "tree_id": "213dc9c3581b0fb20fed2dc0e72a9090b230cdf7",
+      "distinct": true,
+      "message": "Update README.md",
+      "timestamp": "2016-05-10T21:52:09-03:00",
+      "url": "https://github.com/lipp/strman/commit/0d5fbec8000b96f9422f40eb237f269e10b435e9",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "README.md"
+      ]
+    },
+    {
+      "id": "b1d06018c3b181f80edbba6f6d8150f2a7ae445c",
+      "tree_id": "dea1328fe409616ea15b5153dcccab71493b9969",
+      "distinct": true,
+      "message": "Update README.md",
+      "timestamp": "2016-05-10T21:52:38-03:00",
+      "url": "https://github.com/lipp/strman/commit/b1d06018c3b181f80edbba6f6d8150f2a7ae445c",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "README.md"
+      ]
+    },
+    {
+      "id": "64879874e9add012b768930edb654f8a9cbb91f4",
+      "tree_id": "812bdc4d96211e0391c195ca9609b6918cb8df0c",
+      "distinct": true,
+      "message": "Add prepublish script.",
+      "timestamp": "2016-05-27T12:54:17-03:00",
+      "url": "https://github.com/lipp/strman/commit/64879874e9add012b768930edb654f8a9cbb91f4",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "package.json"
+      ]
+    },
+    {
+      "id": "122256547986f9b2b997e8051e9a8db9237bc03d",
+      "tree_id": "0779874ab62eb7ae731d2739c67a398377805d81",
+      "distinct": true,
+      "message": "Add /dist and /transpiler on the .gitignore.",
+      "timestamp": "2016-05-27T12:54:52-03:00",
+      "url": "https://github.com/lipp/strman/commit/122256547986f9b2b997e8051e9a8db9237bc03d",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        ".gitignore",
+        "dist/strman.js",
+        "transpiler/slugify.js",
+        "transpiler/string.cases.js",
+        "transpiler/string.utils.js"
+      ]
+    },
+    {
+      "id": "bb4c7d2261f38c0de1cae3afb45263dd7ce979c2",
+      "tree_id": "a01fed76cfe0c6d0430493bf9fbab28067ee012c",
+      "distinct": true,
+      "message": "Configure .gitignore.",
+      "timestamp": "2016-05-27T13:21:20-03:00",
+      "url": "https://github.com/lipp/strman/commit/bb4c7d2261f38c0de1cae3afb45263dd7ce979c2",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        ".gitignore",
+        "package.json"
+      ]
+    },
+    {
+      "id": "339a61bb3d363a6692871489823f7c10f90791bf",
+      "tree_id": "da21fcf50c31b56f0d93ce62b56512224660c05c",
+      "distinct": true,
+      "message": "Ignore coverage path to commit.",
+      "timestamp": "2016-06-05T12:02:33-03:00",
+      "url": "https://github.com/lipp/strman/commit/339a61bb3d363a6692871489823f7c10f90791bf",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        ".gitignore"
+      ]
+    },
+    {
+      "id": "6958a26a4c992ced1482f6092b78e5010b0c82a8",
+      "tree_id": "8d08c8f24baf8557ada38d0eb24d67f28f5dde38",
+      "distinct": true,
+      "message": "Add scripts to coverage on travis.",
+      "timestamp": "2016-06-05T12:02:53-03:00",
+      "url": "https://github.com/lipp/strman/commit/6958a26a4c992ced1482f6092b78e5010b0c82a8",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        ".travis.yml"
+      ]
+    },
+    {
+      "id": "657ca1cab6db029265f1727263067395ffad41da",
+      "tree_id": "7b844bda707bc7e9df469c6a7ce80df3f3e82e0d",
+      "distinct": true,
+      "message": "Add scripts to coverage on npm.",
+      "timestamp": "2016-06-05T12:03:12-03:00",
+      "url": "https://github.com/lipp/strman/commit/657ca1cab6db029265f1727263067395ffad41da",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "package.json"
+      ]
+    },
+    {
+      "id": "2b325b611f6f9c5e6a882d8c0d5e4d53f1f74ee5",
+      "tree_id": "a9f110c1b337dc870bd76aaa7d97e1f9f25571cd",
+      "distinct": true,
+      "message": "Run gulp.",
+      "timestamp": "2016-06-05T12:03:41-03:00",
+      "url": "https://github.com/lipp/strman/commit/2b325b611f6f9c5e6a882d8c0d5e4d53f1f74ee5",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "dist/strman.js"
+      ]
+    },
+    {
+      "id": "12f8e4fbbefbae1f69b8e4640ebb8387593c233c",
+      "tree_id": "370cfe9d2326394b36afff5edd1d394c79412847",
+      "distinct": true,
+      "message": "Add codecov to travis.",
+      "timestamp": "2016-06-05T13:52:59-03:00",
+      "url": "https://github.com/lipp/strman/commit/12f8e4fbbefbae1f69b8e4640ebb8387593c233c",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        ".travis.yml"
+      ]
+    },
+    {
+      "id": "cfdcf1ee1325aee21949a7c2b0b29b1722761176",
+      "tree_id": "311d1387ba1c75e57602bbf40facd6f5a425a8a9",
+      "distinct": true,
+      "message": "Add config of istanbul.",
+      "timestamp": "2016-06-05T14:30:31-03:00",
+      "url": "https://github.com/lipp/strman/commit/cfdcf1ee1325aee21949a7c2b0b29b1722761176",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+        ".istanbul.yml"
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+
+      ]
+    },
+    {
+      "id": "6ec1903345321a8ed17b212eb132f90c07420344",
+      "tree_id": "e61641796e6e65554ba55a98b56253799248d726",
+      "distinct": true,
+      "message": "Remove codecov and add coveralls.",
+      "timestamp": "2016-06-05T14:42:17-03:00",
+      "url": "https://github.com/lipp/strman/commit/6ec1903345321a8ed17b212eb132f90c07420344",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        ".travis.yml",
+        "package.json"
+      ]
+    },
+    {
+      "id": "21ba932edd8569f42f36fe26b4fae2140a13e738",
+      "tree_id": "f9e754b9039dc65b4f05a732be5b39cb4251da84",
+      "distinct": true,
+      "message": "Add coverage badge on README.md",
+      "timestamp": "2016-06-05T14:42:47-03:00",
+      "url": "https://github.com/lipp/strman/commit/21ba932edd8569f42f36fe26b4fae2140a13e738",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "README.md"
+      ]
+    },
+    {
+      "id": "f42e31fa15872a7194a253349462a7027a9e6cd2",
+      "tree_id": "f9e754b9039dc65b4f05a732be5b39cb4251da84",
+      "distinct": true,
+      "message": "Merge pull request #41 from dleitee/add-istanbul-coverage\n\nAdd coverage metrics",
+      "timestamp": "2016-06-05T14:46:16-03:00",
+      "url": "https://github.com/lipp/strman/commit/f42e31fa15872a7194a253349462a7027a9e6cd2",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+        ".istanbul.yml"
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        ".travis.yml",
+        "README.md",
+        "package.json"
+      ]
+    },
+    {
+      "id": "e2adbf5d49bfdb9da99d97693c39caeb95002674",
+      "tree_id": "1314f007507ff9a16730cbc9e4b6d96c7aee0203",
+      "distinct": true,
+      "message": "Update .travis.yml",
+      "timestamp": "2016-06-05T14:57:46-03:00",
+      "url": "https://github.com/lipp/strman/commit/e2adbf5d49bfdb9da99d97693c39caeb95002674",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        ".travis.yml"
+      ]
+    },
+    {
+      "id": "f237ebf3dc4007b74903709ca3139d1050e28d83",
+      "tree_id": "137ae7f11ca383837405bdbb4b169e38a35a6aee",
+      "distinct": true,
+      "message": "Update README.md",
+      "timestamp": "2016-06-05T15:05:26-03:00",
+      "url": "https://github.com/lipp/strman/commit/f237ebf3dc4007b74903709ca3139d1050e28d83",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "README.md"
+      ]
+    },
+    {
+      "id": "a5fa48a2803620738fef577a2e2f8e5509f02ad9",
+      "tree_id": "ea89b291c251a4a99e691b24ca6bc44b6588acb7",
+      "distinct": true,
+      "message": "fix coveralls",
+      "timestamp": "2016-06-05T15:14:23-03:00",
+      "url": "https://github.com/lipp/strman/commit/a5fa48a2803620738fef577a2e2f8e5509f02ad9",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        ".travis.yml",
+        "package.json"
+      ]
+    },
+    {
+      "id": "967e59803ec28a054a7cb62b8f7b9f57ab967fc8",
+      "tree_id": "4c54d7aafc835da5dffbf2e9851f2d0efd09f067",
+      "distinct": true,
+      "message": "Add scrutinizer config.",
+      "timestamp": "2016-06-06T20:05:09-03:00",
+      "url": "https://github.com/lipp/strman/commit/967e59803ec28a054a7cb62b8f7b9f57ab967fc8",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+        ".scrutinizer.yml"
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+
+      ]
+    },
+    {
+      "id": "f855cbaa967a17239129999e70ce9df05bf808bb",
+      "tree_id": "ea54577a8bd1ef17e09621a21e53645726243c76",
+      "distinct": true,
+      "message": "Fix bug on excluded_paths",
+      "timestamp": "2016-06-06T20:10:06-03:00",
+      "url": "https://github.com/lipp/strman/commit/f855cbaa967a17239129999e70ce9df05bf808bb",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        ".scrutinizer.yml"
+      ]
+    },
+    {
+      "id": "3375d227a125bf5596c94e40ceef69fab705eb1c",
+      "tree_id": "9c0a451a6c6ba6db0de02420fed26cc9d71e17f7",
+      "distinct": true,
+      "message": "Fix config.",
+      "timestamp": "2016-06-06T20:12:23-03:00",
+      "url": "https://github.com/lipp/strman/commit/3375d227a125bf5596c94e40ceef69fab705eb1c",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        ".scrutinizer.yml"
+      ]
+    },
+    {
+      "id": "d30d239ca3760174baa6bb54b5c2851df56d5109",
+      "tree_id": "9c0a451a6c6ba6db0de02420fed26cc9d71e17f7",
+      "distinct": true,
+      "message": "Merge pull request #43 from dleitee/add-scrutinizer\n\nAdd scrutinizer config.",
+      "timestamp": "2016-06-06T20:17:12-03:00",
+      "url": "https://github.com/lipp/strman/commit/d30d239ca3760174baa6bb54b5c2851df56d5109",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+        ".scrutinizer.yml"
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+
+      ]
+    },
+    {
+      "id": "d8abbcabddcf7fafbacbba0b9d2098a345f90433",
+      "tree_id": "b4d7b10c5702becc445db001acf505005c873def",
+      "distinct": true,
+      "message": "Update .scrutinizer.yml",
+      "timestamp": "2016-06-06T20:19:26-03:00",
+      "url": "https://github.com/lipp/strman/commit/d8abbcabddcf7fafbacbba0b9d2098a345f90433",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        ".scrutinizer.yml"
+      ]
+    },
+    {
+      "id": "f41ce751b2532ae9b5f3d9d035ebfbcc8a306f44",
+      "tree_id": "9e25c13a41d0dc5341ca12e8a581e10e4052608a",
+      "distinct": true,
+      "message": "Update .scrutinizer.yml",
+      "timestamp": "2016-06-06T20:20:03-03:00",
+      "url": "https://github.com/lipp/strman/commit/f41ce751b2532ae9b5f3d9d035ebfbcc8a306f44",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        ".scrutinizer.yml"
+      ]
+    },
+    {
+      "id": "93a1f2164fdb8a174eb0b80092df5235d936fa7d",
+      "tree_id": "ea89b291c251a4a99e691b24ca6bc44b6588acb7",
+      "distinct": true,
+      "message": "Delete .scrutinizer.yml",
+      "timestamp": "2016-06-06T20:29:31-03:00",
+      "url": "https://github.com/lipp/strman/commit/93a1f2164fdb8a174eb0b80092df5235d936fa7d",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+        ".scrutinizer.yml"
+      ],
+      "modified": [
+
+      ]
+    },
+    {
+      "id": "d72b1dcf76d11eca25ee1bcfad499d44623caf2d",
+      "tree_id": "f65c3c2f5e5ec8b0233f4ae4a80172f0d181a46d",
+      "distinct": true,
+      "message": "Fix all coveralls.",
+      "timestamp": "2016-06-06T21:43:16-03:00",
+      "url": "https://github.com/lipp/strman/commit/d72b1dcf76d11eca25ee1bcfad499d44623caf2d",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+        "src/lib/isnil.js"
+      ],
+      "modified": [
+        "src/lib/array.js",
+        "test/utils.test.js"
+      ]
+    },
+    {
+      "id": "a83379c426d790b5efc6660b8ab1a607ed6ee61f",
+      "tree_id": "36d217e3b5f5589f20313b593c8667897a75d830",
+      "distinct": true,
+      "message": "Merge branch 'master' into fix-coveralls",
+      "timestamp": "2016-06-06T21:47:30-03:00",
+      "url": "https://github.com/lipp/strman/commit/a83379c426d790b5efc6660b8ab1a607ed6ee61f",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+        ".scrutinizer.yml"
+      ],
+      "modified": [
+
+      ]
+    },
+    {
+      "id": "f14bfa898c6f902cae792480f6167cdeb25fa1cb",
+      "tree_id": "36d217e3b5f5589f20313b593c8667897a75d830",
+      "distinct": true,
+      "message": "Merge pull request #45 from dleitee/fix-coveralls\n\nFix all coveralls.",
+      "timestamp": "2016-06-06T21:50:51-03:00",
+      "url": "https://github.com/lipp/strman/commit/f14bfa898c6f902cae792480f6167cdeb25fa1cb",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+        "src/lib/isnil.js"
+      ],
+      "modified": [
+        "src/lib/array.js",
+        "test/utils.test.js"
+      ]
+    },
+    {
+      "id": "8561b484217ca9cc89fdb7ec7fc31e2c301fc511",
+      "tree_id": "b74acdb80c7b58502bda793258c8531da3a757ac",
+      "distinct": true,
+      "message": "Delete index.js",
+      "timestamp": "2016-06-06T22:27:02-03:00",
+      "url": "https://github.com/lipp/strman/commit/8561b484217ca9cc89fdb7ec7fc31e2c301fc511",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+        "index.js"
+      ],
+      "modified": [
+
+      ]
+    },
+    {
+      "id": "5e7eabd9316498022897d85f39ab0a7936a49d3a",
+      "tree_id": "f39ac08c5246615967c94034ca6dd667a17bdd2b",
+      "distinct": true,
+      "message": "add code climate config.",
+      "timestamp": "2016-06-07T21:30:17-03:00",
+      "url": "https://github.com/lipp/strman/commit/5e7eabd9316498022897d85f39ab0a7936a49d3a",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+        ".codeclimate.yml"
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+
+      ]
+    },
+    {
+      "id": "4c16f292c7396da35ad32dc0a3d24c56b348dba5",
+      "tree_id": "f39ac08c5246615967c94034ca6dd667a17bdd2b",
+      "distinct": true,
+      "message": "Merge pull request #46 from dleitee/add-codeclimate\n\nadd code climate config.",
+      "timestamp": "2016-06-07T21:34:22-03:00",
+      "url": "https://github.com/lipp/strman/commit/4c16f292c7396da35ad32dc0a3d24c56b348dba5",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+        ".codeclimate.yml"
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+
+      ]
+    },
+    {
+      "id": "569a21faba9433a71391ac00a9394f3a2406b502",
+      "tree_id": "48d6eb3f320da12e119f5e3f4417ed0692dc1f58",
+      "distinct": true,
+      "message": "add codeclimate badge.",
+      "timestamp": "2016-06-07T21:38:05-03:00",
+      "url": "https://github.com/lipp/strman/commit/569a21faba9433a71391ac00a9394f3a2406b502",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "README.md"
+      ]
+    },
+    {
+      "id": "36866edcafa0a384430ce6e6aec77fdbbed120b7",
+      "tree_id": "48d6eb3f320da12e119f5e3f4417ed0692dc1f58",
+      "distinct": true,
+      "message": "Merge pull request #47 from dleitee/add-codeclimate-badge\n\nadd codeclimate badge.",
+      "timestamp": "2016-06-07T21:44:22-03:00",
+      "url": "https://github.com/lipp/strman/commit/36866edcafa0a384430ce6e6aec77fdbbed120b7",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "README.md"
+      ]
+    },
+    {
+      "id": "1026f81109f97278b1b592667b398a986e4512bb",
+      "tree_id": "2009cffa987496522dbc508be62af721459c72b2",
+      "distinct": true,
+      "message": "remove all encoders and decoders of utils file.",
+      "timestamp": "2016-06-08T19:52:35-03:00",
+      "url": "https://github.com/lipp/strman/commit/1026f81109f97278b1b592667b398a986e4512bb",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "9e12c99b5787cdd6824c8ec8ee76c52a9609a76c",
+      "tree_id": "c3146e1ca42686d4553aa6bdb5d04a9473197f1e",
+      "distinct": true,
+      "message": "add decoders and enconders on 2 distinct files.",
+      "timestamp": "2016-06-08T19:53:11-03:00",
+      "url": "https://github.com/lipp/strman/commit/9e12c99b5787cdd6824c8ec8ee76c52a9609a76c",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+        "src/string.decoders.js",
+        "src/string.encoders.js"
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/strman.js"
+      ]
+    },
+    {
+      "id": "07e2320082ff07c04e52d14ab9e55a6d2148513b",
+      "tree_id": "23cbadb5012e24aa3800658801df4e3ae635c979",
+      "distinct": true,
+      "message": "separate decode to function decode(value, length, radix)",
+      "timestamp": "2016-06-08T20:10:32-03:00",
+      "url": "https://github.com/lipp/strman/commit/07e2320082ff07c04e52d14ab9e55a6d2148513b",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.decoders.js"
+      ]
+    },
+    {
+      "id": "c6352abf4e0e1d20b273391eafdba9a7592b5efb",
+      "tree_id": "e2b1986fece168d1ee3701198ae8d20b88049c48",
+      "distinct": true,
+      "message": "separate consts on numerical.base.js file.",
+      "timestamp": "2016-06-08T20:25:18-03:00",
+      "url": "https://github.com/lipp/strman/commit/c6352abf4e0e1d20b273391eafdba9a7592b5efb",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+        "src/lib/numerical.base.js"
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.decoders.js"
+      ]
+    },
+    {
+      "id": "4edc19ba29f31732cbf84ef08d194e1560be1cfa",
+      "tree_id": "b03859bc1e24d3d068a61596de25362aa5a9c0aa",
+      "distinct": true,
+      "message": "separate encode to function encode(value, length, base)",
+      "timestamp": "2016-06-08T20:25:45-03:00",
+      "url": "https://github.com/lipp/strman/commit/4edc19ba29f31732cbf84ef08d194e1560be1cfa",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.encoders.js"
+      ]
+    },
+    {
+      "id": "3efe60324bdf05514170cd056b99f6291ba6c83b",
+      "tree_id": "eb7117076f1d073254d7d09d154e162e92f96c5b",
+      "distinct": true,
+      "message": "Merge branch 'master' into fix-codeclimate",
+      "timestamp": "2016-06-08T20:30:07-03:00",
+      "url": "https://github.com/lipp/strman/commit/3efe60324bdf05514170cd056b99f6291ba6c83b",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "README.md"
+      ]
+    },
+    {
+      "id": "07bcb863b396f8cf590a295ae6ddb88c972713cc",
+      "tree_id": "eb7117076f1d073254d7d09d154e162e92f96c5b",
+      "distinct": true,
+      "message": "Merge pull request #48 from dleitee/fix-codeclimate\n\nFix codeclimate",
+      "timestamp": "2016-06-08T20:33:15-03:00",
+      "url": "https://github.com/lipp/strman/commit/07bcb863b396f8cf590a295ae6ddb88c972713cc",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+        "src/lib/numerical.base.js",
+        "src/string.decoders.js",
+        "src/string.encoders.js"
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js",
+        "src/strman.js"
+      ]
+    },
+    {
+      "id": "5302a4b4d625a0e1ad6880ed4978562fae02670b",
+      "tree_id": "a97b0520a92700382e14801686fa13d4520d2877",
+      "distinct": true,
+      "message": "refacture append method",
+      "timestamp": "2016-06-08T21:28:37-03:00",
+      "url": "https://github.com/lipp/strman/commit/5302a4b4d625a0e1ad6880ed4978562fae02670b",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "f86c3d7d3c55470823053a096c9104c151c796c7",
+      "tree_id": "4c4756a12d0869675e1426c678bfc8c8326993d3",
+      "distinct": true,
+      "message": "refacture prepend method",
+      "timestamp": "2016-06-08T21:30:55-03:00",
+      "url": "https://github.com/lipp/strman/commit/f86c3d7d3c55470823053a096c9104c151c796c7",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "1844d0ba3cfe838806ee1c5c5ac04f67fbe8cb26",
+      "tree_id": "4c4756a12d0869675e1426c678bfc8c8326993d3",
+      "distinct": true,
+      "message": "Merge pull request #49 from dleitee/fix-codeclimate\n\nFix codeclimate",
+      "timestamp": "2016-06-08T21:33:59-03:00",
+      "url": "https://github.com/lipp/strman/commit/1844d0ba3cfe838806ee1c5c5ac04f67fbe8cb26",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "0c5f3edc8b70526c137f82f02f9df8e9fa25778f",
+      "tree_id": "6a430209140f7227dced1a1efc3fc4b4bf0a0c71",
+      "distinct": true,
+      "message": "refacture validate.js",
+      "timestamp": "2016-06-08T21:46:44-03:00",
+      "url": "https://github.com/lipp/strman/commit/0c5f3edc8b70526c137f82f02f9df8e9fa25778f",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+        "src/lib/throw.js"
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/lib/validate.js"
+      ]
+    },
+    {
+      "id": "72e856c255e5dda585b1e92ff72063256d7a1059",
+      "tree_id": "b8121fa1ec01dac21f56c31cda6bda7333264ef8",
+      "distinct": true,
+      "message": "refacture validate.js",
+      "timestamp": "2016-06-08T21:52:28-03:00",
+      "url": "https://github.com/lipp/strman/commit/72e856c255e5dda585b1e92ff72063256d7a1059",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/lib/validate.js"
+      ]
+    },
+    {
+      "id": "f6dfb81afd329c8f6500ecafaf3f63ca2989f47e",
+      "tree_id": "ee523c875409d54a32286c68fe6d78fe339ccb47",
+      "distinct": true,
+      "message": "refactory to caseSensitives",
+      "timestamp": "2016-06-08T22:22:46-03:00",
+      "url": "https://github.com/lipp/strman/commit/f6dfb81afd329c8f6500ecafaf3f63ca2989f47e",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+        "src/lib/case.js"
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "45ccb73c5a97a5ed5a65ef26fa0e1bbf1c17615a",
+      "tree_id": "23c63a0daa3a9b5b8407359b3ccf14bedc6522c1",
+      "distinct": true,
+      "message": "fix add semicolon",
+      "timestamp": "2016-06-08T22:24:33-03:00",
+      "url": "https://github.com/lipp/strman/commit/45ccb73c5a97a5ed5a65ef26fa0e1bbf1c17615a",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "c7a629941a920fc47edf36492a52bd018f0ad604",
+      "tree_id": "23c63a0daa3a9b5b8407359b3ccf14bedc6522c1",
+      "distinct": true,
+      "message": "Merge pull request #50 from dleitee/fix-codeclimate\n\nrefactory",
+      "timestamp": "2016-06-08T22:28:25-03:00",
+      "url": "https://github.com/lipp/strman/commit/c7a629941a920fc47edf36492a52bd018f0ad604",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+        "src/lib/case.js",
+        "src/lib/throw.js"
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/lib/validate.js",
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "a97759ff357cc6ca0f1ae16302839757baeab754",
+      "tree_id": "ae9bed5cce3a9b5f23f6d2da70c175127599085e",
+      "distinct": true,
+      "message": "decreased the size of the entities file.",
+      "timestamp": "2016-06-22T20:47:24-03:00",
+      "url": "https://github.com/lipp/strman/commit/a97759ff357cc6ca0f1ae16302839757baeab754",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/lib/entities.js",
+        "src/string.decoders.js",
+        "src/string.encoders.js"
+      ]
+    },
+    {
+      "id": "101e6aaa64dfdc0cbea1f4e3138319bd39060148",
+      "tree_id": "370f88867ceb7bd55828b6836a5be68ecbdc392f",
+      "distinct": true,
+      "message": "Remove spaces.",
+      "timestamp": "2016-06-22T20:49:53-03:00",
+      "url": "https://github.com/lipp/strman/commit/101e6aaa64dfdc0cbea1f4e3138319bd39060148",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/lib/entities.js"
+      ]
+    },
+    {
+      "id": "c6d43256307463200eceec781dc99d2af57ee176",
+      "tree_id": "370f88867ceb7bd55828b6836a5be68ecbdc392f",
+      "distinct": true,
+      "message": "Merge pull request #52 from dleitee/min-entities\n\nDecreased the size of the entities file.",
+      "timestamp": "2016-06-22T20:52:58-03:00",
+      "url": "https://github.com/lipp/strman/commit/c6d43256307463200eceec781dc99d2af57ee176",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "username": "web-flow"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/lib/entities.js",
+        "src/string.decoders.js",
+        "src/string.encoders.js"
+      ]
+    },
+    {
+      "id": "2a5b538f333b71ecc01c9de32e87afb91999dee4",
+      "tree_id": "ee7c8a4ac166716656fe684643bf6cfc3e719e43",
+      "distinct": true,
+      "message": "Run gulp.",
+      "timestamp": "2016-06-22T20:55:23-03:00",
+      "url": "https://github.com/lipp/strman/commit/2a5b538f333b71ecc01c9de32e87afb91999dee4",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+        "transpiler/lib/case.js",
+        "transpiler/lib/numerical.base.js",
+        "transpiler/lib/throw.js",
+        "transpiler/string.decoders.js",
+        "transpiler/string.encoders.js"
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "dist/strman.js",
+        "transpiler/lib/array.js",
+        "transpiler/lib/entities.js",
+        "transpiler/lib/validate.js",
+        "transpiler/string.utils.js",
+        "transpiler/strman.js"
+      ]
+    },
+    {
+      "id": "6c55aaf94e5fa93e5a03a483672545d267e8de0c",
+      "tree_id": "ee7c8a4ac166716656fe684643bf6cfc3e719e43",
+      "distinct": true,
+      "message": "Merge pull request #53 from dleitee/min-entities\n\nRun gulp.",
+      "timestamp": "2016-06-22T20:59:26-03:00",
+      "url": "https://github.com/lipp/strman/commit/6c55aaf94e5fa93e5a03a483672545d267e8de0c",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "username": "web-flow"
+      },
+      "added": [
+        "transpiler/lib/case.js",
+        "transpiler/lib/numerical.base.js",
+        "transpiler/lib/throw.js",
+        "transpiler/string.decoders.js",
+        "transpiler/string.encoders.js"
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "dist/strman.js",
+        "transpiler/lib/array.js",
+        "transpiler/lib/entities.js",
+        "transpiler/lib/validate.js",
+        "transpiler/string.utils.js",
+        "transpiler/strman.js"
+      ]
+    },
+    {
+      "id": "19b597210b8041544d593b775ef5d56ed524931d",
+      "tree_id": "da07143d95930c715767cf03ea74a22528f79c54",
+      "distinct": true,
+      "message": "Updata version.",
+      "timestamp": "2016-06-22T21:03:00-03:00",
+      "url": "https://github.com/lipp/strman/commit/19b597210b8041544d593b775ef5d56ed524931d",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "package.json"
+      ]
+    },
+    {
+      "id": "9b27ad6bff6dcca11b1f83a202b04a0c23f5c787",
+      "tree_id": "aeeb64c084d28279c8524415f6f606c0e2b2f36c",
+      "distinct": true,
+      "message": "Performance improvements in the _pop method.",
+      "timestamp": "2016-07-02T14:18:48-03:00",
+      "url": "https://github.com/lipp/strman/commit/9b27ad6bff6dcca11b1f83a202b04a0c23f5c787",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/lib/array.js"
+      ]
+    },
+    {
+      "id": "7a8e47e10f5aa0adf143d974a2ea90e1b44285f3",
+      "tree_id": "025d2ee1fd18331d2166b585fdc8a1bca1a52266",
+      "distinct": true,
+      "message": "Performance improvements in the transliterate method.",
+      "timestamp": "2016-07-02T15:12:45-03:00",
+      "url": "https://github.com/lipp/strman/commit/7a8e47e10f5aa0adf143d974a2ea90e1b44285f3",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "50c11d2684cc646bd8c11e7132c4caf754e35c0e",
+      "tree_id": "ebb39816c0dbbe98f20da33b2f8fae8ab3ae323b",
+      "distinct": true,
+      "message": "Removed validations of strings.",
+      "timestamp": "2016-07-02T15:20:51-03:00",
+      "url": "https://github.com/lipp/strman/commit/50c11d2684cc646bd8c11e7132c4caf754e35c0e",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+        "src/lib/validate.js"
+      ],
+      "modified": [
+        "src/string.utils.js",
+        "test/utils.test.js"
+      ]
+    },
+    {
+      "id": "fddd1b2478c0efc4df5af448e40bb90f36383664",
+      "tree_id": "3a851a08f42a297e96c0b183273804fdabd7b856",
+      "distinct": true,
+      "message": "Performance improvements in the contains method.",
+      "timestamp": "2016-07-02T15:36:51-03:00",
+      "url": "https://github.com/lipp/strman/commit/fddd1b2478c0efc4df5af448e40bb90f36383664",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "22a0f50e682599e927966c8f91dfc9e47843647d",
+      "tree_id": "0cd72e667f4e887673384c298a5aa7e9c45eafe7",
+      "distinct": true,
+      "message": "Performance improvements in the containsAll method.",
+      "timestamp": "2016-07-02T15:51:12-03:00",
+      "url": "https://github.com/lipp/strman/commit/22a0f50e682599e927966c8f91dfc9e47843647d",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js",
+        "test/utils.test.js"
+      ]
+    },
+    {
+      "id": "39d481163950005b65e369f0be64d86f00b60d85",
+      "tree_id": "3594609861360872821cfcd43b02e4929e8fd393",
+      "distinct": true,
+      "message": "Performance improvements in the containsAny method.",
+      "timestamp": "2016-07-02T16:01:13-03:00",
+      "url": "https://github.com/lipp/strman/commit/39d481163950005b65e369f0be64d86f00b60d85",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js",
+        "test/utils.test.js"
+      ]
+    },
+    {
+      "id": "fb149adc5761eeb28fba493664af5b9fe1638e95",
+      "tree_id": "bae5ee28053a354a3893a525b8e98f545d7bbfc5",
+      "distinct": true,
+      "message": "Performance improvements in the reverse method.",
+      "timestamp": "2016-07-02T16:33:09-03:00",
+      "url": "https://github.com/lipp/strman/commit/fb149adc5761eeb28fba493664af5b9fe1638e95",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "c8ccd8bcd22073df160ee9748fafb2f4905fdcfe",
+      "tree_id": "86429ac930ab23326321105862a007f7b40691ca",
+      "distinct": true,
+      "message": "Run gulp.",
+      "timestamp": "2016-07-02T16:34:54-03:00",
+      "url": "https://github.com/lipp/strman/commit/c8ccd8bcd22073df160ee9748fafb2f4905fdcfe",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "dist/strman.js",
+        "transpiler/lib/array.js",
+        "transpiler/string.utils.js"
+      ]
+    },
+    {
+      "id": "9fa3e3faf896c219af0dbf6df0a4a635c9637c4a",
+      "tree_id": "bf80f908d6a88862243ee0cfbbd7456bf715f0bd",
+      "distinct": true,
+      "message": "Run gulp.",
+      "timestamp": "2016-07-02T16:36:56-03:00",
+      "url": "https://github.com/lipp/strman/commit/9fa3e3faf896c219af0dbf6df0a4a635c9637c4a",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "dist/strman.js",
+        "transpiler/string.utils.js"
+      ]
+    },
+    {
+      "id": "fd5a5d8a07bc0ce44b502735953dd96aff2efe66",
+      "tree_id": "b417027c97fbbf9cfedc29d7dee34f8143160b72",
+      "distinct": true,
+      "message": "Remove unused functions.",
+      "timestamp": "2016-07-02T16:41:27-03:00",
+      "url": "https://github.com/lipp/strman/commit/fd5a5d8a07bc0ce44b502735953dd96aff2efe66",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+        "src/lib/number.js",
+        "src/lib/throw.js"
+      ],
+      "modified": [
+
+      ]
+    },
+    {
+      "id": "a5f26d9eb00ae8d9f359b2f5ddd7178e0b05d987",
+      "tree_id": "b417027c97fbbf9cfedc29d7dee34f8143160b72",
+      "distinct": true,
+      "message": "Merge pull request #55 from dleitee/performance-enhancements\n\nPerformance enhancements",
+      "timestamp": "2016-07-02T16:45:03-03:00",
+      "url": "https://github.com/lipp/strman/commit/a5f26d9eb00ae8d9f359b2f5ddd7178e0b05d987",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "username": "web-flow"
+      },
+      "added": [
+
+      ],
+      "removed": [
+        "src/lib/number.js",
+        "src/lib/throw.js",
+        "src/lib/validate.js"
+      ],
+      "modified": [
+        "dist/strman.js",
+        "src/lib/array.js",
+        "src/string.utils.js",
+        "test/utils.test.js",
+        "transpiler/lib/array.js",
+        "transpiler/string.utils.js"
+      ]
+    },
+    {
+      "id": "695cfea6c0575e22527e1c9fab28829c35697634",
+      "tree_id": "96bb9490caa901aec934b78293d47624d72bd6cc",
+      "distinct": true,
+      "message": "Update version.",
+      "timestamp": "2016-07-02T17:00:04-03:00",
+      "url": "https://github.com/lipp/strman/commit/695cfea6c0575e22527e1c9fab28829c35697634",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "package.json"
+      ]
+    },
+    {
+      "id": "b8d70d61cbb9de817890ff09b11aae2b78381691",
+      "tree_id": "d936e047ca01eb61d9e3ed67809b0c263059a65d",
+      "distinct": true,
+      "message": "Merge branch 'master' of github.com:dleitee/strman",
+      "timestamp": "2016-07-02T17:00:44-03:00",
+      "url": "https://github.com/lipp/strman/commit/b8d70d61cbb9de817890ff09b11aae2b78381691",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+        "src/lib/number.js",
+        "src/lib/throw.js",
+        "src/lib/validate.js"
+      ],
+      "modified": [
+        "dist/strman.js",
+        "src/lib/array.js",
+        "src/string.utils.js",
+        "test/utils.test.js",
+        "transpiler/lib/array.js",
+        "transpiler/string.utils.js"
+      ]
+    },
+    {
+      "id": "42c332cc1f6c2a74f7afb95295576cbf9fd3922a",
+      "tree_id": "667959e511a5ce5a4bfe0fe31dd105c54120beba",
+      "distinct": true,
+      "message": "Update _pop function.",
+      "timestamp": "2016-07-02T17:49:20-03:00",
+      "url": "https://github.com/lipp/strman/commit/42c332cc1f6c2a74f7afb95295576cbf9fd3922a",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/lib/array.js"
+      ]
+    },
+    {
+      "id": "e4bd163a595751e772f7ff979e86b8aad905161c",
+      "tree_id": "46a2f59492109e81a54e567d96755ed84588c155",
+      "distinct": true,
+      "message": "Add traditional length.",
+      "timestamp": "2016-07-04T20:38:44-03:00",
+      "url": "https://github.com/lipp/strman/commit/e4bd163a595751e772f7ff979e86b8aad905161c",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "842f3fb7c3a30d8a8c4df5d255831057be0c5715",
+      "tree_id": "c9aa197d380e985a973e3e9fc42e99d494e4f9b4",
+      "distinct": true,
+      "message": "Performance improvements in the ensureRight method.",
+      "timestamp": "2016-07-05T20:29:55-03:00",
+      "url": "https://github.com/lipp/strman/commit/842f3fb7c3a30d8a8c4df5d255831057be0c5715",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "package.json",
+        "src/string.utils.js"
+      ]
+    },
+    {
+      "id": "66a27a9c212e94e7412c9e9148c6913e9a1f2916",
+      "tree_id": "11d698ef31da1f8487106ef5f9f70b1012ad2098",
+      "distinct": true,
+      "message": "Run gulp.",
+      "timestamp": "2016-07-05T20:42:24-03:00",
+      "url": "https://github.com/lipp/strman/commit/66a27a9c212e94e7412c9e9148c6913e9a1f2916",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "dist/strman.js",
+        "transpiler/lib/array.js",
+        "transpiler/string.utils.js"
+      ]
+    },
+    {
+      "id": "104901991d5edf9cfc55a68a85df006ad1e1ccb1",
+      "tree_id": "e6e0b3d6ec5a8f58f5ee55b93876b5050bd1d8af",
+      "distinct": true,
+      "message": "Update README.md",
+      "timestamp": "2016-07-10T13:04:23-03:00",
+      "url": "https://github.com/lipp/strman/commit/104901991d5edf9cfc55a68a85df006ad1e1ccb1",
+      "author": {
+        "name": "Daniel Leite de Oliveira",
+        "email": "dleitee@gmail.com",
+        "username": "dleitee"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "username": "web-flow"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "README.md"
+      ]
+    }
+  ],
+  "head_commit": {
+    "id": "104901991d5edf9cfc55a68a85df006ad1e1ccb1",
+    "tree_id": "e6e0b3d6ec5a8f58f5ee55b93876b5050bd1d8af",
+    "distinct": true,
+    "message": "Update README.md",
+    "timestamp": "2016-07-10T13:04:23-03:00",
+    "url": "https://github.com/lipp/strman/commit/104901991d5edf9cfc55a68a85df006ad1e1ccb1",
+    "author": {
+      "name": "Daniel Leite de Oliveira",
+      "email": "dleitee@gmail.com",
+      "username": "dleitee"
+    },
+    "committer": {
+      "name": "GitHub",
+      "email": "noreply@github.com",
+      "username": "web-flow"
+    },
+    "added": [
+
+    ],
+    "removed": [
+
+    ],
+    "modified": [
+      "README.md"
+    ]
+  },
+  "repository": {
+    "id": 57378964,
+    "name": "strman",
+    "full_name": "lipp/strman",
+    "owner": {
+      "name": "lipp",
+      "email": "gelipp@gmail.com"
+    },
+    "private": false,
+    "html_url": "https://github.com/lipp/strman",
+    "description": "A Javascript string manipulation library without npm dependences.",
+    "fork": true,
+    "url": "https://github.com/lipp/strman",
+    "forks_url": "https://api.github.com/repos/lipp/strman/forks",
+    "keys_url": "https://api.github.com/repos/lipp/strman/keys{/key_id}",
+    "collaborators_url": "https://api.github.com/repos/lipp/strman/collaborators{/collaborator}",
+    "teams_url": "https://api.github.com/repos/lipp/strman/teams",
+    "hooks_url": "https://api.github.com/repos/lipp/strman/hooks",
+    "issue_events_url": "https://api.github.com/repos/lipp/strman/issues/events{/number}",
+    "events_url": "https://api.github.com/repos/lipp/strman/events",
+    "assignees_url": "https://api.github.com/repos/lipp/strman/assignees{/user}",
+    "branches_url": "https://api.github.com/repos/lipp/strman/branches{/branch}",
+    "tags_url": "https://api.github.com/repos/lipp/strman/tags",
+    "blobs_url": "https://api.github.com/repos/lipp/strman/git/blobs{/sha}",
+    "git_tags_url": "https://api.github.com/repos/lipp/strman/git/tags{/sha}",
+    "git_refs_url": "https://api.github.com/repos/lipp/strman/git/refs{/sha}",
+    "trees_url": "https://api.github.com/repos/lipp/strman/git/trees{/sha}",
+    "statuses_url": "https://api.github.com/repos/lipp/strman/statuses/{sha}",
+    "languages_url": "https://api.github.com/repos/lipp/strman/languages",
+    "stargazers_url": "https://api.github.com/repos/lipp/strman/stargazers",
+    "contributors_url": "https://api.github.com/repos/lipp/strman/contributors",
+    "subscribers_url": "https://api.github.com/repos/lipp/strman/subscribers",
+    "subscription_url": "https://api.github.com/repos/lipp/strman/subscription",
+    "commits_url": "https://api.github.com/repos/lipp/strman/commits{/sha}",
+    "git_commits_url": "https://api.github.com/repos/lipp/strman/git/commits{/sha}",
+    "comments_url": "https://api.github.com/repos/lipp/strman/comments{/number}",
+    "issue_comment_url": "https://api.github.com/repos/lipp/strman/issues/comments{/number}",
+    "contents_url": "https://api.github.com/repos/lipp/strman/contents/{+path}",
+    "compare_url": "https://api.github.com/repos/lipp/strman/compare/{base}...{head}",
+    "merges_url": "https://api.github.com/repos/lipp/strman/merges",
+    "archive_url": "https://api.github.com/repos/lipp/strman/{archive_format}{/ref}",
+    "downloads_url": "https://api.github.com/repos/lipp/strman/downloads",
+    "issues_url": "https://api.github.com/repos/lipp/strman/issues{/number}",
+    "pulls_url": "https://api.github.com/repos/lipp/strman/pulls{/number}",
+    "milestones_url": "https://api.github.com/repos/lipp/strman/milestones{/number}",
+    "notifications_url": "https://api.github.com/repos/lipp/strman/notifications{?since,all,participating}",
+    "labels_url": "https://api.github.com/repos/lipp/strman/labels{/name}",
+    "releases_url": "https://api.github.com/repos/lipp/strman/releases{/id}",
+    "deployments_url": "https://api.github.com/repos/lipp/strman/deployments",
+    "created_at": 1461928596,
+    "updated_at": "2016-04-29T11:16:37Z",
+    "pushed_at": 1468996994,
+    "git_url": "git://github.com/lipp/strman.git",
+    "ssh_url": "git@github.com:lipp/strman.git",
+    "clone_url": "https://github.com/lipp/strman.git",
+    "svn_url": "https://github.com/lipp/strman",
+    "homepage": "",
+    "size": 265,
+    "stargazers_count": 0,
+    "watchers_count": 0,
+    "language": "JavaScript",
+    "has_issues": false,
+    "has_downloads": true,
+    "has_wiki": true,
+    "has_pages": false,
+    "forks_count": 0,
+    "mirror_url": null,
+    "open_issues_count": 0,
+    "forks": 0,
+    "open_issues": 0,
+    "watchers": 0,
+    "default_branch": "master",
+    "stargazers": 0,
+    "master_branch": "master"
+  },
+  "pusher": {
+    "name": "lipp",
+    "email": "gelipp@gmail.com"
+  },
+  "sender": {
+    "login": "lipp",
+    "id": 445883,
+    "avatar_url": "https://avatars.githubusercontent.com/u/445883?v=3",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/lipp",
+    "html_url": "https://github.com/lipp",
+    "followers_url": "https://api.github.com/users/lipp/followers",
+    "following_url": "https://api.github.com/users/lipp/following{/other_user}",
+    "gists_url": "https://api.github.com/users/lipp/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/lipp/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/lipp/subscriptions",
+    "organizations_url": "https://api.github.com/users/lipp/orgs",
+    "repos_url": "https://api.github.com/users/lipp/repos",
+    "events_url": "https://api.github.com/users/lipp/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/lipp/received_events",
+    "type": "User",
+    "site_admin": false
+  }
+}

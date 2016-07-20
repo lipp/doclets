@@ -22,7 +22,7 @@ mongoose.connect('mongodb://192.168.99.100/app', function () {
       }, function () {})
     }
 
-    var x = ['acme-push', 'acme-tag', 'numbers-push', 'noderestify-push', 'shouldjs-push', 'redux-push', 'commander-push']
+    var x = ['acme-push', 'acme-tag', 'numbers-push', 'noderestify-push', 'shouldjs-push', 'redux-push', 'commander-push', 'RxJs', 'pixi.js', 'strman']
 
     x.forEach(function (event) {
       console.log(event)

@@ -281,6 +281,91 @@ describe('The structure module', function () {
     })
   })
 
+  describe('extracting groups', function () {
+    var getDoclets = function (dir) {
+      var docdir = path.join(__dirname, '../fixtures/groups', dir)
+      var data = gather.gatherDocletsAndMeta(docdir, true)
+      return data.doclets
+    }
+
+    it('groups for modules are correct', function () {
+      var doclets = getDoclets('modules')
+      var groups = structure.getGroups(doclets)
+
+      assert.deepEqual(groups, [
+        {
+          id: 'myModule/abc',
+          module: 'myModule/abc'
+        },
+        {
+          id: 'test',
+          module: 'test'
+        }
+      ])
+    })
+
+    it('groups for namespaces are correct', function () {
+      var doclets = getDoclets('namespace')
+      var groups = structure.getGroups(doclets)
+
+      assert.deepEqual(groups, [
+        {id: ''},
+        {
+          id: 'X',
+          namespace: 'X'
+        },
+        {
+          id: 'Y',
+          namespace: 'Y'
+        },
+        {
+          id: 'Y.Z',
+          namespace: 'Y.Z'
+        }
+      ])
+    })
+
+    it('groups for categories are correct', function () {
+      var doclets = getDoclets('category')
+      var groups = structure.getGroups(doclets)
+
+      assert.deepEqual(groups, [
+        {
+          id: 'fun',
+          category: 'fun'
+        },
+        {
+          id: 'nofun',
+          category: 'nofun'
+        }
+      ])
+    })
+
+    it('groups for mixed are correct', function () {
+      var doclets = getDoclets('mixed')
+      var groups = structure.getGroups(doclets)
+
+      assert.deepEqual(groups, [
+        {
+          id: 'test',
+          module: 'test'
+        },
+        {
+          id: 'testSTUFFD',
+          category: 'D',
+          module: 'test',
+          namespace: 'STUFF'
+        },
+        {
+          id: 'testSTUFFP',
+          category: 'P',
+          module: 'test',
+          namespace: 'STUFF'
+        }
+      ])
+    })
+  })
+
   describe('the closure syntax fixture doclets', function () {
     var foo
     before(function () {
