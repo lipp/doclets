@@ -1,10 +1,19 @@
 /** @module */
 
 /** @class */
-this.Book = function (title) {
+var Book = function (title) {
   /** The title. */
   this.title = title
 }
+
+/** @function */
+Book.prototype.getPages = function() {}
+
+/** @function */
+var getBooks = function() {}
+
+/** @function */
+filter.getBooks = function() {}
 
 /**
  * @namespace

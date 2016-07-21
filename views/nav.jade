@@ -49,6 +49,15 @@ mixin module(module)
 			.content.active
 				+childlist(module.childs)
 
+mixin group(group)
+	.group
+		a(href=apiPath + group.id)= group.id === '' ? 'globals' : group.id
+		ul
+			- var flat = doclet.asFlat(group.id, true)
+			each doclet in flat
+				- var id = doclet && tools.idFromLongname(doclet.longname)
+				.x
+					a(href=apiPath + group.id + '#' + id)= doclet._group.name
 
 nav#api-nav.ui.left.inline.inverte.large.vertical.menu.visible
 	each article in doclet.data.articles
@@ -58,14 +67,9 @@ nav#api-nav.ui.left.inline.inverte.large.vertical.menu.visible
 		h2.header 
 			a(href=apiPath) API
 
-		- var tree = doclet.asTree()
-		- var globals = _.findWhere(tree, {longname: 'globals'})
-		if tree.length > 1 && childs(globals).length > 0
-			each module in tree
-				+module(module)
-		else if globals && globals.childs
-			.module
-				+childlist(globals.childs)
+		- var groups = doclet.asTree()
+		each group in groups
+			+group(group)
 
 
 

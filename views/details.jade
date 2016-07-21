@@ -229,7 +229,7 @@ mixin module(module)
 		p
 			em No description available.
 
-- var flat = doclet.asFlat()
+- var flat = doclet.asFlat(group)
 each doclet in flat
 	if doclet
 	+doclet(doclet)

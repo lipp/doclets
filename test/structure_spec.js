@@ -341,27 +341,70 @@ describe('The structure module', function () {
       ])
     })
 
+    it('groups for weiredmod are correct', function () {
+      var doclets = getDoclets('weiredmod')
+      var groups = structure.getGroups(doclets)
+
+      var modules = structure.getModules(doclets)
+      assert.deepEqual(modules, ['FOO'])
+      console.log(groups)
+
+      assert.deepEqual(groups, [
+        {
+          id: 'FOO',
+          module: 'FOO'
+        },
+        {
+          id: 'FOO.fun',
+          module: 'FOO',
+          category: 'fun'
+        }
+      ])
+    })
+
     it('groups for mixed are correct', function () {
       var doclets = getDoclets('mixed')
       var groups = structure.getGroups(doclets)
 
       assert.deepEqual(groups, [
         {
+          id: ''
+        },
+        {
           id: 'test',
           module: 'test'
         },
         {
-          id: 'testSTUFFD',
+          id: 'test.STUFF.D',
           category: 'D',
           module: 'test',
           namespace: 'STUFF'
         },
         {
-          id: 'testSTUFFP',
+          id: 'test.STUFF.P',
           category: 'P',
           module: 'test',
           namespace: 'STUFF'
         }
+      ])
+    })
+
+    it('byGroup mixed', function () {
+      var doclets = getDoclets('mixed')
+      var testMembers = structure.byGroup(doclets, 'test')
+      var testGroups = testMembers.map(function (t) {return t._group})
+      assert.deepEqual(testGroups, [
+        { name: 'Book', parent: 'test' },
+        { name: 'Book#title', parent: 'test' },
+        { name: 'Book#getPages', parent: 'test' },
+        { name: 'getBooks', parent: 'test' },
+        { name: 'filter.getBooks', parent: 'test' },
+        { name: 'STUFF', parent: 'test' }
+      ])
+      var globalMembers = structure.byGroup(doclets, '')
+      var globalGroups = globalMembers.map(function (t) {return t._group})
+      assert.deepEqual(globalGroups, [
+        { name: 'hello', parent: ''}
       ])
     })
   })
