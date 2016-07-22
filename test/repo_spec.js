@@ -20,8 +20,8 @@ describe('The repo module', function () {
   })
 
   describe('checkout()', function () {
-    this.slow(10000)
-    this.timeout(60000) // due to "sometimes slow" github.com
+    this.slow(20000)
+    this.timeout(80000) // due to "sometimes slow" github.com
     var dir
     var url = 'https://9400d95247127f3b893d60a2949343550744a7e3@github.com/lipp/acme-jsdoc-example'
     var readmePath

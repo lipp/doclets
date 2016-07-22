@@ -23,7 +23,7 @@ var clearDb = function (done) {
 }
 
 describe('The server module', function () {
-  this.timeout(4000)
+  this.timeout(8000)
 
   after(function (done) {
     mongoose.connection.close(done)

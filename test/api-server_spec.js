@@ -20,7 +20,7 @@ var replayGitHubEvent = function (eventDir, done) {
 }
 
 describe('The api-server module', function () {
-  this.timeout(4000)
+  this.timeout(8000)
 
   var inbox
 
