@@ -22,7 +22,7 @@ var loadGitHubEvent = function (eventDir) {
 var tmpPath = path.join(__dirname, 'git-temp')
 
 describe('The doc-worker module', function () {
-  this.timeout(60000)
+  this.timeout(120000)
   this.slow(8000)
   var inbox
   var failed
