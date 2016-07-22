@@ -22,7 +22,7 @@ var loadGitHubEvent = function (eventDir) {
 var tmpPath = path.join(__dirname, 'git-temp')
 
 describe('The doc-worker module', function () {
-  this.timeout(120000)
+  this.timeout(150000)
   this.slow(8000)
   var inbox
   var failed
@@ -34,9 +34,9 @@ describe('The doc-worker module', function () {
     getRepoEvents.yields(null, [])
     inbox = new Bull('inbox', env.redis.port, env.redis.host)
     failed = new Bull('failed', env.redis.port, env.redis.host)
-    inbox.clean(200).then(function () {
+    inbox.clean(1000).then(function () {
       console.log('inbox queue clean')
-      failed.clean(200).then(function () {
+      failed.clean(1000).then(function () {
         console.log('failed queue clean')
         docWorker.init(tmpPath, done)
       })
