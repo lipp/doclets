@@ -34,8 +34,10 @@ describe('The doc-worker module', function () {
     getRepoEvents.yields(null, [])
     inbox = new Bull('inbox', env.redis.port, env.redis.host)
     failed = new Bull('failed', env.redis.port, env.redis.host)
-    inbox.clean(1).then(function () {
-      failed.clean(1).then(function () {
+    inbox.clean(200).then(function () {
+      console.log('inbox queue clean')
+      failed.clean(200).then(function () {
+        console.log('failed queue clean')
         docWorker.init(tmpPath, done)
       })
     })
