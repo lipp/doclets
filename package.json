@@ -64,7 +64,7 @@
     "acme-jsdoc-example": "lipp/acme-jsdoc-example",
     "chokidar": "^1.6.0",
     "coveralls": "^2.11.6",
-    "csslint": "^0.10.0",
+    "csslint": "^1.0.1",
     "git-branch": "^0.3.0",
     "istanbul": "^0.4.1",
     "mocha": "^2.5.0",
