@@ -36,7 +36,7 @@
     "flat": "^2.0.0",
     "fs-extra": "^0.30.0",
     "git-repo-name": "^0.5.1",
-    "github": "^0.2.4",
+    "github": "^1.1.0",
     "github-webhook-handler": "^0.5.0",
     "glob": "^7.0.3",
     "helmet": "^1.1.0",
