@@ -35,7 +35,7 @@
     "express-slash": "^2.0.1",
     "flat": "^2.0.0",
     "fs-extra": "^0.30.0",
-    "git-repo-name": "^0.5.1",
+    "git-repo-name": "^0.6.0",
     "github": "^0.2.4",
     "github-webhook-handler": "^0.5.0",
     "glob": "^7.0.3",
