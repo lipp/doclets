@@ -51,7 +51,7 @@
     "morgan": "^1.6.1",
     "normalize.css": "^3.0.3",
     "passport": "^0.3.2",
-    "passport-github2": "^0.1.9",
+    "passport-github2": "^0.1.10",
     "path-is-absolute": "^1.0.0",
     "prompt": "^1.0.0",
     "recursive-readdir": "^2.0.0",
