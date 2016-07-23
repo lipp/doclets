@@ -63,7 +63,7 @@
   "devDependencies": {
     "acme-jsdoc-example": "lipp/acme-jsdoc-example",
     "chokidar": "^1.6.0",
-    "coveralls": "^2.11.6",
+    "coveralls": "^2.11.11",
     "csslint": "^0.10.0",
     "git-branch": "^0.3.0",
     "istanbul": "^0.4.1",
