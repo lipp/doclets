@@ -39,7 +39,7 @@
     "github": "^0.2.4",
     "github-webhook-handler": "^0.5.0",
     "glob": "^7.0.3",
-    "helmet": "^1.1.0",
+    "helmet": "^1.2.0",
     "jade": "^1.11.0",
     "js-yaml": "^3.5.5",
     "jsdoc": "jsdoc3/jsdoc#407bd470cde2dcb2745c217411fe8f9406cb694d",
