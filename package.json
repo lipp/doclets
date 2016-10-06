@@ -71,7 +71,7 @@
     "optimist": "^0.6.1",
     "request": "^2.72.0",
     "sinon": "^1.17.2",
-    "socket.io": "^1.4.6",
+    "socket.io": "^1.5.0",
     "standard": "^5.4.1",
     "taffydb": "^2.7.2"
   },
