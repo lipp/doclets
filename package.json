@@ -24,7 +24,7 @@
   "license": "MIT",
   "dependencies": {
     "async": "^2.0.1",
-    "body-parser": "^1.14.2",
+    "body-parser": "^1.16.1",
     "bull": "^1.0.0",
     "colors": "^1.1.2",
     "compression": "^1.6.1",
