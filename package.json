@@ -23,7 +23,7 @@
   "author": "Gerhard Preuss",
   "license": "MIT",
   "dependencies": {
-    "async": "^2.0.1",
+    "async": "^2.2.0",
     "body-parser": "^1.14.2",
     "bull": "^1.0.0",
     "colors": "^1.1.2",
